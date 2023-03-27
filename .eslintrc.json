@@ -1,0 +1,10 @@
+{
+	"extends": ["next/core-web-vitals", "plugin:storybook/recommended"],
+	"rules": {
+		"indent": ["error", "tab"],
+		"semi": ["error", "never"],
+		"no-tabs": "off",
+		"no-multi-spaces": 1,
+		"react/no-unescaped-entities": "off"
+	}
+}
