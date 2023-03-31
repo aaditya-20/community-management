@@ -4,8 +4,6 @@ import React from 'react'
 
 import { StoryFn, Meta } from '@storybook/react'
 
-import { Heading } from '@chakra-ui/react'
-
 export default {
 	title: 'Heading',
 	component: Heading
