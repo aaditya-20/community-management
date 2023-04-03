@@ -1,4 +1,3 @@
-import GoogleSignInButton from "@/utils/authentication/googleAuth"
 export default function Home() {
   return (
     <>
