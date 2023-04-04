@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import { supabase } from "@/pages/config/supabaseClient";
 import { useState } from "react";
 
-const supabaseStorage = () => {
+const SupabaseStorage = () => {
   const [file, setFile] = useState<File | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,4 +38,4 @@ const supabaseStorage = () => {
   );
 };
 
-export default supabaseStorage;
+export default SupabaseStorage;

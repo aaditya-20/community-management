@@ -17,6 +17,7 @@
     "@types/react-dom": "18.0.11",
     "@web3auth/web3auth-wagmi-connector": "1.0.0",
     "cypress": "^12.9.0",
+    "daisyui": "^2.51.5",
     "dotenv": "^16.0.3",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
@@ -30,7 +31,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
-    "tailwindcss": "^3.3.1",
+    "react-icons": "^4.8.0",
     "uuid": "^9.0.0",
     "wagmi": "^0.12.8",
     "zod": "^3.21.4"
@@ -38,8 +39,12 @@
   "devDependencies": {
     "@types/gapi": "^0.0.44",
     "@types/gapi.auth2": "^0.0.57",
+    "@types/react-icons": "^3.0.0",
     "@types/uuid": "^9.0.1",
+    "autoprefixer": "^10.4.14",
     "install": "^0.13.0",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.1",
     "typescript": "5.0.3"
   },
   "registry": "https://registry.npmjs.org/"
