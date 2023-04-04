@@ -1,0 +1,15 @@
+.inputbox{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 600px;
+    height: 60px;
+    /* left: 747px;
+    top: 467px; */
+
+    background: #2E363F;
+    backdrop-filter: blur(40px);
+/* Note: backdrop-filter has minimal browser support */
+
+   border-radius: 6px;
+}

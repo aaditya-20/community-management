@@ -1,11 +1,23 @@
-import GoogleSignInButton from "@/utils/authentication/googleAuth"
-// require('dotenv').config()
-console.log(process.env.SUPABASEURL)
-export default function Home() {
+import { FaDiscord, FaTwitter } from 'react-icons/fa';
+import IconButton from '../components/atoms/IconButton';
+import { ReactElement } from 'react';
+
+const HomePage = (): ReactElement => {
+  const handleDiscordClick = () => {
+    // handle Discord button click
+  };
+
+  const handleTwitterClick = () => {
+    // handle Twitter button click
+  };
+
   return (
-    <>
-    <h1 className="text-3xl font-italic underline">Working</h1>
-    
-    </>
-  )
-}
+    <div>
+      <h1>Welcome to my app!</h1>
+      <IconButton icon={FaDiscord} label="Join " className="bg-indigo-600" onClick={handleDiscordClick} />
+      {/* <IconButton icon={FaTwitter} label="Follow us on Twitter" className="bg-blue-500" onClick={handleTwitterClick} /> */}
+    </div>
+  );
+};
+
+export default HomePage;
