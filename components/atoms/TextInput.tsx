@@ -22,7 +22,7 @@ const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',
   return (
     <div className={`flex flex-col ${className}`}>
       {/* label for the input */}
-      <label className={`text-sm font-medium text-gray-700${classNameLabel}`}>{label}</label>
+      <label className={`text-sm font-medium text-gray-700 ${classNameLabel}`}>{label}</label>
 
       {/* the input element itself */}
       <input
@@ -30,7 +30,7 @@ const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',
         value={value} // set the value of the input to the current state
         onChange={handleChange} // call handleChange on input change events
         placeholder={placeholder}
-        className={`px-3 py-2 mt-1 text-sm border${classNameInput}`}
+        className={`px-3 py-2 mt-1 ${classNameInput}`}
       />
     </div>
   );

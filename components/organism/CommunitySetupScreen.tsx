@@ -24,7 +24,7 @@ const CommunitySetupScreen = (): ReactElement => {
           <p className='relative w-[200px] h-[22px] top-[10px] left-[30px] font-sans font-normal text-base leading-6 text-gray-500'>Tell us your name?</p>
           <div className='relative top-[105px] left-[53px] font-[Roboto] font-bold text-[#848484] w-[13.54px] h-[27.88px] text-[28px]'>+</div>
           <ProfileIcon size={94} imageUrl="/Icons/DefaultUserIcon.png" alt='nothing' classNameCircle=' relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white' classNameImage='relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]'  />
-          <TextInput placeholder='Name' label='Enter Name' className='relative top-[-25px] left-[154px] w-[426px] h-[41px]' classNameInput='w-[426px] h-[41px] bg-[#2E363F] rounded-lg' classNameLabel='font-medium text-base leading-6 text-white font-generalsans w-[85px] h-[22px]' />
+          <TextInput placeholder='Name' label='Enter Name' className='relative top-[-25px] left-[154px] w-[426px] h-[41px]' classNameInput='w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium' classNameLabel='font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]' />
           <IconButton icon={FaDiscord} label="Discord" className="relative bg-[#8570E4] top-[89px] left-[0px] w-[331px] h-[67px]"  />
           <IconButton icon={VscBlank} label="Continue" className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"  /> 
         </div>

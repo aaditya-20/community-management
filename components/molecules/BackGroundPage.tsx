@@ -6,8 +6,8 @@ export default function BackGroundPage() {
    
         <>
    
-            <div className="flex items-center justify-center bg-[#1E1E1E]  min-h-screen">
-            <Image src="/Icons/FireBondIcon.png" alt="My Image" width={500} height={500} className=" absolute top-10 w-[193px] h-[68.1px] m-auto" />
+            <div className="flex items-center justify-center bg-[#171C23] h-[100vh] w-[100vw]">
+               <Image src="/Icons/FireBondIcon.png" alt="My Image" width={500} height={500} className=" absolute top-10 w-[193px] h-[68.1px] m-auto" />
             </div>
           </>
   );
