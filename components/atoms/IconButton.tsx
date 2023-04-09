@@ -9,7 +9,7 @@ type IconButtonProps = {
   onClick?: () => void;
   children?: ReactNode;
 };
-
+// while importing dont forget to add props 
 const IconButton = ({ icon: Icon, label, className = '', onClick, children, ...props }: IconButtonProps): ReactElement => {
   return (
     <button

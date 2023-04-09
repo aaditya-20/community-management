@@ -4,9 +4,11 @@ type TextInputProps = {
   label: string;
   placeholder?: string;
   className?: string;
+  classNameLabel?: string;
+  classNameInput?: string;
 };
 
-const TextInput = ({ label, placeholder = '', className = '' }: TextInputProps): ReactElement => {
+const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',classNameInput=''}: TextInputProps): ReactElement => {
   // state to hold the current input value
   const [value, setValue] = useState('');
 
@@ -20,7 +22,7 @@ const TextInput = ({ label, placeholder = '', className = '' }: TextInputProps):
   return (
     <div className={`flex flex-col ${className}`}>
       {/* label for the input */}
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className={`text-sm font-medium text-gray-700 ${classNameLabel}`}>{label}</label>
 
       {/* the input element itself */}
       <input
@@ -28,7 +30,7 @@ const TextInput = ({ label, placeholder = '', className = '' }: TextInputProps):
         value={value} // set the value of the input to the current state
         onChange={handleChange} // call handleChange on input change events
         placeholder={placeholder}
-        className="px-3 py-2 mt-1 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className={`px-3 py-2 mt-1 ${classNameInput}`}
       />
     </div>
   );
