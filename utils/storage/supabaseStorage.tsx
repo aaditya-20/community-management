@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { supabase } from "@/pages/config/supabaseClient";
 import { useState } from "react";
+import { supabase } from "../supabaseClient";
 
 const SupabaseStorage = () => {
   const [file, setFile] = useState<File | null>(null);
