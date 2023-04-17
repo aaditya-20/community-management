@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { supabase } from '../supabaseClient';
 import * as React from 'react'
-const clientID = "";
+const clientID = process.env.GOOGLE_CLIENT_ID;
 
 function GoogleSignInButton() {
   const router = useRouter()
