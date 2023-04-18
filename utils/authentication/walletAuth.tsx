@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Web3Provider } from "@ethersproject/providers";
-import { supabase } from "@/pages/config/supabaseClient";
+import { supabase } from "../supabaseClient";
+
 
 interface User {
   email: string;
