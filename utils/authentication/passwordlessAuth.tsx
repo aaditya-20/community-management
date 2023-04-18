@@ -1,4 +1,4 @@
-import { supabase } from '../../pages/config/supabaseClient';
+import { supabase } from '../supabaseClient';
 
 /*
 signInWithEmail function
