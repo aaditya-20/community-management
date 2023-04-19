@@ -1,16 +1,14 @@
-import CommunitySetupScreen from "@/components/organism/CommunitySetupScreen";
-import IconButton from "@/components/atoms/IconButton";
-import BackGroundPage from "@/components/molecules/BackGroundPage";
-import { FaDiscord, FaTwitter } from 'react-icons/fa';
-const HomePage = () => {
-
+import React from 'react'
+import CommunitySetupScreen from '@/components/organism/CommunitySetupScreen'
+import AnalyticsCardMainDashboard from '@/components/molecules/AnalyticsCardMainDashboard'
+import StackedBarChart from '@/components/molecules/Temp'
+import MemberGrowthCardAnalyticsScreen from '@/components/molecules/MemberGrowthCardAnalyticsScreen'
+import CommunitySetUpIntegration from '@/components/organism/CommunitySetUpIntegration'
+import Temp from '@/components/molecules/Temp'
+export default function index() {
   return (
-    <>
-      <BackGroundPage/>
-     
-     
-    </>
-  );
-};
-
-export default HomePage;
+    <div>
+        <MemberGrowthCardAnalyticsScreen/>
+    </div>
+  )
+}
