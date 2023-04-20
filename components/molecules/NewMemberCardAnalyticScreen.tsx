@@ -17,7 +17,7 @@ export default function NewMemberCardAnalyticScreen() {
                     joined date
             </div>
             <div className="absolute text-[#A6A6A6] text-[12px] font-[400] font-[General Sans] top-[85px] left-[400px]">
-            completed missions
+                 completed missions
             </div>
             <div className="absolute text-[#A6A6A6] text-[12px] font-[400] font-[General Sans] top-[85px] left-[597px]">
                     platform

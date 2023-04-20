@@ -14,7 +14,8 @@ export default function index() {
   return (
     <div>
         {/* <MemberXpDetailsForTopContributor icon={FaDiscord} change={AiOutlineUp} colorOfChange="inline text-[red]" position={1}/> */}
-        <Member/>
+        <TopContributorCardLeaderboardScreen/>
+
     </div>
   )
 }
