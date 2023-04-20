@@ -15,6 +15,7 @@ const SupabaseStorage = () => {
     const filename = `${uuidv4()}-${file.name}`;
 
     const { data, error } = await supabase.storage
+    // temp is the name of bucket where we want to send data.
       .from("temp")
       .upload(filename, file, {
         cacheControl: "3600",

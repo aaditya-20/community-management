@@ -4,18 +4,18 @@
 
 - [ ]  Header
 - [ ]  sidebar
-- [ ]  analytic graph
+- [X]  analytic graph
 - [ ]  Onboarding Experience
 - [ ]  Mission Card
-- [ ]  Recently Joined Card
+- [X]  Recently Joined Card
 
 ## Analytics
 
 - [ ]  Header
 - [ ]  sidebar
-- [ ]  Member growth Graph
+- [X]  Member growth Graph
 - [ ]  Top Content card
-- [ ]  New members Card
+- [X]  New members Card
 - [ ]  Top Contributor card
 - [ ]  Social Stat Card
 

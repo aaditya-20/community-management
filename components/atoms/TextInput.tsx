@@ -1,6 +1,8 @@
 import { ReactElement, useState } from 'react';
 
 type TextInputProps = {
+  handleChange2:(e:any)=> void;
+  handleValue:string;
   label: string;
   placeholder?: string;
   className?: string;
@@ -8,7 +10,7 @@ type TextInputProps = {
   classNameInput?: string;
 };
 
-const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',classNameInput=''}: TextInputProps): ReactElement => {
+const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',classNameInput='',handleChange2,handleValue = ''}: TextInputProps): ReactElement => {
   // state to hold the current input value
   const [value, setValue] = useState('');
 
@@ -16,6 +18,7 @@ const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // update the state with the new value
     setValue(e.target.value);
+    
   };
 
   // render the input element with a label
@@ -27,8 +30,8 @@ const TextInput = ({ label , placeholder = '', className = '',classNameLabel='',
       {/* the input element itself */}
       <input
         type="text"
-        value={value} // set the value of the input to the current state
-        onChange={handleChange} // call handleChange on input change events
+        value={handleValue} // set the value of the input to the current state
+        onChange={handleChange2} // call handleChange2 on input change events
         placeholder={placeholder}
         className={`px-3 py-2 mt-1 ${classNameInput}`}
       />
