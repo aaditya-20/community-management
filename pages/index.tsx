@@ -1,6 +1,7 @@
 import React from 'react'
 import CommunitySetupScreen from '@/components/organism/CommunitySetupScreen'
 import AnalyticsCardMainDashboard from '@/components/molecules/AnalyticsCardMainDashboard'
+
 import MemberXpDetailsForTopContributor from '@/components/atoms/MemberXpDetailsForTopContributor'
 import MemberGrowthCardAnalyticsScreen from '@/components/molecules/MemberGrowthCardAnalyticsScreen'
 import CommunitySetUpIntegration from '@/components/organism/CommunitySetUpIntegration'
@@ -14,6 +15,7 @@ export default function index() {
     <div>
         {/* <MemberXpDetailsForTopContributor icon={FaDiscord} change={AiOutlineUp} colorOfChange="inline text-[red]" position={1}/> */}
         <TopContributorCardLeaderboardScreen/>
+
     </div>
   )
 }

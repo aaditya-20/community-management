@@ -114,7 +114,7 @@ export default function NewMemberCardAnalyticScreen() {
         <div className="absolute text-[#FFFFFF] text-[16px] font-[400] font-[General Sans] left-[375px] w-[110px]">
                 3
         </div>
-        
+
         <div className="absolute left-[575px] top-[-5px]">
                   <PlatformIconWithBox Icon ={FaDiscord} IconSize={15} IconColor="white" BoxStyle="bg-[#6359E9] w-[37px] h-[37px] rounded-[10px]"/>
         </div>
