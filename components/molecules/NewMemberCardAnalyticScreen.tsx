@@ -17,7 +17,7 @@ export default function NewMemberCardAnalyticScreen() {
                     joined date
             </div>
             <div className="absolute text-[#A6A6A6] text-[12px] font-[400] font-[General Sans] top-[85px] left-[400px]">
-            completed missions
+                 completed missions
             </div>
             <div className="absolute text-[#A6A6A6] text-[12px] font-[400] font-[General Sans] top-[85px] left-[597px]">
                     platform
@@ -114,6 +114,7 @@ export default function NewMemberCardAnalyticScreen() {
         <div className="absolute text-[#FFFFFF] text-[16px] font-[400] font-[General Sans] left-[375px] w-[110px]">
                 3
         </div>
+        
         <div className="absolute left-[575px] top-[-5px]">
                   <PlatformIconWithBox Icon ={FaDiscord} IconSize={15} IconColor="white" BoxStyle="bg-[#6359E9] w-[37px] h-[37px] rounded-[10px]"/>
         </div>
