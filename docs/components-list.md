@@ -24,7 +24,7 @@
 - [ ]  Header
 - [ ]  sidebar
 - [ ]  Leaderboard XP card
-- [ ]  Top Contributor Card
+- [X]  Top Contributor Card
 
 ## Member
 
