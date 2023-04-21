@@ -5,8 +5,9 @@ import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import { VscBlank, VscDash } from "react-icons/vsc";
 import { platform } from "os";
+import Link from "next/link";
 
-export default function Member() {
+export default function MemberListCardMissionPage() {
   const [players, setPlayers] = useState([
     {
       name: "Player1",
@@ -177,22 +178,15 @@ export default function Member() {
       platform: "Discord",
     },
   ]);
-  players.sort((a, b) => {
-    return b.xp - a.xp;
-  });
+ 
   const ele = players.map((value, index) => {
-    // let icon;
-    // if (value.platform == "Discord") {
-    //   icon = "FaDiscord";
-    // } else {
-    //   icon = "FaTwitter";
-    // }
+    
     return (
       <li key = {index} className="my-8 ">
         <MemberXpDetailsForTopContributor
           icon={value.platform == "Discord" ? FaDiscord : FaTwitter}
           change={VscBlank}
-          colorOfChange={`inline ${
+          colorOfChange={`inline hidden ${
             value.xp - value.previousXP >= 0 ? "text-[green]" : "text-[red]"
             // value.xp - value.previousXP > 0 ? "text-[green]" : (value.xp - value.previousXP < 0 ? "text-[red]":"text-[white]")
           }`}
@@ -200,8 +194,9 @@ export default function Member() {
           missionsCompleted={value.missionsCompleted}
           xp={value.xp}
           playerName={value.name}
+          playerNameStyle={"left-[45px]"}
           BoxColor={value.platform == "Discord" ? '' : 'bg-[#64CFF6]'}
-          
+
         />
       </li>
     );
@@ -209,9 +204,9 @@ export default function Member() {
   return (
     // username ,previous xp,current cp,missions completed.
     <>
-      <div className="absolute h-[500px] w-[1150px] bg-[#242B35] rounded-[20px]  overflow-y-auto scrollbar">
+      <div className="absolute h-[550px] w-[1150px] bg-[#242B35] rounded-[20px]  overflow-y-auto scrollbar">
         <div className="absolute text-[#FFFFFF] font-[General Sans] font-[500] text-[24px] left-[24px] top-[22px]  ">
-          Top Contributors
+          Members 
         </div>
         {/* <div className="absolute text-[#D9D9D9] font-[General Sans] font-[400] text-[14px] left-[592px] top-[32px]  ">Show All</div> */}
 
@@ -233,7 +228,16 @@ export default function Member() {
         <div className="absolute top-[90px] left-[15px] w-[auto]">
           <ul>{ele}</ul>
         </div>
+        
       </div>
+      <div className="relative bg-[#242B35] border-t-[1px] w-[1150px] h-[50px] border-[#353B43] top-[500px] rounded-b-[20px]">
+      <Link
+          href="/"
+          className="absolute top-[15px] right-[70px] text-[#D9D9D9]"
+        >
+          Show next 100 
+        </Link>
+        </div>
     </>
   );
 }
