@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
+import Image from 'next/image';
 
 type ProfileIconProps = {
+  onProfileIconClick: () => void;
   imageUrl: string;
   size?: number | string;
   classNameCircle?: string;
@@ -10,11 +12,13 @@ type ProfileIconProps = {
 };
 
 
+
 // Component for rendering a circular profile icon with an image
-const ProfileIcon = ({ imageUrl, size =32, classNameCircle = '', style, alt = 'Profile Image',classNameImage='' }: ProfileIconProps): ReactElement => {
+const ProfileIcon = ({ imageUrl, size =32, classNameCircle = '', style, alt = 'Profile Image',classNameImage='',onProfileIconClick }: ProfileIconProps): ReactElement => {
   const sizeStyle = typeof size === 'number' ? { width: size, height: size } : { width: size };
   return (
     <div
+      onClick={onProfileIconClick}
       className={`relative inline-block rounded-full overflow-hidden ${classNameCircle}`}
       style={{ ...sizeStyle, ...style }}
     >

@@ -1,19 +1,21 @@
-import CommunitySetupScreen from "@/components/organism/CommunitySetupScreen";
-import IconButton from "@/components/atoms/IconButton";
-import BackGroundPage from "@/components/molecules/BackGroundPage";
-import { FaDiscord, FaTwitter } from 'react-icons/fa';
-import Card from "@/components/atoms/Card";
-import MissionDashboardTemplateCard from "@/components/molecules/MissionDashboardTemplateCard";
-import TopContentCard from "@/components/molecules/TopContentCard";
-import Sidebar from "@/components/molecules/Sidebar";
-import MissionMainCard from "@/components/molecules/MissionMainCard";
-const HomePage = () => {
+import React from 'react'
+import CommunitySetupScreen from '@/components/organism/CommunitySetupScreen'
+import AnalyticsCardMainDashboard from '@/components/molecules/AnalyticsCardMainDashboard'
+import MemberXpDetailsForTopContributor from '@/components/atoms/MemberXpDetailsForTopContributor'
+import MemberGrowthCardAnalyticsScreen from '@/components/molecules/MemberGrowthCardAnalyticsScreen'
+import CommunitySetUpIntegration from '@/components/organism/CommunitySetUpIntegration'
+import { AiOutlineUp } from "react-icons/ai";
+import { FaDiscord } from 'react-icons/fa';
+import TopContributorCardLeaderboardScreen from '@/components/molecules/TopContributorCardLeaderboardScreen'
+import NewMemberCardAnalyticScreen from '@/components/molecules/NewMemberCardAnalyticScreen'
+import Member from '@/components/molecules/MemberListCardMissionPage'
 
+export default function index() {
   return (
-    <>
-    <Sidebar/>
-     </>
-  );
-};
+    <div>
+        {/* <MemberXpDetailsForTopContributor icon={FaDiscord} change={AiOutlineUp} colorOfChange="inline text-[red]" position={1}/> */}
+        <TopContributorCardLeaderboardScreen/>
 
-export default HomePage;
+    </div>
+  )
+}

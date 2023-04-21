@@ -6,18 +6,19 @@ type IconButtonProps = {
   icon: IconType;
   label: string;
   className?: string;
+  classNameIcon: string;
   onClick?: () => void;
   children?: ReactNode;
 };
 // while importing dont forget to add props 
-const IconButton = ({ icon: Icon, label, className = '', onClick, children, ...props }: IconButtonProps): ReactElement => {
+const IconButton = ({ icon: Icon, label, className = '', onClick, classNameIcon='', children, ...props }: IconButtonProps): ReactElement => {
   return (
     <button
-      className={`flex items-center justify-center gap-2 px-4 py-2 font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${className}`}
+      className={`flex items-center justify-center gap-2 px-4 py-2 font-medium text-white   ${className}`}
       onClick={onClick}
       {...props}
     >
-      <Icon className="text-2xl" />
+      <Icon className={`text-2xl ${classNameIcon}`} />
       <span>{label}</span>
       {children}
     </button>
