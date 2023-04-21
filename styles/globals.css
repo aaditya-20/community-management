@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-
   .scrollbar::-webkit-scrollbar {
     width: 7px;
     height: 100px;
@@ -27,7 +26,6 @@
     background: #c0a0b9;
     
   }
-
 
     @variants responsive {
       /* Chrome, Safari and Opera */
