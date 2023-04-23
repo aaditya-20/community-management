@@ -10,7 +10,7 @@ function ShowNotifications() {
 
   const handleClick = () => {
     setShowMessages(!showMessages);
-    setUnread(0);
+    setUnread(3);
   };
 
   return (

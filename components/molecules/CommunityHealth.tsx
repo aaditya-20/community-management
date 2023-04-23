@@ -7,7 +7,7 @@ interface CommunityHealthProps {
 
 export default function CommunityHealth(prop: any) {
   return (
-    <div className="card card-side shadow-xl absolute w-[553px] h-[414px] left-[715px] top-[530px] bg-[#242B35] flex justify-center items-center rounded-3xl">
+    <div className="card card-side shadow-xl absolute w-[469px] h-[390px] left-[715px] top-[535px] bg-[#242B35] flex justify-center items-center rounded-3xl">
       <p className="absolute left-10 top-7 w-258 h-32 font-semibold font-weight-[600px] text-white text-2xl leading-8">
         Community Health
       </p>
@@ -33,14 +33,14 @@ export default function CommunityHealth(prop: any) {
             } as React.CSSProperties
           }
         >
-          <div className="font-generalsans font-medium text-base md:text-lg text-gray-600 leading-6 md:leading-7">
+          <div className=" flex justify-center font-generalsans font-medium text-base md:text-lg text-gray-600 leading-6 md:leading-7">
             Total
           </div>
           <div className="font-generalsans font-medium text-3xl text-gray-300 leading-10">
             {prop.Total}
           </div>
         </div>
-        <div className="flex justify-center space-x-4 relative h-[18px] left-[-130px] top-[65px]">
+        <div className="flex justify-center space-x-4 relative h-[18px] left-[-100px] top-[30px]">
           <label className="inline-flex items-center">
             <div className="h-[18px] w-[18px] rounded-full bg-gray-600"></div>
             <span className="text-[#D9D9D9] ml-2 font-generalsans font-normal font-medium text-base md:text-lg leading-6 md:leading-7">

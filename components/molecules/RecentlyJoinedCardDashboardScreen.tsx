@@ -4,7 +4,7 @@ import { PlatformIconWithBox } from "../atoms/PlatformIconWithBox"
 export default function RecentlyJoinedCardDashboardScreen() {
   return (
     <>
-       <div className='h-[350px] w-[400px] bg-[#242B35] rounded-[20px] '>
+       <div className='h-[280px] w-[400px] bg-[#242B35] rounded-[20px] '>
        <div>
         <div className="absolute text-[#FFFFFF] font-[General Sans] font-[600] text-[24px] left-[24px] top-[22px]  ">Recently joined</div>
         <div className="absolute text-[#D9D9D9] font-[General Sans] font-[400] text-[14px] left-[317px] top-[32px]  ">Show All</div>
@@ -60,7 +60,7 @@ export default function RecentlyJoinedCardDashboardScreen() {
               </div>
         </div>
         {/*  */}
-        <div className="absolute avatar top-[280px] left-[24px]">
+        {/* <div className="absolute avatar top-[280px] left-[24px]">
                 <div className=" w-[50px] h-[50px]  rounded-full">
                   <img src="/Icons/Ellipse 14.png" alt="IMG"/>
                 </div>
@@ -73,7 +73,7 @@ export default function RecentlyJoinedCardDashboardScreen() {
               <div className="relative text-[#A6A6A6] text-[12px] font-[400] font-[General Sans] top-[10px] left-[109px]">
                    joined on 10th march
               </div>
-        </div>
+        </div> */}
 
         
 
