@@ -26,7 +26,7 @@ const TopContentCard = ({
         <div>
           <h1 className="font-normal text-[15px] leading-5 text-[#8899A6]">
             <span className="text-white font-semibold">{username}</span>{" "}
-            @{userid}{" "}<span className="relative bottom-[3px]">.</span>{" "}{time}
+            @{userid}{" "}<span className="relative bottom-[3px]">.</span>{" "}{time}s
           </h1>
           <p className="text-white font-normal text-[15px] leading-5 min-h-[40px] max-w-[300px] break-words">
             {discription}
