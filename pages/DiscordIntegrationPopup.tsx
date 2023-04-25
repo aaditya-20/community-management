@@ -4,7 +4,10 @@ import IconButton from "../components/atoms/IconButton";
 import ProfileIcon from "../components/atoms/ProfileAvatar";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 export default function DiscordIntegrationPopup() {
+  const router = useRouter();
   function handleProfileClick(){
     // Task:will divide icon in two types-Profile(avatar)+Uplaod Icons
   }
@@ -54,7 +57,7 @@ export default function DiscordIntegrationPopup() {
         />
       </div>
       <div className="absolute top-[720px] left-[775px]">
-        <button className="bg-[#161616] text-[#A6A6A6] text-sm px-2 py-1 rounded-md">
+        <button onClick={() => router.push('/Step1CommunitySetup')} className="bg-[#161616] text-[#A6A6A6] text-sm px-2 py-1 rounded-md">
           Skip
         </button>
       </div>
