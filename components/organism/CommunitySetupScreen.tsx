@@ -4,13 +4,21 @@ import { supabase } from "@/utils/supabaseClient";
 import IconButton from "../atoms/IconButton";
 import ProfileIcon from "../atoms/ProfileAvatar";
 import BackGroundPage from "../molecules/BackGroundPage";
-import { ReactElement, useState } from "react";
+import { ReactElement, use, useState } from "react";
 import Card from "../atoms/Card";
 import Link from "next/link";
 import TextInput from "../atoms/TextInput";
-
+import DiscordIntegrationPopup from "./DiscordIntegrationPopup";
+import Popup from "reactjs-popup";
+import Modal from '@material-ui/core/Modal';
 const CommunitySetupScreen = (): ReactElement => {
   const [InputValue,setInputvalue] = useState('');
+  const [OpenDiscord,setOpenDiscord] = useState(false);
+  function onContinueClick(){
+     
+      setOpenDiscord(!OpenDiscord);
+
+  }
 
   
   function handleProfileClick() {
@@ -63,6 +71,16 @@ const CommunitySetupScreen = (): ReactElement => {
     // console.log(value);
     <>
       <BackGroundPage />
+      <Modal
+        onClose={()=>{setOpenDiscord(!OpenDiscord)}}
+        open={OpenDiscord}
+        style={{
+          
+        }}
+      >
+
+         <div className='absolute left-[-100px] top-[-150px]'><DiscordIntegrationPopup/></div>
+      </Modal>
       {/* <div className="flex items-center"> */}
       <Card title="" text="" />
 
@@ -108,12 +126,13 @@ const CommunitySetupScreen = (): ReactElement => {
           className="relative bg-[#8570E4] top-[89px] left-[0px] w-[331px] h-[67px]"
           classNameIcon=""
         />
-        <IconButton
-          icon={VscBlank}
-          label="Continue"
-          className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
-          classNameIcon=""
-        />
+         <IconButton
+              icon={VscBlank}
+              label="Continue"
+              className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
+              classNameIcon=""
+              onClick={onContinueClick}
+            />
       </div>
       <p className="absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans">
         Already have account?{" "}
