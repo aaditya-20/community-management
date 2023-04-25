@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ethersproject/providers": "^5.7.2",
+    "@material-ui/core": "^4.12.4",
     "@moralisweb3/next": "^2.18.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@supabase/supabase-js": "^2.20.0",
@@ -41,6 +42,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
+    "reactjs-popup": "^2.0.5",
     "tailwind-scrollbar-hide": "^1.1.7",
     "uuid": "^9.0.0",
     "wagmi": "^0.12.10",

@@ -2,7 +2,7 @@ import React from 'react'
 
 const BeAchamp = (props:any) => {
   return (
-    <div className="bg-gray-800 absolute w-56 h-270 left-290 top-195 ">
+    <div className="bg-gray-800 absolute w-56 h-270 left-290 top-195 rounded-5 ">
         <h1 className="text-xl font-bold mb-4 text-white">Be A Champion</h1>
         <div className="bg-gray-600"><hr ></hr></div>
         <div className='flex'>

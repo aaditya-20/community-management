@@ -3,6 +3,7 @@ import Card from "../atoms/Card";
 import IconButton from "../atoms/IconButton";
 import ProfileIcon from "../atoms/ProfileAvatar";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import Link from "next/link";
 export default function DiscordIntegrationPopup() {
   function handleProfileClick(){
     // Task:will divide icon in two types-Profile(avatar)+Uplaod Icons
@@ -14,9 +15,9 @@ export default function DiscordIntegrationPopup() {
         title=""
         text=""
       />
-      <div className="absolute left-[487px] top-[196px] text-[#FFFFFF] text-3xl">
+      <Link href='/' className="absolute left-[487px] top-[196px] text-[#FFFFFF] text-3xl">
         <AiOutlineArrowLeft />
-      </div>
+      </Link>
       <div className=" absolute left-[608px] top-[230px] w-[397px] h-[32px] text-[#FFFFFF] font-[General sans] font-[600] font-[24px] text-3xl leading-normal ">
         <p>Link your Discord account</p>
       </div>
