@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 export default function FirstPage() {
+  const router = useRouter();
   return (
     <>
       <div className="bg-[#0c0c0c] h-[100vh] w-[100vw]">
@@ -11,10 +13,10 @@ export default function FirstPage() {
             height={200}
             alt="FireBond"
           ></Image>
-          <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[20px]">
+          <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[20px]" onClick={()=>router.push('/CommunitySetupScreen')}>
             sign up
           </button>
-          <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[150px]">
+          <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[150px]" onClick={()=>router.push('/WelcomeScreen1')}>
             Log in
           </button>
         </div>
