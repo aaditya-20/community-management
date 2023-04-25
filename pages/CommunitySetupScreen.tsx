@@ -8,9 +8,11 @@ import { ReactElement, useState } from "react";
 import Card from "../components/atoms/Card";
 import Link from "next/link";
 import TextInput from "../components/atoms/TextInput";
+import { useRouter } from "next/router";
 
 const CommunitySetupScreen = (): ReactElement => {
   const [InputValue,setInputvalue] = useState('');
+  const router = useRouter();
 
   
   function handleProfileClick() {
@@ -113,6 +115,7 @@ const CommunitySetupScreen = (): ReactElement => {
           label="Continue"
           className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
           classNameIcon=""
+          onClick={()=>router.push('/Step1CommunitySetup')}
         />
       </div>
       <p className="absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans">
