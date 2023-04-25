@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from '../molecules/Sidebar'
-import Header from '../atoms/Header'
-import MemberListCardMissionPage from '../molecules/MemberListCardMissionPage'
+import Sidebar from '../components/molecules/Sidebar'
+import Header from '../components/atoms/Header'
+import MemberListCardMissionPage from '../components/molecules/MemberListCardMissionPage'
 import { BsChevronDown } from "react-icons/bs";
 export default function MemberScreen() {
   return (

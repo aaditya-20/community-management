@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { IntegrationOption } from "../molecules/IntegrationOption";
+import { IntegrationOption } from "../components/molecules/IntegrationOption";
 import { FaDiscord,FaTwitter,FaTelegram,FaEthereum,FaTelegramPlane } from "react-icons/fa";
 import { VscBlank } from "react-icons/vsc";
-import IconButton from "../atoms/IconButton";
+import IconButton from "../components/atoms/IconButton";
 import BackGroundPage from "@/components/molecules/BackGroundPage";
 import { useState } from "react";
 function CommunitySetUpIntegration() {

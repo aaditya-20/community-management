@@ -1,15 +1,15 @@
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import { VscBlank } from "react-icons/vsc";
-import IconButton from "../atoms/IconButton";
-import ProfileIcon from "../atoms/ProfileAvatar";
-import BackGroundPage from "../molecules/BackGroundPage";
+import IconButton from "../components/atoms/IconButton";
+import ProfileIcon from "../components/atoms/ProfileAvatar";
+import BackGroundPage from "../components/molecules/BackGroundPage";
 import { supabase } from "@/utils/supabaseClient";
 import { ReactElement } from "react";
-import Card from "../atoms/Card";
+import Card from "../components/atoms/Card";
 import Link from "next/link";
-import TextInput from "../atoms/TextInput";
-import TextArea from "../atoms/TextArea";
-import Temporary from "../atoms/Stepper";
+import TextInput from "../components/atoms/TextInput";
+import TextArea from "../components/atoms/TextArea";
+import Temporary from "../components/atoms/Stepper";
 import { useState } from "react";
 
 const Step1CommunitySetup = (): ReactElement => {

@@ -1,7 +1,7 @@
 import { FaDiscord } from "react-icons/fa";
-import Card from "../atoms/Card";
-import IconButton from "../atoms/IconButton";
-import ProfileIcon from "../atoms/ProfileAvatar";
+import Card from "../components/atoms/Card";
+import IconButton from "../components/atoms/IconButton";
+import ProfileIcon from "../components/atoms/ProfileAvatar";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Link from "next/link";
 export default function DiscordIntegrationPopup() {
