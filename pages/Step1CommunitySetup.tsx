@@ -1,18 +1,22 @@
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import { VscBlank } from "react-icons/vsc";
-import IconButton from "../atoms/IconButton";
-import ProfileIcon from "../atoms/ProfileAvatar";
-import BackGroundPage from "../molecules/BackGroundPage";
+import IconButton from "../components/atoms/IconButton";
+import ProfileIcon from "../components/atoms/ProfileAvatar";
+import BackGroundPage from "../components/molecules/BackGroundPage";
 import { supabase } from "@/utils/supabaseClient";
 import { ReactElement } from "react";
-import Card from "../atoms/Card";
+import Card from "../components/atoms/Card";
 import Link from "next/link";
-import TextInput from "../atoms/TextInput";
-import TextArea from "../atoms/TextArea";
-import Temporary from "../atoms/Stepper";
+import TextInput from "../components/atoms/TextInput";
+import TextArea from "../components/atoms/TextArea";
+import Temporary from "../components/atoms/Stepper";
 import { useState } from "react";
+import { useRouter } from "next/router";
+
+
 
 const Step1CommunitySetup = (): ReactElement => {
+  const router = useRouter()
   const [InputValue, setInputvalue] = useState("");
 
   function handleProfileClick() {
@@ -56,6 +60,8 @@ const Step1CommunitySetup = (): ReactElement => {
   function handleInput(e: any) {
     setInputvalue(e.target.value);
   }
+
+ 
   console.log("NAME-> ", InputValue);
 
   return (
@@ -179,6 +185,7 @@ const Step1CommunitySetup = (): ReactElement => {
             label="Back"
             className="relative bg-[#1D1D1D] top-[-25px] left-[0px] w-[340px] h-[60px]"
             classNameIcon=""
+            onClick={()=>router.push('/CommunitySetupScreen')}
           />
 
           <IconButton
@@ -186,6 +193,7 @@ const Step1CommunitySetup = (): ReactElement => {
             label="Continue"
             className="relative bg-[#FE702A] top-[-85px] left-[335px] w-[338px] h-[60px]"
             classNameIcon=""
+            onClick={()=>router.push('/CommunitySetUpIntegration')}
           />
         </div>
         {/* <p className='absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans'>Already have account? <Link href="/" className='font-[General Sans] text-[#A6A6A6CC]'>Sign in</Link></p> */}

@@ -1,16 +1,18 @@
 import Link from "next/link";
-import { IntegrationOption } from "../molecules/IntegrationOption";
+import { IntegrationOption } from "../components/molecules/IntegrationOption";
 import { FaDiscord,FaTwitter,FaTelegram,FaEthereum,FaTelegramPlane } from "react-icons/fa";
 import { VscBlank } from "react-icons/vsc";
-import IconButton from "../atoms/IconButton";
+import IconButton from "../components/atoms/IconButton";
 import BackGroundPage from "@/components/molecules/BackGroundPage";
 import { useState } from "react";
+import { useRouter } from "next/router";
 function CommunitySetUpIntegration() {
   
   const [flagDiscord,setDiscord] = useState("visible");
   const [flagTwitter,setTwitter] = useState("hidden");
   const [flagTelegram,setTelegram] = useState("hidden");
   const [flagEthereum,setEthereum] = useState("hidden");
+  const router = useRouter();
 
   // let hidden = "hidden"
 
@@ -89,12 +91,14 @@ function handleEthereumClick(){
           label="Back"
           className="absolute bg-[#1D1D1D] bottom-[0px] w-[331px] h-[67px]"
           classNameIcon=""
+          onClick={()=>router.push('/Step1CommunitySetup')}
         />
          <IconButton
           icon={VscBlank}
           label="Continue"
           className="absolute bg-[#FE702A] bottom-[0px] left-[331px] w-[331px] h-[67px]"
           classNameIcon=""
+          onClick={()=>router.push('/WelcomeScreen1')}
         />
 
 

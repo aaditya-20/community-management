@@ -1,16 +1,18 @@
 import { FaDiscord, FaTwitter } from "react-icons/fa";
 import { VscBlank } from "react-icons/vsc";
 import { supabase } from "@/utils/supabaseClient";
-import IconButton from "../atoms/IconButton";
-import ProfileIcon from "../atoms/ProfileAvatar";
-import BackGroundPage from "../molecules/BackGroundPage";
-import { ReactElement, use, useState } from "react";
-import Card from "../atoms/Card";
-import Link from "next/link";
-import TextInput from "../atoms/TextInput";
+import IconButton from "../components/atoms/IconButton";
+import ProfileIcon from "../components/atoms/ProfileAvatar";
+import BackGroundPage from "../components/molecules/BackGroundPage";
+import { ReactElement, useState } from "react";
+import Card from "../components/atoms/Card";
 import DiscordIntegrationPopup from "./DiscordIntegrationPopup";
+import Link from "next/link";
+import TextInput from "../components/atoms/TextInput";
 import Popup from "reactjs-popup";
 import Modal from '@material-ui/core/Modal';
+
+
 const CommunitySetupScreen = (): ReactElement => {
   const [InputValue,setInputvalue] = useState('');
   const [OpenDiscord,setOpenDiscord] = useState(false);
