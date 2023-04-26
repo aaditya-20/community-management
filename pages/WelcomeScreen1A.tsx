@@ -7,7 +7,7 @@ export default function WelcomeScreen1A() {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push('/NewDashboard');
-    }, 5000); // delay for 3 seconds
+    }, 3000); // delay for 3 seconds
 
     return () => clearTimeout(timer);
   }, [router]);

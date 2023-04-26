@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const name="Ash-KODES"
+const name="UserName"
 
 const WelcomePage = () => {
   const router = useRouter();
@@ -9,7 +9,7 @@ const WelcomePage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push('/WelcomeScreen1A');
-    }, 5000); // delay for 3 seconds
+    }, 3000); // delay for 3 seconds
 
     return () => clearTimeout(timer);
   }, [router]);
