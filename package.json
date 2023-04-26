@@ -14,6 +14,7 @@
     "@moralisweb3/next": "^2.18.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@supabase/supabase-js": "^2.20.0",
+    "@thirdweb-dev/auth": "^3.0.15",
     "@thirdweb-dev/react": "^3.11.7",
     "@thirdweb-dev/sdk": "^3.10.10",
     "@types/node": "18.15.11",
