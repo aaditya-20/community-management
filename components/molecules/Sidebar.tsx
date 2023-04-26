@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <>
       {hideMenu ? (
-        <div className="max-w-[98px] min-h-screen overflow-auto bg-[#171C23] transition-all duration-500 ease-in-out">
+        <div className="max-w-[98px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] transition duration-500 ease-in-out">
           <div className="px-5">
             {/* Navbar */}
             <nav className="flex w-full items-center justify-center mt-[40px] mb-[54px]">
@@ -90,7 +90,7 @@ const Sidebar = () => {
           </div>
         </div>
       ) : (
-        <div className="max-w-[266px] min-h-screen overflow-auto bg-[#171C23] transition-all duration-500 ease-in-out">
+        <div className="max-w-[266px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] transition duration-500 ease-in-out">
           <div className="px-5">
             <nav className="flex justify-between mb-[54px] mt-[18px]">
               <Image
