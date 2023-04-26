@@ -15,6 +15,6 @@ module.exports = {
       'open-sans': ['Open Sans', 'sans-serif']
     }
   },
-  plugins: [require("daisyui"),require("flowbite")],
+  plugins: [require("daisyui"),require("flowbite"),require('tailwind-scrollbar-hide')],
 
 }
