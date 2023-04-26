@@ -150,9 +150,9 @@ const MissionMain = () => {
           {/* Main Section & Right Side Section */}
           <div className="flex justify-between h-full w-full  ">
             {/* Main Section */}
-            <div className="w-full h-full overflow-auto scrollbar-hide p-6">
-
-                <div className="flex w-full h-full gap-6 flex-wrap items-center justify-center">
+            <div className="w-full h-full flex justify-center overflow-auto scrollbar-hide p-6 ">
+              <div className="h-auto w-auto">
+                <div className="w-full h-full grid grid-cols-2 gap-6">
                   <MissionMainCard />
                   <MissionMainCard />
                   <MissionMainCard />
@@ -161,6 +161,7 @@ const MissionMain = () => {
                   <MissionMainCard />
                   <AddMoreCard />
                 </div>
+              </div>
             </div>
 
             {/* Right Section */}
