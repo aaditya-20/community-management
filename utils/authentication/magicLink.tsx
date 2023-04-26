@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { signInWithEmail, signOut } from './passwordlessAuth'
+// Magic Link uses passwordless authentication 
+import { signInWithEmail, signOut } from './passwordLessAuth'
 
 function SignInButton() {
   const [email, setEmail] = useState('');
