@@ -9,12 +9,15 @@ import { FaDiscord } from 'react-icons/fa';
 import TopContributorCardLeaderboardScreen from '@/components/molecules/TopContributorCardLeaderboardScreen'
 import NewMemberCardAnalyticScreen from '@/components/molecules/NewMemberCardAnalyticScreen'
 import Member from '@/components/molecules/MemberListCardMissionPage'
+import MissionMain from '@/components/organism/MissionMain'
+import MissionTemplateEdit from '@/components/organism/MissionTemplateEdit'
 
 export default function index() {
   return (
     <div>
         {/* <MemberXpDetailsForTopContributor icon={FaDiscord} change={AiOutlineUp} colorOfChange="inline text-[red]" position={1}/> */}
-        <TopContributorCardLeaderboardScreen/>
+        {/* <TopContributorCardLeaderboardScreen/> */}
+        <MissionTemplateEdit/>
 
     </div>
   )
