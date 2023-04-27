@@ -114,7 +114,7 @@ function MemberGrowthCardAnalyticsScreen() {
   return (
     <>
       
-      <div className="w-[668px] h-[382px] bg-[#232B35] justify-center">
+      <div className="w-[668px] h-[382px] bg-[#232B35] justify-center relative rounded-[20px] ">
         <span className="absolute text-[#FFFFFF] top-[5px] left-[24px] font-['General Sans'] text-[24px]">
           Member Growth
         </span>
