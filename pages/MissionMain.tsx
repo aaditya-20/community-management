@@ -153,12 +153,12 @@ const MissionMain = () => {
             <div className="w-full h-full flex justify-center overflow-auto scrollbar-hide p-6 ">
               <div className="h-auto w-auto">
                 <div className="w-full h-full grid grid-cols-2 gap-6">
-                  <MissionMainCard />
-                  <MissionMainCard />
-                  <MissionMainCard />
-                  <MissionMainCard />
-                  <MissionMainCard />
-                  <MissionMainCard />
+                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
                   <AddMoreCard />
                 </div>
               </div>
