@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import ProfileIcon from "../atoms/ProfileAvatar";
-
 type TopContentCardProps = {
   userid: string;
   username: string;
@@ -10,7 +9,6 @@ type TopContentCardProps = {
   className?: string;
   discription: string;
 };
-
 const TopContentCard = ({
   userid,
   username,
@@ -20,9 +18,9 @@ const TopContentCard = ({
   discription,
 }: TopContentCardProps): ReactElement => {
   return (
-    <div className="absolute w-[452px] h-[102px] bg-[#232B35] border-[1px] border-solid border-[#404A54] rounded-2xl">
+    <div className="w-[452px] h-[102px] bg-[#232B35] border-[1px] border-solid border-[#404A54] rounded-2xl">
       <div className="flex gap-3 px-6 py-[18px]">
-        <ProfileIcon size={40} imageUrl={profileUrl}/>
+        <ProfileIcon size={40} imageUrl={profileUrl} onProfileIconClick={()=>{}}/>
         <div>
           <h1 className="font-normal text-[15px] leading-5 text-[#8899A6]">
             <span className="text-white font-semibold">{username}</span>{" "}
@@ -37,5 +35,4 @@ const TopContentCard = ({
     </div>
   );
 };
-
 export default TopContentCard;

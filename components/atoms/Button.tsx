@@ -1,14 +1,14 @@
 import React from 'react'
 
 type ButtonProps = {
-  onClick: () => void
+  onClick: (e:any) => void
   label: string
   styles?: string
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick , label, styles }) => {
   return (
-    <button  className={styles}>
+    <button onClick={onClick} className={styles}>
       {label}
     </button>
   )

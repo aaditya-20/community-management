@@ -37,17 +37,17 @@ const MissionMainCard = () => {
           <div className="flex gap-[6.5px]">
             <div className="w-[52.5px] h-[21px] flex relative">
               <div className="absolute left-0">
-                <ProfileIcon imageUrl="Icons/Ellipse_26.svg" size={21} />
+                <ProfileIcon imageUrl="Icons/Ellipse_26.svg" size={21} onProfileIconClick={()=>{}} />
               </div>
               <div className="absolute right-[21px]">
-                <ProfileIcon imageUrl="Icons/Ellipse_27.svg" size={21} />
+                <ProfileIcon imageUrl="Icons/Ellipse_27.svg" size={21} onProfileIconClick={()=>{}}/>
               </div>
 
               <div className="absolute left-[21px]">
-                <ProfileIcon imageUrl="Icons/Ellipse_28.svg" size={21} />
+                <ProfileIcon imageUrl="Icons/Ellipse_28.svg" size={21} onProfileIconClick={()=>{}}/>
               </div>
               <div className="absolute right-0">
-                <ProfileIcon imageUrl="Icons/Ellipse_29.svg" size={21} />
+                <ProfileIcon imageUrl="Icons/Ellipse_29.svg" size={21} onProfileIconClick={()=>{}} />
               </div>
             </div>
 

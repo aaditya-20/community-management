@@ -1,4 +1,5 @@
 import Image from "next/image";
+import router from "next/router";
 import React, { useState } from "react";
 
 const Sidebar = () => {
@@ -6,7 +7,7 @@ const Sidebar = () => {
   return (
     <>
       {hideMenu ? (
-        <div className="max-w-[98px] min-h-screen overflow-auto bg-[#171C23] transition-all duration-500 ease-in-out">
+        <div className="max-w-[98px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] transition duration-500 ease-in-out">
           <div className="px-5">
             {/* Navbar */}
             <nav className="flex w-full items-center justify-center mt-[40px] mb-[54px]">
@@ -90,7 +91,7 @@ const Sidebar = () => {
           </div>
         </div>
       ) : (
-        <div className="max-w-[266px] min-h-screen overflow-auto bg-[#171C23] transition-all duration-500 ease-in-out">
+        <div className="max-w-[266px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] transition duration-500 ease-in-out">
           <div className="px-5">
             <nav className="flex justify-between mb-[54px] mt-[18px]">
               <Image
@@ -127,7 +128,10 @@ const Sidebar = () => {
             <ul>
               <li className="w-[226px] h-[57px] pl-[14px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/box.svg" alt="" />
-                <span className="text-white font-semibold text-base ">
+                <span
+                  onClick={() => router.push("/NewDashboard")}
+                  className="text-white font-semibold text-base "
+                >
                   Satoshi&apos;s Space
                 </span>
               </li>
@@ -139,13 +143,19 @@ const Sidebar = () => {
                   alt="not found"
                   className="ml-[14px]"
                 />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/AnalyticsScreen")}
+                  className="text-white font-semibold text-base"
+                >
                   Analytics
                 </span>
               </li>
               <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/MissionDashboard")}
+                  className="text-white font-semibold text-base"
+                >
                   Missions
                 </span>
               </li>
@@ -157,13 +167,19 @@ const Sidebar = () => {
                   alt=""
                   className="ml-[14px]"
                 />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/MemberScreen")}
+                  className="text-white font-semibold text-base"
+                >
                   Members
                 </span>
               </li>
               <li className="w-[226px] h-[57px]  pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image height={24} width={24} src="Icons/misson.svg" alt="" />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/Leaderboard")}
+                  className="text-white font-semibold text-base"
+                >
                   Leaderboard
                 </span>
               </li>
