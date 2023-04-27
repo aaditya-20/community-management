@@ -97,7 +97,7 @@ const Sidebar = () => {
               <Image
                 width={152}
                 height={53.63}
-                src="/Icons/Logo.svg"
+                src="/Icons/logo.svg"
                 alt="not found"
               />
               <button
@@ -153,7 +153,7 @@ const Sidebar = () => {
               <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
                 <span
-                  onClick={() => router.push("/MissionDashboard")}
+                  onClick={() => router.push("/MissionMain")}
                   className="text-white font-semibold text-base"
                 >
                   Missions
@@ -177,7 +177,7 @@ const Sidebar = () => {
               <li className="w-[226px] h-[57px]  pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image height={24} width={24} src="Icons/misson.svg" alt="" />
                 <span
-                  onClick={() => router.push("/Leaderboard")}
+                  onClick={() => router.push("/LeaderBoardScreen")}
                   className="text-white font-semibold text-base"
                 >
                   Leaderboard
