@@ -4,7 +4,7 @@ import { PlatformIconWithBox } from "../atoms/PlatformIconWithBox"
 export default function NewMemberCardAnalyticScreen() {
   return (
     <>
-       <div className='h-[350px] w-[668px] bg-[#242B35] rounded-[20px] '>
+       <div className='h-[350px] w-[668px] bg-[#242B35] rounded-[20px] relative'>
        <div>
         <div className="absolute text-[#FFFFFF] font-[General Sans] font-[500] text-[24px] left-[24px] top-[22px]  ">750+ new members</div>
         <div className="absolute text-[#D9D9D9] font-[General Sans] font-[400] text-[14px] left-[592px] top-[32px]  ">Show All</div>
