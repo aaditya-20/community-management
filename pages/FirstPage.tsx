@@ -16,7 +16,7 @@ export default function FirstPage() {
           <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[20px]" onClick={()=>router.push('/CommunitySetupScreen')}>
             sign up
           </button>
-          <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[150px]" onClick={()=>router.push('/WelcomeScreen1')}>
+          <button className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[150px]" onClick={()=>router.push('/LoginCard')}>
             Log in
           </button>
         </div>
