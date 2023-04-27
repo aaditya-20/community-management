@@ -6,7 +6,7 @@ import { BsChevronDown } from "react-icons/bs";
 export default function MemberScreen() {
   return (
     <>
-      <div className='grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,auto] h-[auto] w-[auto]    md:grid-cols-[auto,1fr]'>
+      <div className='grid grid-cols-[auto,auto]   bg-[#171C23] grid-rows-[71px,auto] h-[1000px] w-[1450px]    md:grid-cols-[auto,1fr]'>
         {/* sidebar */}
         <div className='row-span-3 border-r-[1px] border-r-[#353B43]'>
             <Sidebar/>
@@ -14,7 +14,7 @@ export default function MemberScreen() {
         {/* ----- */}
 
         {/* header */}
-        <div className=' border-b-[1px] border-b-[#353B43] '>
+        <div className='border-b-[1px] border-b-[#353B43]'>
             <Header/>
         </div>
         {/* --header-- */}
@@ -27,8 +27,11 @@ export default function MemberScreen() {
               <button className='absolute right-[20px] flex items-center justify-evenly mb-[10px] border-[1px] border-[#757575]  text-[#757575] rounded-[8px] w-[109px] h-[33px]'>Last Week <BsChevronDown color='#757575' size={15} className=''/></button>
              
 
-            </div>       
-            <MemberListCardMissionPage/>
+            </div>
+            <div className=''>
+               <MemberListCardMissionPage/>   
+              </div>       
+           
             
         </div>
 
