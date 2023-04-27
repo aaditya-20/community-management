@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { supabase } from '../supabaseClient';
 import * as React from 'react'
-const clientID = process.env.GOOGLE_CLIENT_ID;
-
+const clientID = process.env.GOOGLE_CLIENT_ID 
 function GoogleSignInButton() {
   const router = useRouter()
 
@@ -26,6 +25,7 @@ function GoogleSignInButton() {
             access_type: 'offline',
             prompt: 'consent',
           },
+          redirectTo: 'http://localhost:3000/WelcomeScreen1'
         },
       })
     } catch (error) {
@@ -39,7 +39,7 @@ function GoogleSignInButton() {
       if (error) {
         console.error(error)
       } else {
-        router.push('/signin') // Redirect the user to the sign-in page on successful sign-out
+        router.push('/WelcomeScreen1') // Redirect the user to the sign-in page on successful sign-out
       }
     } catch (error) {
       console.error(error)
@@ -47,10 +47,10 @@ function GoogleSignInButton() {
   }
 
   return (
-    <>
+    <div>
       <button onClick={handleSignIn}>Sign in with Google</button>
       <button onClick={handleSignOut}>Sign out</button>
-    </>
+    </div>
   );
 }
 
