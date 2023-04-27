@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { supabase } from '../supabaseClient';
 import * as React from 'react'
-const clientID = process.env.GOOGLE_CLIENT_ID 
+const clientID = process.env.GOOGLE_CLIENT_ID || "640369537337-0gnn37hbv8lukchvmbgte9u3631rjsqh.apps.googleusercontent.com";
 function GoogleSignInButton() {
   const router = useRouter()
 
@@ -46,12 +46,7 @@ function GoogleSignInButton() {
     }
   }
 
-  return (
-    <div>
-      <button onClick={handleSignIn}>Sign in with Google</button>
-      <button onClick={handleSignOut}>Sign out</button>
-    </div>
-  );
+  return handleSignIn;
 }
 
 export default GoogleSignInButton;
