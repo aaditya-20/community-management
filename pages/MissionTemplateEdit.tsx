@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Sidebar from "../molecules/Sidebar";
-import Header from "../atoms/Header";
+import Sidebar from "../components/molecules/Sidebar";
+import Header from "../components/atoms/Header";
 import Image from "next/image";
 import {
   AiFillPauseCircle,

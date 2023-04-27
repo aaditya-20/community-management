@@ -1,8 +1,8 @@
-import Sidebar from "../molecules/Sidebar";
-import Header from "../atoms/Header";
-import NavbarMissionOnboarding from "../molecules/NavbarMissionOnboarding";
-import BeAchamp from "../molecules/BeAchamp";
-import MissionStepCard from "../molecules/MissionStepCard";
+import Sidebar from "../components/molecules/Sidebar";
+import Header from "../components/atoms/Header";
+import NavbarMissionOnboarding from "../components/molecules/NavbarMissionOnboarding";
+import BeAchamp from "../components/molecules/BeAchamp";
+import MissionStepCard from "../components/molecules/MissionStepCard";
 
 const MissionOnboardingNewMembers = () => {
   return (

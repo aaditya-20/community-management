@@ -1,12 +1,12 @@
 import React from "react";
-import Sidebar from "../molecules/Sidebar";
-import Header from "../atoms/Header";
-import MemberGrowthCardAnalyticsScreen from "../molecules/MemberGrowthCardAnalyticsScreen";
-import SocialStatsCard from "../molecules/SocialStatsCard";
-import NewMemberCardAnalyticScreen from "../molecules/NewMemberCardAnalyticScreen";
-import UserBaseAnalytics from "../molecules/UserBaseAnalytics";
-import TopContributorCardLeaderboardScreen from "../molecules/TopContributorCardLeaderboardScreen";
-import TopContentCard from "../molecules/TopContentCard";
+import Sidebar from "../components/molecules/Sidebar";
+import Header from "../components/atoms/Header";
+import MemberGrowthCardAnalyticsScreen from "../components/molecules/MemberGrowthCardAnalyticsScreen";
+import SocialStatsCard from "../components/molecules/SocialStatsCard";
+import NewMemberCardAnalyticScreen from "../components/molecules/NewMemberCardAnalyticScreen";
+import UserBaseAnalytics from "../components/molecules/UserBaseAnalytics";
+import TopContributorCardLeaderboardScreen from "../components/molecules/TopContributorCardLeaderboardScreen";
+import TopContentCard from "../components/molecules/TopContentCard";
 
 const users = [
   {

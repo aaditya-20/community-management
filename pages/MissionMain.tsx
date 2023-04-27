@@ -1,10 +1,10 @@
 import React from "react";
-import Sidebar from "../molecules/Sidebar";
-import Header from "../atoms/Header";
+import Sidebar from "../components/molecules/Sidebar";
+import Header from "../components/atoms/Header";
 import Image from "next/image";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import MissionMainCard from "../molecules/MissionMainCard";
-import AddMoreCard from "../molecules/AddMoreCard";
+import MissionMainCard from "../components/molecules/MissionMainCard";
+import AddMoreCard from "../components/molecules/AddMoreCard";
 
 const twitter = [
   {
