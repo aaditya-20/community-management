@@ -1,10 +1,10 @@
-import Sidebar from "../molecules/Sidebar";
-import Header from "../atoms/Header";
-import CommunityHealth from "../molecules/CommunityHealth";
-import Mission from "../molecules/MissionCard";
-import AnalyticsCardMainDashboard from "../molecules/AnalyticsCardMainDashboard";
-import RecentlyJoinedCardDashboardScreen from "../molecules/RecentlyJoinedCardDashboardScreen";
-import OnboardingExperienceCard from "../molecules/OnboardingExperienceCard";
+import Sidebar from "../components/molecules/Sidebar";
+import Header from "../components/atoms/Header";
+import CommunityHealth from "../components/molecules/CommunityHealth";
+import Mission from "../components/molecules/MissionCard";
+import AnalyticsCardMainDashboard from "../components/molecules/AnalyticsCardMainDashboard";
+import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJoinedCardDashboardScreen";
+import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
 
 
 const cards = [
