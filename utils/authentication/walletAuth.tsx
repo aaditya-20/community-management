@@ -1,3 +1,4 @@
+// Hacky solution
 declare var window: any;
 import React, { useState } from "react";
 import Web3 from "web3";
@@ -50,28 +51,7 @@ function WalletAuth() {
       console.log(err);
     }
   };
-
-  return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-center">
-          Authentication with Metamask
-        </h1>
-      </div>
-      <div className="flex justify-center">
-        {!state.isConnected && (
-          <div>
-            <button
-              className="px-4 py-2 text-gray-800 bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-              onClick={onConnect}
-            >
-              Login
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  return onConnect;
 }
 
 export default WalletAuth;

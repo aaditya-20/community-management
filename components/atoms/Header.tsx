@@ -1,12 +1,15 @@
 import ShowNotifications from "./ShowNotification";
 import React from "react";
+import WalletAuth from "@/utils/authentication/walletAuth";
+
 let data = 0;
 
 const Header = () => {
+  const onConnect = WalletAuth();
   return (
     <div className="relative box-border box-sizing border-box w-[auto] h-[70px] left-[0px] top-0  bg-[#171C23] border-b-[1px] border-[#353B43]">
       <div className="absolute w-[124px] h-[39px] right-[249px] top-[20px] bg-[#313131] rounded-[25px] flex items-center justify-center">
-        <button type="button" className="text-white font-small">
+        <button type="button" className="text-white font-small" onClick={onConnect} >
           Link wallet
         </button>
       </div>
