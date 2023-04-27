@@ -204,7 +204,7 @@ export default function MemberListCardMissionPage() {
   return (
     // username ,previous xp,current cp,missions completed.
     <>
-      <div className="absolute h-[750px] w-[1200px] bg-[#242B35] rounded-[20px]  overflow-y-auto scrollbar">
+      <div className="absolute h-[750px] w-[1150px] bg-[#242B35] rounded-[20px]  overflow-y-auto scrollbar">
         <div className="absolute text-[#FFFFFF] font-[General Sans] font-[500] text-[24px] left-[24px] top-[22px]  ">
           Members 
         </div>

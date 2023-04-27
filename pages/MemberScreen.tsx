@@ -6,7 +6,7 @@ import { BsChevronDown } from "react-icons/bs";
 export default function MemberScreen() {
   return (
     <>
-      <div className='grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,auto] h-[1000px] w-[1450px]    md:grid-cols-[auto,1fr]'>
+      <div className='grid grid-cols-[auto,auto]   bg-[#171C23] grid-rows-[71px,auto] h-[1000px] w-[1450px]    md:grid-cols-[auto,1fr]'>
         {/* sidebar */}
         <div className='row-span-3 border-r-[1px] border-r-[#353B43]'>
             <Sidebar/>
@@ -28,7 +28,7 @@ export default function MemberScreen() {
              
 
             </div>
-            <div className='mx-[20px]'>
+            <div className=''>
                <MemberListCardMissionPage/>   
               </div>       
            
