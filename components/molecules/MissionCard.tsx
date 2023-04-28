@@ -3,7 +3,7 @@ import { FaPlusCircle } from "react-icons/fa";
 
 function Mission(props: any) {
   return (
-    <div className="card card-side shadow-xl absolute w-[469px] h-[275px] left-[800px] top-[100px] bg-[#404A54] flex justify-center items-center rounded-3xl">
+    <div className="card card-side shadow-xl absolute w-[469px] h-[275px] bg-[#404A54] flex justify-center items-center rounded-3xl">
       {/* Heading */}
       <div className="absolute top-0 flex items-center justify-between w-full h-16 bg-[#404A54] text-white-800 rounded-t-3xl">
         <h1 className="text-2xl text-white font-bold ml-6">Missions</h1>

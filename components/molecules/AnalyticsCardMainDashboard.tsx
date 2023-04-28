@@ -109,7 +109,7 @@ function AnalyticsCardMainDashboard() {
   return (
     <>
   
-      <div className="relative border-[0px] border-[#1D1D1D] left-[50px] w-[400px] h-[393px] bg-[#1D1D1D] justify-center rounded-3xl">
+      <div className="relative border-[0px] border-[#1D1D1D] w-[400px] h-[399px] bg-[#1D1D1D] justify-center rounded-3xl">
        
         <span className="absolute text-[#FFFFFF] top-[5px] left-[24px] font-[General Sans] text-[24px]">
           Analytics

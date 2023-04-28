@@ -6,19 +6,21 @@ import AnalyticsCardMainDashboard from "../components/molecules/AnalyticsCardMai
 import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJoinedCardDashboardScreen";
 import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
 
-
 const cards = [
   {
+    key: 1,
     title: "Get to know the platform",
     description: "See what you will be able to do with Platform",
     buttonText: "Play Video",
   },
   {
+    key: 2,
     title: "Create a mission",
     description: "Create a bounty to earn XP.",
     buttonText: "Create Mission",
   },
   {
+    key: 3,
     title: "Create a platform",
     description: "Create a form to earn XP",
     buttonText: "Create form",
@@ -27,55 +29,63 @@ const cards = [
 
 const NewDashboard = () => {
   return (
-    <div className=" bg-gray-900 h-[870px]">
-      <Header />
-      <div className="flex">
-        <div className="w-1/5">
-          <Sidebar />
-        </div>
-        <div className="flex-0 flex flex-col">
-          <div className="bg-gray-900 py-4 px-6">
-            <h2 className="text-white text-2xl font-bold absolute left-[285px] top-[80px] mb-2">
-              Satoshi Space
-            </h2>
-            <div className="text-gray-400 text-medium absolute left-[285px] top-[110px]">
-              Here what happening with your community
-            </div>
-          </div>
-          <div className="bg-gray-900 py-0 px-0 flex flex-col flex-0">
-            <div className="flex flex-1 ">
-              <div className=" w-3/4 bg-gray-900  rounded-lg p-6 flex flex-col space-y-4">
-                <div className="absolute left-[240px] top-[150px] width-[500px] h-[1020px]">
-                  <AnalyticsCardMainDashboard />
-                </div>
-                <div className="absolute left-[-95px] top-[40px]">
-                  <Mission contributors="50" submission="150"/>
+    <div className="min-h-screen bg-[#171C23] flex">
+      <Sidebar />
+      <div className="h-full w-full">
+        <Header />
+        {/* Main Section */}
+        <div className="h-full w-full  flex justify-between">
+          {/* Left Section */}
+          <div className="min-h-screen w-full px-6 pt-[29px] flex justify-center items-center">
+            <div>
+              <div className="h-full w-full">
+                <h2 className="text-white text-2xl font-semibold mb-2">
+                  Satoshi Space
+                </h2>
+                {/* Main Section */}
+                <div className="flex gap-6">
+                  {/* Analytics & Recently Joined Section */}
+                  <div className="w-[400px] h-[750px] bg-[#232B35] rounded-[20px] overflow-hidden pt-[29px] ">
+                    <div>
+                      <AnalyticsCardMainDashboard />
+                    </div>
+                    <div className="h-auto w-auto">
+                      <RecentlyJoinedCardDashboardScreen />
+                    </div>
+                  </div>
 
-                  <div className = "absolute left-[390px] top-[499px] ">
-                    <RecentlyJoinedCardDashboardScreen />
+                  {/* Mission & Community Health Section */}
+                  <div>
+                    <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end mb-5">
+                      <Mission contributors="50" submission="150" />
+                    </div>
+                    <CommunityHealth Twitter="30" Total="59.5K" />
                   </div>
                 </div>
               </div>
-              <div className="w-1/4 flex flex-col space-y-4">
-                <div className="bg-gray-900 shadow-md rounded-lg p-6 absolute left-[-5px] top-[-90px] h-[15px]">
-                  <CommunityHealth Twitter="30"  Total="59.5K"/>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-        <h1 className="absolute left-[1210px] top-[80px] text-white text-xl font-bold">
-          Onboarding Experience
-        </h1>
-        <div className="absolute left-[1200px] top-[156px] text-gray-400">
-          {cards.map((card, index) => (
-            <OnboardingExperienceCard
-              key={index}
-              title={card.title}
-              label={card.description}
-              buttonText={card.buttonText}
-            />
-          ))}
+
+          {/* Right Section */}
+          <div className="w-[304px] min-h-screen px-6 border-l border-[#333840]">
+            <h1 className="text-white font-semibold text-[22px] leading-[29.6px] mt-[29px] mb-[55px]">
+              Onboarding Experience
+            </h1>
+
+            {/* Cards */}
+            {cards.map((card, index) => {
+              return (
+                <div key={card.key}>
+                  <OnboardingExperienceCard
+                    key={index}
+                    title={card.title}
+                    label={card.description}
+                    buttonText={card.buttonText}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
