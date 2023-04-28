@@ -1,43 +1,51 @@
 import React, { useState } from "react";
-import { signInWithEmail} from '../utils/authentication/passwordLessAuth'
-// const[email,setEmail]= useState('')
-
-
-
+import { signInWithEmail } from "../utils/authentication/passwordLessAuth";
 
 export default function MagicLinkPopup() {
   const [email, setEmail] = useState("");
-  const [signInStatus, setSignInStatus] = useState('');
+  const [signInStatus, setSignInStatus] = useState("");
 
   async function handleSignIn() {
-    const redirectTo = 'http://localhost:3000//WelcomeScreen1'; 
+    const redirectTo = "http://localhost:3000//WelcomeScreen1";
     const status = await signInWithEmail(email, redirectTo);
     setSignInStatus(status);
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-center">
-          Sign in with your email address
-        </h1>
+    <div className="fixed z-10 inset-0 overflow-y-auto">
+      <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+        <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+          <div>
+            <h1 className="text-4xl font-bold text-center mb-4">
+              Sign in with your email address
+            </h1>
+            <div className="mb-4">
+              <input
+                className="px-4 py-2 border border-gray-400 rounded-md w-full max-w-xs"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address"
+              />
+            </div>
+            <div className="flex justify-center">
+              <button
+                className="px-4 py-2 text-gray-800 bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+                onClick={handleSignIn}
+              >
+                Sign in
+              </button>
+            </div>
+          </div>
+          <p className="text-center mt-4">{signInStatus}</p>
+        </div>
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <input
-          className="px-4 py-2 border border-gray-400 rounded-md mb-4 w-full max-w-xs"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email address"
-        />
-        <button
-          className="px-4 py-2 text-gray-800 bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-          onClick={handleSignIn}
-        >
-          Sign in
-        </button>
-      </div>
-      <p>{signInStatus}</p>
     </div>
   );
 }
