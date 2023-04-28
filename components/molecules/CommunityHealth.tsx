@@ -7,7 +7,7 @@ interface CommunityHealthProps {
 
 export default function CommunityHealth(prop: any) {
   return (
-    <div className="card card-side shadow-xl absolute w-[469px] h-[390px] left-[715px] top-[535px] bg-[#242B35] flex justify-center items-center rounded-3xl">
+    <div className="card card-side shadow-xl absolute w-[469px] h-[390px]  bg-[#242B35] flex justify-center items-center rounded-3xl">
       <p className="absolute left-10 top-7 w-258 h-32 font-semibold font-weight-[600px] text-white text-2xl leading-8">
         Community Health
       </p>
