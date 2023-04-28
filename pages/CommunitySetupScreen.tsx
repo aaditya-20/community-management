@@ -77,7 +77,7 @@ const CommunitySetupScreen = (): ReactElement => {
         onClose={()=>{setOpenDiscord(!OpenDiscord)}}
         open={OpenDiscord}
         style={{
-          
+              
         }}
       >
 
