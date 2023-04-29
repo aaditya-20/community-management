@@ -81,12 +81,16 @@ const CommunitySetupScreen = (): ReactElement => {
         }}
       >
 
-         <div className='absolute left-[-100px] top-[-150px]'><DiscordIntegrationPopup/></div>
+         <div className=''><DiscordIntegrationPopup/></div>
       </Modal>
       {/* <div className="flex items-center"> */}
-      <Card title="" text="" />
+      {/* <Card title="" text="" /> */}
+      <div className="flex items-center justify-center ">
 
-      <div className="absolute w-[662px] h-[54px] left-[350px] top-[140px] border-b-[1px] border-[#353B43]">
+      <div className="absolute block w-[662px] h-[431px] top-[20vh] bg-gray-800 shadow-md ">
+
+     
+      <div className="relative block w-[662px] h-[54px] border-b-[1px] border-[#353B43]">
         <Link
           href="/"
           className="relative top-[15px] left-[30px] text-[#AEABD8]"
@@ -94,7 +98,7 @@ const CommunitySetupScreen = (): ReactElement => {
           SIGN UP
         </Link>
       </div>
-      <div className="absolute  left-[350px] top-[220px]">
+      <div className="relative">
         <p className="relative w-[236px] h-[32px] top-[0px] left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
           What do we call you?
         </p>
@@ -136,12 +140,15 @@ const CommunitySetupScreen = (): ReactElement => {
               onClick={onContinueClick}
             />
       </div>
-      <p className="absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans">
+      <p className="relative text-center my-[30px] font-[General Sans] font-normal text-base leading-6 text-white font-generalsans">
         Already have account?{" "}
         <Link href="/" className="font-[General Sans] text-[#A6A6A6CC]">
           Sign in
         </Link>
       </p>
+      </div>
+      </div>
+
       
     </>
   );
