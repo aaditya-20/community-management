@@ -55,7 +55,7 @@ function CommunitySetUpIntegration() {
   }
   function handleEthereumClick() {
     const redirectUri = encodeURIComponent(
-      "https://your-application-url.com/auth/callback"
+      "https://firebond-client-mortezn3k-firebond-admin-team.vercel.app/CommunitySetUpIntegration"
     );
     const clientId = "YOUR_CLIENT_ID";
     const authUrl = `https://id.metamask.io/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}`;
