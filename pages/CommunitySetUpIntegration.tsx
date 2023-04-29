@@ -29,7 +29,7 @@ function CommunitySetUpIntegration() {
 
     window.location.href = authUrl;
   }
-  // to complete
+  // Discord data fetch....to be completed
   // fetch("https://discord.com/api/users/@me", {
   //   headers: {
   //     Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -54,6 +54,14 @@ function CommunitySetUpIntegration() {
     }
   }
   function handleEthereumClick() {
+    const redirectUri = encodeURIComponent(
+      "https://your-application-url.com/auth/callback"
+    );
+    const clientId = "YOUR_CLIENT_ID";
+    const authUrl = `https://id.metamask.io/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}`;
+
+    window.location.href = authUrl;
+
     if (flagEthereum == "hidden") {
       setEthereum("visible");
     }
