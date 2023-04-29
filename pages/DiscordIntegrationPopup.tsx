@@ -8,9 +8,33 @@ import { useRouter } from "next/router";
 
 export default function DiscordIntegrationPopup() {
   const router = useRouter();
-  function handleProfileClick(){
-    // Task:will divide icon in two types-Profile(avatar)+Uplaod Icons
+  function handleProfileClick() {}
+  function discordlink() {
+    const redirectUri = encodeURIComponent(
+      "https://firebond-client-iwa2wdp0f-firebond-admin-team.vercel.app/Step1CommunitySetup"
+    );
+    const clientId = "1101935237652557855";
+    const scope = encodeURIComponent("identify");
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+
+    window.location.href = authUrl;
   }
+
+
+  // to complete
+  // fetch("https://discord.com/api/users/@me", {
+  //   headers: {
+  //     Authorization: `Bearer ${ACCESS_TOKEN}`,
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+
   return (
     <>
       <Card
@@ -18,7 +42,10 @@ export default function DiscordIntegrationPopup() {
         title=""
         text=""
       />
-      <Link href='/' className="absolute left-[487px] top-[196px] text-[#FFFFFF] text-3xl">
+      <Link
+        href="/"
+        className="absolute left-[487px] top-[196px] text-[#FFFFFF] text-3xl"
+      >
         <AiOutlineArrowLeft />
       </Link>
       <div className=" absolute left-[608px] top-[230px] w-[397px] h-[32px] text-[#FFFFFF] font-[General sans] font-[600] font-[24px] text-3xl leading-normal ">
@@ -54,10 +81,14 @@ export default function DiscordIntegrationPopup() {
           label="Discord"
           className="absolute bg-[#8570E4] top-[20px] left-[30px] w-[240px] h-[50px] rounded-md"
           classNameIcon=""
+          onClick={discordlink}
         />
       </div>
       <div className="absolute top-[720px] left-[775px]">
-        <button onClick={() => router.push('/Step1CommunitySetup')} className="bg-[#161616] text-[#A6A6A6] text-sm px-2 py-1 rounded-md">
+        <button
+          onClick={() => router.push("/Step1CommunitySetup")}
+          className="bg-[#161616] text-[#A6A6A6] text-sm px-2 py-1 rounded-md"
+        >
           Skip
         </button>
       </div>
