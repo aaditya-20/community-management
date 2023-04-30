@@ -67,28 +67,28 @@ const Step1CommunitySetup = (): ReactElement => {
   return (
     <>
       <BackGroundPage />
-      <div className="flex items-center">
-        <Card
+      <div className="absolute  items-center m-[auto] top-[150px] justify-center right-0 left-0 w-[662px] h-[680px] bg-gray-800 shadow-md ">
+        {/* <Card
           title=""
           text=""
           className="absolute w-[662px] h-[680px] left-[360px] top-[95px] bg-gray-800 shadow-md"
-        />
+        /> */}
 
-        <div className="absolute w-[662px] h-[40px] left-[360px] top-[100px] border-b-[1px] border-[#353B43]">
+        <div className="relative w-[662px] h-[40px] border-b-[1px] border-[#353B43]">
           <Link
             href="/"
-            className="relative top-[5px] left-[30px] text-[#AEABD8]"
+            className="absolute top-[5px] left-[30px] text-[#AEABD8]"
           >
             COMMUNITY SETUP
           </Link>
-          <div className="relative top-[-20px] left-[400px] text-[#FE702A]">
+          <div className="absolute top-[5px] left-[400px] text-[#FE702A]">
             STEP 1 OF 2
           </div>
           <div>
             <Temporary />
           </div>
         </div>
-        <div className="absolute  left-[350px] top-[150px]">
+        <div className="">
           <p className="relative w-[236px] h-[32px] top-[0px] left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
             Basic Details
           </p>
