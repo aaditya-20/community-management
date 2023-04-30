@@ -41,10 +41,12 @@ export default function DiscordIntegrationPopup() {
         
         title=""
         text=""
+
       /> */}
       <div className="absolute flex flex-col m-[auto] top-0 right-0 left-0 bottom-0 align-center w-[600px] h-[600px]  bg-[#161616]">
 
       <Link href='/' className="my-[20px] mx-[20px] text-[#FFFFFF] text-3xl">
+
         <AiOutlineArrowLeft />
       </Link>
       <div className="relative  flex justify-center  text-[#FFFFFF] font-[General sans] font-[600]  text-3xl leading-normal ">
@@ -89,8 +91,10 @@ export default function DiscordIntegrationPopup() {
           onClick={discordlink}
         />
       </div>
+
       <div className="flex justify-center">
         <button onClick={() => router.push('/Step1CommunitySetup')} className="bg-[#161616] text-[#A6A6A6] text-sm px-2 py-1 rounded-md">
+
           Skip
         </button>
       </div>
