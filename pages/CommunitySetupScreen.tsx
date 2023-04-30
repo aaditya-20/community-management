@@ -16,49 +16,39 @@ import Modal from '@material-ui/core/Modal';
 const CommunitySetupScreen = (): ReactElement => {
   const [InputValue,setInputvalue] = useState('');
   const [OpenDiscord,setOpenDiscord] = useState(false);
-  function onContinueClick(){
-     
-      setOpenDiscord(!OpenDiscord);
-
+  async function onContinueClick() {
+    setOpenDiscord(!OpenDiscord);
+    const { data, error } = await supabase.from("community_data").insert({
+      user_name: InputValue,
+    });
+    if (error) {
+      console.log("Error uploading file:", error.message);
+    } else {
+      console.log("File uploaded successfully:", data);
+    }
   }
-
-  
-  function handleProfileClick() {
-   
-
+  const bucket_name = "Store";
+  async function handleProfileClick() {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".png, .jpg, .jpeg";
-    input.hidden = true; // Add the hidden attribute
-    let files: File[];
+    input.hidden = true;
     input.addEventListener("change", async () => {
       const files = input.files;
-      console.log(files);
       if (files && files.length > 0) {
-        console.log(files[0]);
-        let file:File;
-        file = files[0];
-        if (!file) {
-         
-          return;
-        }
-        console.log(file.name);
-        // from here we can send image to supabase storage.
-
+        const file = files[0];
+        console.log(file);
         const { data, error } = await supabase.storage
-          .from("images")
-          .upload(file.name, file, {
+          .from(bucket_name)
+          .upload(`community_admin/${file.name}`, file, {
             cacheControl: "3600",
             upsert: false,
           });
-
         if (error) {
-          console.log("Error uploading file:", error);
+          console.error(error);
         } else {
-          console.log("File uploaded successfully:", data);
+          console.log(data);
         }
-      } else {
-        return;
       }
     });
     input.click();
