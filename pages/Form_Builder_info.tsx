@@ -5,6 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import { BiSave } from "react-icons/bi";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
 import Image from "next/image";
+import VerficationCard from "@/components/molecules/VerificationCard";
 
 const cards = [
   {
@@ -124,22 +125,11 @@ const cards = [
   {
     key: 4,
     title: "Style",
-    div: (
-      <div className="w-full mt-[31px]">
-        <div className="mb-[38px] flex w-[171px] justify-between">
-          <h1 className="font-normal text-base text-[#A6A6A6]">Background</h1>
-          <div className="h-5 w-5 rounded-full bg-white"></div>
-        </div>
-        <div className="mb-[38px] flex w-[171px] justify-between">
-          <h1 className="font-normal text-base text-[#A6A6A6]">Title</h1>
-          <div className="h-5 w-5 rounded-full bg-white"></div>
-        </div>
-        <div className="mb-[38px] flex w-[171px] justify-between">
-          <h1 className="font-normal text-base text-[#A6A6A6]">Discription</h1>
-          <div className="h-5 w-5 rounded-full bg-white"></div>
-        </div>
-      </div>
-    ),
+    colorArray: [
+      { title: "Background" },
+      { title: "Title" },
+      { title: "Discription" },
+    ],
   },
   {
     key: 5,
@@ -162,6 +152,7 @@ const cards = [
 
 const Form_Builder_Info = () => {
   const [on, setOn] = useState(cards.map(() => false));
+  const [colors, setColors] = useState(["#FFFFFF", "#FFFFFF", "#FFFFFF"]);
 
   return (
     <div className="min-h-screen bg-[#171C23] flex ">
@@ -242,7 +233,36 @@ const Form_Builder_Info = () => {
                   {on[index] ? (
                     <div className="pt-4">
                       <div className="absolute h-0 w-[500px] top-[66.76] left-0 border-[0.5px] border-[#474C52]"></div>
-                      {card.div}
+                      {index === 3 ? (
+                        <div className="w-full mt-[31px]">
+                          {card.colorArray?.map((item, index) => (
+                            <div
+                              key={index}
+                              className="mb-[38px] flex w-[171px] justify-between"
+                            >
+                              <h1 className="font-normal text-base text-[#A6A6A6]">
+                                {item.title}
+                              </h1>
+                              <div
+                                className={`h-5 w-5 rounded-full bg-[${colors[index]}] overflow-hidden`}
+                              >
+                                <input
+                                  type="color"
+                                  value={colors[index]}
+                                  className=" w-full h-full opacity-0"
+                                  onChange={(e) => {
+                                    let newColors = [...colors];
+                                    newColors[index] = e.target.value;
+                                    setColors(newColors);
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        card.div
+                      )}
                     </div>
                   ) : (
                     <></>
@@ -253,7 +273,7 @@ const Form_Builder_Info = () => {
           </div>
 
           {/* Right Section */}
-          <div className=" w-full border-l border-[#474C52] flex justify-center pl-6 pr-[34px] pt-6">
+          <div className=" w-full border-l border-[#474C52] flex justify-center pl-6 pr-[34px] pt-6 pb-6">
             <div>
               <div className="w-[631px] h-[136px] rounded-[10px] relative mb-[70px]">
                 <Image
@@ -276,7 +296,8 @@ const Form_Builder_Info = () => {
               <h1 className="ml-[33px] mb-5 font-semibold text-white text-[26px] leading-[35px]">
                 Welcome to Satoshi space
               </h1>
-              <div className="ml-[23px] w-[598px] h-[540px] bg-[#232B35] rounded-[15.4264px]"></div>
+
+              <VerficationCard />
             </div>
           </div>
         </div>
