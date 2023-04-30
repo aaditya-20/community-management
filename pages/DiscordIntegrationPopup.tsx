@@ -8,9 +8,33 @@ import { useRouter } from "next/router";
 
 export default function DiscordIntegrationPopup() {
   const router = useRouter();
-  function handleProfileClick(){
-    // Task:will divide icon in two types-Profile(avatar)+Uplaod Icons
+  function handleProfileClick() {}
+  function discordlink() {
+    const redirectUri = encodeURIComponent(
+      "https://firebond-client-iwa2wdp0f-firebond-admin-team.vercel.app/Step1CommunitySetup"
+    );
+    const clientId = "1101935237652557855";
+    const scope = encodeURIComponent("identify");
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+
+    window.location.href = authUrl;
   }
+
+
+  // to complete
+  // fetch("https://discord.com/api/users/@me", {
+  //   headers: {
+  //     Authorization: `Bearer ${ACCESS_TOKEN}`,
+  //   },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+
   return (
     <>
       {/* <Card
@@ -62,6 +86,7 @@ export default function DiscordIntegrationPopup() {
           label="Discord"
           className=" bg-[#8570E4] top-[20px] left-[30px] w-[240px] h-[50px] rounded-md"
           classNameIcon=""
+          onClick={discordlink}
         />
       </div>
       <div className="flex justify-center">
