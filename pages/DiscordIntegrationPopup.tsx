@@ -13,21 +13,26 @@ export default function DiscordIntegrationPopup() {
   }
   return (
     <>
-      <Card
-        className="absolute w-[600px] h-[600px] left-[466px] top-[176px] bg-[#161616]"
+      {/* <Card
+        
         title=""
         text=""
-      />
-      <Link href='/' className="absolute left-[487px] top-[196px] text-[#FFFFFF] text-3xl">
+      /> */}
+      <div className="absolute flex flex-col m-[auto] top-0 right-0 left-0 bottom-0 align-center w-[600px] h-[600px]  bg-[#161616]">
+
+      <Link href='/' className="my-[20px] mx-[20px] text-[#FFFFFF] text-3xl">
         <AiOutlineArrowLeft />
       </Link>
-      <div className=" absolute left-[608px] top-[230px] w-[397px] h-[32px] text-[#FFFFFF] font-[General sans] font-[600] font-[24px] text-3xl leading-normal ">
+      <div className="relative  flex justify-center  text-[#FFFFFF] font-[General sans] font-[600]  text-3xl leading-normal ">
         <p>Link your Discord account</p>
       </div>
-      <div className="absolute left-[658px] top-[280px] w-[397px] h-[32px] text-[#A6A6A6] font-[General Sans]">
+      <div className=" mb-[70px] flex justify-center text-[#A6A6A6] font-[General Sans]">
         <p>works better with Discord connected</p>
       </div>
-      <div className="absolute left-[670px] top-[370px]">
+
+
+      <div className="flex flex-row justify-center mb-[50px] ">
+      <div className="left-[670px] top-[370px]">
         <ProfileIcon
           imageUrl="Icons/RedFire.svg"
           size={87}
@@ -35,8 +40,8 @@ export default function DiscordIntegrationPopup() {
           onProfileIconClick={handleProfileClick}
         />
       </div>
-      <div className="absolute h-[6px] w-[73px] left-[756px] top-[410px] bg-[#3D3E45]"></div>
-      <div className="absolute left-[830px] top-[370px]">
+      <div className="relative top-[40px] h-[6px] w-[73px]  bg-[#3D3E45]"></div>
+      <div className=" left-[830px] top-[370px]">
         <ProfileIcon
           imageUrl="Icons/Discord.svg"
           size={87}
@@ -44,23 +49,28 @@ export default function DiscordIntegrationPopup() {
           onProfileIconClick={handleProfileClick}
         />
       </div>
-      <div className="flex-wrap absolute flex justify-center left-[560px] top-[530px] w-[500px] h-[32px] text-[#A6A6A6] font-[General Sans] ">
+      </div>
+
+
+      <div className="flex-wrap  flex justify-center mb-[50px]    text-[#A6A6A6] font-[General Sans] ">
         Get special access with your Discord roles <br />
         Receive task updates directly in Discord
       </div>
-      <div className="absolute top-[620px] left-[645px] ">
+      <div className="flex justify-center top-[620px] left-[645px] mb-[20px]">
         <IconButton
           icon={FaDiscord}
           label="Discord"
-          className="absolute bg-[#8570E4] top-[20px] left-[30px] w-[240px] h-[50px] rounded-md"
+          className=" bg-[#8570E4] top-[20px] left-[30px] w-[240px] h-[50px] rounded-md"
           classNameIcon=""
         />
       </div>
-      <div className="absolute top-[720px] left-[775px]">
+      <div className="flex justify-center">
         <button onClick={() => router.push('/Step1CommunitySetup')} className="bg-[#161616] text-[#A6A6A6] text-sm px-2 py-1 rounded-md">
           Skip
         </button>
       </div>
+      </div>
+
     </>
   );
 }
