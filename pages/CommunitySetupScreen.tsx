@@ -11,47 +11,48 @@ import Link from "next/link";
 import TextInput from "../components/atoms/TextInput";
 import Popup from "reactjs-popup";
 import Modal from "@material-ui/core/Modal";
+import FormData from "@/utils/FormData";
+
+
 
 const CommunitySetupScreen = (): ReactElement => {
+  const obj = FormData();
   const [InputValue, setInputvalue] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
-  function onContinueClick() {
+  async function onContinueClick() {
     setOpenDiscord(!OpenDiscord);
+    // const { data, error } = await supabase.from("community_data").insert({
+    //   user_name: InputValue,
+    // });
+    // if (error) {
+    //   console.log("Error uploading file:", error.message);
+    // } else {
+    //   console.log("File uploaded successfully:", data);
+    // }
+    obj.name = InputValue;
   }
-
-  function handleProfileClick() {
+  const bucket_name = "Store";
+  async function handleProfileClick() {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".png, .jpg, .jpeg";
-    input.hidden = true; // Add the hidden attribute
-    let files: File[];
+    input.hidden = true;
     input.addEventListener("change", async () => {
       const files = input.files;
-      console.log(files);
       if (files && files.length > 0) {
-        console.log(files[0]);
-        let file: File;
-        file = files[0];
-        if (!file) {
-          return;
-        }
-        console.log(file.name);
-        // from here we can send image to supabase storage.
-
+        const file = files[0];
+        console.log(file);
         const { data, error } = await supabase.storage
-          .from("images")
-          .upload(file.name, file, {
-            cacheControl: "3600",
-            upsert: false,
-          });
-
+        .from(bucket_name)
+        .upload(`community_admin/${file.name}`, file, {
+          cacheControl: "3600",
+          upsert: false,
+        });
         if (error) {
-          console.log("Error uploading file:", error);
+          console.error(error);
         } else {
-          console.log("File uploaded successfully:", data);
+          console.log(data);
         }
-      } else {
-        return;
       }
     });
     input.click();
@@ -60,9 +61,10 @@ const CommunitySetupScreen = (): ReactElement => {
   function handleInput(e: any) {
     setInputvalue(e.target.value);
   }
-  console.log("NAME-> ", InputValue);
+  // console.log("NAME-> ",InputValue);
 
   return (
+    // console.log(value);
     <>
       <BackGroundPage />
       <Modal
@@ -72,68 +74,72 @@ const CommunitySetupScreen = (): ReactElement => {
         open={OpenDiscord}
         style={{}}
       >
-        <div className="absolute left-[-100px] top-[-150px]">
+        <div className="">
           <DiscordIntegrationPopup />
         </div>
       </Modal>
-      <Card title="" text="" />
+      {/* <div className="flex items-center"> */}
+      {/* <Card title="" text="" /> */}
+      <div className="flex items-center justify-center ">
+        <div className="absolute block w-[662px] h-[431px] top-[20vh] bg-gray-800 shadow-md ">
+          <div className="relative block w-[662px] h-[54px] border-b-[1px] border-[#353B43]">
+            <Link
+              href="/"
+              className="relative top-[15px] left-[30px] text-[#AEABD8]"
+            >
+              SIGN UP
+            </Link>
+          </div>
+          <div className="relative">
+            <p className="relative w-[236px] h-[32px] top-[0px] left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
+              What do we call you?
+            </p>
+            <p className="relative w-[200px] h-[22px] top-[10px] left-[30px] font-sans font-normal text-base leading-6 text-gray-500">
+              Tell us your name?
+            </p>
+            <div className="relative top-[105px] left-[53px] font-[Roboto] font-bold text-[#848484] w-[13.54px] h-[27.88px] text-[28px]">
+              +
+            </div>
+            <ProfileIcon
+              size={94}
+              imageUrl="/Icons/DefaultUserIcon.png"
+              alt="nothing"
+              classNameCircle=" relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white"
+              classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
+              onProfileIconClick={handleProfileClick}
+            />
+            <TextInput
+              placeholder="Name"
+              label="Enter Name"
+              className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
+              classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
+              classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
+              handleChange2={handleInput}
+              handleValue={InputValue}
+            />
 
-      <div className="absolute w-[662px] h-[54px] left-[350px] top-[140px] border-b-[1px] border-[#353B43]">
-        <Link
-          href="/"
-          className="relative top-[15px] left-[30px] text-[#AEABD8]"
-        >
-          SIGN UP
-        </Link>
-      </div>
-      <div className="absolute  left-[350px] top-[220px]">
-        <p className="relative w-[236px] h-[32px] top-[0px] left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
-          What do we call you?
-        </p>
-        <p className="relative w-[200px] h-[22px] top-[10px] left-[30px] font-sans font-normal text-base leading-6 text-gray-500">
-          Tell us your name?
-        </p>
-        <div className="relative top-[105px] left-[53px] font-[Roboto] font-bold text-[#848484] w-[13.54px] h-[27.88px] text-[28px]">
-          +
+            <IconButton
+              icon={FaDiscord}
+              label="Discord"
+              className="relative bg-[#8570E4] top-[89px] left-[0px] w-[331px] h-[67px]"
+              classNameIcon=""
+            />
+            <IconButton
+              icon={VscBlank}
+              label="Continue"
+              className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
+              classNameIcon=""
+              onClick={onContinueClick}
+            />
+          </div>
+          <p className="relative text-center my-[30px] font-[General Sans] font-normal text-base leading-6 text-white font-generalsans">
+            Already have account?{" "}
+            <Link href="/" className="font-[General Sans] text-[#A6A6A6CC]">
+              Sign in
+            </Link>
+          </p>
         </div>
-        <ProfileIcon
-          size={94}
-          imageUrl="/Icons/DefaultUserIcon.png"
-          alt="nothing"
-          classNameCircle=" relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white"
-          classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
-          onProfileIconClick={handleProfileClick}
-        />
-        <TextInput
-          placeholder="Name"
-          label="Enter Name"
-          className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
-          classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
-          classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
-          handleChange2={handleInput}
-          handleValue={InputValue}
-        />
-
-        <IconButton
-          icon={FaDiscord}
-          label="Discord"
-          className="relative bg-[#8570E4] top-[89px] left-[0px] w-[331px] h-[67px]"
-          classNameIcon=""
-        />
-        <IconButton
-          icon={VscBlank}
-          label="Continue"
-          className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
-          classNameIcon=""
-          onClick={onContinueClick}
-        />
       </div>
-      <p className="absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans">
-        Already have account?{" "}
-        <Link href="/" className="font-[General Sans] text-[#A6A6A6CC]">
-          Sign in
-        </Link>
-      </p>
     </>
   );
 };

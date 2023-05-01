@@ -12,12 +12,14 @@ import TextArea from "../components/atoms/TextArea";
 import Temporary from "../components/atoms/Stepper";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
+import FormData from "@/utils/FormData";
 
 
 const Step1CommunitySetup = (): ReactElement => {
+  const obj = FormData();
   const router = useRouter()
   const [InputValue, setInputvalue] = useState("");
+  const [description,setDescription] = useState('')
 
   function handleProfileClick() {
     const input = document.createElement("input");
@@ -60,35 +62,54 @@ const Step1CommunitySetup = (): ReactElement => {
   function handleInput(e: any) {
     setInputvalue(e.target.value);
   }
+  function handleInput2(e: any) {
+    setDescription(e.target.value);
+  }
+
+  async function onContinueClick() {
+    obj.community_name = InputValue;
+    obj.community_description = description;
+    const { data, error } = await supabase.from("community_data").insert({
+      user_name : obj.name,
+      community_name : InputValue,
+      community_description : description
+    });
+    if (error) {
+      console.log("Error uploading file:", error.message);
+    } else {
+      console.log("File uploaded successfully:", data);
+    }
+    router.push('/CommunitySetUpIntegration')
+  }
 
  
-  console.log("NAME-> ", InputValue);
+ 
 
   return (
     <>
       <BackGroundPage />
-      <div className="flex items-center">
-        <Card
+      <div className="absolute  items-center m-[auto] top-[150px] justify-center right-0 left-0 w-[662px] h-[680px] bg-gray-800 shadow-md ">
+        {/* <Card
           title=""
           text=""
           className="absolute w-[662px] h-[680px] left-[360px] top-[95px] bg-gray-800 shadow-md"
-        />
+        /> */}
 
-        <div className="absolute w-[662px] h-[40px] left-[360px] top-[100px] border-b-[1px] border-[#353B43]">
+        <div className="relative w-[662px] h-[40px] border-b-[1px] border-[#353B43]">
           <Link
             href="/"
-            className="relative top-[5px] left-[30px] text-[#AEABD8]"
+            className="absolute top-[5px] left-[30px] text-[#AEABD8]"
           >
             COMMUNITY SETUP
           </Link>
-          <div className="relative top-[-20px] left-[400px] text-[#FE702A]">
+          <div className="absolute top-[5px] left-[400px] text-[#FE702A]">
             STEP 1 OF 2
           </div>
           <div>
             <Temporary />
           </div>
         </div>
-        <div className="absolute  left-[350px] top-[150px]">
+        <div className="">
           <p className="relative w-[236px] h-[32px] top-[0px] left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
             Basic Details
           </p>
@@ -123,6 +144,8 @@ const Step1CommunitySetup = (): ReactElement => {
             className="relative top-[20px] left-[60px] w-[650px] h-[250px]"
             classNameInput="w-[550px] h-[250px] bg-[#2E363F] rounded-lg overflow-hidden font-small"
             classNameLabel="font-small text-base leading-6 text-white  w-[250px] h-[22px] mb-2"
+            handleChange2={handleInput2}
+            handleValue={description}
           />
 
           <p className="relative w-[236px] h-[32px] top-[-20px] left-[60px] font-medium text-base leading-6 text-white font-generalsans">
@@ -193,7 +216,7 @@ const Step1CommunitySetup = (): ReactElement => {
             label="Continue"
             className="relative bg-[#FE702A] top-[-85px] left-[335px] w-[338px] h-[60px]"
             classNameIcon=""
-            onClick={()=>router.push('/CommunitySetUpIntegration')}
+            onClick={onContinueClick}
           />
         </div>
         {/* <p className='absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans'>Already have account? <Link href="/" className='font-[General Sans] text-[#A6A6A6CC]'>Sign in</Link></p> */}
