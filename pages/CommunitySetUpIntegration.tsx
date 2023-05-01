@@ -1,3 +1,4 @@
+declare var window: any;
 import Link from "next/link";
 import { IntegrationOption } from "../components/molecules/IntegrationOption";
 import {
@@ -10,14 +11,90 @@ import {
 import { VscBlank } from "react-icons/vsc";
 import IconButton from "../components/atoms/IconButton";
 import BackGroundPage from "@/components/molecules/BackGroundPage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import WalletAuth from "@/utils/authentication/walletAuth";
+import FormData from "@/utils/FormData";
+import { supabase } from "@/utils/supabaseClient";
+
 function CommunitySetUpIntegration() {
   const [flagDiscord, setDiscord] = useState("visible");
   const [flagTwitter, setTwitter] = useState("hidden");
   const [flagTelegram, setTelegram] = useState("hidden");
   const [flagEthereum, setEthereum] = useState("hidden");
+  const [walletAddress, setWalletAddress] = useState("");
+  const obj = FormData();
   const router = useRouter();
+  const onConnect = WalletAuth();
+
+  useEffect(() => {
+    getCurrentWalletConnected();
+    // addWalletListener();
+  }, [walletAddress]);
+
+  const connectWallet = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        /* MetaMask is installed */
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      /* MetaMask is not installed */
+      console.log("Please install MetaMask");
+    }
+  };
+
+  const getCurrentWalletConnected = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+        if (accounts.length > 0) {
+          setWalletAddress(accounts[0]);
+          console.log(accounts[0]);
+          setEthereum('visible');
+        }
+         else {
+          console.log("Connect to MetaMask using the Connect button");
+        }
+
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      /* MetaMask is not installed */
+      console.log("Please install MetaMask");
+    }
+  };
+
+  // const addWalletListener = async () => {
+  //   if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+  //     window.ethereum.on("accountsChanged", (accounts) => {
+  //       setWalletAddress(accounts[0]);
+  //       console.log(accounts[0]);
+  //     });
+  //   } else {
+  //     /* MetaMask is not installed */
+  //     setWalletAddress("");
+  //     console.log("Please install MetaMask");
+  //   }
+  // };
+
+  async function handleEthereumClick() {
+    await connectWallet();
+    try {
+      setEthereum("visible");
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   function handleDiscordClick() {
     const redirectUri = encodeURIComponent(
@@ -29,19 +106,6 @@ function CommunitySetUpIntegration() {
 
     window.location.href = authUrl;
   }
-  // Discord data fetch....to be completed
-  // fetch("https://discord.com/api/users/@me", {
-  //   headers: {
-  //     Authorization: `Bearer ${ACCESS_TOKEN}`,
-  //   },
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
 
   function handleTwitterClick() {
     if (flagTwitter == "hidden") {
@@ -53,18 +117,22 @@ function CommunitySetUpIntegration() {
       setTelegram("visible");
     }
   }
-  function handleEthereumClick() {
-    const redirectUri = encodeURIComponent(
-      "https://firebond-client-mortezn3k-firebond-admin-team.vercel.app/CommunitySetUpIntegration"
-    );
-    const clientId = "YOUR_CLIENT_ID";
-    const authUrl = `https://id.metamask.io/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}`;
 
-    window.location.href = authUrl;
-
-    if (flagEthereum == "hidden") {
-      setEthereum("visible");
+  async function handleContinue() {
+    obj.wallet_id= walletAddress;
+    const { data, error } = await supabase.from("community_data").insert({
+      name : obj.name,
+      community_name : obj.community_name,
+      community_description : obj.community_description,
+      email : obj.email,
+      wallet_id : obj.wallet_id
+    });
+    if (error) {
+      console.log("Error uploading file:", error.message);
+    } else {
+      console.log("File uploaded successfully:", data);
     }
+    router.push("/WelcomeScreen1");
   }
   return (
     <>
@@ -157,7 +225,7 @@ function CommunitySetUpIntegration() {
             label="Continue"
             className="absolute bg-[#FE702A] bottom-[0px] left-[331px] w-[331px] h-[67px]"
             classNameIcon=""
-            onClick={() => router.push("/WelcomeScreen1")}
+            onClick={handleContinue}
           />
 
           {/* </div>    */}

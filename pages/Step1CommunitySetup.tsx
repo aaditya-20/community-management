@@ -66,20 +66,10 @@ const Step1CommunitySetup = (): ReactElement => {
     setDescription(e.target.value);
   }
 
-  async function onContinueClick() {
+  function onContinueClick() {
     obj.community_name = InputValue;
     obj.community_description = description;
-    const { data, error } = await supabase.from("community_data").insert({
-      user_name : obj.name,
-      community_name : InputValue,
-      community_description : description
-    });
-    if (error) {
-      console.log("Error uploading file:", error.message);
-    } else {
-      console.log("File uploaded successfully:", data);
-    }
-    router.push('/CommunitySetUpIntegration')
+     router.push('/CommunitySetUpIntegration')
   }
 
  

@@ -122,7 +122,7 @@ const CommunitySetupScreen = (): ReactElement => {
               className="relative top-[-1px] left-[154px] w-[426px] h-[41px]"
               classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
               classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
-              handleChange2={handleInput}
+              handleChange2={handleEmail}
               handleValue={InputEmail}
             />
             <IconButton

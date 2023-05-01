@@ -9,13 +9,72 @@ import {
 } from "react-icons/ai";
 import Modal from "@material-ui/core/Modal";
 import MissionPopup from "./MissonPopup";
+import TextInput from "@/components/atoms/TextInput";
+import FormData from "@/utils/FormData";
+import { supabase } from "@/utils/supabaseClient";
 
 const MissionTemplateEdit = () => {
+  const obj = FormData();
   const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
-  function onCreateClick() {
+  const[input,setInput] = useState('')
+  const email = "ayush@firebond.xyz";
+
+  async function onCreateClick() {
     setOpenMission(!OpenMission);
+    try {
+      // Fetch the community data row using the user's email as a filter condition
+      const { data, error } = await supabase
+        .from('community_data')
+        .select('*')
+        .eq('email', email)
+        .single();
+  
+      if (error) {
+        console.error(error);
+        return;
+      }
+    // Update the missions array with the new missions
+    // console.log(data.missions);
+    // data.missions.push(input);
+
+    //data.missions == NULL;
+
+  //   const { error } = await supabase
+  // .from('countries')
+  // .update({ name: 'Australia' })
+  // .eq('id', 1)
+
+    // Update the row with the new missions
+    const { error: updateError } = await supabase
+      .from('community_data')
+      .update({ name : input })
+      .eq('id', 1);
+
+    if (updateError) {
+      console.error(updateError);
+    } else {
+      console.log('Missions updated successfully!');
+    }
+  } catch (error) {
+    console.error(error);
   }
+}
+
+
+
+
+
+
+
+  
+  
+  
+
+  function handleInput(e : any){
+     setInput(e.target.value);
+  }
+  // const mission = retrieve(database);
 
   return (
     <>
@@ -73,12 +132,20 @@ const MissionTemplateEdit = () => {
                     </div>
                     <div className="h-auto w-full p-6">
                       <div className="h-auto">
-                        <h1 className="mb-[10px]">Mission title</h1>
-                        <div className="h-auto py-[11px] mb-[29px] w-full bg-[#2E363F] rounded-[8px]">
-                          <h1 className="ml-[18px] text-white font-medium text-[14px] leading-[18.9px]">
-                            On boarding 10 new community members
-                          </h1>
-                        </div>
+                        <h1 className="mb-[10px] text-white text-xl">
+                          Mission title
+                        </h1>
+                       
+                          <TextInput
+                            placeholder=""
+                            label=""
+                            className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
+                            classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
+                            classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
+                            handleChange2={handleInput}
+                            handleValue={input}
+                          />
+                      
                         <div className="w-full flex gap-4">
                           <button className="h-[37px] w-[113px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
                             <div className="flex gap-[6.5px]">
