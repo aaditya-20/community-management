@@ -6,156 +6,187 @@ import { BiSave } from "react-icons/bi";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
 import Image from "next/image";
 import VerficationCard from "@/components/molecules/VerificationCard";
+import Modal from '@material-ui/core/Modal';
+import IntegrationSelectFormBuilder from "@/components/molecules/IntegrationSelectFormBuilder";
+import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 
-const cards = [
-  {
-    key: 1,
-    title: "Info",
-    div: (
-      <div className="w-full mt-[16.24px]">
-        <div className="h-full w-full">
-          <div className="flex gap-[83px] items-center mb-[19px]">
-            <h1 className="font-normal text-base text-[#A6A6A6]">Profile</h1>
-            <div className="h-[53px] w-[53px] bg-[#171C23] border-[1.25px] border-dashed border-[#FFFFFF] rounded-full flex justify-center items-center cursor-pointer">
-              <Image
-                src="Icons/photo.svg"
-                height={21.96}
-                width={21.96}
-                alt=""
+
+const Form_Builder_Info = () => {
+  const cards = [
+    {
+      key: 1,
+      title: "Info",
+      div: (
+        <div className="w-full mt-[16.24px]">
+          <div className="h-full w-full">
+            <div className="flex gap-[83px] items-center mb-[19px]">
+              <h1 className="font-normal text-base text-[#A6A6A6]">Profile</h1>
+              <div className="h-[53px] w-[53px] bg-[#171C23] border-[1.25px] border-dashed border-[#FFFFFF] rounded-full flex justify-center items-center cursor-pointer">
+                <Image
+                  src="Icons/photo.svg"
+                  height={21.96}
+                  width={21.96}
+                  alt=""
+                />
+              </div>
+            </div>
+  
+            <div className="flex gap-[97px] mb-[29px] items-center">
+              <h1 className="font-normal text-base text-[#A6A6A6]">Title</h1>
+              <div className="w-[296px] h-[47px] flex items-center overflow-hidden bg-[#2E363F] rounded-lg">
+                <input
+                  className="text-[#D0D0D0A8] font-normal text-xs w-full h-full pl-[19px] outline-none text-ellipsis bg-inherit pr-[19px]"
+                  placeholder="This is a custom headline"
+                ></input>
+              </div>
+            </div>
+  
+            <h1 className="font-normal text-base text-[#A6A6A6] mb-[7px]">
+              Product Description
+            </h1>
+            <div className="w-[429px] h-[98px] bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg px-4 py-[7px]">
+              <textarea
+                className="w-full max-h-full outline-none bg-inherit overflow-auto text-ellipsis placeholder:text-[#D0D0D0A8] text-white font-normal text-xs resize-none scrollbar-hide "
+                placeholder="This is custom product description"
               />
             </div>
           </div>
-
-          <div className="flex gap-[97px] mb-[29px] items-center">
-            <h1 className="font-normal text-base text-[#A6A6A6]">Title</h1>
-            <div className="w-[296px] h-[47px] flex items-center overflow-hidden bg-[#2E363F] rounded-lg">
+        </div>
+      ),
+    },
+    {
+      key: 2,
+      title: "Founder Bio",
+      div: (
+        <div className="w-full mt-[16.24px]">
+          <div className="h-full w-full">
+            <div className="flex gap-[83px] items-center mb-[39px]">
+              <h1 className="font-normal text-base text-[#A6A6A6] mb-[7px]">
+                Thumbnail image
+              </h1>
+              <div className="h-[53px] w-[53px] bg-[#171C23] border-[1.25px] border-dashed border-[#FFFFFF] rounded-full flex justify-center items-center cursor-pointer">
+                <Image
+                  src="Icons/photo.svg"
+                  height={21.96}
+                  width={21.96}
+                  alt=""
+                />
+              </div>
+            </div>
+  
+            <h1 className="font-normal text-base text-[#A6A6A6]">Bio</h1>
+            <div className="w-[429px] h-[98px] bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg px-4 py-[7px]">
+              <textarea
+                className="w-full max-h-full outline-none bg-inherit overflow-auto text-ellipsis placeholder:text-[#D0D0D0A8] text-white font-normal text-xs resize-none scrollbar-hide "
+                placeholder="Enter your custom bio"
+              />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: 3,
+      title: "Form",
+      div: (
+        <div className="mt-[44px] w-full">
+          <div className="flex items-center gap-[14px]">
+            <Image
+              src="Icons/add.svg"
+              height={29}
+              width={29}
+              alt=""
+              className="cursor-pointer"
+              onClick={()=>{setSelectIntegration(!selectIntegration)}}
+            />
+            <Image src="Icons/Line.svg" height={0} width={376} alt="" />{" "}
+          </div>
+  
+          <div className="flex mt-[51px] items-center gap-[38px]">
+            <h1 className="font-normal text-base text-[#A6A6A6] w-[95px]">
+              Call to action
+            </h1>
+            <div className="w-[298px] h-[47px] bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg flex items-center pl-[19px]">
               <input
-                className="text-[#D0D0D0A8] font-normal text-xs w-full h-full pl-[19px] outline-none text-ellipsis bg-inherit pr-[19px]"
-                placeholder="This is a custom headline"
+                className="outline-none  bg-inherit text-[#757575] font-normal text-sm"
+                placeholder="Button text Eg: Submit"
               ></input>
             </div>
           </div>
-
-          <h1 className="font-normal text-base text-[#A6A6A6] mb-[7px]">
-            Product Description
-          </h1>
-          <div className="w-[429px] h-[98px] bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg px-4 py-[7px]">
-            <textarea
-              className="w-full max-h-full outline-none bg-inherit overflow-auto text-ellipsis placeholder:text-[#D0D0D0A8] text-white font-normal text-xs resize-none scrollbar-hide "
-              placeholder="This is custom product description"
-            />
+  
+          <div className="mt-[28px] w-full flex justify-center items-center">
+            <div className="flex gap-[9px] items-center justify-center">
+              <input
+                type="checkbox"
+                className="w-5 h-5 border-[#A6A6A6]  cursor-pointer"
+              />
+              <h1 className="font-normal text-sm text-[#757575]">
+                Require ReCAPTCHA
+              </h1>
+            </div>
           </div>
         </div>
-      </div>
-    ),
-  },
-  {
-    key: 2,
-    title: "Founder Bio",
-    div: (
-      <div className="w-full mt-[16.24px]">
-        <div className="h-full w-full">
-          <div className="flex gap-[83px] items-center mb-[39px]">
-            <h1 className="font-normal text-base text-[#A6A6A6] mb-[7px]">
-              Thumbnail image
-            </h1>
-            <div className="h-[53px] w-[53px] bg-[#171C23] border-[1.25px] border-dashed border-[#FFFFFF] rounded-full flex justify-center items-center cursor-pointer">
-              <Image
-                src="Icons/photo.svg"
-                height={21.96}
-                width={21.96}
-                alt=""
+      ),
+    },
+    {
+      key: 4,
+      title: "Style",
+      colorArray: [
+        { title: "Background" },
+        { title: "Title" },
+        { title: "Discription" },
+      ],
+    },
+    {
+      key: 5,
+      title: "Success message",
+      div: (
+        <div className="w-full mt-[36px]">
+          <div className="w-[425px] flex justify-between items-center">
+            <h1>Message</h1>
+            <div className="h-[47px] w-[296px] bg-[#2E363F] flex justify-center items-center overflow-hidden text-ellipsis pl-[19px] rounded-lg">
+              <input
+                placeholder="Write success message"
+                className="w-full bg-inherit outline-none text-xs text-[#D0D0D0A8]"
               />
             </div>
           </div>
-
-          <h1 className="font-normal text-base text-[#A6A6A6]">Bio</h1>
-          <div className="w-[429px] h-[98px] bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg px-4 py-[7px]">
-            <textarea
-              className="w-full max-h-full outline-none bg-inherit overflow-auto text-ellipsis placeholder:text-[#D0D0D0A8] text-white font-normal text-xs resize-none scrollbar-hide "
-              placeholder="Enter your custom bio"
-            />
-          </div>
         </div>
-      </div>
-    ),
-  },
-  {
-    key: 3,
-    title: "Form",
-    div: (
-      <div className="mt-[44px] w-full">
-        <div className="flex items-center gap-[14px]">
-          <Image
-            src="Icons/add.svg"
-            height={29}
-            width={29}
-            alt=""
-            className="cursor-pointer"
-          />
-          <Image src="Icons/Line.svg" height={0} width={376} alt="" />{" "}
-        </div>
-
-        <div className="flex mt-[51px] items-center gap-[38px]">
-          <h1 className="font-normal text-base text-[#A6A6A6] w-[95px]">
-            Call to action
-          </h1>
-          <div className="w-[298px] h-[47px] bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg flex items-center pl-[19px]">
-            <input
-              className="outline-none  bg-inherit text-[#757575] font-normal text-sm"
-              placeholder="Button text Eg: Submit"
-            ></input>
-          </div>
-        </div>
-
-        <div className="mt-[28px] w-full flex justify-center items-center">
-          <div className="flex gap-[9px] items-center justify-center">
-            <input
-              type="checkbox"
-              className="w-5 h-5 border-[#A6A6A6]  cursor-pointer"
-            />
-            <h1 className="font-normal text-sm text-[#757575]">
-              Require ReCAPTCHA
-            </h1>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    key: 4,
-    title: "Style",
-    colorArray: [
-      { title: "Background" },
-      { title: "Title" },
-      { title: "Discription" },
-    ],
-  },
-  {
-    key: 5,
-    title: "Success message",
-    div: (
-      <div className="w-full mt-[36px]">
-        <div className="w-[425px] flex justify-between items-center">
-          <h1>Message</h1>
-          <div className="h-[47px] w-[296px] bg-[#2E363F] flex justify-center items-center overflow-hidden text-ellipsis pl-[19px] rounded-lg">
-            <input
-              placeholder="Write success message"
-              className="w-full bg-inherit outline-none text-xs text-[#D0D0D0A8]"
-            />
-          </div>
-        </div>
-      </div>
-    ),
-  },
-];
-
-const Form_Builder_Info = () => {
+      ),
+    },
+  ];
+   //for integration account pop up
+  const [selectIntegration,setSelectIntegration] = useState(false);
+  //for unique link pop up
+  const [uniqueLink,setuniqueLink] = useState(false);
   const [on, setOn] = useState(cards.map(() => false));
   const [colors, setColors] = useState(["#FFFFFF", "#FFFFFF", "#FFFFFF"]);
-
+ 
+   
+   
   return (
+    
     <div className="min-h-screen bg-[#171C23] flex ">
+      <Modal
+        onClose={()=>{setSelectIntegration(!selectIntegration)}}
+        open={selectIntegration}
+        style={{
+              
+        }}
+      >
+
+         <div className='absolute m-[auto] top-[30vh] left-[40vw]'><IntegrationSelectFormBuilder/></div>
+      </Modal>
+      <Modal
+        onClose={()=>{setuniqueLink(!uniqueLink)}}
+        open={uniqueLink}
+        style={{
+              
+        }}
+      >
+
+     <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url="https://firebond.com/firebondhandle/23458394849"/></div>
+      </Modal>
       {/* SideBar */}
       <Sidebar />
       {/* Main Section */}
@@ -186,7 +217,7 @@ const Form_Builder_Info = () => {
                   </h1>
                 </div>
               </button>
-              <button className="h-[33px] flex justify-center items-center rounded-lg pl-[17px] pr-[19px] border hover:border-[#C32F14] border-[#FFFFFF] group">
+              <button onClick={()=>{setuniqueLink(!uniqueLink)}} className="h-[33px] flex justify-center items-center rounded-lg pl-[17px] pr-[19px] border hover:border-[#C32F14] border-[#FFFFFF] group">
                 <div className="h-full w-full flex justify-center items-center gap-[11px]">
                   <HiOutlineRocketLaunch
                     size={14}
