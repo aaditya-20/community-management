@@ -10,22 +10,16 @@ import DiscordIntegrationPopup from "./DiscordIntegrationPopup";
 import Link from "next/link";
 import TextInput from "../components/atoms/TextInput";
 import Popup from "reactjs-popup";
-import Modal from '@material-ui/core/Modal';
-
+import Modal from "@material-ui/core/Modal";
 
 const CommunitySetupScreen = (): ReactElement => {
-  const [InputValue,setInputvalue] = useState('');
-  const [OpenDiscord,setOpenDiscord] = useState(false);
-  function onContinueClick(){
-     
-      setOpenDiscord(!OpenDiscord);
-
+  const [InputValue, setInputvalue] = useState("");
+  const [OpenDiscord, setOpenDiscord] = useState(false);
+  function onContinueClick() {
+    setOpenDiscord(!OpenDiscord);
   }
 
-  
   function handleProfileClick() {
-   
-
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".png, .jpg, .jpeg";
@@ -36,10 +30,9 @@ const CommunitySetupScreen = (): ReactElement => {
       console.log(files);
       if (files && files.length > 0) {
         console.log(files[0]);
-        let file:File;
+        let file: File;
         file = files[0];
         if (!file) {
-         
           return;
         }
         console.log(file.name);
@@ -63,27 +56,26 @@ const CommunitySetupScreen = (): ReactElement => {
     });
     input.click();
   }
-  
-  function handleInput(e:any){
+
+  function handleInput(e: any) {
     setInputvalue(e.target.value);
   }
-  console.log("NAME-> ",InputValue);
+  console.log("NAME-> ", InputValue);
 
   return (
-    // console.log(value);
     <>
       <BackGroundPage />
       <Modal
-        onClose={()=>{setOpenDiscord(!OpenDiscord)}}
-        open={OpenDiscord}
-        style={{
-              
+        onClose={() => {
+          setOpenDiscord(!OpenDiscord);
         }}
+        open={OpenDiscord}
+        style={{}}
       >
-
-         <div className='absolute left-[-100px] top-[-150px]'><DiscordIntegrationPopup/></div>
+        <div className="absolute left-[-100px] top-[-150px]">
+          <DiscordIntegrationPopup />
+        </div>
       </Modal>
-      {/* <div className="flex items-center"> */}
       <Card title="" text="" />
 
       <div className="absolute w-[662px] h-[54px] left-[350px] top-[140px] border-b-[1px] border-[#353B43]">
@@ -121,20 +113,20 @@ const CommunitySetupScreen = (): ReactElement => {
           handleChange2={handleInput}
           handleValue={InputValue}
         />
-        
+
         <IconButton
           icon={FaDiscord}
           label="Discord"
           className="relative bg-[#8570E4] top-[89px] left-[0px] w-[331px] h-[67px]"
           classNameIcon=""
         />
-         <IconButton
-              icon={VscBlank}
-              label="Continue"
-              className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
-              classNameIcon=""
-              onClick={onContinueClick}
-            />
+        <IconButton
+          icon={VscBlank}
+          label="Continue"
+          className="relative bg-[#FE702A] top-[22px] left-[331px] w-[331px] h-[67px]"
+          classNameIcon=""
+          onClick={onContinueClick}
+        />
       </div>
       <p className="absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans">
         Already have account?{" "}
@@ -142,7 +134,6 @@ const CommunitySetupScreen = (): ReactElement => {
           Sign in
         </Link>
       </p>
-      
     </>
   );
 };
