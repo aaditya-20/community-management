@@ -13,11 +13,10 @@ import Popup from "reactjs-popup";
 import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
 
-
-
 const CommunitySetupScreen = (): ReactElement => {
   const obj = FormData();
   const [InputValue, setInputvalue] = useState("");
+  const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
   async function onContinueClick() {
     setOpenDiscord(!OpenDiscord);
@@ -30,6 +29,7 @@ const CommunitySetupScreen = (): ReactElement => {
     //   console.log("File uploaded successfully:", data);
     // }
     obj.name = InputValue;
+    obj.email = InputEmail;
   }
   const bucket_name = "Store";
   async function handleProfileClick() {
@@ -43,11 +43,11 @@ const CommunitySetupScreen = (): ReactElement => {
         const file = files[0];
         console.log(file);
         const { data, error } = await supabase.storage
-        .from(bucket_name)
-        .upload(`community_admin/${file.name}`, file, {
-          cacheControl: "3600",
-          upsert: false,
-        });
+          .from(bucket_name)
+          .upload(`community_admin/${file.name}`, file, {
+            cacheControl: "3600",
+            upsert: false,
+          });
         if (error) {
           console.error(error);
         } else {
@@ -61,10 +61,11 @@ const CommunitySetupScreen = (): ReactElement => {
   function handleInput(e: any) {
     setInputvalue(e.target.value);
   }
-  // console.log("NAME-> ",InputValue);
+  function handleEmail(e: any) {
+    setInputemail(e.target.value);
+  }
 
   return (
-    // console.log(value);
     <>
       <BackGroundPage />
       <Modal
@@ -78,8 +79,6 @@ const CommunitySetupScreen = (): ReactElement => {
           <DiscordIntegrationPopup />
         </div>
       </Modal>
-      {/* <div className="flex items-center"> */}
-      {/* <Card title="" text="" /> */}
       <div className="flex items-center justify-center ">
         <div className="absolute block w-[662px] h-[431px] top-[20vh] bg-gray-800 shadow-md ">
           <div className="relative block w-[662px] h-[54px] border-b-[1px] border-[#353B43]">
@@ -117,7 +116,15 @@ const CommunitySetupScreen = (): ReactElement => {
               handleChange2={handleInput}
               handleValue={InputValue}
             />
-
+            <TextInput
+              placeholder="Email"
+              label="Enter Email"
+              className="relative top-[-1px] left-[154px] w-[426px] h-[41px]"
+              classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
+              classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
+              handleChange2={handleInput}
+              handleValue={InputEmail}
+            />
             <IconButton
               icon={FaDiscord}
               label="Discord"
