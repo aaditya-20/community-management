@@ -8,7 +8,6 @@ const ActivityCard = () => {
     newDiv[index] = { color: "bg-blue-500" };
     setDivs(newDiv);
   };
-
   return (
     <div className="w-[841px] h-[325px] bg-[#232B35] pl-[34px] pr-[37px] pt-[21px] pb-[41px] rounded-[10px]">
       <div className="h-full w-full">
