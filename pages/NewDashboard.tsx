@@ -6,6 +6,21 @@ import AnalyticsCardMainDashboard from "../components/molecules/AnalyticsCardMai
 import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJoinedCardDashboardScreen";
 import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
 
+
+declare var window: any;
+var name = "user";
+if (typeof window !== "undefined") {
+  const storedJsonData = localStorage.getItem("data");
+  // console.log(storedJsonData)
+  const jsonData = JSON.parse(storedJsonData ?? "{}");
+  if(jsonData.name)
+   name = jsonData.name;
+   
+  console.log("->",jsonData);
+  
+}
+
+
 const cards = [
   {
     key: 1,
@@ -40,7 +55,7 @@ const NewDashboard = () => {
             <div>
               <div className="h-full w-full">
                 <h2 className="text-white text-2xl font-semibold mb-2">
-                  Satoshi Space
+                  {name} Space
                 </h2>
                 {/* Main Section */}
                 <div className="flex gap-6">
