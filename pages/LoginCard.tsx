@@ -6,8 +6,6 @@ import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
 import MagicLinkPopup from "./MagicLinkPopup";
 import { supabase } from "@/utils/supabaseClient";
-// import {StoreData} from "@/utils/StoreData";
-import Router from "next/router";
 
 const LoginCard = () => {
   const [walletAddress, setWalletAddress] = useState("");
