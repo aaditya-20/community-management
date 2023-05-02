@@ -6,16 +6,18 @@ import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
 import MagicLinkPopup from "./MagicLinkPopup";
 import { supabase } from "@/utils/supabaseClient";
+// import {StoreData} from "@/utils/StoreData";
+import Router from "next/router";
 
 const LoginCard = () => {
   const [walletAddress, setWalletAddress] = useState("");
+  const router = useRouter();
   const onConnect = WalletAuth();
   const onSign = GoogleSignInButton();
   const [OpenMagic, setOpenMagic] = useState(false);
   function onMagicClick() {
     setOpenMagic(!OpenMagic);
   }
-
   const connectWallet = async () => {
     
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -26,7 +28,6 @@ const LoginCard = () => {
         });
         setWalletAddress(accounts[0]);
         console.log(accounts[0]);
-
         try {
           const { data, error } = await supabase
             .from("community_data")
@@ -34,6 +35,8 @@ const LoginCard = () => {
             .eq("wallet_id", accounts[0])
             .single();
             console.log(data);
+            if(data!=null)
+            window.localStorage.setItem('data', JSON.stringify(data));
         } catch (e) {
           console.log(e);
         }
@@ -44,6 +47,7 @@ const LoginCard = () => {
       /* MetaMask is not installed */
       console.log("Please install MetaMask");
     }
+    router.push('/WelcomeScreen1')
   };
 
   return (
