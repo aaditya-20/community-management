@@ -17,62 +17,62 @@ const MissionTemplateEdit = () => {
   const obj = FormData();
   const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
-  const[input,setInput] = useState('')
+  const [input, setInput] = useState("");
   const email = "ayush@firebond.xyz";
-
+  var wallet_id = "";
+  if (typeof window !== "undefined") {
+    const storedJsonData = localStorage.getItem("data");
+    // console.log(storedJsonData)
+    const jsonData = JSON.parse(storedJsonData ?? "{}");
+    wallet_id = jsonData.wallet_id;
+    console.log(jsonData);
+  }
   async function onCreateClick() {
     setOpenMission(!OpenMission);
     try {
-      // Fetch the community data row using the user's email as a filter condition
-      const { data, error } = await supabase
-        .from('community_data')
-        .select('*')
-        .eq('email', email)
+      // Fetch the community data row using the user's wallet_id as a filter condition
+      const { data: rowData, error } = await supabase
+        .from("community_data")
+        .select("*")
+        .eq("wallet_id", wallet_id)
         .single();
-  
       if (error) {
         console.error(error);
         return;
       }
-    // Update the missions array with the new missions
-    // console.log(data.missions);
-    // data.missions.push(input);
-
-    //data.missions == NULL;
-
-  //   const { error } = await supabase
-  // .from('countries')
-  // .update({ name: 'Australia' })
-  // .eq('id', 1)
-
-    // Update the row with the new missions
-    const { error: updateError } = await supabase
-      .from('community_data')
-      .update({ name : input })
-      .eq('id', 1);
-
-    if (updateError) {
-      console.error(updateError);
-    } else {
-      console.log('Missions updated successfully!');
+      var mission = rowData.missions;
+      if (rowData.missions == null)
+        mission = [
+          {
+            title: `${input}`,
+          },
+        ];
+      else {
+      mission.push([
+        {
+          title: `${input}`,
+        },
+      ]);
     }
-  } catch (error) {
-    console.error(error);
+      // Update the row with the new missions
+      const { data, error: updateError } = await supabase
+        .from("community_data")
+        .update({
+          missions: mission,
+        })
+        .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
+      if (updateError) {
+        console.error(updateError);
+      } else {
+        console.log("Missions updated successfully!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
-}
 
-
-
-
-
-
-
-  
-  
-  
-
-  function handleInput(e : any){
-     setInput(e.target.value);
+  function handleInput(e: any) {
+    setInput(e.target.value);
   }
   // const mission = retrieve(database);
 
@@ -135,17 +135,17 @@ const MissionTemplateEdit = () => {
                         <h1 className="mb-[10px] text-white text-xl">
                           Mission title
                         </h1>
-                       
-                          <TextInput
-                            placeholder=""
-                            label=""
-                            className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
-                            classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
-                            classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
-                            handleChange2={handleInput}
-                            handleValue={input}
-                          />
-                      
+
+                        <TextInput
+                          placeholder=""
+                          label=""
+                          className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
+                          classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
+                          classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
+                          handleChange2={handleInput}
+                          handleValue={input}
+                        />
+
                         <div className="w-full flex gap-4">
                           <button className="h-[37px] w-[113px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
                             <div className="flex gap-[6.5px]">
