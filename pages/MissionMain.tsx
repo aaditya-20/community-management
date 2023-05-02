@@ -5,6 +5,9 @@ import Image from "next/image";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import MissionMainCard from "../components/molecules/MissionMainCard";
 import AddMoreCard from "../components/molecules/AddMoreCard";
+import { useRouter } from "next/router";
+import MissionTemplateEdit from "./MissionTemplateEdit";
+
 
 const twitter = [
   {
@@ -44,8 +47,11 @@ const Community = [
     mission: "Give your feedback regarding the ...",
   },
 ];
-
 const MissionMain = () => {
+  const router = useRouter();
+  function createhandleclick() {
+    router.push("/MissionTemplateEdit");
+  }
   return (
     <div className="h-screen bg-[#171c23]">
       {/* Main Div */}
@@ -136,7 +142,7 @@ const MissionMain = () => {
                       Invite
                     </h1>
                   </button>
-                  <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]">
+                  <button onClick={createhandleclick}  className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]">
                     <AiOutlinePlusCircle className="text-[#7C7C7C]" size={16} />
                     <h1 className="font-[500px] text-sm text-[#757575]">
                       Create
