@@ -7,14 +7,12 @@ import {
   AiOutlinePlus,
   AiOutlinePlusCircle,
 } from "react-icons/ai";
-
 const MissionCreationFormPage = () => {
   const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
   function onCreateClick() {
     setOpenMission(!OpenMission);
   }
-
   return (
     <>
       <div className="min-h-screen  bg-[#171C23]">
