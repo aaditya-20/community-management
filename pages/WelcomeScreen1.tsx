@@ -1,3 +1,4 @@
+declare var window: any;
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 // import StoreData from '@/utils/StoreData';
@@ -5,10 +6,12 @@ import { useEffect } from 'react';
 
 
 // const name = obj.name;
-const storedJsonData = window.localStorage.getItem('data');
+if (typeof window !== "undefined"){
+const storedJsonData = localStorage.getItem('data');
 console.log(storedJsonData)
 const jsonData = JSON.parse(storedJsonData ?? '{}');
 console.log(jsonData)
+}
 
 const WelcomePage = () => {
   const router = useRouter();
@@ -24,7 +27,7 @@ const WelcomePage = () => {
     <div className="bg-[#161B21] flex flex-col h-screen items-center justify-center">
      
       <p className="font-generalsans font-extralight text-base md:text-lg lg:text-5xl leading-normal text-center text-white">
-        Hello,{jsonData.name}
+        Hello
       </p>
     </div>
   );
