@@ -275,7 +275,8 @@ const Form_Builder_Info = () => {
                                 {item.title}
                               </h1>
                               <div
-                                className={`h-5 w-5 rounded-full bg-[${colors[index]}] overflow-hidden`}
+                                className={`h-5 w-5 rounded-full overflow-hidden`}
+                                style={{ backgroundColor: colors[index] }}
                               >
                                 <input
                                   type="color"
