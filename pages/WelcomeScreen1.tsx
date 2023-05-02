@@ -4,12 +4,13 @@ import { useEffect } from 'react';
 // import StoreData from '@/utils/StoreData';
 // import {obj} from '@/utils/StoreData';
 
-
+var name = 'user';
 // const name = obj.name;
 if (typeof window !== "undefined"){
 const storedJsonData = localStorage.getItem('data');
-console.log(storedJsonData)
+// console.log(storedJsonData)
 const jsonData = JSON.parse(storedJsonData ?? '{}');
+name = jsonData.name;
 console.log(jsonData)
 }
 
@@ -27,7 +28,8 @@ const WelcomePage = () => {
     <div className="bg-[#161B21] flex flex-col h-screen items-center justify-center">
      
       <p className="font-generalsans font-extralight text-base md:text-lg lg:text-5xl leading-normal text-center text-white">
-        Hello
+        
+        Hello,{name}
       </p>
     </div>
   );
