@@ -1,7 +1,20 @@
 import Image from "next/image";
 import router from "next/router";
 import React, { useState } from "react";
+declare var window: any;
+var name = "user";
+if (typeof window !== "undefined") {
+  const storedJsonData = localStorage.getItem("data");
+  // console.log(storedJsonData)
+  const jsonData = JSON.parse(storedJsonData ?? "{}");
+  if(jsonData.name)
+   name = jsonData.name;
+   
+  console.log("->",jsonData);
+  
+}
 
+console.log(name);
 const Sidebar = () => {
   const [hideMenu, setHideMenu] = useState(false);
   return (
@@ -132,7 +145,7 @@ const Sidebar = () => {
                   onClick={() => router.push("/NewDashboard")}
                   className="text-white font-semibold text-base "
                 >
-                  Satoshi&apos;s Space
+                  {name}&apos;s Space
                 </span>
               </li>
               <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">

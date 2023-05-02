@@ -1,9 +1,20 @@
 import ShowNotifications from "./ShowNotification";
 import React from "react";
 import linkWallet from "@/utils/authentication/linkWallet";
-
 let data = 0;
 
+declare var window: any;
+var name = "user";
+if (typeof window !== "undefined") {
+  const storedJsonData = localStorage.getItem("data");
+  // console.log(storedJsonData)
+  const jsonData = JSON.parse(storedJsonData ?? "{}");
+  if(jsonData.name)
+   name = jsonData.name;
+   
+  console.log("->",jsonData);
+  
+}
 const Header = () => {
   const onWalletLink = linkWallet();
   return (
@@ -23,7 +34,7 @@ const Header = () => {
     src={"/Avatar.png"} 
     alt="Avatar" 
     className="w-8 h-8 rounded-full"/>
-    <span className="text-gray-400">Hello, <span className="text-white">Andrew</span></span>
+    <span className="text-gray-400">Hello, <span className="text-white">{name}</span></span>
   </button>
 </div>
     </div>
