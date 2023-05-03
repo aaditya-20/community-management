@@ -1,14 +1,10 @@
 declare var window: any;
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-// import StoreData from '@/utils/StoreData';
-// import {obj} from '@/utils/StoreData';
 
 var name = 'user';
-// const name = obj.name;
 if (typeof window !== "undefined"){
 const storedJsonData = localStorage.getItem('data');
-// console.log(storedJsonData)
 const jsonData = JSON.parse(storedJsonData ?? '{}');
 name = jsonData.name;
 console.log(jsonData)

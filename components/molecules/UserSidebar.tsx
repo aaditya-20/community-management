@@ -1,7 +1,6 @@
 import Image from "next/image";
 import router from "next/router";
 import React, { useState } from "react";
-import { AiOutlineEye } from "react-icons/ai";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -10,9 +9,7 @@ if (typeof window !== "undefined") {
   if (jsonData.name) name = jsonData.name;
   console.log("->", jsonData);
 }
-
-console.log(name);
-const Sidebar = () => {
+const UserSidebar = () => {
   const [hideMenu, setHideMenu] = useState(false);
   return (
     <>
@@ -51,29 +48,7 @@ const Sidebar = () => {
                 <Image width={24} height={24} src="Icons/box.svg" alt="" />
               </li>
               <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  src="Icons/bar-line-chart.svg"
-                  alt="not found"
-                  height={24}
-                  width={24}
-                />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image height={24} width={24} src="Icons/members.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image height={24} width={24} src="Icons/misson.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/Fire_Scrolls.svg"
-                  alt="not found"
-                />
               </li>
             </ul>
 
@@ -88,24 +63,7 @@ const Sidebar = () => {
                   src="Icons/help_center.svg"
                   alt="not found"
                 />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/setting.svg"
-                  alt="not found"
-                />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <AiOutlineEye
-                size={34}
-                 
-                  color="white"
-                 
-                />
-              </li>
-              
+              </li> 
             </ul>
           </div>
         </div>
@@ -153,21 +111,6 @@ const Sidebar = () => {
                   {name}&apos;s Space
                 </span>
               </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  height={24}
-                  width={24}
-                  src="Icons/bar-line-chart.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/AnalyticsScreen")}
-                  className="text-white font-semibold text-base"
-                >
-                  Analytics
-                </span>
-              </li>
               <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
                 <span
@@ -175,45 +118,6 @@ const Sidebar = () => {
                   className="text-white font-semibold text-base"
                 >
                   Missions
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  height={24}
-                  width={24}
-                  src="Icons/members.svg"
-                  alt=""
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/MemberScreen")}
-                  className="text-white font-semibold text-base"
-                >
-                  Members
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px]  pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image height={24} width={24} src="Icons/misson.svg" alt="" />
-                <span
-                  onClick={() => router.push("/LeaderBoardScreen")}
-                  className="text-white font-semibold text-base"
-                >
-                  Leaderboard
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/Fire_Scrolls.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/MissionReview")}
-                  className="text-white font-semibold text-base"
-                >
-                  Fire Scrolls
                 </span>
               </li>
             </ul>
@@ -237,34 +141,6 @@ const Sidebar = () => {
                   Help Centre
                 </span>
               </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/setting.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/AdminSetting")}
-                  className="text-white font-semibold text-base"
-                >
-                  Settings
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <AiOutlineEye
-                   size={34}
-                   color="white"
-                   className="ml-[11px]"
-                />
-                <span
-                  onClick={() => router.push("/AdminSetting")}
-                  className="text-white font-semibold text-base"
-                >
-                  Review
-                </span>
-              </li>
             </ul>
           </div>
         </div>
@@ -273,4 +149,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default UserSidebar;

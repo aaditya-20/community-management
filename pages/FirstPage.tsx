@@ -4,11 +4,15 @@ import { useRouter } from "next/router";
 import LoginCard from "./LoginCard";
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
+import LoginSection from "./LoginSection";
 export default function FirstPage() {
   const router = useRouter();
   const [OpenLogin, setOpenLogin] = useState(false);
   function onLoginClick() {
     setOpenLogin(!OpenLogin);
+  }
+  function onSignUpClick() {
+    router.push("/CommunitySetupScreen");
   }
   return (
     <>
@@ -19,8 +23,8 @@ export default function FirstPage() {
         open={OpenLogin}
         style={{}}
       >
-        <div className="absolute left-[-100px] top-[-150px]">
-          <LoginCard />
+        <div className="absolute flex right-[30vw] top-[30vh]">
+          <LoginSection />
         </div>
       </Modal>
       <div className="bg-[#0c0c0c] h-[100vh] w-[100vw]">
@@ -33,7 +37,7 @@ export default function FirstPage() {
           ></Image>
           <button
             className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[20px]"
-            onClick={() => router.push("/CommunitySetupScreen")}
+            onClick={onSignUpClick}
           >
             sign up
           </button>
@@ -46,7 +50,7 @@ export default function FirstPage() {
         </div>
         <div className="relative left-[20vw]  text-white text-[100px] text-center leading-[1] top-[19vh]  w-[60vw]">
           <h1>
-            Scale web3 communities<span className="text-[red]">10x Faster</span>
+            SCALE WEB3 COMMUNITIES<span className="text-[red]">10X FASTER</span>
           </h1>
         </div>
         <div className="absolute left-[20vw]  text-white text-[30px] text-center leading-[1] bottom-[15vh]    w-[60vw]">

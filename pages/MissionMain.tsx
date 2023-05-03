@@ -199,21 +199,22 @@ const MissionMain = () => {
             <div className="w-full h-full flex justify-center overflow-auto scrollbar-hide p-6 ">
               <div className="h-auto w-auto">
                 <div className="w-full h-full grid grid-cols-2 gap-6">
-                  {missions && missions.map((item,index) => {
-                    return (
-                      <MissionMainCard
-                        key = {index}
-                        profileUrl1={""}
-                        profileUrl2={""}
-                        profileUrl3={""}
-                        profileUrl4={""}
-                        submission={0}
-                        daysLeft={0}
-                        usdc={0}
-                        title={item.title}
-                      />
-                    );
-                  })}
+                  {missions &&
+                    missions.map((item, index) => {
+                      return (
+                        <MissionMainCard
+                          key={index}
+                          profileUrl1={""}
+                          profileUrl2={""}
+                          profileUrl3={""}
+                          profileUrl4={""}
+                          submission={0}
+                          daysLeft={0}
+                          usdc={0}
+                          title={item.title}
+                        />
+                      );
+                    })}
 
                   <AddMoreCard />
                 </div>
@@ -232,7 +233,10 @@ const MissionMain = () => {
                       Used prebuilt template
                     </h3>
                   </div>
-                  <button className="font-medium text-sm text-[#D8D8D8]">
+                  <button
+                    onClick={() => router.push("/MissionTemplatePage")}
+                    className="font-medium text-sm text-[#D8D8D8]"
+                  >
                     Show more
                   </button>
                 </div>
