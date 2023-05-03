@@ -201,7 +201,10 @@ const Sidebar = () => {
                   alt="not found"
                   className="ml-[14px]"
                 />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/MissionReview")}
+                  className="text-white font-semibold text-base"
+                >
                   Fire Scrolls
                 </span>
               </li>
@@ -219,7 +222,10 @@ const Sidebar = () => {
                   alt="not found"
                   className="ml-[14px]"
                 />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/HelpCentre")}
+                  className="text-white font-semibold text-base"
+                >
                   Help Centre
                 </span>
               </li>
@@ -231,7 +237,10 @@ const Sidebar = () => {
                   alt="not found"
                   className="ml-[14px]"
                 />
-                <span className="text-white font-semibold text-base">
+                <span
+                  onClick={() => router.push("/AdminSetting")}
+                  className="text-white font-semibold text-base"
+                >
                   Settings
                 </span>
               </li>
