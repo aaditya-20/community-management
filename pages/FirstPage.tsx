@@ -11,6 +11,9 @@ export default function FirstPage() {
   function onLoginClick() {
     setOpenLogin(!OpenLogin);
   }
+  function onSignUpClick() {
+    router.push("/CommunitySetupScreen");
+  }
   return (
     <>
        <Modal
@@ -34,7 +37,7 @@ export default function FirstPage() {
           ></Image>
           <button
             className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[20px]"
-            onClick={() => router.push("/CommunitySetupScreen")}
+            onClick={onSignUpClick}
           >
             sign up
           </button>
