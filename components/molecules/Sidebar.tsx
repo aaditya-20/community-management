@@ -7,11 +7,8 @@ if (typeof window !== "undefined") {
   const storedJsonData = localStorage.getItem("data");
   // console.log(storedJsonData)
   const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if(jsonData.name)
-   name = jsonData.name;
-   
-  console.log("->",jsonData);
-  
+  if (jsonData.name) name = jsonData.name;
+  console.log("->", jsonData);
 }
 
 console.log(name);
