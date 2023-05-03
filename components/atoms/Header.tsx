@@ -7,7 +7,6 @@ declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
   const storedJsonData = localStorage.getItem("data");
-  // console.log(storedJsonData)
   const jsonData = JSON.parse(storedJsonData ?? "{}");
   if(jsonData.name)
    name = jsonData.name;

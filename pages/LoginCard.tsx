@@ -33,8 +33,8 @@ const LoginCard = () => {
             .eq("wallet_id", accounts[0])
             .single();
             console.log(data);
-            if(data!=null)
-            window.localStorage.setItem('data', JSON.stringify(data));
+            if (data != null)
+              window.localStorage.setItem("data", JSON.stringify(data));
         } catch (e) {
           console.log(e);
         }
