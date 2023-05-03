@@ -185,7 +185,7 @@ const Form_Builder_Info = () => {
         }}
       >
 
-     <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url="https://firebond.com/firebondhandle/23458394849"/></div>
+     <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url="https://firebond.com/firebondhandle/23458394849" forWhichComponent="form"/></div>
       </Modal>
       {/* SideBar */}
       <Sidebar />

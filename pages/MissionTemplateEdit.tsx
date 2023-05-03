@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import Image from "next/image";
+import Router from "next/router";
 import {
   AiFillPauseCircle,
   AiOutlinePlus,
@@ -12,11 +13,25 @@ import MissionPopup from "./MissonPopup";
 import TextInput from "@/components/atoms/TextInput";
 import FormData from "@/utils/FormData";
 import { supabase } from "@/utils/supabaseClient";
-
+import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+declare var window: any;
+var name = "user";
+if (typeof window !== "undefined") {
+  const storedJsonData = localStorage.getItem("data");
+  // console.log(storedJsonData)
+  const jsonData = JSON.parse(storedJsonData ?? "{}");
+  if(jsonData.name)
+   name = jsonData.name;
+   
+  console.log("->",jsonData);
+  
+}
 const MissionTemplateEdit = () => {
+  console.log("full url->",Router.asPath);
   const obj = FormData();
   const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
+  const [MissionId, setMissionId] = useState("");
   const [input, setInput] = useState("");
   const email = "ayush@firebond.xyz";
   var wallet_id = "";
@@ -27,7 +42,13 @@ const MissionTemplateEdit = () => {
     wallet_id = jsonData.wallet_id;
     console.log(jsonData);
   }
+  
+  // random string generator
+  const generateRandom = () => Math.random().toString( 36 ).substring( 2, 15 ) + Math.random().toString( 23 ).substring( 2, 5 );
+
   async function onCreateClick() {
+    
+    setMissionId(generateRandom());
     setOpenMission(!OpenMission);
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
@@ -85,9 +106,7 @@ const MissionTemplateEdit = () => {
         open={OpenMission}
         style={{}}
       >
-        <div className="absolute left-[-100px] top-[-150px]">
-          <MissionPopup />
-        </div>
+        <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url={`https://firebond.com/${name}/${MissionId}`} forWhichComponent="mission"/></div>
       </Modal>
 
       <div className="min-h-screen  bg-[#171C23]">
