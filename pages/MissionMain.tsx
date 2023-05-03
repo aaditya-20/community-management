@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import MissionMainCard from "../components/molecules/MissionMainCard";
 import AddMoreCard from "../components/molecules/AddMoreCard";
 import { useRouter } from "next/router";
 import MissionTemplateEdit from "./MissionTemplateEdit";
-
+import { supabase } from "@/utils/supabaseClient";
 
 const twitter = [
   {
@@ -47,11 +47,48 @@ const Community = [
     mission: "Give your feedback regarding the ...",
   },
 ];
+
 const MissionMain = () => {
   const router = useRouter();
   function createhandleclick() {
     router.push("/MissionTemplateEdit");
   }
+
+  var wallet_id = "";
+  var missions = [{
+    title : ''
+  }];
+  if (typeof window !== "undefined") {
+    const storedJsonData = localStorage.getItem("data");
+    // console.log(storedJsonData)
+    const jsonData = JSON.parse(storedJsonData ?? "{}");
+    wallet_id = jsonData.wallet_id;
+    console.log(jsonData);
+  }
+
+  fetchData();
+
+  async function fetchData(){
+
+  try {
+    // Fetch the community data row using the user's wallet_id as a filter condition
+    const { data: rowData, error } = await supabase
+      .from("community_data")
+      .select("*")
+      .eq("wallet_id", wallet_id)
+      .single();
+    if (error) {
+      console.error(error);
+      return;
+    }
+    missions = rowData.missions;
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
   return (
     <div className="h-screen bg-[#171c23]">
       {/* Main Div */}
@@ -142,7 +179,10 @@ const MissionMain = () => {
                       Invite
                     </h1>
                   </button>
-                  <button onClick={createhandleclick}  className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]">
+                  <button
+                    onClick={createhandleclick}
+                    className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                  >
                     <AiOutlinePlusCircle className="text-[#7C7C7C]" size={16} />
                     <h1 className="font-[500px] text-sm text-[#757575]">
                       Create
@@ -159,12 +199,22 @@ const MissionMain = () => {
             <div className="w-full h-full flex justify-center overflow-auto scrollbar-hide p-6 ">
               <div className="h-auto w-auto">
                 <div className="w-full h-full grid grid-cols-2 gap-6">
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  {missions && missions.map((item,index) => {
+                    return (
+                      <MissionMainCard
+                        key = {index}
+                        profileUrl1={""}
+                        profileUrl2={""}
+                        profileUrl3={""}
+                        profileUrl4={""}
+                        submission={0}
+                        daysLeft={0}
+                        usdc={0}
+                        title={item.title}
+                      />
+                    );
+                  })}
+
                   <AddMoreCard />
                 </div>
               </div>
