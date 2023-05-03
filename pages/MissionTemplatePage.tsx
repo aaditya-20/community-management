@@ -4,6 +4,8 @@ import Header from "@/components/atoms/Header";
 import Image from "next/image";
 import SmallMissionCard from "@/components/molecules/SmallMissionCard"; 
 import MissionShareYourFeedback from "./MissionShareYourFeedback";
+import { useRouter } from "next/router";
+
 var page = "";
 const content = [
   {
@@ -21,6 +23,7 @@ const content = [
         mission:
           "Mission : Write a thoughtful message about firebond on why we rock!...",
         usdc: "2.9",
+    
       },
     ],
   },
@@ -43,6 +46,8 @@ const content = [
         title: "Be A Champion",
         mission: "Follow firebond twitter and get ..",
         usdc: "2.9",
+        page : '/MissionOnboardingMisison'
+        
       },
       {
         title: "Feedback",
@@ -56,12 +61,14 @@ const content = [
         mission:
           "Mission : Create a video demonstrating how to deploy a blockchain validator....",
         usdc: "2.9",
+        page : '/MissionTechnicalTutorial'
       },
 
       {
         title: "Design our company digital mascot ",
         mission: "Mission : We want to distribute our NFT to .....",
         usdc: "2.9",
+        page : '/MissionDigitalMascot'
       },
 
       {
@@ -74,6 +81,7 @@ const content = [
         title: "Onboard 10 new community members",
         mission: "Mission : This mission is for onboarding .....",
         usdc: "2.9",
+        page : '/MissionOnboardingNewMembers'
       },
     ],
   },
@@ -90,12 +98,14 @@ const content = [
         title: "Submit An AMA Question",
         mission: "Mission: Submit your questions regarding the AMA.....",
         usdc: "2.9",
+        page : '/MissionAMAQuestion'
       },
     ],
   },
 ];
 
 const MissionTemplatePage = () => {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-[#171C23] flex">
       <Sidebar />
@@ -113,7 +123,7 @@ const MissionTemplatePage = () => {
             <button className="h-[33px] w-[95px] flex justify-center items-center border border-[#757575] rounded-lg">
               <div className="flex gap-[5.46px]">
                 <Image src="Icons/add.svg" alt="" height={16} width={16} />
-                <h1 className="font-medium text-sm text-[#757575]">Create</h1>
+                <button onClick = {()=>router.push('/MissionCreationFormPage')} className="font-medium text-sm text-[#757575]">Create</button>
               </div>
             </button>
           </div>
