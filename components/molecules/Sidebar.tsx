@@ -1,6 +1,7 @@
 import Image from "next/image";
 import router from "next/router";
 import React, { useState } from "react";
+import { AiOutlineEye } from "react-icons/ai";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -97,6 +98,15 @@ const Sidebar = () => {
                   alt="not found"
                 />
               </li>
+              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+                <AiOutlineEye
+                size={34}
+                 
+                  color="white"
+                 
+                />
+              </li>
+              
             </ul>
           </div>
         </div>
@@ -242,6 +252,19 @@ const Sidebar = () => {
                   className="text-white font-semibold text-base"
                 >
                   Settings
+                </span>
+              </li>
+              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+                <AiOutlineEye
+                   size={34}
+                   color="white"
+                   className="ml-[11px]"
+                />
+                <span
+                  onClick={() => router.push("/AdminSetting")}
+                  className="text-white font-semibold text-base"
+                >
+                  Review
                 </span>
               </li>
             </ul>
