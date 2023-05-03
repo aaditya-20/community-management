@@ -6,7 +6,7 @@ import MissionStepCard from "../components/molecules/MissionStepCard";
 
 const MissionOnboardingNewMembers = () => {
   return (
-    <div className="max-w-screen mx-auto h-screen grid grid-cols-[auto,minmax(0,1fr)] gap-x-[-45px] bg-[#171C23] grid-rows-[71px,auto] md:grid-cols-[auto,1fr] md:left-0">
+    <div className="max-w-screen mx-auto h-[1200px] grid grid-cols-[auto,minmax(0,1fr)] gap-x-[-45px] bg-[#171C23] grid-rows-[71px,auto] md:grid-cols-[auto,1fr] md:left-0">
       <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
         <Sidebar />
       </div>
@@ -16,7 +16,7 @@ const MissionOnboardingNewMembers = () => {
       <NavbarMissionOnboarding />
 
       <div className="flex justify-center mt-12">
-        <div className="border border-gray-800 relative w-full md:w-[100%] left-[27.5%] transform translate-x-[-40%] transform translate-y-[-7%]">
+        <div className="border border-gray-800 relative w-full md:w-[100%] left-[27.5%] transform translate-x-[-40%] transform translate-y-[-26%]">
           <img
             src="/Icons/FrameFire.png"
             alt=""
@@ -57,7 +57,7 @@ const MissionOnboardingNewMembers = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[50%] flex justify-center items-center transform translate-y-[-40%]">
+        <div className="w-full md:w-[50%] flex justify-center items-center transform translate-y-[-65%]">
           <BeAchamp className="w-64 h-64" />
         </div>
       </div>

@@ -76,7 +76,7 @@ export default function MissionTechnicalTutorial() {
             </div>
             <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
               <p>
-                Web3 education is still in its early stages, and we're looking
+                Web3 education is still in its early stages, and we are looking
                 to educate more budding developers to build in the Web3 space.
                 Our platform is seeking individuals who are proficient in The
                 Graph Protocol and have a flair for creating technical tutorials
@@ -86,7 +86,7 @@ export default function MissionTechnicalTutorial() {
                 code.
               </p>
               <p className="mt-4">
-                We're open to negotiating compensation based on your experience
+                We are open to negotiating compensation based on your experience
                 and the quality of your tutorial. To be considered, please
                 include the following:
               </p>
