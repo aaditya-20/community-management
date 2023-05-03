@@ -27,7 +27,7 @@ if (typeof window !== "undefined") {
   
 }
 const MissionTemplateEdit = () => {
-  console.log("full url->",Router.asPath);
+ 
   const obj = FormData();
   const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
