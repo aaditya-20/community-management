@@ -1,4 +1,5 @@
 import Image from "next/image";
+import router from "next/router";
 import React, { useState } from "react";
 
 const verificationCard = [
@@ -98,7 +99,10 @@ const VerficationCard = () => {
           />
         </div>
         <div className="mt-[35.42px] w-full flex justify-end">
-          <button className="w-[116.41px] h-[38.44px] bg-gradient-to-r from-[#FD241C] to-[#FE702A] flex justify-center items-center text-white text-[15.769px] font-medium leading-[21px] rounded-[7.16772px]">
+          <button
+            onClick={() => router.push("/YourSpace")}
+            className="w-[116.41px] h-[38.44px] bg-gradient-to-r from-[#FD241C] to-[#FE702A] flex justify-center items-center text-white text-[15.769px] font-medium leading-[21px] rounded-[7.16772px]"
+          >
             Submit
           </button>
         </div>
