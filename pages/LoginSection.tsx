@@ -1,13 +1,62 @@
 import Image from "next/image";
 import React, { useState } from "react";
+declare var window: any;
+import WalletAuth from "@/utils/authentication/walletAuth";
+import GoogleSignInButton from "@/utils/authentication/googleAuth";
+import { useRouter } from "next/router";
+import Modal from "@material-ui/core/Modal";
+
+import MagicLinkPopup from "./MagicLinkPopup";
+import { supabase } from "@/utils/supabaseClient";
 
 const LoginSection = () => {
-    const [magicLink, setMagicLink] = useState("");
+  const [walletAddress, setWalletAddress] = useState("");
+  const router = useRouter();
+  const onConnect = WalletAuth();
+  const onSign = GoogleSignInButton();
+  const [OpenMagic, setOpenMagic] = useState(false);
+  function onMagicClick() {
+    setOpenMagic(!OpenMagic);
+  }
+  const connectWallet = async () => {
+    
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        /* MetaMask is installed */
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+        try {
+          const { data, error } = await supabase
+            .from("community_data")
+            .select("*")
+            .eq("wallet_id", accounts[0])
+            .single();
+            console.log(data);
+            if(data!=null)
+            window.localStorage.setItem('data', JSON.stringify(data));
+        } catch (e) {
+          console.log(e);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      /* MetaMask is not installed */
+      console.log("Please install MetaMask");
+    }
+    router.push('/WelcomeScreen1')
+  };
+
+const [magicLink, setMagicLink] = useState("");
 
   return (
+    <>
     <div className="bg-[#232B35] h-auto w-[485px] shadow-[6px,6px,20px,rgba(15,15,15,0.26)]">
       <div className="w-full h-[54px] border-b border-[#353B43] flex items-center pl-[30px]">
-        <h1 className=" font-open-sans font-normal text-[13.1px] leading-[17.68px] tracking-[0.16em]">
+        <h1 className="text-[#AEABD8] font-open-sans font-normal text-[13.1px] leading-[17.68px] tracking-[0.16em]">
           LOGIN HERE
         </h1>
       </div>
@@ -19,7 +68,7 @@ const LoginSection = () => {
         </div>
         <div className="w-full h-[45px] bg-[#2E363F] rounded-lg overflow-hidden text-ellipsis mb-[35px]">
           <input
-            className="text-[#FFFFFFA3] font-normal text-sm w-full h-full px-[18px] pt-[10px] pb-4 outline-none overflow-hidden text-ellipsis"
+            className="text-[#FFFFFFA3] text-black font-normal text-sm w-full h-full px-[18px] pt-[10px] pb-4 outline-none overflow-hidden text-ellipsis"
             placeholder="Enter your magic link"
             value = {magicLink}
             onChange = {(e)=>{setMagicLink(e.target.value)}}
@@ -28,7 +77,7 @@ const LoginSection = () => {
         <div className="w-full h-[17px] flex items-center justify-center mb-[37px]">
           <h1 className="text-[#919191] text-[18px] leading-[27px] ">- OR -</h1>
         </div>
-        <button className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px] mb-6" onClick={()=>{}}>
+        <button className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px] mb-6" onClick={()=>{onSign()}}>
           <div className="flex gap-[14px] items-center justify-center">
             <Image src="Icons/Google.svg" height={25} width={25} alt="" />{" "}
             <h1 className="font-medium text-xs text-black">
@@ -36,7 +85,7 @@ const LoginSection = () => {
             </h1>
           </div>
         </button>
-        <button className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px]" onClick={()=>{}}>
+        <button className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px]" onClick={()=>{connectWallet()}}>
           <div className="flex gap-[14px] items-center justify-center">
             <Image src="Icons/Wallet.svg" height={25} width={25} alt="" />{" "}
             <h1 className="font-medium text-xs text-black">
@@ -46,6 +95,7 @@ const LoginSection = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 
