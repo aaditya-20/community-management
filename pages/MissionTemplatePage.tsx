@@ -3,7 +3,8 @@ import Sidebar from "@/components/molecules/Sidebar";
 import Header from "@/components/atoms/Header"; 
 import Image from "next/image";
 import SmallMissionCard from "@/components/molecules/SmallMissionCard"; 
-
+import MissionShareYourFeedback from "./MissionShareYourFeedback";
+var page = "";
 const content = [
   {
     title: "#Twitter",
@@ -13,6 +14,7 @@ const content = [
         title: "Follow on Twitter",
         mission: "Follow us on twitter",
         usdc: "2.9",
+        page: "/MissionShareYourFeedback",
       },
       {
         title: "Write a tweet about Firebond",
@@ -47,6 +49,7 @@ const content = [
         mission:
           "Mission: Give your feedback regarding the project, if there any issue .....",
         usdc: "2.9",
+        page: "./MissionShareYourFeedback",
       },
       {
         title: "Create a video",
@@ -65,6 +68,7 @@ const content = [
         title: "Write a kickass blog post for Firebond",
         mission: "Mission : Write a blog piece for firebond.....",
         usdc: "2.9",
+        page: "./MissionKickassBlogPost",
       },
       {
         title: "Onboard 10 new community members",
@@ -132,6 +136,7 @@ const MissionTemplatePage = () => {
                             missionDiscription={card.mission}
                             missionTitle={card.title}
                             usdc={card.usdc}
+                            page={card.page}
                           />
                         </div>
                       );
