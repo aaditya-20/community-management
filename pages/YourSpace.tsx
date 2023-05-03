@@ -15,8 +15,8 @@ const MissionMain = () => {
           <Header />
           {/* Main Section & Right Side Section */}
           <div>
-          <h1 className="text-white text-2xl font-bold m-2">Satoshi's Space</h1>
-          <h3 className="text-white text-l font-bold m-2">Here's what's happening with your community</h3>
+          <h1 className="text-white text-2xl font-bold m-2">Satoshi&apos; Space</h1>
+          <h3 className="text-white text-l font-bold m-2">Here&apos; what&apos; happening with your community</h3>
           </div>
           <div className="bg-black  width-[1200px] height-[270px] left-[290px] top-[200px]">
           <div><Image src="/leadericon.png" alt="hell" width={137} height={54} className=" bg-black width-[156.21px] height-[137px] left-[54px] top-[66px]"/ ></div>
