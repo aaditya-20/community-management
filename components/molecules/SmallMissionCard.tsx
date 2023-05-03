@@ -1,5 +1,4 @@
 import React from "react";
-
 interface SmallMissionCardProps {
   missionTitle: String;
   missionDiscription: String;
