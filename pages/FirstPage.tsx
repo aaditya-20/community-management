@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import LoginCard from "./LoginCard";
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
+import LoginSection from "./LoginSection";
 export default function FirstPage() {
   const router = useRouter();
   const [OpenLogin, setOpenLogin] = useState(false);
@@ -19,8 +20,8 @@ export default function FirstPage() {
         open={OpenLogin}
         style={{}}
       >
-        <div className="absolute left-[-100px] top-[-150px]">
-          <LoginCard />
+        <div className="absolute flex right-[30vw] top-[30vh]">
+          <LoginSection />
         </div>
       </Modal>
       <div className="bg-[#0c0c0c] h-[100vh] w-[100vw]">
