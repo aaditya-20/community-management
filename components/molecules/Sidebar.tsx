@@ -7,8 +7,7 @@ var name = "user";
 if (typeof window !== "undefined") {
   const storedJsonData = localStorage.getItem("data");
   const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if (jsonData.name) name = jsonData.name;
-  console.log("->", jsonData);
+  if (jsonData != null && jsonData.name) name = jsonData.name;
 }
 
 console.log(name);
@@ -98,14 +97,8 @@ const Sidebar = () => {
                 />
               </li>
               <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <AiOutlineEye
-                size={34}
-                 
-                  color="white"
-                 
-                />
+                <AiOutlineEye size={34} color="white" />
               </li>
-              
             </ul>
           </div>
         </div>
@@ -253,11 +246,7 @@ const Sidebar = () => {
                 </span>
               </li>
               <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <AiOutlineEye
-                   size={34}
-                   color="white"
-                   className="ml-[11px]"
-                />
+                <AiOutlineEye size={34} color="white" className="ml-[11px]" />
                 <span
                   onClick={() => router.push("/AdminSetting")}
                   className="text-white font-semibold text-base"
