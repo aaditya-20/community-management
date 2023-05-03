@@ -3,10 +3,8 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 var name = 'user';
-// const name = obj.name;
 if (typeof window !== "undefined"){
 const storedJsonData = localStorage.getItem('data');
-// console.log(storedJsonData)
 const jsonData = JSON.parse(storedJsonData ?? '{}');
 name = jsonData.name;
 console.log(jsonData)

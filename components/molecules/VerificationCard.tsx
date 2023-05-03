@@ -16,12 +16,9 @@ const verificationCard = [
   },
 ];
 
-
 const VerficationCard = () => {
   const [verified, setVerified] = useState(verificationCard.map(() => false));
   const [email, setEmail] = useState("");
-
-  
 
   return (
     <div className="ml-[23px] w-[598px] h-auto bg-[#232B35] rounded-[15.4264px] p-6">
@@ -74,9 +71,18 @@ const VerficationCard = () => {
         <div className="w-full flex justify-between items-center mb-[35.75px]">
           <div className="flex gap-[31.5px] items-center justify-center">
             <div className="w-[19.5px] h-[19.5px] border-[0.848604px] border-white rounded-full box-border flex justify-center items-center">
-              {email ? <div className="w-[13.65px] h-[13.65px] bg-white rounded-full flex justify-center items-center">
-                <Image src="Icons/tick.svg" alt="" height={6.83} width={6.83} />
-              </div> : <></>}
+              {email ? (
+                <div className="w-[13.65px] h-[13.65px] bg-white rounded-full flex justify-center items-center">
+                  <Image
+                    src="Icons/tick.svg"
+                    alt=""
+                    height={6.83}
+                    width={6.83}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             <h1 className="font-medium text-[18px] text-white leading-[24px] font-open-sans">
               Please provide your email ID
@@ -88,7 +94,7 @@ const VerficationCard = () => {
             className=" w-full h-full outline-none overflow-hidden text-ellipsis px-[15.22px] py-[14.14px] bg-inherit"
             placeholder="enter your email address"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mt-[35.42px] w-full flex justify-end">
