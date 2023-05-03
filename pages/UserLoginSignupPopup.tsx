@@ -1,10 +1,10 @@
-import VerficationCard from '@/components/molecules/VerificationCard'
 import React from 'react'
+import UserAuthCard from './UserAuthCard'
 
 export default function UserLoginSignupPopup() {
   return (
     <div>
-      <VerficationCard/>
+      <UserAuthCard/>
     </div>
   )
 }

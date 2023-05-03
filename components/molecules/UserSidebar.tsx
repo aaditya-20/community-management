@@ -6,8 +6,7 @@ var name = "user";
 if (typeof window !== "undefined") {
   const storedJsonData = localStorage.getItem("data");
   const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if (jsonData.name) name = jsonData.name;
-  console.log("->", jsonData);
+  if (jsonData != null && jsonData.name) name = jsonData.name;
 }
 const UserSidebar = () => {
   const [hideMenu, setHideMenu] = useState(false);
@@ -63,7 +62,7 @@ const UserSidebar = () => {
                   src="Icons/help_center.svg"
                   alt="not found"
                 />
-              </li> 
+              </li>
             </ul>
           </div>
         </div>
