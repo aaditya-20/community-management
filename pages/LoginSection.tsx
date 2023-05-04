@@ -4,9 +4,6 @@ declare var window: any;
 import WalletAuth from "@/utils/authentication/walletAuth";
 import GoogleSignInButton from "@/utils/authentication/googleAuth";
 import { useRouter } from "next/router";
-import Modal from "@material-ui/core/Modal";
-
-import MagicLinkPopup from "./MagicLinkPopup";
 import { supabase } from "@/utils/supabaseClient";
 
 const LoginSection = () => {
@@ -19,7 +16,6 @@ const LoginSection = () => {
     setOpenMagic(!OpenMagic);
   }
   const connectWallet = async () => {
-    
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       try {
         /* MetaMask is installed */
@@ -34,9 +30,12 @@ const LoginSection = () => {
             .select("*")
             .eq("wallet_id", accounts[0])
             .single();
-            console.log(data);
-            if(data!=null)
-            window.localStorage.setItem('data', JSON.stringify(data));
+          console.log(data);
+          if (data != null) {
+            await window.localStorage.setItem("data", JSON.stringify(data));
+            router.push("/WelcomeScreen1");
+          }
+          console.log("Please Signup")
         } catch (e) {
           console.log(e);
         }
@@ -47,10 +46,9 @@ const LoginSection = () => {
       /* MetaMask is not installed */
       console.log("Please install MetaMask");
     }
-    router.push('/WelcomeScreen1')
   };
 
-const [magicLink, setMagicLink] = useState("");
+  const [magicLink, setMagicLink] = useState("");
 
   return (
     <>
