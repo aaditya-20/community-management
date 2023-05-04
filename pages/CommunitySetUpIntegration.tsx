@@ -16,7 +16,6 @@ import { useRouter } from "next/router";
 import WalletAuth from "@/utils/authentication/walletAuth";
 import FormData from "@/utils/FormData";
 import { supabase } from "@/utils/supabaseClient";
-
 function CommunitySetUpIntegration() {
   const [flagDiscord, setDiscord] = useState("visible");
   const [flagTwitter, setTwitter] = useState("hidden");
@@ -26,11 +25,72 @@ function CommunitySetUpIntegration() {
   const obj = FormData();
   const router = useRouter();
   const onConnect = WalletAuth();
+  function dummy(){
+    // console.log(window.location.href);
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+    localStorage.setItem('accessToken', accessToken||'');
+    fetch('https://discord.com/api/users/@me', {
+      headers: {
+          authorization: `${tokenType} ${accessToken}`,
+      },
+      })
+      .then(result => result.json())
+      .then(response => {
+          console.log(response);
+          const { username, discriminator, avatar, id} = response;
+          let profile={
+            username: username,
+            discriminator: discriminator,
+            avatar: avatar,
+            id: id
+          }
+          localStorage.setItem('profile', JSON.stringify(profile));
+
+      })
+      .catch(console.error);
+      fetch('https://discord.com/api/users/@me/guilds', {
+      headers: {
+          authorization: `${tokenType} ${accessToken}`,
+      },
+      })
+      .then(result => result.json())
+      .then(response => {
+          //console.log(response)
+          let c=0;
+          response.forEach((element: any) => {
+            console.log(element.name);
+            if(element.name == "Midjourney"){
+              c++;
+              console.log("found");
+              
+            }else{
+              console.log("not found");
+             
+            }
+          });
+          if(c>0){
+            console.log("found");
+            localStorage.setItem('bool_value', 'true');
+          }else{
+            console.log("not found");
+            localStorage.setItem('bool_value', 'false');
+          }
+        }).catch(console.error);
+  }
 
   useEffect(() => {
     getCurrentWalletConnected();
+
+
     // addWalletListener();
-  }, [walletAddress]);
+  }, [walletAddress]); 
+  useEffect(() => {
+    dummy();
+    
+
+    // addWalletListener();
+  }, []);
 
   const connectWallet = async () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -97,12 +157,13 @@ function CommunitySetUpIntegration() {
   }
 
   function handleDiscordClick() {
+
     const redirectUri = encodeURIComponent(
-      "https://firebond-client-iwa2wdp0f-firebond-admin-team.vercel.app/Step1CommunitySetup"
+      "http://localhost:3000/CommunitySetUpIntegration"
     );
     const clientId = "1101935237652557855";
     const scope = encodeURIComponent("identify");
-    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds`;
 
     window.location.href = authUrl;
   }
