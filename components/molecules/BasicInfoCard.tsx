@@ -14,7 +14,6 @@ import {
   startOfToday,
   startOfWeek,
 } from "date-fns";
-
 const BasicInfoCard = () => {
   const [on, setOn] = useState(Array(5).fill(false));
   const [amount, setAmount] = useState(0);
