@@ -5,7 +5,7 @@ import Mission from "../components/molecules/MissionCard";
 import AnalyticsCardMainDashboard from "../components/molecules/AnalyticsCardMainDashboard";
 import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJoinedCardDashboardScreen";
 import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
-
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin"; 
 
 declare var window: any;
 var name = "user";
@@ -13,14 +13,9 @@ if (typeof window !== "undefined") {
   const storedJsonData = localStorage.getItem("data");
   // console.log(storedJsonData)
   const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if(jsonData.name)
-   name = jsonData.name;
-   
-  console.log("->",jsonData);
-  
+  if (jsonData.name) name = jsonData.name;
+  console.log("->", jsonData);
 }
-
-
 const cards = [
   {
     key: 1,
@@ -107,4 +102,4 @@ const NewDashboard = () => {
   );
 };
 
-export default NewDashboard;
+export default RouteGuardAdmin(NewDashboard);
