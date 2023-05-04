@@ -43,15 +43,15 @@ export default function MissionDiscord() {
             <p>* Get a Discord Role and introduce yourself to the community</p>
             <p className="mt-0">GUIDE:</p>
             <ol className="mt-2">
-              <li>Join our discord if you haven't done that yet.</li>
-              <li>You'll then get a verified role.</li>
+              <li>Join our discord if you have not done that yet.</li>
+              <li>You will then get a verified role.</li>
               <li>
                 Write a message telling us who you are and what your top skills
                 you have!.
               </li>
               <li>
                 Post it in the #introduce-yourself channelDo all this and then
-                you'll have access to the Quests that require a role.
+                you will have access to the Quests that require a role.
               </li>
             </ol>
           </div>
