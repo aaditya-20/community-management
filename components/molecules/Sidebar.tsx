@@ -97,7 +97,10 @@ const Sidebar = () => {
                 />
               </li>
               <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <AiOutlineEye size={34} color="white" />
+                <AiOutlineEye
+                size={34}
+                color="white"
+                />
               </li>
             </ul>
           </div>
@@ -248,7 +251,7 @@ const Sidebar = () => {
               <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <AiOutlineEye size={34} color="white" className="ml-[11px]" />
                 <span
-                  onClick={() => router.push("/AdminSetting")}
+                  onClick={() => router.push("/Review")}
                   className="text-white font-semibold text-base"
                 >
                   Review

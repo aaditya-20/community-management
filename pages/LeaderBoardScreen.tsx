@@ -3,49 +3,46 @@ import Header from "@/components/atoms/Header";
 import LeaderboardCard from "@/components/molecules/LeaderboardCard";
 import TopContributorCardLeaderboardScreen from "@/components/molecules/TopContributorCardLeaderboardScreen";
 import { BsChevronDown } from "react-icons/bs";
+import { supabase } from "@/utils/supabaseClient";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const cards = [
-  {
-   name:"AMAN JAISWAL" ,
-   point: 1000 ,
-   rank: '1st'
-  },
-  {
-    name:"NAMAN JAISWAL" ,
-   point: 900 ,
-   rank: '2nd'
-  },
-  {
-    name:"MANAN JAISWAL" ,
-   point: 600 ,
-   rank: '3rd'
-  },
-  {
-    name:"MAN JAISWAL" ,
-   point: 450 ,
-   rank: '4th'
-  },
-  {
-    name:"ANNA JAISWAL" ,
-   point: 200 ,
-   rank: '5th'
-  }
-];
+
 
 const Leaderboard = () => {
 
-  const ele = cards.map((value, index) => {
-    // cout<<"in";
-    
-    // let icon;
-    // if (value.platform == "Discord") {
-    //   icon = "FaDiscord";
-    // } else {
-    //   icon = "FaTwitter";
-    // }
+  const [cards,setCards] = useState([{}]);
+  const [leaderboardData,setleaderboardData] = useState([{}]);
+  // const [PendingMissions,setPendingMissions] = useState([{}]);
+
+  useEffect(()=>{
+    async function leaderBoardDataFetch(){
+      const { data, error } =  await supabase.from('leaderboard').select('*')
+      console.log("dat->",data);
+      if(data){
+      //  PendingMissions = data;
+      data.sort((a, b) => {
+        return b.xp - a.xp;
+      });
+      let temp_arr = [];
+      for(let i=0;i<5;i++){
+        temp_arr.push(data[i]);
+      }
+       setCards(temp_arr);
+       setleaderboardData(data);
+      }
+      else{
+        console.log("pending data is not available");
+      }
+    }
+  
+    leaderBoardDataFetch();
+  },[])
+  console.log("ldda->",leaderboardData);
+  const ele = cards.map((value:any, index:any) => { 
     return (
       <div key = {index} className="my-[10px] inline-block mx-[10px]">
-        <LeaderboardCard rank={index+1} name={value.name} point = {value.point}/>
+        <LeaderboardCard rank={index+1} name={value.Name} point = {value.xp}/>
       </div>
     );
   });
@@ -71,7 +68,7 @@ const Leaderboard = () => {
             </div>  
 
             <div className="mx-[10px]">
-              <TopContributorCardLeaderboardScreen/>
+              <TopContributorCardLeaderboardScreen data={leaderboardData}/>
             </div>
 
 
