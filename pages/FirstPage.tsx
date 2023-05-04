@@ -5,18 +5,20 @@ import LoginCard from "./LoginCard";
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
 import LoginSection from "./LoginSection";
+import SignupSplit from "./SignupSplit";
 export default function FirstPage() {
   const router = useRouter();
   const [OpenLogin, setOpenLogin] = useState(false);
+  const [OpenSignUp, setOpenSignup] = useState(false);
   function onLoginClick() {
     setOpenLogin(!OpenLogin);
   }
   function onSignUpClick() {
-    router.push("/CommunitySetupScreen");
+   setOpenSignup (!OpenSignUp)
   }
   return (
     <>
-       <Modal
+      <Modal
         onClose={() => {
           setOpenLogin(!OpenLogin);
         }}
@@ -25,6 +27,17 @@ export default function FirstPage() {
       >
         <div className="absolute flex right-[30vw] top-[30vh]">
           <LoginSection />
+        </div>
+      </Modal>
+      <Modal
+        onClose={() => {
+          setOpenSignup(!OpenSignUp);
+        }}
+        open={OpenSignUp}
+        style={{}}
+      >
+        <div>
+          <SignupSplit />
         </div>
       </Modal>
       <div className="bg-[#0c0c0c] h-[100vh] w-[100vw]">
