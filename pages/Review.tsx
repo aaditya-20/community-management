@@ -78,7 +78,7 @@ const Review = () => {
       return (
         <div
           key={index}
-          className="flex flex-col text-center justify-center border-[1px] my-[10px]  mx-[10px]"
+          className="flex rounded-[10px] flex-col text-center justify-center border-[1px] my-[10px]  mx-[10px]"
         >
           Question: {value.question}
           <br></br>
@@ -93,7 +93,7 @@ const Review = () => {
     return (
       <div
         key={index}
-        className="flex flex-col text-center justify-center border-[1px] my-[10px]  mx-[10px]"
+        className="flex rounded-[10px] flex-col text-center justify-center border-[1px] my-[10px]  mx-[10px]"
       >
         Question: {value.Question}
         <br></br>
@@ -103,7 +103,7 @@ const Review = () => {
             onClick={() => {
               onAcceptClick(value);
             }}
-            className="rounded-[3px] border-[1px] border-[white] m-3"
+            className="rounded-[3px] bg-[green] border-[1px] border-[white] m-3"
           >
             Approve
           </button>{" "}
@@ -111,7 +111,7 @@ const Review = () => {
             onClick={() => {
               onRejectClick(value.id);
             }}
-            className="rounded-[3px] border-[1px] border-[white] m-3"
+            className="rounded-[3px] bg-[red] border-[1px] border-[white] m-3"
           >
             Reject
           </button>
