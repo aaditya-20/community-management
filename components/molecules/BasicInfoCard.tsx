@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import MissionFormData from "@/utils/MissionFormData";
 import {
   add,
   eachDayOfInterval,
@@ -22,7 +23,10 @@ const BasicInfoCard = () => {
     src: "Icons/visible.svg",
     title: "Public",
   });
-
+  const obj = MissionFormData();
+  obj.tilte = visibiliy.title
+  obj.amount = amount;
+  obj.seleted_date = selectedDate;
   // Calendar implementation
 
   const today = startOfToday();

@@ -37,6 +37,7 @@ const Details = () => {
           <textarea
             className="h-full w-full overflow-hidden text-ellipsis outline-none resize-none pt-[16.21px] px-[18.38px] bg-inherit placeholder:text-[#D0D0D0A6] text-white text-[12px] leading-[16.2px]"
             placeholder="Add description to let the members know more about your mission"
+            
           />
         </div>
         <h1 className="font-medium text-base text-white mb-[22px] mt-[45px]">
