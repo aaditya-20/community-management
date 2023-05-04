@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 const NavbarMissionOnboarding = () => {
+  const router = useRouter();
   return (
     <div className="sticky top-0  bg-[#171C23] border-b border-gray-800 h-[80px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,13 +16,13 @@ const NavbarMissionOnboarding = () => {
           <div className="flex items-center">
             <div className=" md:block">
               <div className="flex items-baseline space-x-4 ">
-                <button className="bg-transparent text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium border border-gray-300 hover:border-transparent">
+                <button onClick={()=>{router.push('/MissionMain')}} className="bg-transparent text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium border border-gray-300 hover:border-transparent">
                   Back
                 </button>
                 <button className="bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">
                   Publish
                 </button>
-                <button className="bg-transparent text-gray-300 hover:text-white px-3 py-2  rounded-md text-sm font-medium border border-gray-300 hover:border-transparent">
+                <button onClick={()=>{router.push('MissionTemplateEdit')}} className="bg-transparent text-gray-300 hover:text-white px-3 py-2  rounded-md text-sm font-medium border border-gray-300 hover:border-transparent">
                   Edit
                 </button>
               </div>
