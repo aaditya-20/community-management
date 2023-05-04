@@ -1,8 +1,10 @@
+declare var window: any;
+import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import router from "next/router";
 import React, { useState } from "react";
 
-const verificationCard = [
+const UserCard = [
   {
     title: "Connect your wallet",
     button: "Connect",
@@ -17,9 +19,50 @@ const verificationCard = [
   },
 ];
 
-const VerficationCard = () => {
-  const [verified, setVerified] = useState(verificationCard.map(() => false));
+const UserAuthCard = () => {
+  const [verified, setVerified] = useState(UserCard.map(() => false));
   const [email, setEmail] = useState("");
+  const [wallet, setWalletAddress] = useState("");
+
+  const connectWallet = async () => {
+    if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+      try {
+        /* MetaMask is installed */
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+   
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      /* MetaMask is not installed */
+      console.log("Please install MetaMask");
+    }
+  };
+  async function handleSubmit() {
+
+    const { data, error } = await supabase.from("userdata").insert({
+      wallet_id: wallet,
+    });
+    if (error) {
+      console.log("Error uploading file:", error.message);
+    } else {
+      await window.localStorage.setItem("data", JSON.stringify(data));
+      console.log("File uploaded successfully:", data);
+      router.push("/YourSpace");
+    }
+  }
+  async function handleclick() {
+    await connectWallet();
+    try {
+      // setEthereum("visible");
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <div className="ml-[23px] w-[598px] h-auto bg-[#232B35] rounded-[15.4264px] p-6">
@@ -32,7 +75,7 @@ const VerficationCard = () => {
         </p>
         <div className="w-full h-0 border-[0.771319px] border-[#454545] mb-[28.93px]"></div>
 
-        {verificationCard.map((card, index) => (
+        {UserCard.map((card, index) => (
           <div
             key={index}
             className="w-full flex justify-between items-center mb-[35.75px]"
@@ -58,11 +101,7 @@ const VerficationCard = () => {
             </div>
             <button
               className="border-[0.713229px] border-[#929292] rounded-[7.13229px] px-[23.88px] py-[9.31px] text-[14.2646px] text-[#FE702A] font-medium"
-              onClick={() => {
-                const newVerifiedState = [...verified];
-                newVerifiedState[index] = !verified[index];
-                setVerified(newVerifiedState);
-              }}
+              onClick={handleclick}
             >
               {card.button}
             </button>
@@ -100,7 +139,7 @@ const VerficationCard = () => {
         </div>
         <div className="mt-[35.42px] w-full flex justify-end">
           <button
-            onClick={() => router.push("/YourSpace")}
+            onClick={handleSubmit}
             className="w-[116.41px] h-[38.44px] bg-gradient-to-r from-[#FD241C] to-[#FE702A] flex justify-center items-center text-white text-[15.769px] font-medium leading-[21px] rounded-[7.16772px]"
           >
             Submit
@@ -111,4 +150,4 @@ const VerficationCard = () => {
   );
 };
 
-export default VerficationCard;
+export default UserAuthCard;

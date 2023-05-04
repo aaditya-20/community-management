@@ -74,18 +74,6 @@ function CommunitySetUpIntegration() {
     }
   };
 
-  // const addWalletListener = async () => {
-  //   if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
-  //     window.ethereum.on("accountsChanged", (accounts) => {
-  //       setWalletAddress(accounts[0]);
-  //       console.log(accounts[0]);
-  //     });
-  //   } else {
-  //     /* MetaMask is not installed */
-  //     setWalletAddress("");
-  //     console.log("Please install MetaMask");
-  //   }
-  // };
 
   async function handleEthereumClick() {
     await connectWallet();

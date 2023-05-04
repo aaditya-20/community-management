@@ -4,24 +4,40 @@ import { useRouter } from "next/router";
 import LoginCard from "./LoginCard";
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
-import LoginSection from "./LoginSection";
+import SignupSplit from "./SignupSplit";
+import LoginSplit from "./LoginSplit";
 export default function FirstPage() {
   const router = useRouter();
   const [OpenLogin, setOpenLogin] = useState(false);
+  const [OpenSignUp, setOpenSignup] = useState(false);
   function onLoginClick() {
     setOpenLogin(!OpenLogin);
   }
+  function onSignUpClick() {
+   setOpenSignup (!OpenSignUp)
+  }
   return (
     <>
-       <Modal
+      <Modal
         onClose={() => {
           setOpenLogin(!OpenLogin);
         }}
         open={OpenLogin}
         style={{}}
       >
-        <div className="absolute flex right-[30vw] top-[30vh]">
-          <LoginSection />
+        <div>
+          <LoginSplit />
+        </div>
+      </Modal>
+      <Modal
+        onClose={() => {
+          setOpenSignup(!OpenSignUp);
+        }}
+        open={OpenSignUp}
+        style={{}}
+      >
+        <div>
+          <SignupSplit />
         </div>
       </Modal>
       <div className="bg-[#0c0c0c] h-[100vh] w-[100vw]">
@@ -34,7 +50,7 @@ export default function FirstPage() {
           ></Image>
           <button
             className="absolute border-[1px] bg-[red] rounded-[15px] h-[30px] w-[100px] my-[20px] mx-[10px] right-[20px]"
-            onClick={() => router.push("/CommunitySetupScreen")}
+            onClick={onSignUpClick}
           >
             sign up
           </button>
