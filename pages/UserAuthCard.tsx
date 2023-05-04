@@ -2,7 +2,7 @@ declare var window: any;
 import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import router from "next/router";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 const UserCard = [
   {
@@ -23,6 +23,7 @@ const UserAuthCard = () => {
   const [verified, setVerified] = useState(UserCard.map(() => false));
   const [email, setEmail] = useState("");
   const [wallet, setWalletAddress] = useState("");
+  const [flag,setFlag] = useState(false);
 
   const connectWallet = async () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -35,8 +36,12 @@ const UserAuthCard = () => {
         console.log(accounts[0]);
    
       } catch (err) {
+
         console.error(err);
       }
+      UserCard[0].button = "Connected";
+      setFlag(!flag);
+
     } else {
       /* MetaMask is not installed */
       console.log("Please install MetaMask");
@@ -100,7 +105,7 @@ const UserAuthCard = () => {
               </h1>
             </div>
             <button
-              className="border-[0.713229px] border-[#929292] rounded-[7.13229px] px-[23.88px] py-[9.31px] text-[14.2646px] text-[#FE702A] font-medium"
+              className={`border-[0.713229px] ${card.button==="Connected"?"bg-[white]":" "} border-[#929292] rounded-[7.13229px] px-[23.88px] py-[9.31px]  text-[14.2646px] text-[#FE702A] font-medium`}
               onClick={handleclick}
             >
               {card.button}

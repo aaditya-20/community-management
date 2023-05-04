@@ -185,14 +185,9 @@ export default function TopContributorCardLeaderboardScreen(props:any) {
       setPlayers(props.data);
     }
   },[props.data])
-  console.log(players);
+
   const ele = players.map((value, index) => {
-    // let icon;
-    // if (value.platform == "Discord") {
-    //   icon = "FaDiscord";
-    // } else {
-    //   icon = "FaTwitter";
-    // }
+  
     return (
       <li key = {index} className="my-8 ">
         <MemberXpDetailsForTopContributor
