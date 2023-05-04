@@ -51,7 +51,7 @@ const Community = [
 const MissionMain = () => {
   const router = useRouter();
   function createhandleclick() {
-    router.push("/MissionTemplateEdit");
+    router.push("/MissionCreationFormPage");
   }
 
   var wallet_id = "";

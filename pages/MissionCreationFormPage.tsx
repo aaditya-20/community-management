@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Sidebar from "@/components/molecules/Sidebar"; 
-import Header from "@/components/atoms/Header"; 
+import Sidebar from "@/components/molecules/Sidebar";
+import Header from "@/components/atoms/Header";
 import Image from "next/image";
 import {
   AiFillPauseCircle,
@@ -12,14 +12,53 @@ import SubmissionCard from "@/components/molecules/SubmissionCard";
 import Details from "@/components/molecules/Details";
 import Todo from "@/components/molecules/Todo";
 import Priority from "@/components/molecules/Priority";
-
+import MissionFormData from "@/utils/MissionFormData";
+import { supabase } from "@/utils/supabaseClient";
 const MissionCreationFormPage = () => {
- 
+  const obj = MissionFormData();
   const [OpenMission, setOpenMission] = useState(false);
-  function onCreateClick() {
-    setOpenMission(!OpenMission);
+  var wallet_id: null;
+  if (typeof window !== "undefined") {
+    const storedJsonData = localStorage.getItem("data");
+    const jsonData = JSON.parse(storedJsonData ?? "{}");
+    wallet_id = jsonData.wallet_id;
   }
-
+  async function onCreateClick() {
+    // setMissionId(generateRandom());
+    // setOpenMission(!OpenMission);
+    try {
+      // Fetch the community data row using the user's wallet_id as a filter condition
+      const { data: rowData, error } = await supabase
+        .from("community_data")
+        .select("*")
+        .eq("wallet_id", wallet_id)
+        .single();
+      if (error) {
+        console.error(error);
+        return;
+      }
+      var mission = rowData.missions;
+      if (rowData.missions == null)
+        mission = [obj]
+      else {
+        mission.push(obj);
+      }
+      // Update the row with the new missions
+      const { data, error: updateError } = await supabase
+        .from("community_data")
+        .update({
+          missions: mission,
+        })
+        .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
+      if (updateError) {
+        console.error(updateError);
+      } else {
+        console.log("Missions updated successfully!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <>
       <div className="min-h-screen  bg-[#171C23]">
@@ -57,14 +96,13 @@ const MissionCreationFormPage = () => {
               <div className="w-full h-full mt-[28px] flex justify-center ">
                 <div>
                   {/* Basic Info */}
-                  <BasicInfoCard/>
+                  <BasicInfoCard />
 
                   {/* Submission type */}
-                  <SubmissionCard/>
+                  <SubmissionCard />
 
                   {/* Details */}
-                  <Details/>
-
+                  <Details />
                 </div>
               </div>
 
@@ -72,10 +110,10 @@ const MissionCreationFormPage = () => {
               <div className="min-h-screen w-[437px] border-l-[1px] border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
                 <div>
                   {/* Status */}
-                  <Todo/>
+                  <Todo />
 
                   {/* Priority */}
-                  <Priority/>
+                  <Priority />
 
                   {/* Tags */}
                   <h1 className="font-medium text-[16px] mt-6 leading-[22px] text-white mb-[10px]">
