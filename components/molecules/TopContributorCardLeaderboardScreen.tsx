@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useEffect } from "react";
 import { useState } from "react";
 import MemberXpDetailsForTopContributor from "../atoms/MemberXpDetailsForTopContributor";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
@@ -6,171 +6,171 @@ import { FaDiscord, FaTwitter } from "react-icons/fa";
 import { VscDash } from "react-icons/vsc";
 import { platform } from "os";
 
-export default function TopContributorCardLeaderboardScreen() {
+export default function TopContributorCardLeaderboardScreen(props:any) {
   const [players, setPlayers] = useState([
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 10,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Discord",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Discord",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 4,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Twitter",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 4,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Twitter",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Twitter",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 1,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Twitter",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Twitter",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 5,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Twitter",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Discord",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Discord",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 4,
       missionsCompleted: 0,
       previousXP: 4,
       platform: "Discord",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 5,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 3,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 1,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 1,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 1,
       missionsCompleted: 0,
       previousXP: 5,
       platform: "Discord",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 1,
       missionsCompleted: 0,
       previousXP: 5,
       platform: "Discord",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 0,
       missionsCompleted: 0,
       previousXP: 2,
       platform: "Discord",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 0,
       missionsCompleted: 0,
       previousXP: 1,
       platform: "Discord",
     },
     {
-      name: "Player1",
+      Name: "Player1",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player2",
+      Name: "Player2",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 0,
       platform: "Discord",
     },
     {
-      name: "Player3",
+      Name: "Player3",
       xp: 2,
       missionsCompleted: 0,
       previousXP: 0,
@@ -180,6 +180,12 @@ export default function TopContributorCardLeaderboardScreen() {
   players.sort((a, b) => {
     return b.xp - a.xp;
   });
+  useEffect(()=>{
+    if(props.data.length>0){
+      setPlayers(props.data);
+    }
+  },[props.data])
+  console.log(players);
   const ele = players.map((value, index) => {
     // let icon;
     // if (value.platform == "Discord") {
@@ -199,7 +205,7 @@ export default function TopContributorCardLeaderboardScreen() {
           position={index + 1}
           missionsCompleted={value.missionsCompleted}
           xp={value.xp}
-          playerName={value.name}
+          playerName={value.Name}
           BoxColor={value.platform == "Discord" ? '' : 'bg-[#64CFF6]'}
           
         />

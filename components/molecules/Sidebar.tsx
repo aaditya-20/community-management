@@ -101,9 +101,7 @@ const Sidebar = () => {
               <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <AiOutlineEye
                 size={34}
-                 
-                  color="white"
-                 
+                color="white"
                 />
               </li>
               
@@ -261,7 +259,7 @@ const Sidebar = () => {
                    className="ml-[11px]"
                 />
                 <span
-                  onClick={() => router.push("/AdminSetting")}
+                  onClick={() => router.push("/Review")}
                   className="text-white font-semibold text-base"
                 >
                   Review
