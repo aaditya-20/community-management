@@ -16,14 +16,14 @@ const content = [
         title: "Follow on Twitter",
         mission: "Follow us on twitter",
         usdc: "2.9",
-        page: "/MissionShareYourFeedback",
+        page: "/MissionTwitter"
       },
       {
         title: "Write a tweet about Firebond",
         mission:
           "Mission : Write a thoughtful message about firebond on why we rock!...",
         usdc: "2.9",
-    
+        page: "/MissionTwitter"
       },
     ],
   },
@@ -35,6 +35,7 @@ const content = [
         title: "Make Friends",
         mission: "Join discord channel and get veri..",
         usdc: "2.9",
+        page : '/MissionDiscord'
       },
     ],
   },

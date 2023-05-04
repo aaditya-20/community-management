@@ -9,7 +9,7 @@ import TextInput from "@/components/atoms/TextInput";
 import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import TextArea from "@/components/atoms/TextArea";
-import ShareFeedbackCArd from "@/components/molecules/ShareFeedbackCard";
+import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 export default function MissionShareYourFeedback() {
   const [input, setInput] = useState("");
 
@@ -81,13 +81,7 @@ export default function MissionShareYourFeedback() {
                   {/* <input type="file" accept="image/*" className="mb-[10px]" /> */}
                   <button
                     onClick={handleUpload}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    style={{
-                      top: "0px",
-                      left: "0px",
-                      position: "relative",
-                    }}
-                  >
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Upload
                   </button>
                 </div>
@@ -95,7 +89,7 @@ export default function MissionShareYourFeedback() {
             </div>
           </div>
           <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
-            <ShareFeedbackCArd
+            <ShareFeedbackCard
               feedback="Share your feedback for Firebond"
               tag = {['Writing','Marketing']}
               val="2.9"
