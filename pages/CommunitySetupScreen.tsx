@@ -129,7 +129,7 @@ const CommunitySetupScreen = (): ReactElement => {
     const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-lzpmgo97f-firebond-admin-team.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email`;
     const lauthUrl=`https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email`  
 
-    window.location.href = authUrl;
+    window.location.href = lauthUrl;
   }
   useEffect(() => {
     discordToken();
