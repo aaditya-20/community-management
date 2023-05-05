@@ -60,12 +60,21 @@ const LoginSection = () => {
             </h1>
           </div>
           <div className="w-full h-auto pr-[50px] pl-[30px] pb-[29px] pt-[37px]">
-            <div className="h-auto w-full">
+            {/*Dont remove these comments*/}
+            {/* <div className="h-auto w-full">
               <h1 className="text-white font-medium text-base mb-[9px]">
                 Magic Link
               </h1>
+            </div> */}
+            <div className="flex justify-center items-center">
+              <Image
+                src={"/MetaMask.png"}
+                alt="My Image"
+                width={200}
+                height={200}
+              />
             </div>
-            <div className="w-full h-[45px] bg-[#2E363F] rounded-lg overflow-hidden text-ellipsis mb-[35px]">
+            {/* <div className="w-full h-[45px] bg-[#2E363F] rounded-lg overflow-hidden text-ellipsis mb-[35px]">
               <input
                 className="text-[#FFFFFFA3] text-black font-normal text-sm w-full h-full px-[18px] pt-[10px] pb-4 outline-none overflow-hidden text-ellipsis"
                 placeholder="Enter your magic link"
@@ -74,13 +83,13 @@ const LoginSection = () => {
                   setMagicLink(e.target.value);
                 }}
               />
-            </div>
-            <div className="w-full h-[17px] flex items-center justify-center mb-[37px]">
+            </div> */}
+            {/* <div className="w-full h-[17px] flex items-center justify-center mb-[37px]">
               <h1 className="text-[#919191] text-[18px] leading-[27px] ">
                 - OR -
               </h1>
-            </div>
-            <button
+            </div> */}
+            {/* <button
               className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px] mb-6"
               onClick={() => {
                 onSign();
@@ -92,7 +101,7 @@ const LoginSection = () => {
                   Sign up with Google
                 </h1>
               </div>
-            </button>
+            </button> */}
             <button
               className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px]"
               onClick={() => {
