@@ -14,7 +14,7 @@ export default function AlreadyAdminPopup() {
           </div>
           <div className="w-full h-auto pr-[50px] pl-[30px] pb-[29px] pt-[37px]">
             <button
-              onClick={() => router.push("/LoginSection")}
+              onClick={() => router.push("/AlreadyAdminLoginPage")}
               className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px] mb-6"
             >
               <div className="flex gap-[14px] items-center justify-center">
