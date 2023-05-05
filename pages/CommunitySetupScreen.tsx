@@ -154,7 +154,6 @@ const CommunitySetupScreen = (): ReactElement => {
               handleValue={InputValue}
             />
             <EmailInput
-
               placeholder="Email"
               label="Enter Email"
               className="relative top-[-40px] left-[154px] w-[426px] h-[41px]"
