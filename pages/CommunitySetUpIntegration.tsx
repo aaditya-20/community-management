@@ -134,18 +134,6 @@ function CommunitySetUpIntegration() {
     }
   };
 
-  // const addWalletListener = async () => {
-  //   if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
-  //     window.ethereum.on("accountsChanged", (accounts) => {
-  //       setWalletAddress(accounts[0]);
-  //       console.log(accounts[0]);
-  //     });
-  //   } else {
-  //     /* MetaMask is not installed */
-  //     setWalletAddress("");
-  //     console.log("Please install MetaMask");
-  //   }
-  // };
 
   async function handleEthereumClick() {
     await connectWallet();
@@ -180,7 +168,8 @@ function CommunitySetUpIntegration() {
   }
 
   async function handleContinue() {
-    obj.wallet_id= walletAddress;
+    obj.wallet_id = walletAddress;
+    
     const { data, error } = await supabase.from("community_data").insert({
       name : obj.name,
       community_name : obj.community_name,
@@ -191,15 +180,16 @@ function CommunitySetUpIntegration() {
     if (error) {
       console.log("Error uploading file:", error.message);
     } else {
+      await window.localStorage.setItem("data", JSON.stringify(obj));
       console.log("File uploaded successfully:", data);
+      router.push("/WelcomeScreen1");
     }
-    router.push("/WelcomeScreen1");
   }
   return (
     <>
       <div className="flex items-center justify-center ">
         <BackGroundPage className="flex items-center justify-center bg-[#171C23] h-[100vh] w-[100vw]" />
-
+pnp
         <div className="absolute w-[662px] h-[700px] top-[120px]  bg-[#232B35] shadow-md">
           <div className="absolute w-[662px] h-[54px]  border-b-[1px] border-[#353B43]">
             <Link

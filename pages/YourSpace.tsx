@@ -1,16 +1,16 @@
 import React from "react";
-import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import Image from "next/image";
 import MissionMainCard from "../components/molecules/MissionMainCard";
 import ActivityCard from "@/components/molecules/ActivityCardNewDashboard";
+import UserSidebar from "@/components/molecules/UserSidebar";
 const MissionMain = () => {
   return (
     <div className="h-full bg-[#171C23]">
       {/* Main Div */}
       <div className="h-full w-full flex">
         {/* Sidebar */}
-        <Sidebar />
+        <UserSidebar />
         <div className="w-full h-full overflow-scroll scrollbar-hide">
           <Header />
           {/* Main Section & Right Side Section */}
