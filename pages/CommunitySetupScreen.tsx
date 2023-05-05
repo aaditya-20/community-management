@@ -9,6 +9,7 @@ import Card from "../components/atoms/Card";
 import DiscordIntegrationPopup from "./DiscordIntegrationPopup";
 import Link from "next/link";
 import TextInput from "../components/atoms/TextInput";
+import EmailInput from "../components/atoms/EmailInput";
 import Popup from "reactjs-popup";
 import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
@@ -20,15 +21,8 @@ const CommunitySetupScreen = (): ReactElement => {
   const [OpenDiscord, setOpenDiscord] = useState(false);
   async function onContinueClick() {
     setOpenDiscord(!OpenDiscord);
-    // const { data, error } = await supabase.from("community_data").insert({
-    //   user_name: InputValue,
-    // });
-    // if (error) {
-    //   console.log("Error uploading file:", error.message);
-    // } else {
-    //   console.log("File uploaded successfully:", data);
-    // }
     obj.name = InputValue;
+    
     obj.email = InputEmail;
   }
   const bucket_name = "Store";
@@ -91,34 +85,7 @@ const CommunitySetupScreen = (): ReactElement => {
           localStorage.setItem('profile', JSON.stringify(profile));
       })
       .catch(console.error);
-      // fetch('https://discord.com/api/users/@me/guilds', {
-      // headers: {
-      //     authorization: `${tokenType} ${accessToken}`,
-      // },
-      // })
-      // .then(result => result.json())
-      // .then(response => {
-      //     //console.log(response)
-      //     let c=0;
-      //     response.forEach((element: any) => {
-      //       console.log(element.name);
-      //       if(element.name == "Firebond"){
-      //         c++;
-      //         console.log("found");
-              
-      //       }else{
-      //         console.log("not found");
-             
-      //       }
-      //     });
-      //     if(c>0){
-      //       console.log("found");
-      //       localStorage.setItem('bool_value', 'true');
-      //     }else{
-      //       console.log("not found here");
-      //       localStorage.setItem('bool_value', 'false');
-      //     }
-      //   }).catch(console.error);
+     
   }}
   function discord(){
     const redirectUri = encodeURIComponent(
@@ -186,7 +153,8 @@ const CommunitySetupScreen = (): ReactElement => {
               handleChange2={handleInput}
               handleValue={InputValue}
             />
-            <TextInput
+            <EmailInput
+
               placeholder="Email"
               label="Enter Email"
               className="relative top-[-40px] left-[154px] w-[426px] h-[41px]"
