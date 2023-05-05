@@ -73,7 +73,7 @@ function CommunitySetUpIntegration() {
             console.log("found");
             localStorage.setItem('bool_value', 'true');
           }else{
-            console.log("not found");
+            console.log("not found here");
             localStorage.setItem('bool_value', 'false');
           }
         }).catch(console.error);
