@@ -13,13 +13,17 @@ import Temporary from "../components/atoms/Stepper";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import FormData from "@/utils/FormData";
-
-
+import Modal from "@material-ui/core/Modal";
+import TwitterHandlePopUp from "@/components/molecules/TwitterHandlePopUp";
 const Step1CommunitySetup = (): ReactElement => {
   const obj = FormData();
   const router = useRouter()
   const [InputValue, setInputvalue] = useState("");
   const [description,setDescription] = useState('')
+  const [TwitterHandle, setTwitterHandle] = useState("");
+  const [WebsiteUrl, setWebsiteUrl] = useState("");
+  const [TwitterPopUpVisibility, setTwitterPopUpVisibility] = useState(false);
+  const [WebsitePopUpVisibility, setWebsitePopUpVisibility] = useState(false);
 
   function handleProfileClick() {
     const input = document.createElement("input");
@@ -58,6 +62,7 @@ const Step1CommunitySetup = (): ReactElement => {
     });
     input.click();
   }
+  console.log(TwitterHandle);
 
   function handleInput(e: any) {
     setInputvalue(e.target.value);
@@ -71,19 +76,57 @@ const Step1CommunitySetup = (): ReactElement => {
     obj.community_description = description;
      router.push('/CommunitySetUpIntegration')
   }
+   
 
+  function handleGlobeClick(){
+      setWebsitePopUpVisibility(!WebsitePopUpVisibility);
+
+  }
+  function handleTwitterContinueClick(){
+    console.log("hellotwiiter");
+        setTwitterPopUpVisibility(false);
+  }
+  function handleWebsiteUrlContinueClick(){
+    setWebsitePopUpVisibility(false);
+  }
+  function handleTwitterClick(){
+      setTwitterPopUpVisibility(!TwitterPopUpVisibility);
+  }
  
  
 
   return (
     <>
+       <Modal
+        onClose={() => {
+          setTwitterPopUpVisibility(!TwitterPopUpVisibility);
+        }}
+        open={TwitterPopUpVisibility}
+        style={{}}
+      >
+        <div className="mt-[30vh] ml-[30vw]">
+          <TwitterHandlePopUp onContinueClick={handleTwitterContinueClick} title="Twitter Handle" placeholder = "Enter your twitter handle" handlePopUpInputValue={(e:any)=>{
+            setTwitterHandle(e.target.value);
+          }}  />
+        </div>
+      </Modal>
+      <Modal
+        onClose={() => {
+          setWebsitePopUpVisibility(!WebsitePopUpVisibility);
+        }}
+        open={WebsitePopUpVisibility}
+        style={{}}
+      >
+        <div className="mt-[30vh] ml-[30vw]">
+          <TwitterHandlePopUp onContinueClick={handleWebsiteUrlContinueClick} title="Website Url" placeholder = "Enter your Website Url" handlePopUpInputValue={(e:any)=>{
+            setWebsiteUrl(e.target.value);
+          }}  />
+        </div>
+      </Modal>
       <BackGroundPage />
       <div className="absolute  items-center m-[auto] top-[150px] justify-center right-0 left-0 w-[662px] h-[680px] bg-gray-800 shadow-md ">
-        {/* <Card
-          title=""
-          text=""
-          className="absolute w-[662px] h-[680px] left-[360px] top-[95px] bg-gray-800 shadow-md"
-        /> */}
+
+
 
         <div className="relative w-[662px] h-[40px] border-b-[1px] border-[#353B43]">
           <Link
@@ -171,27 +214,27 @@ const Step1CommunitySetup = (): ReactElement => {
             Add Links
           </p>
 
-          <a href="https://www.example.com">
+          {/* <a href="https://www.example.com"> */}
             <ProfileIcon
               size={30}
               imageUrl="/Globe.png"
               alt="nothing"
               classNameCircle="relative top-[-45px] left-[60px] border-[0.7px] mr-3"
               // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
-              onProfileIconClick={handleProfileClick}
+              onProfileIconClick={handleGlobeClick}
             />
-          </a>
+          {/* </a> */}
 
-          <a href="https://www.example.com">
+          {/* <a href="https://www.example.com"> */}
             <ProfileIcon
               size={30}
               imageUrl="/Twitter.png"
               alt="nothing"
               classNameCircle="relative top-[-45px] left-[60px] border-[0.7px] mr-4"
-              onProfileIconClick={handleProfileClick}
+              onProfileIconClick={handleTwitterClick}
               // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
             />
-          </a>
+          {/* </a> */}
 
           <IconButton
             icon={VscBlank}
