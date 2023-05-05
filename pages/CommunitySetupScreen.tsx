@@ -110,7 +110,7 @@ const CommunitySetupScreen = (): ReactElement => {
             <TextInput
               placeholder="Name"
               label="Enter Name"
-              className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
+              className="relative top-[-80px] left-[154px] w-[426px] h-[41px]"
               classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
               classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
               handleChange2={handleInput}
@@ -119,7 +119,7 @@ const CommunitySetupScreen = (): ReactElement => {
             <TextInput
               placeholder="Email"
               label="Enter Email"
-              className="relative top-[-1px] left-[154px] w-[426px] h-[41px]"
+              className="relative top-[-40px] left-[154px] w-[426px] h-[41px]"
               classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
               classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
               handleChange2={handleEmail}
