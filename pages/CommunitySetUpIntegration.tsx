@@ -87,9 +87,10 @@ function CommunitySetUpIntegration() {
       }else{
         if(window.location.href.includes("access_token")){
     const fragment = new URLSearchParams(window.location.hash.slice(1));
-    console.log(fragment);
+   
     const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    localStorage.setItem('accessToken', accessToken||'');
+    console.log("access Token:-",accessToken);
+    localStorage.setItem('accessToken', accessToken||'Not Found');
     fetch('https://discord.com/api/users/@me', {
       headers: {
           authorization: `${tokenType} ${accessToken}`,
