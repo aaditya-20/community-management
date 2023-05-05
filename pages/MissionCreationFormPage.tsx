@@ -14,18 +14,26 @@ import Todo from "@/components/molecules/Todo";
 import Priority from "@/components/molecules/Priority";
 import MissionFormData from "@/utils/MissionFormData";
 import { supabase } from "@/utils/supabaseClient";
+import { Modal } from "@material-ui/core";
+import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+
+
+
 const MissionCreationFormPage = () => {
   const obj = MissionFormData();
   const [OpenMission, setOpenMission] = useState(false);
+  const [MissionId, setMissionId] = useState("");
   var wallet_id: null;
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
     const jsonData = JSON.parse(storedJsonData ?? "{}");
     wallet_id = jsonData.wallet_id;
   }
+  const generateRandom = () => Math.random().toString( 36 ).substring( 2, 15 ) + Math.random().toString( 23 ).substring( 2, 5 );
+
   async function onCreateClick() {
-    // setMissionId(generateRandom());
-    // setOpenMission(!OpenMission);
+    setMissionId(generateRandom());
+    setOpenMission(!OpenMission);
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
       const { data: rowData, error } = await supabase
@@ -60,6 +68,15 @@ const MissionCreationFormPage = () => {
   }
   return (
     <>
+    <Modal
+        onClose={() => {
+          setOpenMission(!OpenMission);
+        }}
+        open={OpenMission}
+        style={{}}
+      >
+        <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url={`https://firebond.com/${obj.title}/${MissionId}`} forWhichComponent="mission"/></div>
+      </Modal>
       <div className="min-h-screen  bg-[#171C23]">
         <div className="h-full flex ">
           <Sidebar />
