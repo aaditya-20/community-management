@@ -194,8 +194,8 @@ function CommunitySetUpIntegration() {
       const redirectUri = encodeURIComponent(
         "http://localhost:3000/CommunitySetUpIntegration"
       );
-      const clientId = "1101935237652557855";
-      const scope = encodeURIComponent("identify");
+      //const clientId = "1101935237652557855";
+      //const scope = encodeURIComponent("identify");
       const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-lzpmgo97f-firebond-admin-team.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email`;
       const lauthUrl="https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email"
 
