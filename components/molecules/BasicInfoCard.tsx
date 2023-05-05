@@ -19,15 +19,23 @@ const BasicInfoCard = () => {
   const [on, setOn] = useState(Array(5).fill(false));
   const [amount, setAmount] = useState(0);
   const [selectedDate, changeSelectedDate] = useState("");
+  const[input,setInput] = useState('')
   const [visibiliy, setVisibility] = useState({
     src: "Icons/visible.svg",
     title: "Public",
   });
   const obj = MissionFormData();
-  obj.tilte = visibiliy.title
+  obj.title = input
   obj.amount = amount;
   obj.seleted_date = selectedDate;
+  
   // Calendar implementation
+
+  function handleInput(e: any){
+    setInput(e.target.value)
+  }
+
+  
 
   const today = startOfToday();
   const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -71,7 +79,10 @@ const BasicInfoCard = () => {
         Mission title
       </h1>
       <div className="w-full h-[41px] bg-[#2E363F] rounded-lg overflow-hidden mb-[29px]">
-        <input className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium" />
+        <input className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
+        value = {input}
+        onChange={handleInput}/>
+        
       </div>
       <div className="w-full flex justify-between">
         <button

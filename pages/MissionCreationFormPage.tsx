@@ -38,15 +38,14 @@ const MissionCreationFormPage = () => {
         return;
       }
       var mission = rowData.missions;
-      if (rowData.missions == null)
-        mission = [obj]
+      if (rowData.missions == null) mission = [obj];
       else {
         mission.push(obj);
       }
       // Update the row with the new missions
       const { data, error: updateError } = await supabase
         .from("community_data")
-        .update({
+        .upsert({
           missions: mission,
         })
         .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
@@ -95,13 +94,10 @@ const MissionCreationFormPage = () => {
               {/* Left Section */}
               <div className="w-full h-full mt-[28px] flex justify-center ">
                 <div>
-                  {/* Basic Info */}
                   <BasicInfoCard />
 
-                  {/* Submission type */}
                   <SubmissionCard />
 
-                  {/* Details */}
                   <Details />
                 </div>
               </div>
