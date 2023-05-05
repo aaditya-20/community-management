@@ -111,7 +111,7 @@ const LoginSection = () => {
               <div className="flex gap-[14px] items-center justify-center">
                 <Image src="Icons/Wallet.svg" height={25} width={25} alt="" />{" "}
                 <h1 className="font-medium text-xs text-black">
-                  Sign up with Wallet
+                  Login with Wallet
                 </h1>
               </div>
             </button>
