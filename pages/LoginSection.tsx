@@ -5,6 +5,8 @@ import WalletAuth from "@/utils/authentication/walletAuth";
 import GoogleSignInButton from "@/utils/authentication/googleAuth";
 import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabaseClient";
+import { Modal } from "@material-ui/core";
+import NoAccountPopup from "./NoAccountPopup";
 
 const LoginSection = () => {
   const [walletAddress, setWalletAddress] = useState("");
@@ -34,8 +36,10 @@ const LoginSection = () => {
           if (data != null) {
             await window.localStorage.setItem("data", JSON.stringify(data));
             router.push("/WelcomeScreen1");
+          } else {
+            console.log("Please Signup");
+            handleAdminClick();
           }
-          console.log("Please Signup")
         } catch (e) {
           console.log(e);
         }
@@ -49,9 +53,23 @@ const LoginSection = () => {
   };
 
   const [magicLink, setMagicLink] = useState("");
-
+  const [NoAccount, setNoAccount] = useState(false);
+  function handleAdminClick() {
+    setNoAccount(!NoAccount);
+  }
   return (
     <>
+      <Modal
+        onClose={() => {
+          setNoAccount(!NoAccount);
+        }}
+        open={NoAccount}
+        style={{}}
+      >
+        <div>
+          <NoAccountPopup />
+        </div>
+      </Modal>
       <div className="flex justify-center items-center h-screen">
         <div className="bg-[#232B35] h-auto w-[485px] shadow-[6px,6px,20px,rgba(15,15,15,0.26)]">
           <div className="w-full h-[54px] border-b border-[#353B43] flex items-center pl-[30px]">
