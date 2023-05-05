@@ -8,7 +8,7 @@ import AddMoreCard from "../components/molecules/AddMoreCard";
 import { useRouter } from "next/router";
 import MissionTemplateEdit from "./MissionTemplateEdit";
 import { supabase } from "@/utils/supabaseClient";
-
+import { useState } from "react";
 const twitter = [
   {
     id: 1,
@@ -39,12 +39,14 @@ const Community = [
     title: "Be A Champion",
     button: 2.9,
     mission: "Follow firebond twitter and get ...",
+    route:'/MissionOnboardingMisison',
   },
   {
     id: 2,
     title: "Feedback",
     button: 2.9,
     mission: "Give your feedback regarding the ...",
+    route:'/MissionShareYourFeedback',
   },
 ];
 
@@ -55,9 +57,10 @@ const MissionMain = () => {
   }
 
   var wallet_id = "";
-  var missions = [{
-    title : ''
-  }];
+  // var missions = [{
+  //   title : ''
+  // }];
+  const [missions,setmissions] = useState([{}]);
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
     // console.log(storedJsonData)
@@ -66,8 +69,10 @@ const MissionMain = () => {
     console.log(jsonData);
   }
 
-  fetchData();
-
+  
+  useEffect(()=>{
+    fetchData();
+  },[])
   async function fetchData(){
 
   try {
@@ -81,13 +86,15 @@ const MissionMain = () => {
       console.error(error);
       return;
     }
-    missions = rowData.missions;
+    console.log(rowData);
+    // missions = rowData.missions;
+    setmissions( rowData.missions)
 
   } catch (error) {
     console.error(error);
   }
 }
-
+console.log("->missions->  jad->",missions);
 
   return (
     <div className="h-screen bg-[#171c23]">
@@ -198,25 +205,29 @@ const MissionMain = () => {
             {/* Main Section */}
             <div className="w-full h-full flex justify-center overflow-auto scrollbar-hide p-6 ">
               <div className="h-auto w-auto">
-                <div className="w-full h-full grid grid-cols-2 gap-6">
+                <div className="w-full h-full flex flex-wrap justify-center">
                   {missions &&
-                    missions.map((item, index) => {
+                    missions.map((item:any, index) => {
                       return (
-                        <MissionMainCard
-                          key={index}
-                          profileUrl1={""}
-                          profileUrl2={""}
-                          profileUrl3={""}
-                          profileUrl4={""}
+                      <div className="m-[3px]" key={index}>
+                         <MissionMainCard
+                          
+                          profileUrl1={"/Avatar.png"}
+                          profileUrl2={"/Avatar.png"}
+                          profileUrl3={"/Avatar.png"}
+                          profileUrl4={"/Avatar.png"}
                           submission={0}
                           daysLeft={0}
                           usdc={0}
-                          title={item.title}
+                          title={item.tilte}
                         />
+                      </div>
+                       
                       );
                     })}
-
+                
                   <AddMoreCard />
+                  
                 </div>
               </div>
             </div>
@@ -247,7 +258,7 @@ const MissionMain = () => {
                 </h1>
                 {twitter.map((item) => {
                   return (
-                    <div
+                    <div onClick={() => router.push("/MissionTwitter")}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >
@@ -274,7 +285,7 @@ const MissionMain = () => {
                 </h1>
                 {Discord.map((item) => {
                   return (
-                    <div
+                    <div onClick={() => router.push("/MissionTwitter")}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >
@@ -301,7 +312,7 @@ const MissionMain = () => {
                 </h1>
                 {Community.map((item) => {
                   return (
-                    <div
+                    <div onClick={()=>{router.push(item.route)}}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >

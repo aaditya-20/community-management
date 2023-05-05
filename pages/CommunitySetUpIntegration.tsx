@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import WalletAuth from "@/utils/authentication/walletAuth";
 import FormData from "@/utils/FormData";
 import { supabase } from "@/utils/supabaseClient";
+import { Modal } from "@material-ui/core";
+import AlreadyAdminPopup from "./AlreadyAdminPopup";
 function CommunitySetUpIntegration() {
   const [flagDiscord, setDiscord] = useState("visible");
   const [flagTwitter, setTwitter] = useState("hidden");
@@ -179,17 +181,35 @@ function CommunitySetUpIntegration() {
     });
     if (error) {
       console.log("Error uploading file:", error.message);
+      console.log("Admin Account Exist")
+      AlreadyAdmin();
+
     } else {
       await window.localStorage.setItem("data", JSON.stringify(obj));
       console.log("File uploaded successfully:", data);
       router.push("/WelcomeScreen1");
     }
   }
+  const [OpenAlreadyAdminPopup, setOpenAdmin] = useState(false);
+  function AlreadyAdmin() {
+    setOpenAdmin(!OpenAlreadyAdminPopup);
+  }
   return (
     <>
+      <Modal
+        onClose={() => {
+          setOpenAdmin(!OpenAlreadyAdminPopup);
+        }}
+        open={OpenAlreadyAdminPopup}
+        style={{}}
+      >
+        <div>
+          <AlreadyAdminPopup />
+        </div>
+      </Modal>
       <div className="flex items-center justify-center ">
         <BackGroundPage className="flex items-center justify-center bg-[#171C23] h-[100vh] w-[100vw]" />
-pnp
+        pnp
         <div className="absolute w-[662px] h-[700px] top-[120px]  bg-[#232B35] shadow-md">
           <div className="absolute w-[662px] h-[54px]  border-b-[1px] border-[#353B43]">
             <Link

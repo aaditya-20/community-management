@@ -81,9 +81,9 @@ const Step1CommunitySetup = (): ReactElement => {
   function handleGlobeClick() {
     setWebsitePopUpVisibility(!WebsitePopUpVisibility);
   }
-  function handleTwitterContinueClick() {
-    console.log("hellotwiiter");
-    setTwitterPopUpVisibility(false);
+
+  function handleTwitterContinueClick(){
+        setTwitterPopUpVisibility(false);
   }
   function handleWebsiteUrlContinueClick() {
     setWebsitePopUpVisibility(false);
