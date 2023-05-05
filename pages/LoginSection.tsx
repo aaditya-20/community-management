@@ -38,7 +38,7 @@ const LoginSection = () => {
             router.push("/WelcomeScreen1");
           } else {
             console.log("Please Signup");
-            handleAdminClick();
+            handleLoginNoAccountClick();
           }
         } catch (e) {
           console.log(e);
@@ -54,7 +54,7 @@ const LoginSection = () => {
 
   const [magicLink, setMagicLink] = useState("");
   const [NoAccount, setNoAccount] = useState(false);
-  function handleAdminClick() {
+  function handleLoginNoAccountClick() {
     setNoAccount(!NoAccount);
   }
   return (
