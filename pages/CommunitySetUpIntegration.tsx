@@ -19,7 +19,7 @@ import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import AlreadyAdminPopup from "./AlreadyAdminPopup";
 function CommunitySetUpIntegration() {
-  const [flagDiscord, setDiscord] = useState("visible");
+  const [flagDiscord, setDiscord] = useState("hidden");
   const [flagTwitter, setTwitter] = useState("hidden");
   const [flagTelegram, setTelegram] = useState("hidden");
   const [flagEthereum, setEthereum] = useState("hidden");
@@ -27,8 +27,65 @@ function CommunitySetUpIntegration() {
   const obj = FormData();
   const router = useRouter();
   const onConnect = WalletAuth();
-  function dummy(){
-    // console.log(window.location.href);
+  function discordToken(){
+    // // console.log(window.location.href);
+    // const fragment = new URLSearchParams(window.location.hash.slice(1));
+    // const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+    // localStorage.setItem('accessToken', accessToken||'');
+    // fetch('https://discord.com/api/users/@me', {
+    //   headers: {
+    //       authorization: `${tokenType} ${accessToken}`,
+    //   },
+    //   })
+    //   .then(result => result.json())
+    //   .then(response => {
+    //       console.log(response);
+    //       const { username, discriminator, avatar, id} = response;
+    //       let profile={
+    //         username: username,
+    //         discriminator: discriminator,
+    //         avatar: avatar,
+    //         id: id
+    //       }
+    //       localStorage.setItem('profile', JSON.stringify(profile));
+
+    //   })
+    //   .catch(console.error);
+    //   fetch('https://discord.com/api/users/@me/guilds', {
+    //   headers: {
+    //       authorization: `${tokenType} ${accessToken}`,
+    //   },
+    //   })
+    //   .then(result => result.json())
+    //   .then(response => {
+    //       //console.log(response)
+    //       let c=0;
+    //       response.forEach((element: any) => {
+    //         console.log(element.name);
+    //         if(element.name == "Midjourney"){
+    //           c++;
+    //           console.log("found");
+              
+    //         }else{
+    //           console.log("not found");
+             
+    //         }
+    //       });
+    //       if(c>0){
+    //         console.log("found");
+    //         localStorage.setItem('bool_value', 'true');
+    //       }else{
+    //         console.log("not found here");
+    //         localStorage.setItem('bool_value', 'false');
+    //       }
+    //     }).catch(console.error);
+    if (flagDiscord == "hidden") {
+      if (localStorage.getItem("profile")) {
+        
+        setDiscord("visible");
+        return;
+      }else{
+        if(window.location.href.includes("access_token")){
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
     localStorage.setItem('accessToken', accessToken||'');
@@ -39,46 +96,25 @@ function CommunitySetUpIntegration() {
       })
       .then(result => result.json())
       .then(response => {
-          console.log(response);
-          const { username, discriminator, avatar, id} = response;
+          //console.log(response);
+          const { username, discriminator, avatar, id,email} = response;
           let profile={
             username: username,
             discriminator: discriminator,
             avatar: avatar,
-            id: id
+            id: id,
+            email: email
           }
           localStorage.setItem('profile', JSON.stringify(profile));
+          if (localStorage.getItem("profile")) {
+        
+            setDiscord("visible");
+          }
 
       })
       .catch(console.error);
-      fetch('https://discord.com/api/users/@me/guilds', {
-      headers: {
-          authorization: `${tokenType} ${accessToken}`,
-      },
-      })
-      .then(result => result.json())
-      .then(response => {
-          //console.log(response)
-          let c=0;
-          response.forEach((element: any) => {
-            console.log(element.name);
-            if(element.name == "Midjourney"){
-              c++;
-              console.log("found");
-              
-            }else{
-              console.log("not found");
-             
-            }
-          });
-          if(c>0){
-            console.log("found");
-            localStorage.setItem('bool_value', 'true');
-          }else{
-            console.log("not found here");
-            localStorage.setItem('bool_value', 'false');
-          }
-        }).catch(console.error);
+      }
+    }}
   }
 
   useEffect(() => {
@@ -88,7 +124,7 @@ function CommunitySetUpIntegration() {
     // addWalletListener();
   }, [walletAddress]); 
   useEffect(() => {
-    dummy();
+    discordToken();
     
 
     // addWalletListener();
@@ -148,14 +184,20 @@ function CommunitySetUpIntegration() {
 
   function handleDiscordClick() {
 
-    const redirectUri = encodeURIComponent(
-      "http://localhost:3000/CommunitySetUpIntegration"
-    );
-    const clientId = "1101935237652557855";
-    const scope = encodeURIComponent("identify");
-    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds`;
+    if (flagDiscord == "hidden") {
+      if (localStorage.getItem("profile")) {
+        setDiscord("visible");
+        return;
+      }
+      const redirectUri = encodeURIComponent(
+        "http://localhost:3000/CommunitySetUpIntegration"
+      );
+      const clientId = "1101935237652557855";
+      const scope = encodeURIComponent("identify");
+      const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-lzpmgo97f-firebond-admin-team.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email`;
 
-    window.location.href = authUrl;
+      window.location.href = authUrl;
+    }
   }
 
   function handleTwitterClick() {
