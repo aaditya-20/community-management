@@ -209,9 +209,9 @@ console.log("->missions->  jad->",missions);
                   {missions &&
                     missions.map((item:any, index) => {
                       return (
-                      <div className="m-[3px]">
+                      <div className="m-[3px]" key={index}>
                          <MissionMainCard
-                          key={index}
+                          
                           profileUrl1={"/Avatar.png"}
                           profileUrl2={"/Avatar.png"}
                           profileUrl3={"/Avatar.png"}
