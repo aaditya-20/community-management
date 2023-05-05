@@ -17,13 +17,14 @@ import Modal from "@material-ui/core/Modal";
 import TwitterHandlePopUp from "@/components/molecules/TwitterHandlePopUp";
 const Step1CommunitySetup = (): ReactElement => {
   const obj = FormData();
-  const router = useRouter()
+  const router = useRouter();
   const [InputValue, setInputvalue] = useState("");
-  const [description,setDescription] = useState('')
+  const [description, setDescription] = useState("");
   const [TwitterHandle, setTwitterHandle] = useState("");
   const [WebsiteUrl, setWebsiteUrl] = useState("");
   const [TwitterPopUpVisibility, setTwitterPopUpVisibility] = useState(false);
   const [WebsitePopUpVisibility, setWebsitePopUpVisibility] = useState(false);
+  const [selectedButton, setSelectedButton] = useState(null);
 
   function handleProfileClick() {
     const input = document.createElement("input");
@@ -74,30 +75,30 @@ const Step1CommunitySetup = (): ReactElement => {
   function onContinueClick() {
     obj.community_name = InputValue;
     obj.community_description = description;
-     router.push('/CommunitySetUpIntegration')
+    router.push("/CommunitySetUpIntegration");
   }
-   
 
-  function handleGlobeClick(){
-      setWebsitePopUpVisibility(!WebsitePopUpVisibility);
-
+  function handleGlobeClick() {
+    setWebsitePopUpVisibility(!WebsitePopUpVisibility);
   }
-  function handleTwitterContinueClick(){
+  function handleTwitterContinueClick() {
     console.log("hellotwiiter");
-        setTwitterPopUpVisibility(false);
+    setTwitterPopUpVisibility(false);
   }
-  function handleWebsiteUrlContinueClick(){
+  function handleWebsiteUrlContinueClick() {
     setWebsitePopUpVisibility(false);
   }
-  function handleTwitterClick(){
-      setTwitterPopUpVisibility(!TwitterPopUpVisibility);
+  function handleTwitterClick() {
+    setTwitterPopUpVisibility(!TwitterPopUpVisibility);
   }
- 
- 
+
+  const handleButtonClick = (buttonNumber: any) => {
+    setSelectedButton(buttonNumber === selectedButton ? null : buttonNumber);
+  };
 
   return (
     <>
-       <Modal
+      <Modal
         onClose={() => {
           setTwitterPopUpVisibility(!TwitterPopUpVisibility);
         }}
@@ -105,9 +106,14 @@ const Step1CommunitySetup = (): ReactElement => {
         style={{}}
       >
         <div className="mt-[30vh] ml-[30vw]">
-          <TwitterHandlePopUp onContinueClick={handleTwitterContinueClick} title="Twitter Handle" placeholder = "Enter your twitter handle" handlePopUpInputValue={(e:any)=>{
-            setTwitterHandle(e.target.value);
-          }}  />
+          <TwitterHandlePopUp
+            onContinueClick={handleTwitterContinueClick}
+            title="Twitter Handle"
+            placeholder="Enter your twitter handle"
+            handlePopUpInputValue={(e: any) => {
+              setTwitterHandle(e.target.value);
+            }}
+          />
         </div>
       </Modal>
       <Modal
@@ -118,16 +124,18 @@ const Step1CommunitySetup = (): ReactElement => {
         style={{}}
       >
         <div className="mt-[30vh] ml-[30vw]">
-          <TwitterHandlePopUp onContinueClick={handleWebsiteUrlContinueClick} title="Website Url" placeholder = "Enter your Website Url" handlePopUpInputValue={(e:any)=>{
-            setWebsiteUrl(e.target.value);
-          }}  />
+          <TwitterHandlePopUp
+            onContinueClick={handleWebsiteUrlContinueClick}
+            title="Website Url"
+            placeholder="Enter your Website Url"
+            handlePopUpInputValue={(e: any) => {
+              setWebsiteUrl(e.target.value);
+            }}
+          />
         </div>
       </Modal>
       <BackGroundPage />
       <div className="absolute  items-center m-[auto] top-[150px] justify-center right-0 left-0 w-[662px] h-[680px] bg-gray-800 shadow-md ">
-
-
-
         <div className="relative w-[662px] h-[40px] border-b-[1px] border-[#353B43]">
           <Link
             href="/"
@@ -186,26 +194,38 @@ const Step1CommunitySetup = (): ReactElement => {
           </p>
           <div className="flex relative w-[500px] h-[100px] top-[-15px] left-[60px]">
             <button
+              onClick={() => handleButtonClick(1)}
               type="button"
-              className="bg-[#2E363F] w-[65px] h-[32px] text-white px-1 py-1 mr-4 rounded-lg"
+              className={`w-[65px] h-[32px] text-white px-1 py-1 mr-4 rounded-lg ${
+                selectedButton === 1 ? "bg-black text-white" : "bg-[#2E363F]"
+              }`}
             >
               DAO
             </button>
             <button
+              onClick={() => handleButtonClick(2)}
               type="button"
-              className="bg-[#2E363F] w-[250px] h-[32px] text-white px-1 py-1 mr-4 rounded-lg"
+              className={`w-[250px] h-[32px] text-white px-1 py-1 mr-4 rounded-lg ${
+                selectedButton === 2 ? "bg-black text-white" : "bg-[#2E363F]"
+              }`}
             >
               Content Creator
             </button>
             <button
+              onClick={() => handleButtonClick(3)}
               type="button"
-              className="bg-[#2E363F] w-[250px] h-[32px] text-white px-1 py-1 mr-4 rounded-lg"
+              className={`w-[250px] h-[32px] text-white px-1 py-1 mr-4 rounded-lg ${
+                selectedButton === 3 ? "bg-black text-white" : "bg-[#2E363F]"
+              }`}
             >
               NFT Community
             </button>
             <button
+              onClick={() => handleButtonClick(4)}
               type="button"
-              className="bg-[#2E363F] w-[100px] h-[32px] text-white px-1 py-1 rounded-lg"
+              className={` w-[100px] h-[32px] text-white px-1 py-1 rounded-lg ${
+                selectedButton === 4 ? "bg-black text-white" : "bg-[#2E363F]"
+              }`}
             >
               Social
             </button>
@@ -215,25 +235,25 @@ const Step1CommunitySetup = (): ReactElement => {
           </p>
 
           {/* <a href="https://www.example.com"> */}
-            <ProfileIcon
-              size={30}
-              imageUrl="/Globe.png"
-              alt="nothing"
-              classNameCircle="relative top-[-45px] left-[60px] border-[0.7px] mr-3"
-              // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
-              onProfileIconClick={handleGlobeClick}
-            />
+          <ProfileIcon
+            size={30}
+            imageUrl="/Globe.png"
+            alt="nothing"
+            classNameCircle="relative top-[-45px] left-[60px] border-[0.7px] mr-3"
+            // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
+            onProfileIconClick={handleGlobeClick}
+          />
           {/* </a> */}
 
           {/* <a href="https://www.example.com"> */}
-            <ProfileIcon
-              size={30}
-              imageUrl="/Twitter.png"
-              alt="nothing"
-              classNameCircle="relative top-[-45px] left-[60px] border-[0.7px] mr-4"
-              onProfileIconClick={handleTwitterClick}
-              // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
-            />
+          <ProfileIcon
+            size={30}
+            imageUrl="/Twitter.png"
+            alt="nothing"
+            classNameCircle="relative top-[-45px] left-[60px] border-[0.7px] mr-4"
+            onProfileIconClick={handleTwitterClick}
+            // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
+          />
           {/* </a> */}
 
           <IconButton
@@ -241,7 +261,7 @@ const Step1CommunitySetup = (): ReactElement => {
             label="Back"
             className="relative bg-[#1D1D1D] top-[-25px] left-[0px] w-[340px] h-[60px]"
             classNameIcon=""
-            onClick={()=>router.push('/CommunitySetupScreen')}
+            onClick={() => router.push("/CommunitySetupScreen")}
           />
 
           <IconButton
