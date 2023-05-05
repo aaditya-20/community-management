@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 
-type TextInputProps = {
+type EmailInputProps = {
   handleChange2:(e:any)=> void;
   handleValue:string;
   label: string;
@@ -10,7 +10,7 @@ type TextInputProps = {
   classNameInput?: string;
 };
 
-const TextInput = ({ label  ,placeholder = '', className = '',classNameLabel='',classNameInput='',handleChange2,handleValue = ''}: TextInputProps): ReactElement => {
+const EmailInput = ({ label  ,placeholder = '', className = '',classNameLabel='',classNameInput='',handleChange2,handleValue = ''}: EmailInputProps): ReactElement => {
   // state to hold the current input value
   const [value, setValue] = useState('');
 
@@ -29,7 +29,7 @@ const TextInput = ({ label  ,placeholder = '', className = '',classNameLabel='',
 
       {/* the input element itself */}
       <input
-        type="text"
+        type="email"
         value={handleValue} // set the value of the input to the current state
         onChange={handleChange2} // call handleChange2 on input change events
         placeholder={placeholder}
@@ -39,4 +39,4 @@ const TextInput = ({ label  ,placeholder = '', className = '',classNameLabel='',
   );
 };
 
-export default TextInput;
+export default EmailInput;
