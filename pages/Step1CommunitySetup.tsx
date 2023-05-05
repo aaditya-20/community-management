@@ -83,7 +83,7 @@ const Step1CommunitySetup = (): ReactElement => {
 
   }
   function handleTwitterContinueClick(){
-    console.log("hellotwiiter");
+    
         setTwitterPopUpVisibility(false);
   }
   function handleWebsiteUrlContinueClick(){
