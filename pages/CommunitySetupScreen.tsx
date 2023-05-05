@@ -4,7 +4,7 @@ import { supabase } from "@/utils/supabaseClient";
 import IconButton from "../components/atoms/IconButton";
 import ProfileIcon from "../components/atoms/ProfileAvatar";
 import BackGroundPage from "../components/molecules/BackGroundPage";
-import { ReactElement, useState } from "react";
+import { ReactElement, useState,useEffect } from "react";
 import Card from "../components/atoms/Card";
 import DiscordIntegrationPopup from "./DiscordIntegrationPopup";
 import Link from "next/link";
@@ -64,6 +64,73 @@ const CommunitySetupScreen = (): ReactElement => {
   function handleEmail(e: any) {
     setInputemail(e.target.value);
   }
+  function discordToken(){
+    // console.log(window.location.href);
+     if((window.location.href).includes("access_token")){
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
+    localStorage.setItem('accessToken', accessToken||'');
+    fetch('https://discord.com/api/users/@me', {
+      headers: {
+          authorization: `${tokenType} ${accessToken}`,
+      },
+      })
+      .then(result => result.json())
+      .then(response => {
+          //console.log(response);
+          const { username, discriminator, avatar, id,email} = response;
+          let profile={
+            email: email,
+            username: username,
+            discriminator: discriminator,
+            avatar: avatar,
+            id: id
+          }
+          localStorage.setItem('profile', JSON.stringify(profile));
+      })
+      .catch(console.error);
+      // fetch('https://discord.com/api/users/@me/guilds', {
+      // headers: {
+      //     authorization: `${tokenType} ${accessToken}`,
+      // },
+      // })
+      // .then(result => result.json())
+      // .then(response => {
+      //     //console.log(response)
+      //     let c=0;
+      //     response.forEach((element: any) => {
+      //       console.log(element.name);
+      //       if(element.name == "Firebond"){
+      //         c++;
+      //         console.log("found");
+              
+      //       }else{
+      //         console.log("not found");
+             
+      //       }
+      //     });
+      //     if(c>0){
+      //       console.log("found");
+      //       localStorage.setItem('bool_value', 'true');
+      //     }else{
+      //       console.log("not found here");
+      //       localStorage.setItem('bool_value', 'false');
+      //     }
+      //   }).catch(console.error);
+  }}
+  function discord(){
+    const redirectUri = encodeURIComponent(
+      "http://localhost:3000/CommunitySetupScreen"
+    );
+    const clientId = "1101935237652557855";
+    const scope = encodeURIComponent("identify");
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-lzpmgo97f-firebond-admin-team.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email`;
+
+    window.location.href = authUrl;
+  }
+  useEffect(() => {
+    discordToken();
+  });
 
   return (
     <>
@@ -130,6 +197,7 @@ const CommunitySetupScreen = (): ReactElement => {
               label="Discord"
               className="relative bg-[#8570E4] top-[89px] left-[0px] w-[331px] h-[67px]"
               classNameIcon=""
+              onClick={discord}
             />
             <IconButton
               icon={VscBlank}
