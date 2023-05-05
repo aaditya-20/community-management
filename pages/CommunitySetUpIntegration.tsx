@@ -27,77 +27,22 @@ function CommunitySetUpIntegration() {
   const obj = FormData();
   const router = useRouter();
   const onConnect = WalletAuth();
-  function discordToken(){
-    // // console.log(window.location.href);
-    // const fragment = new URLSearchParams(window.location.hash.slice(1));
-    // const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    // localStorage.setItem('accessToken', accessToken||'');
-    // fetch('https://discord.com/api/users/@me', {
-    //   headers: {
-    //       authorization: `${tokenType} ${accessToken}`,
-    //   },
-    //   })
-    //   .then(result => result.json())
-    //   .then(response => {
-    //       console.log(response);
-    //       const { username, discriminator, avatar, id} = response;
-    //       let profile={
-    //         username: username,
-    //         discriminator: discriminator,
-    //         avatar: avatar,
-    //         id: id
-    //       }
-    //       localStorage.setItem('profile', JSON.stringify(profile));
-
-    //   })
-    //   .catch(console.error);
-    //   fetch('https://discord.com/api/users/@me/guilds', {
-    //   headers: {
-    //       authorization: `${tokenType} ${accessToken}`,
-    //   },
-    //   })
-    //   .then(result => result.json())
-    //   .then(response => {
-    //       //console.log(response)
-    //       let c=0;
-    //       response.forEach((element: any) => {
-    //         console.log(element.name);
-    //         if(element.name == "Midjourney"){
-    //           c++;
-    //           console.log("found");
-              
-    //         }else{
-    //           console.log("not found");
-             
-    //         }
-    //       });
-    //       if(c>0){
-    //         console.log("found");
-    //         localStorage.setItem('bool_value', 'true');
-    //       }else{
-    //         console.log("not found here");
-    //         localStorage.setItem('bool_value', 'false');
-    //       }
-    //     }).catch(console.error);
-    if (flagDiscord == "hidden") {
-      if (localStorage.getItem("profile")) {
-        
-        setDiscord("visible");
-        return;
-      }else{
-        if(window.location.href.includes("access_token")){
+  async function  discordToken(){
+ 
+  if(window.location.href.includes("access_token")){
     const fragment = new URLSearchParams(window.location.hash.slice(1));
    
     const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
     console.log("access Token:-",accessToken);
-    localStorage.setItem('accessToken', accessToken||'Not Found');
+    
+    // localStorage.setItem('accessToken', accessToken||'Not Found');
     fetch('https://discord.com/api/users/@me', {
       headers: {
           authorization: `${tokenType} ${accessToken}`,
       },
       })
       .then(result => result.json())
-      .then(response => {
+      .then(async(response) => {
           //console.log(response);
           const { username, discriminator, avatar, id,email} = response;
           let profile={
@@ -107,16 +52,14 @@ function CommunitySetUpIntegration() {
             id: id,
             email: email
           }
-          localStorage.setItem('profile', JSON.stringify(profile));
-          if (localStorage.getItem("profile")) {
-        
-            setDiscord("visible");
-          }
-
+          const { data, error } = await supabase.from('community_data').insert([
+            { name: profile.username, email: profile.email,community_name:'Discord',wallet_id:accessToken },
+          ]);
+          console.log(data,error);
+          setDiscord('visible');
       })
       .catch(console.error);
       }
-    }}
   }
 
   useEffect(() => {
@@ -183,20 +126,9 @@ function CommunitySetUpIntegration() {
       console.log(e);
     }
   }
-
+//Simple is to href at call back url
   function handleDiscordClick() {
-
     if (flagDiscord == "hidden") {
-      if (localStorage.getItem("profile")) {
-
-        setDiscord("visible");
-        return;
-      }
-      const redirectUri = encodeURIComponent(
-        "http://localhost:3000/CommunitySetUpIntegration"
-      );
-      //const clientId = "1101935237652557855";
-      //const scope = encodeURIComponent("identify");
       const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-lzpmgo97f-firebond-admin-team.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email`;
       const lauthUrl="https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email"
 
