@@ -138,7 +138,7 @@ const Review = () => {
             <div className="flex justify-center h-[auto]  w-[400px] text-[30px] text-[white] ">
               Pending{" "}
             </div>
-            <div className="my-[20px] flex-col h-[600px] overflow-auto justify-center align-middle text-[30px] text-[white]  ">
+            <div className="my-[20px] flex-col scrollbar h-[600px] overflow-auto justify-center align-middle text-[30px] text-[white]  ">
               {PendingMissionsList}{" "}
             </div>
            
@@ -147,7 +147,7 @@ const Review = () => {
             <div className="flex justify-center h-[auto]  w-[400px] text-[30px] text-[white] ">
               Approved
             </div>
-            <div className="my-[20px] flex-col h-[600px]  overflow-auto justify-center  text-[30px] text-[white] ">
+            <div className="my-[20px] flex-col h-[600px]  overflow-auto scrollbar justify-center  text-[30px] text-[white] ">
               {ApprovedMissionsList}
             </div>
           </div>
