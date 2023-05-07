@@ -1,27 +1,34 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function WelcomeScreen1A() {
   const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/NewDashboard');
+      router.push("/NewDashboard");
     }, 3000); // delay for 3 seconds
 
     return () => clearTimeout(timer);
   }, [router]);
+
   return (
-    <div className="bg-[#161B21] flex flex-col h-screen items-center justify-center">
-      <p className="font-generalsans font-light font-mixed text-6xl leading-normal text-center text-white mt-4 mb-2">
-        Welcome to{" "}
-        <span className="text-[#FE702A] font-generalsans font-normal font-mixed text-6xl leading-normal text-center text-white mt-4 mb-2">
-          firebond
-        </span>
-      </p>
-      <p className="font-generalsans font-extralight text-base md:text-lg lg:text-2xl leading-normal text-center text-[#A6A6A6]">
-        Scale your Web3 Communities 10X Faster.
-      </p>
+    <div className="min-h-screen bg-[#161B21] flex justify-center items-center relative overflow-hidden">
+      <div className="text-center">
+        <p className="font-generalsans font-extralight text-6xl mb-3">
+          Welcome to <span className="text-[#FE702A]">firebond</span>
+        </p>
+        <p className="font-generalsans font-extralight text-[#A6A6A6] text-2xl">
+          Scale your Web3 Communities 10X Faster.
+        </p>
+      </div>
+      <div
+        className="absolute top-[388px] right-[159px] bg-blend-color-dodge mix-blend-color-dodge w-[1193px] h-[1458px]"
+        style={{
+          background:
+            "radial-gradient(58.37% 58.37% at 49.96% 44.14%, #19596A 0%, rgba(38, 38, 38, 0) 100%)",
+        }}
+      ></div>
     </div>
   );
 }

@@ -39,7 +39,7 @@ const cards = [
 
 const NewDashboard = () => {
   return (
-    <div className="min-h-screen bg-[#171C23] flex">
+    <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden">
       <Sidebar />
       <div className="h-full w-full">
         <Header />
