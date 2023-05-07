@@ -2,7 +2,7 @@ import React from "react";
 
 const ShareFeedbackCard = (props: any) => {
   return (
-    <div className="bg-gray-800 absolute w-56 h-270 left-340 top-195 rounded-5 ">
+    <div className="bg-gray-800 absolute w-56 h-270 left-340 top-195 rounded-xl">
       <h1 className="text-xl font-bold mx-3 mb-5 text-white">
         {props.feedback}
       </h1>

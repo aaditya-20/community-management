@@ -11,12 +11,12 @@ const MissionStepsCard = (props:any) => {
         <div className=" bg-[#191F27] text-center rounded-[4px] w-[80px] text-white text-[12px] font-[500] "><p>Step 2</p></div>
         </div>
             <div className='w-full'>
-                <div  className="p-5 m-2 bg-gray font- mb-3 text-white h-auto w-auto  border-2 border-gray-700">
+                <div  className="p-5 m-2 bg-gray mt-[-20px] text-white h-auto w-auto border-2 border-gray-700 ">
                     <h2 className="text-xl font-bold">{props.heading1}</h2>
                     <p className='text-s text-gray-400 h-10'>{props.descp1}</p>
                  </div>
             <div>
-            <div  className="p-5 m-2 bg-gray font- mb-3 text-white h-auto w-auto border-2 border-gray-700">
+            <div  className="p-5 m-2 bg-gray mb-[10px] text-white h-auto w-auto border-2 border-gray-700">
                     <h2 className="text-xl font-bold">{props.heading2}</h2>
                     <p className='text-s text-gray-400 h-10'>{props.descp2} </p>
                  </div>
