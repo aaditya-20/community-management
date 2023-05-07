@@ -55,30 +55,7 @@ export default function MissionDiscord() {
               </li>
             </ol>
           </div>
-          <div className="flex items-center">
-            {/* <input type="file" accept="image/*" className="mb-[10px]" /> */}
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 mt-10 ml-5">
-              Connect On Discord
-            </button>
-          </div>
-
-          <h1 className="text-gray-100 text-2xl mt-5 ml-5">
-            Did you wrote a #introduce_yourself blog in the channel??
-          </h1>
-          <div>
-            <input
-              type="file"
-              accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-              onChange={handleFileSelect}
-              className="relative left-[20px]   text-white font-semibold mt-5 py-2 px-4 rounded-lg transition-colors duration-300"
-            />
-            <button
-              onClick={handleUpload}
-              className="relative top-[60px] left-[-300px] bg-blue-500 hover:bg-blue-600 text-white font-semibold mt-5 py-2 px-4 rounded-lg transition-colors duration-300"
-            >
-              Share Proof
-            </button>
-          </div>
+          
           <div className="absolute top-[200px] left-[1120px]  text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
             <ShareFeedbackCard
               feedback="Discord Mission for Firebond"
