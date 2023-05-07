@@ -10,6 +10,19 @@ import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 
 export default function MissionDiscord() {
+  const title = "Share Your Feedback";
+  const description =`Get a Discord Role and introduce yourself to the community
+GUIDE 📚
+1. Join our discord if you haven't done that yet.
+2. You'll then get a verified role.
+3. Write a message telling us who you are and what your top skills you have!
+4. Post it in the #introduce-yourself channelDo all this and then you'll have access to the Quests that require a role.
+SUBMISSION 📝
+This quest will auto-validate when you claim it.`;
+  const tags = ["onboarding"];
+  const missionSteps = ["join Discord Channel and get verified", "Start a conversation on any discord channel you like containing at least 10 characters"];
+  const reward = 1000;
+  const coinType = 'USDC'
   const [file, setFile] = useState("");
 
   function handleFileSelect(e: any) {
@@ -40,20 +53,14 @@ export default function MissionDiscord() {
             Discord Mission
           </div>
           <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
-            <p>* Get a Discord Role and introduce yourself to the community</p>
-            <p className="mt-0">GUIDE:</p>
-            <ol className="mt-2">
-              <li>Join our discord if you have not done that yet.</li>
-              <li>You will then get a verified role.</li>
-              <li>
-                Write a message telling us who you are and what your top skills
-                you have!.
-              </li>
-              <li>
-                Post it in the #introduce-yourself channelDo all this and then
-                you will have access to the Quests that require a role.
-              </li>
-            </ol>
+           <pre className="overflow-auto no-scrollbar">
+            {description}
+           </pre>
+            <div className="my-[60px]">
+
+              <MissionStepsCard  heading1={"Join our Discord"} descp1={missionSteps[0]} heading2="Start a conversation" descp2={missionSteps[1]}/>
+
+            </div>
           </div>
           
           <div className="absolute top-[200px] left-[1120px]  text-[#ffffff] w-[auto] h-[auto] ml-[20px]">

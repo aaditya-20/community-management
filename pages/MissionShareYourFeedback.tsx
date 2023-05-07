@@ -46,9 +46,9 @@ export default function MissionShareYourFeedback() {
             <div className="mx-[30px] my-[30px]">
               <MissionStepsCard
                 className="mx-[20px]"
-                heading1="Onboard 10 new members.................................................................                      "
+                heading1="Onboard 10 new members "
                 heading2="Submit mission"
-                descp1="Invite new members..........................................................."
+                descp1="Invite new members"
                 descp2="Share the proof of work"
               />
             </div>
