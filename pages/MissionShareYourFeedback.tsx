@@ -10,7 +10,7 @@ export default function MissionShareYourFeedback() {
   const description =
     "Share your feedback about our product on Product Hunt and upload a screenshot.";
   const tags = ["onboarding"];
-  const missionSteps = ["Onboard 10 new Members", "Submit Mission"];
+  const missionSteps = ["Onboard 10 new Members", "Submit Mission","Invite new members","Share the proof of work"];
   const reward = 1000;
   const coinType = 'USDC'
   return (
@@ -23,7 +23,7 @@ export default function MissionShareYourFeedback() {
           <Header />
         </div>
         <div className="">
-          <NavbarMissionOnboarding title={title} description = {description}/>
+          <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
         </div>
         <div className="flex">
           <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
