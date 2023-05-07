@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 const Reccurence = () => {
   const [Recurrence, setReccurence] = useState('')
-
   return (
     <div><h1 className="font-medium text-[16px] mt-6 leading-[22px] text-white mb-[10px]">
     Recurrence
