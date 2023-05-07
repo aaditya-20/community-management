@@ -23,7 +23,7 @@ export default function MissionShareYourFeedback() {
           <Header />
         </div>
         <div className="">
-          <NavbarMissionOnboarding />
+          <NavbarMissionOnboarding title={title} description = {description}/>
         </div>
         <div className="flex">
           <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">

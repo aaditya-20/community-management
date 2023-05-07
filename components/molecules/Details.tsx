@@ -2,11 +2,13 @@ import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
 import React, { useState } from "react";
 
-const Details = () => {
+const Details = (props :any) => {
   const [on, setOn] = useState(false);
   const [conditions, setConditions] = useState([""]);
-  const[description,setDescription] = useState('')
+  const[description,setDescription] = useState(props.description)
   const obj = MissionFormData();
+
+  
 
 
 
@@ -52,7 +54,7 @@ const Details = () => {
         <div className="h-[103px] w-full bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg mb-6">
           <textarea
             className="h-full w-full overflow-hidden text-ellipsis outline-none resize-none pt-[16.21px] px-[18.38px] bg-inherit placeholder:text-[#D0D0D0A6] text-white text-[12px] leading-[16.2px]"
-            placeholder="Add description to let the members know more about your mission"
+            placeholder={"Add description to let the members know more about your mission"}
             value ={description}
             onChange={handleDescription}
             
