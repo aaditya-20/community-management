@@ -15,25 +15,32 @@ import {
   startOfToday,
   startOfWeek,
 } from "date-fns";
-const BasicInfoCard = () => {
+
+const BasicInfoCard = (props:any) => {
   const [on, setOn] = useState(Array(5).fill(false));
   const [amount, setAmount] = useState(0);
   const [selectedDate, changeSelectedDate] = useState("");
-  const[input,setInput] = useState('')
+  const[input,setInput] = useState(props.title)
   const [visibiliy, setVisibility] = useState({
     src: "Icons/visible.svg",
     title: "Public",
   });
   const obj = MissionFormData();
+  
+ 
   obj.title = input
   obj.amount = amount;
   obj.seleted_date = selectedDate;
+  
+  
+
   
   // Calendar implementation
 
   function handleInput(e: any){
     setInput(e.target.value)
   }
+  
 
   
 
@@ -81,7 +88,9 @@ const BasicInfoCard = () => {
       <div className="w-full h-[41px] bg-[#2E363F] rounded-lg overflow-hidden mb-[29px]">
         <input className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
         value = {input}
-        onChange={handleInput}/>
+        onChange={handleInput}
+        placeholder = {props.title}/>
+        
         
       </div>
       <div className="w-full flex justify-between">
