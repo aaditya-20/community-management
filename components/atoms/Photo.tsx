@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-
 const Photo = () => {
   return (
     <div className='w-[106px] h-[42.4px] flex overflow-hidden relative '>
