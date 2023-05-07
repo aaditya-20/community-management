@@ -129,7 +129,7 @@ const BasicInfoCard = () => {
               {visibiliy.title}
             </h1>
             <Image
-              src="Icons/ArrowDown.svg"
+              src="Icons/Arrow_Down.svg"
               alt=""
               height={3.72}
               width={7.45}

@@ -14,6 +14,11 @@ import TextInput from "@/components/atoms/TextInput";
 import FormData from "@/utils/FormData";
 import { supabase } from "@/utils/supabaseClient";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+import Todo from "@/components/molecules/Todo";
+import Priority from "@/components/molecules/Priority";
+import Tags from "@/components/molecules/Tags";
+import Reccurence from "@/components/molecules/Reccurence";
+import BasicInfoCard from "@/components/molecules/BasicInfoCard";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -143,123 +148,8 @@ const MissionTemplateEdit = () => {
               {/* Left Section */}
               <div className="h-full w-full flex justify-center">
                 <div className="h-auto w-auto mt-[28px]  ">
-                  <div className="w-[749px] h-auto bg-[#232B35] rounded-[20px] mb-6">
-                    <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
-                      <h1 className="font-normal text-[20px] leading-[27px] text-white">
-                        Basic information
-                      </h1>
-                    </div>
-                    <div className="h-auto w-full p-6">
-                      <div className="h-auto">
-                        <h1 className="mb-[10px] text-white text-xl">
-                          Mission title
-                        </h1>
-
-                        <TextInput
-                          placeholder=""
-                          label=""
-                          className="relative top-[-25px] left-[154px] w-[426px] h-[41px]"
-                          classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
-                          classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
-                          handleChange2={handleInput}
-                          handleValue={input}
-                        />
-
-                        <div className="w-full flex gap-4">
-                          <button className="h-[37px] w-[113px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
-                            <div className="flex gap-[6.5px]">
-                              <Image
-                                src="Icons/calender.svg"
-                                alt=""
-                                height={13}
-                                width={13}
-                              />
-                              <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px]">
-                                8th April
-                              </h1>
-                            </div>
-                          </button>
-
-                          <button className="h-[37px] w-[124px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
-                            <div className="flex gap-[7px]">
-                              <Image
-                                src="Icons/paper_pin.svg"
-                                alt=""
-                                height={16}
-                                width={16}
-                              />
-                              <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px]">
-                                Banner.png
-                              </h1>
-                            </div>
-                          </button>
-
-                          <button className="h-[37px] w-[124px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
-                            <div className="flex">
-                              <Image
-                                src="Icons/visible.svg"
-                                alt=""
-                                height={20}
-                                width={20}
-                              />
-                              <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px] ml-3 mr-[19.28px]">
-                                Public
-                              </h1>
-                              <Image
-                                src="Icons/Arrow_Down.svg"
-                                alt=""
-                                height={3.72}
-                                width={7.45}
-                              />
-                            </div>
-                          </button>
-
-                          <button className="h-[37px] w-[137px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
-                            <div className="flex items-center justify-center">
-                              <Image
-                                src="Icons/Star.svg"
-                                alt=""
-                                height={17.7}
-                                width={20.22}
-                              />
-                              <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px] ml-[18.26px] mr-[30px]">
-                                100 XP
-                              </h1>
-                              <div>
-                                <Image
-                                  src="Icons/Polygon.svg"
-                                  height={7}
-                                  width={7}
-                                  alt=""
-                                />
-                                <Image
-                                  src="Icons/Polygon.svg"
-                                  height={7}
-                                  width={7}
-                                  alt=""
-                                  className="-rotate-180"
-                                />
-                              </div>
-                            </div>
-                          </button>
-
-                          <button className="h-[37px] w-[133px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
-                            <div className="flex gap-2">
-                              <Image
-                                src="Icons/dollar.svg"
-                                alt=""
-                                height={18.05}
-                                width={20}
-                              />
-                              <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px]">
-                                20 USDC
-                              </h1>
-                            </div>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Basic Info Section */}
+                  <BasicInfoCard/>
 
                   <div className="w-[749px] h-auto bg-[#232B35] rounded-[20px] mb-6">
                     <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
@@ -438,104 +328,16 @@ const MissionTemplateEdit = () => {
               <div className="min-h-screen w-[437px] border-l-[1px] border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
                 <div>
                   {/* Status */}
-                  <h1 className="font-medium text-[16px] leading-[22px] text-white mb-[10px]">
-                    Status
-                  </h1>
-                  <div className="w-[383px] h-[41px] flex justify-between items-center bg-[#232B35] rounded-[8px] pr-3 pl-[23px] ">
-                    <div className="flex gap-[10.25px] justify-center items-center">
-                      <div
-                        className={`w-4 h-4 border-[1px] ml-[] border-white rounded-full cursor-pointer ${
-                          status ? "bg-white" : "bg-inherit"
-                        }`}
-                        onClick={() => {
-                          setStatus(!status);
-                        }}
-                      ></div>
-                      <h1 className="font-normal text-[14px] leading-[19px] text-white">
-                        To Do
-                      </h1>
-                    </div>
-                    <Image
-                      src="Icons/Arrow_Down.svg"
-                      height={4.97}
-                      width={9.83}
-                      alt=""
-                      className="cursor-pointer"
-                    />
-                  </div>
+                  <Todo/>
 
                   {/* Priority */}
-                  <h1 className="font-medium text-[16px] mt-6 leading-[22px] text-white mb-[10px]">
-                    Priority
-                  </h1>
-                  <div className="w-[383px] h-[41px] flex justify-between items-center bg-[#232B35] rounded-[8px] pr-3 pl-[23px] ">
-                    <div className="flex gap-[10.25px] justify-center items-center">
-                      <h1 className="font-normal text-[14px] leading-[19px] text-white">
-                        High
-                      </h1>
-                    </div>
-                    <Image
-                      src="Icons/Arrow_Down.svg"
-                      height={4.97}
-                      width={9.83}
-                      alt=""
-                      className="cursor-pointer"
-                    />
-                  </div>
+                  <Priority/>
 
                   {/* Tags */}
-                  <h1 className="font-medium text-[16px] mt-6 leading-[22px] text-white mb-[10px]">
-                    Tags
-                  </h1>
-                  <div className="w-[383px] h-[41px] flex justify-start items-center bg-[#232B35] rounded-[8px] pr-3 pl-[23px] ">
-                    <div className="flex gap-[6.13px]">
-                      <div className="inline-flex gap-[4.33px] bg-[#363C44] px-[5px] py-[1px] rounded-[2.0348px] justify-center items-center">
-                        <Image
-                          width={11}
-                          height={10}
-                          alt=""
-                          src="Icons/✍️.svg"
-                        />
-                        <h1 className="font-normal text-[10.2174px] text-white font-open-sans">
-                          Writing
-                        </h1>
-                      </div>
-                      <div className="inline-flex gap-[4.33px] bg-[#363C44] px-[5px] py-[1px] rounded-[2.0348px] justify-center items-center">
-                        <Image
-                          width={11}
-                          height={10}
-                          alt=""
-                          src="Icons/📢.svg"
-                        />
-                        <h1 className="font-normal text-[10.2174px] text-white font-open-sans">
-                          Marketing
-                        </h1>
-                      </div>
-                    </div>
-                    <AiOutlinePlusCircle
-                      size={16}
-                      className="ml-[13px] cursor-pointer text-[#757575]"
-                    />
-                  </div>
+                  <Tags/>
 
                   {/* Recurrence */}
-                  <h1 className="font-medium text-[16px] mt-6 leading-[22px] text-white mb-[10px]">
-                    Recurrence
-                  </h1>
-                  <div className="flex gap-[14px]">
-                    <button className="px-[11px] py-[8px] hover:bg-[#232B35] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
-                      Once
-                    </button>
-                    <button className="px-[11px] py-[8px] hover:bg-[#232B35] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
-                      Twice
-                    </button>
-                    <button className="px-[11px] py-[8px] hover:bg-[#232B35] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
-                      Weekly
-                    </button>
-                    <button className="px-[11px] py-[8px] hover:bg-[#232B35] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
-                      Monthly
-                    </button>
-                  </div>
+                  <Reccurence/>
                 </div>
               </div>
             </div>
