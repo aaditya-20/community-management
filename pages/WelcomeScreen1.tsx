@@ -21,12 +21,19 @@ const WelcomePage = () => {
     return () => clearTimeout(timer);
   }, [router]);
   return (
-    <div className="bg-[#161B21] flex flex-col h-screen items-center justify-center">
+    <div className="min-h-screen bg-[#161b21] flex justify-center items-center relative overflow-hidden">
      
-      <p className="font-generalsans font-extralight text-base md:text-lg lg:text-5xl leading-normal text-center text-white">
+      <h1 className="font-generalsans font-light text-6xl text-white">
         
         Hello,{name}
-      </p>
+      </h1>
+      <div
+        className="absolute top-[388px] right-[159px] bg-blend-color-dodge mix-blend-color-dodge w-[1193px] h-[1458px]"
+        style={{
+          background:
+            "radial-gradient(58.37% 58.37% at 49.96% 44.14%, #19596A 0%, rgba(38, 38, 38, 0) 100%)",
+        }}
+      ></div>
     </div>
   );
 };
