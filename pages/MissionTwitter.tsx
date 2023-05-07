@@ -9,7 +9,18 @@ import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 
-export default function MissionTwitter() {
+export default function MissionDiscord() {
+  const title = "Twitter Mission";
+  const description =`Write a tweet about Firebond
+  1.Follow @firebondapp
+  2.Write a thoughtful message about firebond on why we rock! Please note: Writing only Hi/Hello is not acceptable.
+  3.Please send us a screenshot of where you completed this step by following all the instructions. 
+  NOTE: Due to a high number of requests, reviews can take up to 72h.
+  `;
+  const tags = ["onboarding"];
+  const missionSteps = ["Follow us", "Share the proof of work"];
+  const reward = 1000;
+  const coinType = 'USDC'
   const [file, setFile] = useState("");
 
   function handleFileSelect(e: any) {
@@ -17,7 +28,7 @@ export default function MissionTwitter() {
   }
   function handleUpload() {}
   return (
-    <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
+    <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-[1400px] md:grid-cols-[auto,1fr]">
       <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
         <Sidebar />
       </div>
@@ -40,48 +51,19 @@ export default function MissionTwitter() {
             Twitter Mission
           </div>
           <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
-            <p>* Write a Tweet about Firebond</p>
-            <ol className="mt-2 list-decimal list-inside">
-              <li className="mb-2">Follow @firebondapp</li>
-              <li className="mb-2">
-                Write a thoughtful message about firebond on why we rock! Please
-                note: Writing only Hi/Hello is not acceptable
-              </li>
-              <li className="mb-2">
-                Please send us a screenshot of where you completed this step by
-                following all the instructions. NOTE: Due to a high number of
-                requests, reviews can take up to 72h.
-              </li>
-             
-            </ol>
-          </div>
-          <div className="flex items-center">
-            {/* <input type="file" accept="image/*" className="mb-[10px]" /> */}
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 mt-10 ml-5">
-              Follow @Firebond
-            </button>
-          </div>
+           <pre className="overflow-auto no-scrollbar">
+            {description}
+           </pre>
+            <div className="my-[60px]">
 
-          <h1 className="text-gray-100 text-2xl mt-5 ml-5">
-            Did you wrote a thoughtful_message about firebond
-          </h1>
-          <div>
-            <input
-              type="file"
-              accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-              onChange={handleFileSelect}
-              className="relative left-[20px]   text-white font-semibold mt-5 py-2 px-4 rounded-lg transition-colors duration-300"
-            />
-            <button
-              onClick={handleUpload}
-              className="relative top-[60px] left-[-300px] bg-blue-500 hover:bg-blue-600 text-white font-semibold mt-5 py-2 px-4 rounded-lg transition-colors duration-300"
-            >
-              Share Proof
-            </button>
+              <MissionStepsCard  heading1={"Follow our Twitter handle"} descp1={missionSteps[0]} heading2="Submit your work" descp2={missionSteps[1]}/>
+
+            </div>
           </div>
+          
           <div className="absolute top-[200px] left-[1120px]  text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
             <ShareFeedbackCard
-              feedback="Twitter Mission for Firebond"
+              feedback="Discord Mission for Firebond"
               tag={["Writing", "Marketing"]}
               val="2.9"
             />
@@ -91,3 +73,4 @@ export default function MissionTwitter() {
     </div>
   );
 }
+

@@ -10,7 +10,7 @@ import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 
 export default function MissionDiscord() {
-  const title = "Share Your Feedback";
+  const title = "Discord Mission";
   const description =`Get a Discord Role and introduce yourself to the community
 GUIDE 📚
 1. Join our discord if you haven't done that yet.
