@@ -9,17 +9,76 @@ if (typeof window !== "undefined") {
   const jsonData = JSON.parse(storedJsonData ?? "{}");
   if (jsonData != null && jsonData.name) name = jsonData.name;
 }
-
 console.log(name);
+
+const mainMenu = [
+  {
+    src: "Icons/box.svg",
+    size: 24,
+    title: "'s Space",
+    route: "/NewDashboard",
+  },
+  {
+    src: "Icons/bar-line-chart.svg",
+    size: 24,
+    title: "Analytics",
+    route: "/AnalyticsScreen",
+  },
+  {
+    src: "Icons/icons.svg",
+    size: 24,
+    title: "Missions",
+    route: "/MissionMain",
+  },
+  {
+    src: "Icons/members.svg",
+    size: 24,
+    title: " Members",
+    route: "/MemberScreen",
+  },
+  {
+    src: "Icons/misson.svg",
+    size: 24,
+    title: "Leaderboard",
+    route: "/LeaderBoardScreen",
+  },
+  {
+    src: "Icons/Fire_Scrolls.svg",
+    size: 24,
+    title: "Fire Scrolls",
+    route: "/MissionReview",
+  },
+];
+
+const secondMenu = [
+  {
+    src: "Icons/help_center.svg",
+    size: 24,
+    title: "Help Centre",
+    route: "/HelpCentre",
+  },
+  {
+    src: "Icons/setting.svg",
+    size: 24,
+    title: "Settings",
+    route: "/AdminSetting",
+  },
+  {
+    src: "Icons/shining-star.svg",
+    size: 24,
+    title: "Review",
+    route: "/Review",
+  },
+];
 const Sidebar = () => {
   const [hideMenu, setHideMenu] = useState(false);
   return (
     <>
       {hideMenu ? (
-        <div className="max-w-[98px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] transition duration-500 ease-in-out">
+        <div className="max-w-[98px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] ">
           <div className="px-5">
             {/* Navbar */}
-            <nav className="flex w-full items-center justify-center mt-[40px] mb-[54px]">
+            <nav className="flex w-full items-center justify-center mt-[40px] mb-[68px]">
               <button
                 onClick={() => {
                   setHideMenu(!hideMenu);
@@ -46,67 +105,49 @@ const Sidebar = () => {
 
             {/* Menu */}
             <ul className="text-center">
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image width={24} height={24} src="Icons/box.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  src="Icons/bar-line-chart.svg"
-                  alt="not found"
-                  height={24}
-                  width={24}
-                />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image width={24} height={24} src="Icons/icons.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image height={24} width={24} src="Icons/members.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image height={24} width={24} src="Icons/misson.svg" alt="" />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/Fire_Scrolls.svg"
-                  alt="not found"
-                />
-              </li>
+              {mainMenu.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700"
+                    onClick={() => router.push(item.route)}
+                  >
+                    <Image
+                      width={item.size}
+                      height={item.size}
+                      src={item.src}
+                      alt=""
+                    />
+                  </li>
+                );
+              })}
             </ul>
 
             <hr className="text-[#353B43] border-[1px] mb-[29px] mt-[15px] border-[#353B43]" />
 
             {/* Second menu */}
             <ul className="text-center">
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/help_center.svg"
-                  alt="not found"
-                />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/setting.svg"
-                  alt="not found"
-                />
-              </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
-                <AiOutlineEye
-                size={34}
-                color="white"
-                />
-              </li>
+              {secondMenu.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700"
+                    onClick={() => router.push(item.route)}
+                  >
+                    <Image
+                      width={item.size}
+                      height={item.size}
+                      src={item.src}
+                      alt="not found"
+                    />
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
       ) : (
-        <div className="max-w-[266px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C23] transition duration-500 ease-in-out">
+        <div className="max-w-[266px] min-h-screen border-r-[1px] border-[#353B43] bg-[#171C">
           <div className="px-5">
             <nav className="flex justify-between mb-[54px] mt-[18px]">
               <Image
@@ -140,123 +181,51 @@ const Sidebar = () => {
             </nav>
             {/* Menu */}
             <ul>
-              <li className="w-[226px] h-[57px] pl-[14px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image width={24} height={24} src="Icons/box.svg" alt="" />
-                <span
-                  onClick={() => router.push("/NewDashboard")}
-                  className="text-white font-semibold text-base "
-                >
-                  {name}&apos;s Space
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  height={24}
-                  width={24}
-                  src="Icons/bar-line-chart.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/AnalyticsScreen")}
-                  className="text-white font-semibold text-base"
-                >
-                  Analytics
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image width={24} height={24} src="Icons/icons.svg" alt="" />
-                <span
-                  onClick={() => router.push("/MissionMain")}
-                  className="text-white font-semibold text-base"
-                >
-                  Missions
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  height={24}
-                  width={24}
-                  src="Icons/members.svg"
-                  alt=""
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/MemberScreen")}
-                  className="text-white font-semibold text-base"
-                >
-                  Members
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px]  pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image height={24} width={24} src="Icons/misson.svg" alt="" />
-                <span
-                  onClick={() => router.push("/LeaderBoardScreen")}
-                  className="text-white font-semibold text-base"
-                >
-                  Leaderboard
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/Fire_Scrolls.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/MissionReview")}
-                  className="text-white font-semibold text-base"
-                >
-                  Fire Scrolls
-                </span>
-              </li>
+              {mainMenu.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="w-[226px] h-[57px] pl-[14px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700"
+                    onClick={() => router.push(item.route)}
+                  >
+                    <Image
+                      width={item.size}
+                      height={item.size}
+                      src={item.src}
+                      alt=""
+                    />
+                    <span className="text-white font-semibold text-base ">
+                      {index === 0 ? name + item.title : item.title}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
 
             <hr className="text-[#353B43] border-[1px] mb-[29px] mt-[15px] border-[#353B43]" />
 
             {/* Second menu */}
             <ul>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/help_center.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/HelpCentre")}
-                  className="text-white font-semibold text-base"
-                >
-                  Help Centre
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <Image
-                  width={24}
-                  height={24}
-                  src="Icons/setting.svg"
-                  alt="not found"
-                  className="ml-[14px]"
-                />
-                <span
-                  onClick={() => router.push("/AdminSetting")}
-                  className="text-white font-semibold text-base"
-                >
-                  Settings
-                </span>
-              </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
-                <AiOutlineEye size={34} color="white" className="ml-[11px]" />
-                <span
-                  onClick={() => router.push("/Review")}
-                  className="text-white font-semibold text-base"
-                >
-                  Review
-                </span>
-              </li>
+              {secondMenu.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700"
+                    onClick={() => router.push(item.route)}
+                  >
+                    <Image
+                      width={item.size}
+                      height={item.size}
+                      src={item.src}
+                      alt="not found"
+                      className="ml-[14px]"
+                    />
+                    <span className="text-white font-semibold text-base">
+                      {item.title}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
