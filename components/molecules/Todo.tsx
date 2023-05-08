@@ -1,5 +1,9 @@
+
+import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
 import React, { useState } from "react";
+
+
 
 const Todo = () => {
   const [on, setOn] = useState(false);
@@ -7,6 +11,10 @@ const Todo = () => {
     action: "To Do",
     src: "Icons/circle.svg",
   });
+  const obj = MissionFormData();
+
+  obj.status = status.action;
+
 
   return (
     <div>

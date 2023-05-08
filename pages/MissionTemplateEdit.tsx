@@ -53,10 +53,9 @@ const MissionTemplateEdit = () => {
     wallet_id = jsonData.wallet_id;
     console.log(jsonData);
   }
-  
+
   const title = obj2.title;
   const description = obj2.description;
-
 
   // random string generator
   const generateRandom = () =>
@@ -79,16 +78,10 @@ const MissionTemplateEdit = () => {
       }
       var mission = rowData.missions;
       if (rowData.missions == null)
-        mission = [
-          {
-            title: `${input}`,
-          },
-        ];
+        mission = [obj];
       else {
         mission.push([
-          {
-            title: `${input}`,
-          },
+          obj
         ]);
       }
       // Update the row with the new missions
@@ -124,8 +117,6 @@ const MissionTemplateEdit = () => {
     setInput4(e.target.value);
   }
 
-
-  
   // const mission = retrieve(database);
 
   return (

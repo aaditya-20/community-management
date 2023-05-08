@@ -6,7 +6,11 @@ let formData = {
   filename: "",
   wallet_id: " ",
   visibility : '',
-  submission_type : ''
+  submission_type : '',
+  status : '',
+  priority : '',
+  tags : [{}],
+  recurrence : ''
 };
 
 export default function MissionFormData() {
