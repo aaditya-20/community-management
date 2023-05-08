@@ -23,7 +23,7 @@ Type of article:
 SUBMISSION 📝
 Upload your piece of art on Google Drive (make it public!)`;
   const tags = ["onboarding"];
-  const missionSteps = ["Write a blog", "Share the proof of work"];
+  const missionSteps = ["Write a kickass blog", "Submit your work","Write a blog","Share the proof of work"];
   const reward = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
@@ -41,7 +41,7 @@ Upload your piece of art on Google Drive (make it public!)`;
         <Header />
       </div>
       <div className="">
-        <NavbarMissionOnboarding />
+      <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
       </div>
       <div className="flex">
         <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
