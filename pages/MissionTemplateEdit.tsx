@@ -45,7 +45,6 @@ const MissionTemplateEdit = () => {
   const [input3, setInput3] = useState(obj2.heading2);
   const [input4, setInput4] = useState(obj2.description2);
 
-  const email = "ayush@firebond.xyz";
   var wallet_id = "";
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
