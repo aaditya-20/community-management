@@ -10,14 +10,14 @@ const Sidebar = () => {
   const [name,setName] = useState("");
 
 
-console.log(name);
+
   useEffect(()=>{
     if (typeof window !== "undefined") {
       const storedJsonData = localStorage.getItem("data");
       const jsonData = JSON.parse(storedJsonData ?? "{}");
       if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
     }
-  },[])
+  },[name])
  
   const [hideMenu, setHideMenu] = useState(false);
   return (

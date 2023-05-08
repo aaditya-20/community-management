@@ -8,7 +8,7 @@ let data = 0;
 declare var window: any;
 
 const Header = () => {
-  const [name,setName] = useState("");
+  const [name,setName] = useState("user");
 
     useEffect(()=>{
       if (typeof window !== "undefined") {
@@ -16,7 +16,7 @@ const Header = () => {
         const jsonData = JSON.parse(storedJsonData ?? "{}");
         if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
       }
-    },[])
+    },[name])
   const onWalletLink = linkWallet();
   return (
     <div className="relative box-border box-sizing border-box w-[auto] h-[70px] left-[0px] top-0  bg-[#171C23] border-b-[1px] border-[#353B43]">

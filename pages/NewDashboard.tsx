@@ -6,16 +6,9 @@ import AnalyticsCardMainDashboard from "../components/molecules/AnalyticsCardMai
 import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJoinedCardDashboardScreen";
 import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin"; 
-
+import { useEffect,useState } from "react";
 declare var window: any;
-var name = "user";
-if (typeof window !== "undefined") {
-  const storedJsonData = localStorage.getItem("data");
-  // console.log(storedJsonData)
-  const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if (jsonData.name) name = jsonData.name;
-  console.log("->", jsonData);
-}
+
 const cards = [
   {
     key: 1,
@@ -38,6 +31,15 @@ const cards = [
 ];
 
 const NewDashboard = () => {
+  const [name,setName] = useState("user");
+
+    useEffect(()=>{
+      if (typeof window !== "undefined") {
+        const storedJsonData = localStorage.getItem("data");
+        const jsonData = JSON.parse(storedJsonData ?? "{}");
+        if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
+      }
+    },[name])
   return (
     <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden">
       <Sidebar />
