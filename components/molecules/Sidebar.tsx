@@ -1,17 +1,24 @@
 import Image from "next/image";
 import router from "next/router";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
+import { useEffect } from "react";
 declare var window: any;
-var name = "user";
-if (typeof window !== "undefined") {
-  const storedJsonData = localStorage.getItem("data");
-  const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if (jsonData != null && jsonData.name) name = jsonData.name;
-}
+
+const Sidebar = () => {
+  // var name = "user";
+  const [name,setName] = useState("");
+
 
 console.log(name);
-const Sidebar = () => {
+  useEffect(()=>{
+    if (typeof window !== "undefined") {
+      const storedJsonData = localStorage.getItem("data");
+      const jsonData = JSON.parse(storedJsonData ?? "{}");
+      if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
+    }
+  },[])
+ 
   const [hideMenu, setHideMenu] = useState(false);
   return (
     <>
@@ -46,10 +53,10 @@ const Sidebar = () => {
 
             {/* Menu */}
             <ul className="text-center">
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/NewDashboard")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/box.svg" alt="" />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/AnalyticsScreen")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image
                   src="Icons/bar-line-chart.svg"
                   alt="not found"
@@ -57,16 +64,16 @@ const Sidebar = () => {
                   width={24}
                 />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/MissionMain")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/MemberScreen")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image height={24} width={24} src="Icons/members.svg" alt="" />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/LeaderBoardScreen")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image height={24} width={24} src="Icons/misson.svg" alt="" />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/MissionReview")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image
                   width={24}
                   height={24}
@@ -80,7 +87,7 @@ const Sidebar = () => {
 
             {/* Second menu */}
             <ul className="text-center">
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/HelpCentre")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image
                   width={24}
                   height={24}
@@ -88,7 +95,7 @@ const Sidebar = () => {
                   alt="not found"
                 />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/AdminSetting")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <Image
                   width={24}
                   height={24}
@@ -96,7 +103,7 @@ const Sidebar = () => {
                   alt="not found"
                 />
               </li>
-              <li className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/Review")} className="h-[57px] w-[53px]  cursor-pointer rounded-[10px] flex justify-center items-center hover:bg-gray-700">
                 <AiOutlineEye
                 size={34}
                 color="white"
@@ -140,16 +147,16 @@ const Sidebar = () => {
             </nav>
             {/* Menu */}
             <ul>
-              <li className="w-[226px] h-[57px] pl-[14px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/NewDashboard")} className="w-[226px] h-[57px] pl-[14px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/box.svg" alt="" />
                 <span
-                  onClick={() => router.push("/NewDashboard")}
+                  
                   className="text-white font-semibold text-base "
                 >
                   {name}&apos;s Space
                 </span>
               </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/AnalyticsScreen")} className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image
                   height={24}
                   width={24}
@@ -158,22 +165,22 @@ const Sidebar = () => {
                   className="ml-[14px]"
                 />
                 <span
-                  onClick={() => router.push("/AnalyticsScreen")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Analytics
                 </span>
               </li>
-              <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/MissionMain")} className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
                 <span
-                  onClick={() => router.push("/MissionMain")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Missions
                 </span>
               </li>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/MemberScreen")} className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image
                   height={24}
                   width={24}
@@ -182,22 +189,22 @@ const Sidebar = () => {
                   className="ml-[14px]"
                 />
                 <span
-                  onClick={() => router.push("/MemberScreen")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Members
                 </span>
               </li>
-              <li className="w-[226px] h-[57px]  pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/LeaderBoardScreen")} className="w-[226px] h-[57px]  pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image height={24} width={24} src="Icons/misson.svg" alt="" />
                 <span
-                  onClick={() => router.push("/LeaderBoardScreen")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Leaderboard
                 </span>
               </li>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/MissionReview")} className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image
                   width={24}
                   height={24}
@@ -206,7 +213,7 @@ const Sidebar = () => {
                   className="ml-[14px]"
                 />
                 <span
-                  onClick={() => router.push("/MissionReview")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Fire Scrolls
@@ -218,7 +225,7 @@ const Sidebar = () => {
 
             {/* Second menu */}
             <ul>
-              <li className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/HelpCentre")} className="w-[226px] h-[57px]  cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image
                   width={24}
                   height={24}
@@ -227,13 +234,13 @@ const Sidebar = () => {
                   className="ml-[14px]"
                 />
                 <span
-                  onClick={() => router.push("/HelpCentre")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Help Centre
                 </span>
               </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/AdminSetting")} className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image
                   width={24}
                   height={24}
@@ -242,16 +249,16 @@ const Sidebar = () => {
                   className="ml-[14px]"
                 />
                 <span
-                  onClick={() => router.push("/AdminSetting")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Settings
                 </span>
               </li>
-              <li className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
+              <li onClick={() => router.push("/Review")} className="w-[226px] h-[57px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <AiOutlineEye size={34} color="white" className="ml-[11px]" />
                 <span
-                  onClick={() => router.push("/Review")}
+                  
                   className="text-white font-semibold text-base"
                 >
                   Review

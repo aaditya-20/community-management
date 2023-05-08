@@ -60,10 +60,10 @@ export default function FirstPage() {
             Log in
           </button>
         </div>
-        <div className="text-white flex h-screen justify-center flex-col w-full text-[100px] text-center leading-[1] top-[19vh]  ">
-          <h1>
-            SCALE WEB3 COMMUNITIES<span className="text-[red]">10X <br/>FASTER</span>
-          </h1>
+        <div className="text-white flex h-screen justify-center flex-col w-full text-[100px] text-center leading-[1]   ">
+          <div>
+            SCALE WEB3<br/> COMMUNITIES<span className="text-[red]">10X <br/>FASTER</span>
+          </div>
           <div className="text-white text-[30px] m-[20px] text-center leading-[1] ">
             Helping web3 communities Win through data and automation
         </div>
