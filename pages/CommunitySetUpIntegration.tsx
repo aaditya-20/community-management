@@ -18,6 +18,7 @@ import FormData from "@/utils/FormData";
 import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import AlreadyAdminPopup from "./AlreadyAdminPopup";
+import InstallMetamaskPopup from "./InstallMetamaskPopup";
 function CommunitySetUpIntegration() {
   const [flagDiscord, setDiscord] = useState("hidden");
   const [flagTwitter, setTwitter] = useState("hidden");
@@ -89,7 +90,8 @@ function CommunitySetUpIntegration() {
       }
     } else {
       /* MetaMask is not installed */
-      console.log("Please install MetaMask");
+      console.log("Please install my MetaMask");
+      Metamask();
     }
   };
 
@@ -113,7 +115,8 @@ function CommunitySetUpIntegration() {
       }
     } else {
       /* MetaMask is not installed */
-      console.log("Please install MetaMask");
+      console.log("Please install my  MetaMask");
+      Metamask();
     }
   };
 
@@ -172,8 +175,24 @@ function CommunitySetUpIntegration() {
   function AlreadyAdmin() {
     setOpenAdmin(!OpenAlreadyAdminPopup);
   }
+
+  const [InstallMeta, setMetamask] = useState(false);
+  function Metamask() {
+    setMetamask(!InstallMeta);
+  }
   return (
     <>
+      <Modal
+        onClose={() => {
+          setMetamask(!InstallMeta);
+        }}
+        open={InstallMeta}
+        style={{}}
+      >
+        <div>
+          <InstallMetamaskPopup />
+        </div>
+      </Modal>
       <Modal
         onClose={() => {
           setOpenAdmin(!OpenAlreadyAdminPopup);

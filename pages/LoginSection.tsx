@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import NoAccountPopup from "./NoAccountPopup";
+import InstallMetamaskPopup from "./InstallMetamaskPopup";
 
 const LoginSection = () => {
   const [walletAddress, setWalletAddress] = useState("");
@@ -48,7 +49,8 @@ const LoginSection = () => {
       }
     } else {
       /* MetaMask is not installed */
-      console.log("Please install MetaMask");
+      console.log("Please install my MetaMask");
+      Metamask();
     }
   };
 
@@ -57,8 +59,23 @@ const LoginSection = () => {
   function handleLoginNoAccountClick() {
     setNoAccount(!NoAccount);
   }
+  const [InstallMeta, setMetamask] = useState(false);
+  function Metamask() {
+    setMetamask(!InstallMeta);
+  }
   return (
     <>
+      <Modal
+        onClose={() => {
+          setMetamask(!InstallMeta);
+        }}
+        open={InstallMeta}
+        style={{}}
+      >
+        <div>
+          <InstallMetamaskPopup />
+        </div>
+      </Modal>
       <Modal
         onClose={() => {
           setNoAccount(!NoAccount);
