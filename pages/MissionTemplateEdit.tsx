@@ -19,25 +19,32 @@ import Priority from "@/components/molecules/Priority";
 import Tags from "@/components/molecules/Tags";
 import Reccurence from "@/components/molecules/Reccurence";
 import BasicInfoCard from "@/components/molecules/BasicInfoCard";
+import TextArea from "@/components/atoms/TextArea";
+import Details from "@/components/molecules/Details";
+import Details2 from "@/components/molecules/Details2";
+import EditMission from "@/utils/EditMission";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
   const storedJsonData = localStorage.getItem("data");
   // console.log(storedJsonData)
   const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if(jsonData.name)
-   name = jsonData.name;
-   
-  console.log("->",jsonData);
-  
+  if (jsonData.name) name = jsonData.name;
+
+  console.log("->", jsonData);
 }
 const MissionTemplateEdit = () => {
- 
   const obj = FormData();
+  const obj2 = EditMission();
   const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
   const [MissionId, setMissionId] = useState("");
   const [input, setInput] = useState("");
+  const [input1, setInput1] = useState(obj2.heading1);
+  const [input2, setInput2] = useState(obj2.description1);
+  const [input3, setInput3] = useState(obj2.heading2);
+  const [input4, setInput4] = useState(obj2.description2);
+
   const email = "ayush@firebond.xyz";
   var wallet_id = "";
   if (typeof window !== "undefined") {
@@ -48,11 +55,16 @@ const MissionTemplateEdit = () => {
     console.log(jsonData);
   }
   
+  const title = obj2.title;
+  const description = obj2.description;
+
+
   // random string generator
-  const generateRandom = () => Math.random().toString( 36 ).substring( 2, 15 ) + Math.random().toString( 23 ).substring( 2, 5 );
+  const generateRandom = () =>
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(23).substring(2, 5);
 
   async function onCreateClick() {
-    
     setMissionId(generateRandom());
     setOpenMission(!OpenMission);
     try {
@@ -74,12 +86,12 @@ const MissionTemplateEdit = () => {
           },
         ];
       else {
-      mission.push([
-        {
-          title: `${input}`,
-        },
-      ]);
-    }
+        mission.push([
+          {
+            title: `${input}`,
+          },
+        ]);
+      }
       // Update the row with the new missions
       const { data, error: updateError } = await supabase
         .from("community_data")
@@ -100,6 +112,21 @@ const MissionTemplateEdit = () => {
   function handleInput(e: any) {
     setInput(e.target.value);
   }
+  function handleInput1(e: any) {
+    setInput1(e.target.value);
+  }
+  function handleInput2(e: any) {
+    setInput2(e.target.value);
+  }
+  function handleInput3(e: any) {
+    setInput3(e.target.value);
+  }
+  function handleInput4(e: any) {
+    setInput4(e.target.value);
+  }
+
+
+  
   // const mission = retrieve(database);
 
   return (
@@ -111,7 +138,12 @@ const MissionTemplateEdit = () => {
         open={OpenMission}
         style={{}}
       >
-        <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url={`https://firebond.com/${name}/${MissionId}`} forWhichComponent="mission"/></div>
+        <div className="absolute m-[auto] top-[30vh] left-[40vw]">
+          <CopyLinkPopUpFormBuilder
+            url={`https://firebond.com/${name}/${MissionId}`}
+            forWhichComponent="mission"
+          />
+        </div>
       </Modal>
 
       <div className="min-h-screen  bg-[#171C23]">
@@ -149,7 +181,7 @@ const MissionTemplateEdit = () => {
               <div className="h-full w-full flex justify-center">
                 <div className="h-auto w-auto mt-[28px]  ">
                   {/* Basic Info Section */}
-                  <BasicInfoCard/>
+                  <BasicInfoCard title={title} />
 
                   <div className="w-[749px] h-auto bg-[#232B35] rounded-[20px] mb-6">
                     <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
@@ -184,54 +216,11 @@ const MissionTemplateEdit = () => {
                     </div>
                   </div>
 
-                  <div className="w-[749px] h-auto bg-[#232B35] rounded-[20px] mb-6">
-                    <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
-                      <h1 className="font-normal text-[20px] leading-[27px] text-white">
-                        Details
-                      </h1>
-                    </div>
+                  <div className="w-[749px] h-auto  bg-[#232B35] rounded-[20px] mb-6">
+                    <div className="h-[72px] border-b-[0.5px] border-[#474C52] pl-6"></div>
                     <div className="h-auto w-full p-6">
-                      <div className="h-auto">
-                        <h1 className="font-medium text-[16px] leading-[21.6px] text-white mb-3">
-                          Description
-                        </h1>
-                        <div className="bg-[#2E363F] rounded-[8px] py-[33px] px-[18px] mb-[68px]">
-                          <h1 className="font-semibold text-2xl capitalize text-white mb-5">
-                            Onboard 10 New Community Members
-                          </h1>
-                          <p className="w-[658px] font-medium text-[16px] leading-[21.6px] text-[#D9D9D9D9]">
-                            This bounty is for onboarding 10 new people into
-                            Firebond Discord community. You’d do that by
-                            generating a new invite link (we’re not counting
-                            past invitations) from our Discord and sharing it
-                            with people who are genuinely mission aligned.
-                          </p>
-                          <p className="w-[635px] font-medium text-[16px] leading-[21.6px] text-[#D9D9D9D9]">
-                            <ol>
-                              <li>
-                                No prize if it looks like you’re just gaming the
-                                system by inviting random people who don’t care
-                                about Próspera’s mission. So be thoughtful about
-                                who you invite.
-                              </li>
-                              <li>
-                                When they arrive they should introduce
-                                themselves so we understand their story. This
-                                also helps us know they’re not just friends
-                                helping someone score a quick bounty.
-                              </li>
-                              <li>
-                                When you reach 10 people, submit your claim and
-                                we’ll review.
-                              </li>
-                            </ol>
-                          </p>
-                          <p className="w-[611px] font-medium text-[16px] leading-[21.6px] text-[#D9D9D9D9]">
-                            For those who recruit the right people and help us
-                            build out our community with high quality
-                            participants, this bounty can extend beyond 20.
-                          </p>
-                        </div>
+                      <div className="h-auto relative top-[-97px] left-[-20px]">
+                        <Details2 description={description} />
 
                         {/* Mission Steps Section */}
                         <h1 className="mb-[29px]">Mission steps</h1>
@@ -253,10 +242,15 @@ const MissionTemplateEdit = () => {
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Heading
                               </h1>
-                              <div className="w-[578px] h-[41px] pl-[18.25px] flex items-center  bg-[#2E363F] rounded-[8px]">
-                                <h1 className="text-white font-medium text-xs">
-                                  Onboard 10 new members
-                                </h1>
+                              <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
+                                <div className="w-full h-[41px] bg-[#2E363F] ">
+                                  <input
+                                    className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
+                                    value={input1}
+                                    onChange={handleInput1}
+                                    placeholder=""
+                                  />
+                                </div>
                               </div>
                             </div>
 
@@ -264,10 +258,15 @@ const MissionTemplateEdit = () => {
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Sub heading
                               </h1>
-                              <div className="w-[578px] h-[41px] pl-[18.25px] flex items-center  bg-[#2E363F] rounded-[8px]">
-                                <h1 className="text-white font-medium text-xs">
-                                  Invite new members
-                                </h1>
+                              <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
+                                <div className="w-full h-[41px] bg-[#2E363F] ">
+                                  <input
+                                    className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
+                                    value={input2}
+                                    onChange={handleInput2}
+                                    placeholder=""
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -291,10 +290,15 @@ const MissionTemplateEdit = () => {
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Heading
                               </h1>
-                              <div className="w-[578px] h-[41px] pl-[18.25px] flex items-center  bg-[#2E363F] rounded-[8px]">
-                                <h1 className="text-white font-medium text-xs">
-                                  Onboard 10 new members
-                                </h1>
+                              <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
+                                <div className="w-full h-[41px] bg-[#2E363F] ">
+                                  <input
+                                    className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
+                                    value={input3}
+                                    onChange={handleInput3}
+                                    placeholder=""
+                                  />
+                                </div>
                               </div>
                             </div>
 
@@ -302,10 +306,15 @@ const MissionTemplateEdit = () => {
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 sub Heading
                               </h1>
-                              <div className="w-[578px] h-[41px] pl-[18.25px] flex items-center  bg-[#2E363F] rounded-[8px]">
-                                <h1 className="text-white font-medium text-xs">
-                                  Share the proof of work
-                                </h1>
+                              <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
+                                <div className="w-full h-[41px] bg-[#2E363F] ">
+                                  <input
+                                    className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
+                                    value={input4}
+                                    onChange={handleInput4}
+                                    placeholder=""
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -328,16 +337,16 @@ const MissionTemplateEdit = () => {
               <div className="min-h-screen w-[437px] border-l-[1px] border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
                 <div>
                   {/* Status */}
-                  <Todo/>
+                  <Todo />
 
                   {/* Priority */}
-                  <Priority/>
+                  <Priority />
 
                   {/* Tags */}
-                  <Tags/>
+                  <Tags />
 
                   {/* Recurrence */}
-                  <Reccurence/>
+                  <Reccurence />
                 </div>
               </div>
             </div>

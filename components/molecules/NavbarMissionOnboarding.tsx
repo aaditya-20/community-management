@@ -7,7 +7,12 @@ const NavbarMissionOnboarding = (props : any) => {
   function handleEdit(){
     obj2.title = props.title;
     obj2.description = props.description;
-    router.push('/MissionCreationFormPage')
+    obj2.heading1 = props.heading1;
+    obj2.heading2 = props.heading2;
+    obj2.description1 = props.subheading1;
+    obj2.description2 = props.subheading2;
+
+    router.push('/MissionTemplateEdit')
     
   }
   return (
