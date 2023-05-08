@@ -1,9 +1,17 @@
+import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const Tags = () => {
   const [Tags, setTags] = useState([{ src: "Icons/✍️.svg", title: "Writing" }, {src:"Icons/📢.svg",title:"Marketing"}]);
+  const obj = MissionFormData();
+
+  obj.tags = Tags;
+
+
+
+ 
 
   const handleClick = () => {
     const newTag = prompt("Enter a new tag:");

@@ -1,9 +1,14 @@
+import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
 import React, { useState } from "react";
 
 const Priority = () => {
   const [on, setOn] = useState(false);
   const [status, setStatus] = useState("High");
+
+  const obj = MissionFormData();
+
+  obj.priority = status;
 
   return (
     <div>
