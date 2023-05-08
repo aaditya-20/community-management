@@ -2,16 +2,21 @@ import ShowNotifications from "./ShowNotification";
 import React from "react";
 import linkWallet from "@/utils/authentication/linkWallet";
 import router from "next/router";
+import { useState,useEffect } from "react";
 let data = 0;
 
 declare var window: any;
-var name = "user";
-if (typeof window !== "undefined") {
-  const storedJsonData = localStorage.getItem("data");
-  const jsonData = JSON.parse(storedJsonData ?? "{}");
-  if (jsonData != null && jsonData.name) name = jsonData.name;
-}
+
 const Header = () => {
+  const [name,setName] = useState("user");
+
+    useEffect(()=>{
+      if (typeof window !== "undefined") {
+        const storedJsonData = localStorage.getItem("data");
+        const jsonData = JSON.parse(storedJsonData ?? "{}");
+        if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
+      }
+    },[name])
   const onWalletLink = linkWallet();
   return (
     <div className="relative box-border box-sizing border-box w-[auto] h-[70px] left-[0px] top-0  bg-[#171C23] border-b-[1px] border-[#353B43]">

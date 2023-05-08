@@ -1,6 +1,6 @@
 import Image from "next/image";
 import router from "next/router";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 declare var window: any;
 var name = "user";
@@ -71,6 +71,17 @@ const secondMenu = [
   },
 ];
 const Sidebar = () => {
+  const [name,setName] = useState("");
+
+
+
+  useEffect(()=>{
+    if (typeof window !== "undefined") {
+      const storedJsonData = localStorage.getItem("data");
+      const jsonData = JSON.parse(storedJsonData ?? "{}");
+      if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
+    }
+  },[name])
   const [hideMenu, setHideMenu] = useState(false);
   return (
     <>
