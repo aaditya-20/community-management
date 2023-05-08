@@ -5,8 +5,8 @@ import Mission from "../components/molecules/MissionCard";
 import AnalyticsCardMainDashboard from "../components/molecules/AnalyticsCardMainDashboard";
 import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJoinedCardDashboardScreen";
 import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
-import RouteGuardAdmin from "@/utils/RouteGuardAdmin"; 
-import { useEffect,useState } from "react";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+import { useEffect, useState } from "react";
 declare var window: any;
 
 const cards = [
@@ -15,31 +15,34 @@ const cards = [
     title: "Get to know the platform",
     description: "See what you will be able to do with Platform",
     buttonText: "Play Video",
+    onclick: "",
   },
   {
     key: 2,
     title: "Create a mission",
     description: "Create a bounty to earn XP.",
     buttonText: "Create Mission",
+    onclick: "/MissionCreationFormPage",
   },
   {
     key: 3,
     title: "Create a platform",
     description: "Create a form to earn XP",
     buttonText: "Create form",
+    onclick: "",
   },
 ];
 
 const NewDashboard = () => {
-  const [name,setName] = useState("user");
+  const [name, setName] = useState("user");
 
-    useEffect(()=>{
-      if (typeof window !== "undefined") {
-        const storedJsonData = localStorage.getItem("data");
-        const jsonData = JSON.parse(storedJsonData ?? "{}");
-        if (jsonData != null && jsonData.name) setName(jsonData.name)  ;
-      }
-    },[name])
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedJsonData = localStorage.getItem("data");
+      const jsonData = JSON.parse(storedJsonData ?? "{}");
+      if (jsonData != null && jsonData.name) setName(jsonData.name);
+    }
+  }, [name]);
   return (
     <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden">
       <Sidebar />
@@ -93,6 +96,7 @@ const NewDashboard = () => {
                     title={card.title}
                     label={card.description}
                     buttonText={card.buttonText}
+                    handleClick={card.onclick}
                   />
                 </div>
               );
