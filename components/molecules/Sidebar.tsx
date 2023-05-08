@@ -9,7 +9,6 @@ if (typeof window !== "undefined") {
   const jsonData = JSON.parse(storedJsonData ?? "{}");
   if (jsonData != null && jsonData.name) name = jsonData.name;
 }
-
 console.log(name);
 
 const mainMenu = [
