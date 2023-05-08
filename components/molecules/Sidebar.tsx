@@ -6,7 +6,7 @@ import { useEffect } from "react";
 declare var window: any;
 
 const Sidebar = () => {
-  // var name = "user";
+  
   const [name,setName] = useState("");
 
 
