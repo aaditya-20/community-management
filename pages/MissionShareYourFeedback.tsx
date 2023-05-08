@@ -26,7 +26,7 @@ export default function MissionShareYourFeedback() {
           <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
         </div>
         <div className="flex">
-          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
+          <div className="text-[#ffffff] ml-[20px] mb-[550px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
             <Image
               src="/../public/Icons/MissionPageBanner.png"
               width={800}
