@@ -23,12 +23,14 @@ Type of article:
 SUBMISSION 📝
 Upload your piece of art on Google Drive (make it public!)`;
   const tags = ["onboarding"];
+
   const missionSteps = [
     " Write a kickass blog",
     "Write a blog",
     "Submit your work",
     "Share the proof of work",
   ];
+
   const reward = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
