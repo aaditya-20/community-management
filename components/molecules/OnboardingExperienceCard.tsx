@@ -1,3 +1,5 @@
+import router from "next/router";
+
 const OnboardingExperienceCard = (props: any) => {
   return (
     <div
@@ -13,7 +15,7 @@ const OnboardingExperienceCard = (props: any) => {
         <div className="card-actions ">
           <button
             className=" w-auto h-[34px] flex justify-center items-center border border-[#FFFFFFB2] rounded-lg px-3 py-2 text-[#A6A6A6]"
-            onClick={props.handleClick}
+            onClick={()=>router.push(props.handleClick)}
           >
             {props.buttonText}
           </button>
