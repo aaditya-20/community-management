@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import { FaPlusCircle } from "react-icons/fa";
 import Photo from "../atoms/Photo";
+import router from "next/router";
 
 function Mission(props: any) {
   return (
@@ -19,6 +19,7 @@ function Mission(props: any) {
               width={29}
               alt=""
               className="cursor-pointer"
+              onClick={() => router.push("/MissionCreationFormPage")}
             />
           </div>
 
