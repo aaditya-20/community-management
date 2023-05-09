@@ -41,4 +41,159 @@
       }
     }
   }
+  /* Setting Css Start */
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+:root {
+  background: hsla(210, 17%, 7%, 100%);
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.46);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5rem 0 2rem;
+}
+
+header .heading {
+  display: inline-block;
+  font-size: 32px;
+  margin-bottom: 1rem 2rem;
+}
+
+header button {
+  color: #fc8181;
+  background-color: transparent;
+  border: 2px solid #fc8181;
+  font-size: 14px;
+  padding: 0.25rem 1rem;
+  border-radius: 7px;
+  margin: 1rem 0;
+}
+
+.main-div {
+  display: flex;
+  gap: 3rem;
+}
+
+.side-nav {
+  padding: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.48);
+}
+
+.side-nav div {
+  width: 10rem;
+  margin: 1rem 0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0.5rem 0.89rem;
+  border-radius: 5px;
+}
+
+.side-nav div:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.side-nav div svg {
+  height: 20px;
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+main {
+  margin-top: 2rem;
+}
+
+.first-section {
+  display: flex;
+  width: 500px;
+  gap: 1rem;
+}
+
+.first-section img {
+  height: 150px;
+  width: 150px;
+}
+
+.profile-img img {
+  padding: 1rem;
+  border: 2px dotted white;
+}
+
+.links-zone {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.links-zone span,
+.links-zone button {
+  background-color: rgba(255, 255, 255, 0.08);
+  width: fit-content;
+  color: white;
+  padding: 0.25rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.links-zone span:hover,
+.links-zone button:hover {
+  background-color: rgba(255, 255, 255, 0.46);
+}
+
+.label {
+  display: block;
+  font-size: 16px;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.label input {
+  border: 1px dotted gray;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
+  margin: 0.5rem 0 0;
+  background: transparent;
+  width: 100%;
+}
+
+.label + span,
+.second-section span {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.second-section {
+  padding: 1rem 0;
+  font-size: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.48);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.48);
+  margin: 1rem 0;
+}
+
+.second-section span {
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.section-three {
+  font-size: 16px;
+}
+
+.section-three button {
+  color: #fc8181;
+  background-color: transparent;
+  border: 2px solid #fc8181;
+  font-size: 14px;
+  padding: 0.25rem 1rem;
+  border-radius: 7px;
+  margin: 1rem 0;
+}
+/* setting Css End */
 
