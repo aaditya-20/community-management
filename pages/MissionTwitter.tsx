@@ -28,7 +28,7 @@ export default function MissionDiscord() {
   }
   function handleUpload() {}
   return (
-    <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-[1400px] md:grid-cols-[auto,1fr]">
+    <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
       <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
         <Sidebar />
       </div>
@@ -44,7 +44,7 @@ export default function MissionDiscord() {
             src="/../public/Icons/MissionPageBanner.png"
             width={800}
             height={1}
-            alt="kjdfhah"
+            alt="alt"
             className="mx-[10px] my-[10px]"
           />
           <div className="font-semibold text-2xl text-white mx-3">
