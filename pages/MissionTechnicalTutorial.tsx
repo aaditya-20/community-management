@@ -5,14 +5,9 @@ import NavbarMissionOnboarding from "@/components/molecules/NavbarMissionOnboard
 import BeAchamp from "@/components/molecules/BeAchamp";
 import MissionStepsCard from "@/components/molecules/MissionStepCard";
 import Image from "next/image";
-import TextInput from "@/components/atoms/TextInput";
 import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
-import TextArea from "@/components/atoms/TextArea";
-import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
-
-
-
+const tags = ["✍️Writing", "📢Marketing"];
 export default function MissionTechnicalTutorial() {
   const title = "Write a kickass blog post for Firebond";
   const description = `Web3 education is still in its early stages, and our platform is looking to educate more budding
@@ -26,8 +21,12 @@ include:
 A link to a Graph Protocol tutorial that you have written before
 Your Twitter/Github profile
 If you do not include these two items, you will not be considered.`;
-  const tags = ["onboarding"];
-  const missionSteps = ["Follow our Twitter handle", "Submit your work","Follow us","Share the proof of work"];
+  const missionSteps = [
+    "Follow our Twitter handle",
+    "Submit your work",
+    "Follow us",
+    "Share the proof of work",
+  ];
   const reward = 1000;
   const coinType = "USDC";
   const [input, setInput] = useState("");
@@ -78,7 +77,14 @@ If you do not include these two items, you will not be considered.`;
           <Header />
         </div>
         <div className="">
-        <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
+          <NavbarMissionOnboarding
+            title={title}
+            description={description}
+            heading1={missionSteps[0]}
+            heading2={missionSteps[1]}
+            subheading1={missionSteps[2]}
+            subheading2={missionSteps[3]}
+          />
         </div>
         <div className="flex">
           <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
@@ -86,7 +92,7 @@ If you do not include these two items, you will not be considered.`;
               src="/../public/Icons/MissionPageBanner.png"
               width={800}
               height={1}
-              alt="kjdfhah"
+              alt="alt"
               className="mx-[10px] my-[10px]"
             />
 
@@ -97,27 +103,26 @@ If you do not include these two items, you will not be considered.`;
               <pre className="overflow-auto no-scrollbar font-['General Sans']">
                 {description}
               </pre>
-            
 
-            <div className="my-[60px]">
-              <MissionStepsCard
-                heading1={"Write a kickass blog"}
-                descp1={missionSteps[0]}
-                heading2="Share the proof of work"
-                descp2={missionSteps[1]}
-              />
-            </div>
+              <div className="my-[60px]">
+                <MissionStepsCard
+                  heading1={"Write a kickass blog"}
+                  descp1={missionSteps[0]}
+                  heading2="Share the proof of work"
+                  descp2={missionSteps[1]}
+                />
+              </div>
             </div>
           </div>
-        
-        <div className="absolute top-[200px] left-[1120px] ml-[20px]">
-          <ShareFeedbackCard
-            feedback="Technical Tutorials for Firebond"
-            tag={["Writing", "Marketing"]}
-            val="2.9"
-          />
+
+          <div>
+            <BeAchamp
+              title="Technical Tutorials for Firebond"
+              tags={tags}
+              val="2.9"
+            />
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
