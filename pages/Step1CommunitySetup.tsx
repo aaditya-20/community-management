@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import FormData from "@/utils/FormData";
 import Modal from "@material-ui/core/Modal";
 import TwitterHandlePopUp from "@/components/molecules/TwitterHandlePopUp";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 const Step1CommunitySetup = (): ReactElement => {
   const obj = FormData();
   const router = useRouter();
@@ -278,4 +279,4 @@ const Step1CommunitySetup = (): ReactElement => {
   );
 };
 
-export default Step1CommunitySetup;
+export default RouteGuardAdmin(Step1CommunitySetup);

@@ -13,7 +13,7 @@ import EmailInput from "../components/atoms/EmailInput";
 import Popup from "reactjs-popup";
 import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
-
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 const CommunitySetupScreen = (): ReactElement => {
   const obj = FormData();
   const [InputValue, setInputvalue] = useState("");
@@ -189,4 +189,4 @@ const CommunitySetupScreen = (): ReactElement => {
   );
 };
 
-export default CommunitySetupScreen;
+export default RouteGuardAdmin(CommunitySetupScreen);

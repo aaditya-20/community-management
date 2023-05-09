@@ -6,6 +6,7 @@ import BeAchamp from "@/components/molecules/BeAchamp";
 import MissionStepsCard from "@/components/molecules/MissionStepCard";
 import Image from "next/image";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 const title = "Design our company digital mascot ";
 const description =
   "We want to Design our company digital mascot Requirements:the body of the NFT design consists of a combination of our icon and precious items such as gemstones, gold, etc.The design should include the project name: Mew Protocolanimation effects. Format ca be GIF, WEBP, etc.the NFT design should be consistent with the design style of our projectWe will choose 3 prizes: $40 for the first place, $10 for the second and the third place.Reference:www.mewprotocol.com";
@@ -18,7 +19,7 @@ const missionSteps = [
 ];
 const reward = 2.9;
 const coinType = "USDC";
-export default function MissionDigitalMascot() {
+function MissionDigitalMascot() {
   return (
     <div>
       <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
@@ -109,3 +110,5 @@ export default function MissionDigitalMascot() {
     </div>
   );
 }
+
+export default RouteGuardAdmin(MissionDigitalMascot)

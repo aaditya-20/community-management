@@ -8,8 +8,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
-export default function MissionDiscord() {
+function MissionDiscord() {
   const title = "Discord Mission";
   const description = `Get a Discord Role and introduce yourself to the community
 GUIDE 📚
@@ -88,3 +89,5 @@ This quest will auto-validate when you claim it.`;
     </div>
   );
 }
+
+export default RouteGuardAdmin(MissionDiscord);

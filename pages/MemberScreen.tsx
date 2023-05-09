@@ -3,7 +3,8 @@ import Sidebar from '../components/molecules/Sidebar'
 import Header from '../components/atoms/Header'
 import MemberListCardMissionPage from '../components/molecules/MemberListCardMissionPage'
 import { BsChevronDown } from "react-icons/bs";
-export default function MemberScreen() {
+import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
+function MemberScreen() {
   return (
     <>
       <div className='grid grid-cols-[auto,auto]   bg-[#171C23] grid-rows-[71px,auto] h-[1000px] w-[1450px]    md:grid-cols-[auto,1fr]'>
@@ -41,3 +42,5 @@ export default function MemberScreen() {
     </>
   )
 }
+
+export default RouteGuardAdmin(MemberScreen);

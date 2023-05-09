@@ -15,6 +15,7 @@ import MissionFormData from "@/utils/MissionFormData";
 import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
 const MissionCreationFormPage = () => {
   const [OpenMission, setOpenMission] = useState(false);
@@ -153,4 +154,4 @@ const MissionCreationFormPage = () => {
   );
 };
 
-export default MissionCreationFormPage;
+export default RouteGuardAdmin(MissionCreationFormPage);

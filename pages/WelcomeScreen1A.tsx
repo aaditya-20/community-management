@@ -1,7 +1,8 @@
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export default function WelcomeScreen1A() {
+function WelcomeScreen1A() {
   const router = useRouter();
 
   useEffect(() => {
@@ -32,3 +33,4 @@ export default function WelcomeScreen1A() {
     </div>
   );
 }
+export default RouteGuardAdmin(WelcomeScreen1A)
