@@ -27,7 +27,7 @@ const BeAchamp = (props: any) => {
             <span className="m-3 bg-gray mb-4 text-white mr-2">
               <p className="text-sm text-gray-400 mr-2 ml-[4px]">Tags</p>
             </span>
-            {props.tags.map((tag: number) => (
+            {props.tags?.map((tag: any) => (
               <span key={tag}>
                 <button className="bg-gray-600 text-m m-1 p-1 mb-3 text-white h-8 w-30">
                   <p>{tag}</p>
