@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import MissionTemplateEdit from "./MissionTemplateEdit";
 import { supabase } from "@/utils/supabaseClient";
 import { useState } from "react";
+import { getDate } from "date-fns";
 const twitter = [
   {
     id: 1,
@@ -60,6 +61,20 @@ const MissionMain = () => {
   // var missions = [{
   //   title : ''
   // }];
+
+  // to display number of days left
+  function daysleft(dueDate:any){
+    let temp = getDate(new Date(dueDate.seleted_date)) - getDate(new Date);
+      if(dueDate==""||dueDate==null){
+          return "No Due Date";
+      }
+      else if(temp>=0){
+        return `${temp} Days Left`;
+      }
+      else{
+        return "Expired";
+      }
+  }
   const [missions,setmissions] = useState([{}]);
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
@@ -217,9 +232,10 @@ console.log("->missions->  jad->",missions);
                           profileUrl3={"/Avatar.png"}
                           profileUrl4={"/Avatar.png"}
                           submission={0}
-                          daysLeft={0}
+                          daysLeft={daysleft(item)}
                           usdc={0}
-                          title={item.tilte}
+                          title={item.title}
+                          tags = {item.tags}
                         />
                       </div>
                        
