@@ -56,7 +56,7 @@ export default function MissionOnboardingMisison() {
             </div>
           </div>
           <div className="text-[#ffffff] w-[auto] h-[auto] ml-[100px]">
-            <BeAchamp val="1000" />
+            <BeAchamp val="1000" tags={tags} title = 'Be A Champion'/>
           </div>
         </div>
       </div>
