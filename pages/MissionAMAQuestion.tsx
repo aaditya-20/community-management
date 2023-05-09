@@ -6,6 +6,7 @@ import BeAchamp from "@/components/molecules/BeAchamp";
 import MissionStepsCard from "@/components/molecules/MissionStepCard";
 import Image from "next/image";
 import Link from "next/link";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 const title = "Submit An AMA Question";
 const description = `To complete this mission, please complete the survey form in the link:
   https://www.notion.so/firebond/Popular-quests-04e7fe68c68a4c94bf878aaddb5fd1ff?pvs=4
@@ -20,7 +21,7 @@ const missionSteps = [
 ];
 const reward = 2.9;
 const coinType = "USDC";
-export default function MissionAMAQuestion() {
+function MissionAMAQuestion() {
   return (
     <div>
       <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1100px] w-full md:grid-cols-[auto,1fr]">
@@ -77,3 +78,4 @@ export default function MissionAMAQuestion() {
     </div>
   );
 }
+export default RouteGuardAdmin(MissionAMAQuestion)

@@ -19,6 +19,7 @@ import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import AlreadyAdminPopup from "./AlreadyAdminPopup";
 import InstallMetamaskPopup from "./InstallMetamaskPopup";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 function CommunitySetUpIntegration() {
   const [flagDiscord, setDiscord] = useState("hidden");
   const [flagTwitter, setTwitter] = useState("hidden");
@@ -303,4 +304,4 @@ function CommunitySetUpIntegration() {
   );
 }
 
-export default CommunitySetUpIntegration;
+export default RouteGuardAdmin(CommunitySetUpIntegration);

@@ -5,7 +5,8 @@ import NavbarMissionOnboarding from '@/components/molecules/NavbarMissionOnboard
 import BeAchamp from '@/components/molecules/BeAchamp';
 import MissionStepsCard from '@/components/molecules/MissionStepCard';
 import Image from 'next/image';
-export default function MissionForUser() {
+import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
+function MissionForUser() {
   return (
     <div>
         <div className="grid grid-cols-[1400px] gap-0  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[1400px] ">
@@ -64,3 +65,5 @@ export default function MissionForUser() {
     </div>
   )
 }
+
+export default RouteGuardAdmin(MissionForUser)
