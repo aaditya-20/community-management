@@ -64,12 +64,12 @@ const MissionMain = () => {
                 <h1 className=" left-[1275 px] text-white text-2xl font-bold " >View All </h1>
                 </div>
                 <div className=" grid grid-cols-3 gap-3">
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
-                  <MissionMainCard profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard tags={[]} profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard tags={[]} profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard tags={[]} profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard tags={[]} profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard tags={[]} profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
+                  <MissionMainCard tags={[]} profileUrl1={""} profileUrl2={""} profileUrl3={""} profileUrl4={""} submission={0} daysLeft={0} usdc={0} title={""} />
                 </div>
                 </div>
               </div>

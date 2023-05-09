@@ -43,7 +43,7 @@ const MissionMainCard: React.FC<MissionMainCardProps> = ({
         <div className="flex gap-[6.13px]">
         {(tags!=null&&tags.length>0)? tags.map((item:any, index) => {
                       return (
-                        <div className="inline-flex gap-[4.33px] bg-[#363C44] px-[5px] py-[1px] rounded-[2.0348px] justify-center items-center">
+                        <div key={index} className="inline-flex gap-[4.33px] bg-[#363C44] px-[5px] py-[1px] rounded-[2.0348px] justify-center items-center">
                         {/* <Image width={11} height={10} alt="" src="Icons/✍️.svg" /> */}
                         <h1 className="font-normal text-[10.2174px] text-white font-open-sans">
                           {item.title}
