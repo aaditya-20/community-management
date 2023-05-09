@@ -11,7 +11,7 @@ const description = `To complete this mission, please complete the survey form i
   https://www.notion.so/firebond/Popular-quests-04e7fe68c68a4c94bf878aaddb5fd1ff?pvs=4
   
   Then input the secret code provided at the end of the form.`;
-const tags = ["writing","marketing"];
+const tags = ["writing", "marketing"];
 const missionSteps = [
   " Write a kickass blog",
   "Write a blog",
@@ -31,7 +31,14 @@ export default function MissionAMAQuestion() {
           <Header />
         </div>
         <div className="">
-        <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
+          <NavbarMissionOnboarding
+            title={title}
+            description={description}
+            heading1={missionSteps[0]}
+            heading2={missionSteps[1]}
+            subheading1={missionSteps[2]}
+            subheading2={missionSteps[3]}
+          />
         </div>
         <div className="flex">
           <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
@@ -70,7 +77,7 @@ export default function MissionAMAQuestion() {
             </div>
           </div>
           <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
-            <BeAchamp val="1000" />
+            <BeAchamp val="1000" title="Submit An AMA Question" tags={tags} />
           </div>
         </div>
       </div>

@@ -7,7 +7,8 @@ import MissionStepsCard from "@/components/molecules/MissionStepCard";
 import Image from "next/image";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 const title = "Design our company digital mascot ";
-const description = "We want to Design our company digital mascot Requirements:the body of the NFT design consists of a combination of our icon and precious items such as gemstones, gold, etc.The design should include the project name: Mew Protocolanimation effects. Format ca be GIF, WEBP, etc.the NFT design should be consistent with the design style of our projectWe will choose 3 prizes: $40 for the first place, $10 for the second and the third place.Reference:www.mewprotocol.com";
+const description =
+  "We want to Design our company digital mascot Requirements:the body of the NFT design consists of a combination of our icon and precious items such as gemstones, gold, etc.The design should include the project name: Mew Protocolanimation effects. Format ca be GIF, WEBP, etc.the NFT design should be consistent with the design style of our projectWe will choose 3 prizes: $40 for the first place, $10 for the second and the third place.Reference:www.mewprotocol.com";
 const tags = ["writing", "marketing"];
 const missionSteps = [
   " Follow our Twitter handle",
@@ -28,7 +29,14 @@ export default function MissionDigitalMascot() {
           <Header />
         </div>
         <div className="">
-        <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
+          <NavbarMissionOnboarding
+            title={title}
+            description={description}
+            heading1={missionSteps[0]}
+            heading2={missionSteps[1]}
+            subheading1={missionSteps[2]}
+            subheading2={missionSteps[3]}
+          />
         </div>
         <div className="flex">
           <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
@@ -90,13 +98,13 @@ export default function MissionDigitalMascot() {
             </div>
           </div>
         </div>
-        <div className="absolute top-[200px] left-[1120px]  text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
-            <ShareFeedbackCard
-              feedback="Design our company digital mascot "
-              tag={["Writing", "Marketing"]}
-              val="2.9"
-            />
-          </div>
+        <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
+          <BeAchamp
+            title="Design our company digital mascot "
+            tags={["Writing", "Marketing"]}
+            val="2.9"
+          />
+        </div>
       </div>
     </div>
   );
