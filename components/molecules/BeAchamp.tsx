@@ -1,7 +1,6 @@
 import React from "react";
 
 const BeAchamp = (props: any) => {
-
   return (
     <div className="bg-gray-800 absolute w-[346px] h-[267px] left-[1142px] top-[219px] rounded-2xl ">
       <div className="text-2xl font-bold mb-4 text-white w-[292px] h-[64px] left-[1166px] top-[242px] ml-[15px] mt-[15px]">
@@ -26,12 +25,12 @@ const BeAchamp = (props: any) => {
           </div>
           <div className="inline-flex">
             <span className="m-3 bg-gray mb-4 text-white mr-2">
-              <p className="text-sm text-gray-400 mr-2">Tags</p>
+              <p className="text-sm text-gray-400 mr-2 ml-[4px]">Tags</p>
             </span>
-            {props.tags.map((names: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined) => (
-              <span>
+            {props.tags.map((tag: number) => (
+              <span key={tag}>
                 <button className="bg-gray-600 text-m m-1 p-1 mb-3 text-white h-8 w-30">
-                  <p>{names}</p>
+                  <p>{tag}</p>
                 </button>
               </span>
             ))}
