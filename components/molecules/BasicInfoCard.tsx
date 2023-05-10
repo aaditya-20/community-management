@@ -77,7 +77,8 @@ const BasicInfoCard = (props:any) => {
 
   obj.title = input
   obj.amount = amount;
-  obj.seleted_date = selectedDate;
+  obj.seleted_date = selectedDate
+  obj.submission = 52;
 
   return (
     <div className="w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 realtive">
