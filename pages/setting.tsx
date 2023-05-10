@@ -1,11 +1,9 @@
-// import Head from "next/head";
-// import Image from "next/image";
-// import { Inter } from "@next/font/google";
-// import styles from "../styles/Home.module.css";
 
-//const inter = Inter({ subsets: ["latin"] });
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
+import { supabase } from "../utils/supabaseClient";
+
+
 
 export default function Home() {
   return (
@@ -81,6 +79,8 @@ export default function Home() {
             <label className="label">
               Username <br />
               <input type="text" />
+              <button className="updateButton"> Update </button>
+            
             </label>
 
             <label className="label">
