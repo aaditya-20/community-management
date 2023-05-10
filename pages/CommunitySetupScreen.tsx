@@ -189,4 +189,4 @@ const CommunitySetupScreen = (): ReactElement => {
   );
 };
 
-export default RouteGuardAdmin(CommunitySetupScreen);
+export default CommunitySetupScreen;

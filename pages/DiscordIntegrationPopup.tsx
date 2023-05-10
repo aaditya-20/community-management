@@ -104,4 +104,4 @@ function DiscordIntegrationPopup() {
   );
 }
 
-export default RouteGuardAdmin(DiscordIntegrationPopup)
+export default DiscordIntegrationPopup
