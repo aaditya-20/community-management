@@ -63,9 +63,9 @@ const MissionTemplateEdit = () => {
         return;
       }
       var mission = rowData.missions;
-      if (rowData.missions == null) mission = [obj];
+      if (rowData.missions == null) mission = obj;
       else {
-        mission.push([obj]);
+        mission.push(obj);
       }
       // Update the row with the new missions
       const { data, error: updateError } = await supabase
