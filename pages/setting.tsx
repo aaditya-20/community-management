@@ -84,20 +84,30 @@ export default function Home() {
             </label>
 
             <label className="label">
-              Etherium address <br />
+              Email <address></address> 
               <input type="text" />
+              <button className="updateButton"> Update </button>
             </label>
             <span>
               {" "}
-              Please enter your address so that we can send you reward{" "}
+              Please enter your address so that we can send you web3 newslater{" "}
             </span>
 
             <section className="second-section">
-              <div> Public Information </div>
-              <span>
+              <div> Reward Section </div>
+              {/* <span>
                 {" "}
                 Choose which information to display on yo9ur zelay profile{" "}
-              </span>
+              </span> */}
+              <label className="label">
+              Wallet Address <address></address> 
+              <input type="text" />
+              <button className="updateButton"> Update </button>
+            </label>
+            <span>
+              {" "}
+              Please enter your address so that we can send you rewards{" "}
+            </span>
             </section>
 
             <section className="section-three">
