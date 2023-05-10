@@ -1,11 +1,40 @@
-
+import { useState } from "react";
+// console.log(useState)
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import { supabase } from "../utils/supabaseClient";
 
 
 
+
+
 export default function Home() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [wallet, setWallet] = useState("");
+const handleInputChange = (event:any) => {
+  setUsername(event.target.value);
+}
+const handelEmailChange = (event:any) => {
+  setEmail(event.target.value);
+}
+const handelEmailClick = (event:any) => {
+  localStorage.setItem("email",email);
+  alert("Email updated successfully");
+  
+}
+const handleUpdateClick=()=>{
+  localStorage.setItem("username",username);
+  alert("Username updated successfully");
+}
+const handleWalletChange = (event:any) => {
+  setWallet(event.target.value);
+}
+const handelWalletClick = (event:any) => {
+  localStorage.setItem("wallet",wallet);
+  alert("Wallet updated successfully");
+}
+
   return (
     <>
       {/* <header>
@@ -78,15 +107,15 @@ export default function Home() {
 
             <label className="label">
               Username <br />
-              <input type="text" />
-              <button className="updateButton"> Update </button>
+              <input type="text" value={username} onChange={handleInputChange} />
+              <button className="updateButton" onClick={handleUpdateClick}> Update </button>
             
             </label>
 
             <label className="label">
               Email <address></address> 
-              <input type="text" />
-              <button className="updateButton"> Update </button>
+              <input type="email" value={email} onChange={handelEmailChange}/>
+              <button className="updateButton" onClick={handelEmailClick}> Update </button>
             </label>
             <span>
               {" "}
@@ -101,8 +130,9 @@ export default function Home() {
               </span> */}
               <label className="label">
               Wallet Address <address></address> 
-              <input type="text" />
-              <button className="updateButton"> Update </button>
+              <input type="text" value={wallet} onChange={handleWalletChange}/>
+
+              <button className="updateButton" onClick={handelWalletClick}> Update </button>
             </label>
             <span>
               {" "}
