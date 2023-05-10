@@ -14,11 +14,14 @@ module.exports = {
       gridTemplateColumns: {
         26: "repeat(26, minmax(0,1fr))",
       },
+      gridTemplateRows: {
+        10: "repeat(10, minmax(0,1fr))",
+      }
     },
     fontFamily: {
       'open-sans': ['Open Sans', 'sans-serif']
     }
   },
-  plugins: [require("daisyui"),require("flowbite"),require('tailwind-scrollbar-hide')],
+  plugins: [require("daisyui"),require("flowbite"),require("tailwind-scrollbar-hide")],
 
 }

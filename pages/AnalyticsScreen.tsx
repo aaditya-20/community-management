@@ -43,7 +43,7 @@ const users = [
 
 const AnalyticsScreen = () => {
   return (
-    <div className="min-h-screen bg-[#171C23] flex">
+    <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden scrollbar-hide">
       <Sidebar />
       <div className="w-full">
         <Header />

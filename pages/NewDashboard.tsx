@@ -44,7 +44,7 @@ const NewDashboard = () => {
     }
   }, [name]);
   return (
-    <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden">
+    <div className="min-h-screen bg-[#171C23] flex  scrollbar-hide">
       <Sidebar />
       <div className="h-full w-full">
         <Header />
@@ -57,6 +57,7 @@ const NewDashboard = () => {
                 <h2 className="text-white text-2xl font-semibold mb-2">
                   {name} Space
                 </h2>
+                <h3 className="font-normal text-base text-[#A6A6A6] mb-6">Here’s what’s happening with your community</h3>
                 {/* Main Section */}
                 <div className="flex gap-6">
                   {/* Analytics & Recently Joined Section */}
