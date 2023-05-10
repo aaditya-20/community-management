@@ -83,7 +83,7 @@ const MissionCreationFormPage = () => {
       >
         <div className="absolute m-[auto] top-[30vh] left-[40vw]">
           <CopyLinkPopUpFormBuilder
-            url={`https://firebond.com/${obj.title}/${MissionId}`}
+            url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
             forWhichComponent="mission"
           />
         </div>

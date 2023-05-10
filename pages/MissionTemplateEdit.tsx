@@ -49,8 +49,11 @@ const MissionTemplateEdit = () => {
     Math.random().toString(23).substring(2, 5);
 
   async function onCreateClick() {
-    setMissionId(generateRandom());
-    setOpenMission(!OpenMission);
+    var temp = generateRandom();
+    setMissionId(temp);
+    obj.mission_id = temp;
+    setOpenMission(!OpenMission)
+    console.log(obj);
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
       const { data: rowData, error } = await supabase
@@ -115,7 +118,7 @@ const MissionTemplateEdit = () => {
       >
         <div className="absolute m-[auto] top-[30vh] left-[40vw]">
           <CopyLinkPopUpFormBuilder
-            url={`https://firebond.com/${name}/${MissionId}`}
+             url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
             forWhichComponent="mission"
           />
         </div>
