@@ -1,13 +1,40 @@
-// import Head from "next/head";
-// import Image from "next/image";
-// import { Inter } from "@next/font/google";
-// import styles from "../styles/Home.module.css";
-
-//const inter = Inter({ subsets: ["latin"] });
+import { useState } from "react";
+// console.log(useState)
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
+import { supabase } from "../utils/supabaseClient";
+
+
+
+
 
 export default function Home() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [wallet, setWallet] = useState("");
+const handleInputChange = (event:any) => {
+  setUsername(event.target.value);
+}
+const handelEmailChange = (event:any) => {
+  setEmail(event.target.value);
+}
+const handelEmailClick = (event:any) => {
+  localStorage.setItem("email",email);
+  alert("Email updated successfully");
+  
+}
+const handleUpdateClick=()=>{
+  localStorage.setItem("username",username);
+  alert("Username updated successfully");
+}
+const handleWalletChange = (event:any) => {
+  setWallet(event.target.value);
+}
+const handelWalletClick = (event:any) => {
+  localStorage.setItem("wallet",wallet);
+  alert("Wallet updated successfully");
+}
+
   return (
     <>
       {/* <header>
@@ -80,24 +107,37 @@ export default function Home() {
 
             <label className="label">
               Username <br />
-              <input type="text" />
+              <input type="text" value={username} onChange={handleInputChange} />
+              <button className="updateButton" onClick={handleUpdateClick}> Update </button>
+            
             </label>
 
             <label className="label">
-              Etherium address <br />
-              <input type="text" />
+              Email <address></address> 
+              <input type="email" value={email} onChange={handelEmailChange}/>
+              <button className="updateButton" onClick={handelEmailClick}> Update </button>
             </label>
             <span>
               {" "}
-              Please enter your address so that we can send you reward{" "}
+              Please enter your address so that we can send you web3 newslater{" "}
             </span>
 
             <section className="second-section">
-              <div> Public Information </div>
-              <span>
+              <div> Reward Section </div>
+              {/* <span>
                 {" "}
                 Choose which information to display on yo9ur zelay profile{" "}
-              </span>
+              </span> */}
+              <label className="label">
+              Wallet Address <address></address> 
+              <input type="text" value={wallet} onChange={handleWalletChange}/>
+
+              <button className="updateButton" onClick={handelWalletClick}> Update </button>
+            </label>
+            <span>
+              {" "}
+              Please enter your address so that we can send you rewards{" "}
+            </span>
             </section>
 
             <section className="section-three">
