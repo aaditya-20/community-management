@@ -19,7 +19,6 @@ import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import AlreadyAdminPopup from "./AlreadyAdminPopup";
 import InstallMetamaskPopup from "./InstallMetamaskPopup";
-import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 function CommunitySetUpIntegration() {
   const [flagDiscord, setDiscord] = useState("hidden");
   const [flagTwitter, setTwitter] = useState("hidden");
@@ -29,50 +28,57 @@ function CommunitySetUpIntegration() {
   const obj = FormData();
   const router = useRouter();
   const onConnect = WalletAuth();
-  async function  discordToken(){
- 
-  if(window.location.href.includes("access_token")){
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-   
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    console.log("access Token:-",accessToken);
-    
-    // localStorage.setItem('accessToken', accessToken||'Not Found');
-    fetch('https://discord.com/api/users/@me', {
-      headers: {
+  async function discordToken() {
+    if (window.location.href.includes("access_token")) {
+      const fragment = new URLSearchParams(window.location.hash.slice(1));
+
+      const [accessToken, tokenType] = [
+        fragment.get("access_token"),
+        fragment.get("token_type"),
+      ];
+      console.log("access Token:-", accessToken);
+
+      // localStorage.setItem('accessToken', accessToken||'Not Found');
+      fetch("https://discord.com/api/users/@me", {
+        headers: {
           authorization: `${tokenType} ${accessToken}`,
-      },
+        },
       })
-      .then(result => result.json())
-      .then(async(response) => {
+        .then((result) => result.json())
+        .then(async (response) => {
           //console.log(response);
-          const { username, discriminator, avatar, id,email} = response;
-          let profile={
+          const { username, discriminator, avatar, id, email } = response;
+          let profile = {
             username: username,
             discriminator: discriminator,
             avatar: avatar,
             id: id,
-            email: email
-          }
-          const { data, error } = await supabase.from('community_data').insert([
-            { name: profile.username, email: profile.email,community_name:'Discord',wallet_id:accessToken },
-          ]);
-          console.log(data,error);
-          setDiscord('visible');
-      })
-      .catch(console.error);
-      }
+            email: email,
+          };
+          const { data, error } = await supabase
+            .from("community_data")
+            .insert([
+              {
+                name: profile.username,
+                email: profile.email,
+                community_name: "Discord",
+                wallet_id: accessToken,
+              },
+            ]);
+          console.log(data, error);
+          setDiscord("visible");
+        })
+        .catch(console.error);
+    }
   }
 
   useEffect(() => {
     getCurrentWalletConnected();
 
-
     // addWalletListener();
-  }, [walletAddress]); 
+  }, [walletAddress]);
   useEffect(() => {
     discordToken();
-    
 
     // addWalletListener();
   }, []);
@@ -105,12 +111,10 @@ function CommunitySetUpIntegration() {
         if (accounts.length > 0) {
           setWalletAddress(accounts[0]);
           console.log(accounts[0]);
-          setEthereum('visible');
-        }
-         else {
+          setEthereum("visible");
+        } else {
           console.log("Connect to MetaMask using the Connect button");
         }
-
       } catch (err) {
         console.error(err);
       }
@@ -121,7 +125,6 @@ function CommunitySetUpIntegration() {
     }
   };
 
-
   async function handleEthereumClick() {
     await connectWallet();
     try {
@@ -130,11 +133,12 @@ function CommunitySetUpIntegration() {
       console.log(e);
     }
   }
-//Simple is to href at call back url
+  //Simple is to href at call back url
   function handleDiscordClick() {
     if (flagDiscord == "hidden") {
       const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-m0poo5xg4-firebond-admin-team.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email`;
-      const lauthUrl="https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email"
+      const lauthUrl =
+        "https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email";
 
       window.location.href = authUrl;
     }
@@ -153,19 +157,24 @@ function CommunitySetUpIntegration() {
 
   async function handleContinue() {
     obj.wallet_id = walletAddress;
-    
+    if (walletAddress === "") {
+      alert("Please Connect Ethereum Wallet");
+      return;
+    }
+    console.log("yaha tak aya")
     const { data, error } = await supabase.from("community_data").insert({
-      name : obj.name,
-      community_name : obj.community_name,
-      community_description : obj.community_description,
-      email : obj.email,
-      wallet_id : obj.wallet_id
+      name: obj.name,
+      community_name: obj.community_name,
+      community_description: obj.community_description,
+      email: obj.email,
+      wallet_id: obj.wallet_id,
     });
     if (error) {
       console.log("Error uploading file:", error.message);
-      console.log("Admin Account Exist")
+      console.log(
+        "Admin Account Exist,since wallet_id is not null but we are not able to insert that since wallet_id unique check is present at supabase storage"
+      );
       AlreadyAdmin();
-
     } else {
       await window.localStorage.setItem("data", JSON.stringify(obj));
       console.log("File uploaded successfully:", data);
