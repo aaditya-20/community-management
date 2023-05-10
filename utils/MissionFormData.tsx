@@ -10,7 +10,8 @@ let formData = {
   status : '',
   priority : '',
   tags : [{}],
-  recurrence : ''
+  recurrence : '',
+  mission_id:''
 };
 
 export default function MissionFormData() {

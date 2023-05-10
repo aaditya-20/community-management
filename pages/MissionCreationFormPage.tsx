@@ -32,8 +32,11 @@ const MissionCreationFormPage = () => {
     Math.random().toString(23).substring(2, 5);
 
   async function onCreateClick() {
-    setMissionId(generateRandom());
+    var temp = generateRandom();
+    setMissionId(temp);
+    obj.mission_id = temp;
     setOpenMission(!OpenMission)
+    console.log(obj);
 
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
