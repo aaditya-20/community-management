@@ -61,7 +61,7 @@ const secondMenu = [
     src: "Icons/setting.svg",
     size: 24,
     title: "Settings",
-    route: "/AdminSetting",
+    route: "/setting",
   },
   {
     src: "Icons/shining-star.svg",
