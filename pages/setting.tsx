@@ -4,18 +4,21 @@
 // import styles from "../styles/Home.module.css";
 
 //const inter = Inter({ subsets: ["latin"] });
+import Sidebar from "../components/molecules/Sidebar";
+import Header from "../components/atoms/Header";
 
 export default function Home() {
   return (
     <>
-      <header>
+      {/* <header>
         <span className="heading">User Profile</span>
         <button> Logout </button>
-      </header>
+      </header> */}
+      <Header />
 
       <div className="main-div">
-        <nav className="side-nav">
-          <div>
+        <nav>
+          {/* <div>
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +60,8 @@ export default function Home() {
               ></path>
             </svg>
             Leaderboard
-          </div>
+          </div> */}
+          <Sidebar />
         </nav>
 
         <main>
