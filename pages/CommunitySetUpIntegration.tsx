@@ -304,4 +304,4 @@ function CommunitySetUpIntegration() {
   );
 }
 
-export default RouteGuardAdmin(CommunitySetUpIntegration);
+export default CommunitySetUpIntegration;
