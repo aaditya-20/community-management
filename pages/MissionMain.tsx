@@ -88,6 +88,7 @@ const MissionMain = () => {
   useEffect(()=>{
     fetchData();
   },[])
+
   async function fetchData(){
 
   try {
@@ -101,7 +102,7 @@ const MissionMain = () => {
       console.error(error);
       return;
     }
-    console.log(rowData);
+    console.log(rowData.missions);
     // missions = rowData.missions;
     setmissions( rowData.missions)
 
@@ -109,7 +110,7 @@ const MissionMain = () => {
     console.error(error);
   }
 }
-console.log("->missions->  jad->",missions);
+// console.log("->missions->  jad->",missions);
 
   return (
     <div className="h-screen bg-[#171c23]">
@@ -224,16 +225,16 @@ console.log("->missions->  jad->",missions);
                   {missions &&
                     missions.map((item:any, index) => {
                       return (
-                      <div className="m-[3px]" key={index}>
+                      <div className="m-[8px] " key={index}>
                          <MissionMainCard
                           
                           profileUrl1={"/Avatar.png"}
                           profileUrl2={"/Avatar.png"}
                           profileUrl3={"/Avatar.png"}
                           profileUrl4={"/Avatar.png"}
-                          submission={0}
+                          submission={item.submission}
                           daysLeft={daysleft(item)}
-                          usdc={0}
+                          usdc={item.amount}
                           title={item.title}
                           tags = {item.tags}
                         />

@@ -28,9 +28,7 @@ const BasicInfoCard = (props:any) => {
   const obj = MissionFormData();
   
  
-  obj.title = input
-  obj.amount = amount;
-  obj.seleted_date = selectedDate;
+  
   
   
 
@@ -40,6 +38,7 @@ const BasicInfoCard = (props:any) => {
   function handleInput(e: any){
     setInput(e.target.value)
   }
+
   
 
   
@@ -75,6 +74,11 @@ const BasicInfoCard = (props:any) => {
     const firstDayOfNextMonth = add(firstDayOfMonth, { months: 1 });
     setCurrMonth(format(firstDayOfNextMonth, "MMM-yyyy"));
   };
+
+  obj.title = input
+  obj.amount = amount;
+  obj.seleted_date = selectedDate
+  obj.submission = 52;
 
   return (
     <div className="w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 realtive">

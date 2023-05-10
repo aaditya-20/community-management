@@ -1,8 +1,9 @@
 let formData = {
   title: '',
   amount: 0,
-  seleted_date: "",
+  seleted_date: '',
   description: "",
+  submission : 0,
   filename: "",
   wallet_id: " ",
   visibility : '',
@@ -11,7 +12,11 @@ let formData = {
   priority : '',
   tags : [{}],
   recurrence : '',
-  mission_id:''
+  mission_id:'',
+  heading1: '',
+  subheading1 : '',
+  heading2 : '',
+  subheading2 : ''
 };
 
 export default function MissionFormData() {

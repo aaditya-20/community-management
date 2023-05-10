@@ -25,12 +25,6 @@ dependencies:
   '@thirdweb-dev/sdk':
     specifier: ^3.10.11
     version: 3.10.11(ethers@5.7.2)(typescript@5.0.3)
-  '@types/node':
-    specifier: 18.15.11
-    version: 18.15.11
-  '@types/react':
-    specifier: 18.0.31
-    version: 18.0.31
   '@types/react-chartjs-2':
     specifier: ^2.5.7
     version: 2.5.7(chart.js@4.2.1)(react@18.2.0)
@@ -138,6 +132,12 @@ devDependencies:
   '@types/gapi.auth2':
     specifier: ^0.0.57
     version: 0.0.57
+  '@types/node':
+    specifier: 18.15.11
+    version: 18.15.11
+  '@types/react':
+    specifier: 18.0.31
+    version: 18.0.31
   '@types/react-copy-to-clipboard':
     specifier: ^5.0.4
     version: 5.0.4
@@ -3901,7 +3901,6 @@ packages:
 
   /@types/node@18.15.11:
     resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
-    dev: false
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
