@@ -279,4 +279,4 @@ const Step1CommunitySetup = (): ReactElement => {
   );
 };
 
-export default RouteGuardAdmin(Step1CommunitySetup);
+export default Step1CommunitySetup;
