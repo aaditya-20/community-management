@@ -15,6 +15,7 @@ import MissionFormData from "@/utils/MissionFormData";
 import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
 const MissionCreationFormPage = () => {
   const [OpenMission, setOpenMission] = useState(false);
@@ -26,13 +27,16 @@ const MissionCreationFormPage = () => {
     const jsonData = JSON.parse(storedJsonData ?? "{}");
     wallet_id = jsonData.wallet_id;
   }
-  const generateRandom = () =>
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(23).substring(2, 5);
+  // generate random mission id
+  let date = new Date;
+  const generateRandom = () => String(date.getTime());
 
   async function onCreateClick() {
-    setMissionId(generateRandom());
+    var temp = generateRandom();
+    setMissionId(temp);
+    obj.mission_id = temp;
     setOpenMission(!OpenMission)
+    console.log(obj);
 
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
@@ -79,7 +83,7 @@ const MissionCreationFormPage = () => {
       >
         <div className="absolute m-[auto] top-[30vh] left-[40vw]">
           <CopyLinkPopUpFormBuilder
-            url={`https://firebond.com/${obj.title}/${MissionId}`}
+            url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
             forWhichComponent="mission"
           />
         </div>
@@ -153,4 +157,4 @@ const MissionCreationFormPage = () => {
   );
 };
 
-export default MissionCreationFormPage;
+export default RouteGuardAdmin(MissionCreationFormPage);

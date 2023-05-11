@@ -8,8 +8,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
-export default function MissionDiscord() {
+function MissionDiscord() {
   const title = "Discord Mission";
   const description = `Get a Discord Role and introduce yourself to the community
 GUIDE 📚
@@ -21,7 +22,9 @@ SUBMISSION 📝
 This quest will auto-validate when you claim it.`;
   const tags = ["onboarding"];
   const missionSteps = [
-    "join Discord Channel and get verified",
+    "Join our Discord",
+    "Join on Discord Channel and get verified",
+    "Start a conversation ",
     "Start a conversation on any discord channel you like containing at least 10 characters",
   ];
   const reward = 1000;
@@ -41,7 +44,14 @@ This quest will auto-validate when you claim it.`;
         <Header />
       </div>
       <div className="">
-        <NavbarMissionOnboarding title={title} description={description} />
+      <NavbarMissionOnboarding
+            title={title}
+            description={description}
+            heading1={missionSteps[0]}
+            heading2={missionSteps[1]}
+            subheading1={missionSteps[2]}
+            subheading2={missionSteps[3]}
+          />
       </div>
       <div className="flex">
         <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
@@ -67,15 +77,18 @@ This quest will auto-validate when you claim it.`;
             </div>
           </div>
 
-          <div className="absolute top-[200px] left-[1120px]  text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
-            <ShareFeedbackCard
-              feedback="Discord Mission for Firebond"
-              tag={["Writing", "Marketing"]}
+         
+        </div>
+        <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
+            <BeAchamp
+              title="Discord Mission for Firebond"
+              tags={["Writing", "Marketing"]}
               val="2.9"
             />
           </div>
-        </div>
       </div>
     </div>
   );
 }
+
+export default RouteGuardAdmin(MissionDiscord);

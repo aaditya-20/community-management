@@ -2,16 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import Image from "next/image";
-import Router from "next/router";
-import {
-  AiFillPauseCircle,
-  AiOutlinePlus,
-  AiOutlinePlusCircle,
-} from "react-icons/ai";
 import Modal from "@material-ui/core/Modal";
-import MissionPopup from "./MissonPopup";
-import TextInput from "@/components/atoms/TextInput";
-import FormData from "@/utils/FormData";
 import { supabase } from "@/utils/supabaseClient";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 import Todo from "@/components/molecules/Todo";
@@ -19,10 +10,9 @@ import Priority from "@/components/molecules/Priority";
 import Tags from "@/components/molecules/Tags";
 import Reccurence from "@/components/molecules/Reccurence";
 import BasicInfoCard from "@/components/molecules/BasicInfoCard";
-import TextArea from "@/components/atoms/TextArea";
-import Details from "@/components/molecules/Details";
 import Details2 from "@/components/molecules/Details2";
 import EditMission from "@/utils/EditMission";
+import MissionFormData from "@/utils/MissionFormData";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -34,16 +24,15 @@ if (typeof window !== "undefined") {
   console.log("->", jsonData);
 }
 const MissionTemplateEdit = () => {
-  const obj = FormData();
+  const obj = MissionFormData();
   const obj2 = EditMission();
-  const [status, setStatus] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
   const [MissionId, setMissionId] = useState("");
-  const [input, setInput] = useState("");
   const [input1, setInput1] = useState(obj2.heading1);
   const [input2, setInput2] = useState(obj2.description1);
   const [input3, setInput3] = useState(obj2.heading2);
   const [input4, setInput4] = useState(obj2.description2);
+  const [selectedButton, setSelectedButton] = useState(null);
 
   var wallet_id = "";
   if (typeof window !== "undefined") {
@@ -54,17 +43,16 @@ const MissionTemplateEdit = () => {
     console.log(jsonData);
   }
 
-  const title = obj2.title;
-  const description = obj2.description;
-
   // random string generator
-  const generateRandom = () =>
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(23).substring(2, 5);
+  let date = new Date;
+  const generateRandom = () => String(date.getTime());
 
   async function onCreateClick() {
-    setMissionId(generateRandom());
-    setOpenMission(!OpenMission);
+    var temp = generateRandom();
+    setMissionId(temp);
+    obj.mission_id = temp;
+    setOpenMission(!OpenMission)
+    console.log(obj);
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
       const { data: rowData, error } = await supabase
@@ -77,12 +65,9 @@ const MissionTemplateEdit = () => {
         return;
       }
       var mission = rowData.missions;
-      if (rowData.missions == null)
-        mission = [obj];
+      if (rowData.missions == null) mission = obj;
       else {
-        mission.push([
-          obj
-        ]);
+        mission.push(obj);
       }
       // Update the row with the new missions
       const { data, error: updateError } = await supabase
@@ -100,10 +85,6 @@ const MissionTemplateEdit = () => {
       console.error(error);
     }
   }
-
-  function handleInput(e: any) {
-    setInput(e.target.value);
-  }
   function handleInput1(e: any) {
     setInput1(e.target.value);
   }
@@ -116,6 +97,12 @@ const MissionTemplateEdit = () => {
   function handleInput4(e: any) {
     setInput4(e.target.value);
   }
+  const handleButtonClick = (buttonNumber: any) => {
+    setSelectedButton(buttonNumber === selectedButton ? null : buttonNumber);
+  };
+
+  const title = obj2.title;
+  const description = obj2.description;
 
   // const mission = retrieve(database);
 
@@ -130,7 +117,7 @@ const MissionTemplateEdit = () => {
       >
         <div className="absolute m-[auto] top-[30vh] left-[40vw]">
           <CopyLinkPopUpFormBuilder
-            url={`https://firebond.com/${name}/${MissionId}`}
+             url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
             forWhichComponent="mission"
           />
         </div>
@@ -164,7 +151,7 @@ const MissionTemplateEdit = () => {
                 </div>
               </div>
             </div>
-
+           
             {/* Main Section */}
             <div className="h-full flex justify-between">
               {/* Left Section */}
@@ -181,25 +168,74 @@ const MissionTemplateEdit = () => {
                     </div>
                     <div className="h-auto w-full p-6">
                       <div className="h-auto flex gap-5">
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(1)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 1
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           File
                         </button>
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(2)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 2
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           Link
                         </button>
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(3)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 3
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           Invite
                         </button>
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(4)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 4
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           Empty
                         </button>
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(5)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 5
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           Text
                         </button>
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(6)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 6
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           Join Telegram
                         </button>
-                        <button className="px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px]">
+                        <button
+                          onClick={() => handleButtonClick(7)}
+                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
+                            selectedButton === 7
+                              ? "bg-black text-white"
+                              : "bg-[#2E363F]"
+                          }`}
+                        >
                           Discord Invite
                         </button>
                       </div>

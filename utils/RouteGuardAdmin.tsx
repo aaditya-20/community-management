@@ -14,7 +14,7 @@ async function checkwalletidIndb(wallet_id:any) {
     if (data != null && data.length == 0) wallet_id = null;
   }
 }
-const RouteGuardAdmin = (WrappedComponent: any) => {
+const  RouteGuardAdmin = (WrappedComponent: any) => {
   const Auth = (props: any) => {
     const router = useRouter();
     
@@ -28,7 +28,7 @@ const RouteGuardAdmin = (WrappedComponent: any) => {
       console.log("shit")
       console.log(wallet_id)
       if (!wallet_id) {
-        router.push("/FirstPage");
+        router.push("/LoginSection");
       }
     }, []);
 

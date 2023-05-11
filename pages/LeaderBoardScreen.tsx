@@ -6,7 +6,11 @@ import { BsChevronDown } from "react-icons/bs";
 import { supabase } from "@/utils/supabaseClient";
 import { useEffect } from "react";
 import { useState } from "react";
+
 import Image from "next/image";
+
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+
 
 const Leaderboard = () => {
   const [cards, setCards] = useState([{}]);
@@ -38,13 +42,16 @@ const Leaderboard = () => {
   console.log("ldda->", leaderboardData);
   const ele = cards.map((value: any, index: any) => {
     return (
+
       <div key={index}>
+
         <LeaderboardCard rank={index + 1} name={value.Name} point={value.xp} />
       </div>
     );
   });
 
   return (
+
     <div className="min-h-screen bg-[#171C23] flex">
       {/* Sidebar */}
       <Sidebar />
@@ -105,7 +112,8 @@ const Leaderboard = () => {
 
     //     </div>
     //   </div>
+
   );
 };
 
-export default Leaderboard;
+export default RouteGuardAdmin(Leaderboard);

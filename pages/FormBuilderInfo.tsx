@@ -9,6 +9,7 @@ import VerficationCard from "@/components/molecules/VerificationCard";
 import Modal from '@material-ui/core/Modal';
 import IntegrationSelectFormBuilder from "@/components/molecules/IntegrationSelectFormBuilder";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
 
 const Form_Builder_Info = () => {
@@ -338,4 +339,4 @@ const Form_Builder_Info = () => {
   );
 };
 
-export default Form_Builder_Info;
+export default RouteGuardAdmin(Form_Builder_Info);

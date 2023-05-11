@@ -15,7 +15,7 @@ const mainMenu = [
   {
     src: "Icons/box.svg",
     size: 24,
-    title: "'s Space",
+    title: "User's Space",
     route: "/NewDashboard",
   },
   {
@@ -61,7 +61,7 @@ const secondMenu = [
     src: "Icons/setting.svg",
     size: 24,
     title: "Settings",
-    route: "/AdminSetting",
+    route: "/setting",
   },
   {
     src: "Icons/shining-star.svg",

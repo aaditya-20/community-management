@@ -3,8 +3,12 @@ import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import MemberListCardMissionPage from "../components/molecules/MemberListCardMissionPage";
 import { BsChevronDown } from "react-icons/bs";
+
 import Image from "next/image";
-export default function MemberScreen() {
+
+import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
+function MemberScreen() {
+
   return (
     <div className="min-h-screen bg-[#171C23] flex ">
       <Sidebar />
@@ -67,3 +71,5 @@ export default function MemberScreen() {
     // </>
   );
 }
+
+export default RouteGuardAdmin(MemberScreen);

@@ -25,7 +25,7 @@ Upload your piece of art on Google Drive (make it public!)`;
   const tags = ["onboarding"];
 
   const missionSteps = [
-    " Write a kickass blog",
+    "Write a kickass blog",
     "Write a blog",
     "Submit your work",
     "Share the proof of work",
@@ -34,13 +34,13 @@ Upload your piece of art on Google Drive (make it public!)`;
   const reward = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
-
+   
   function handleFileSelect(e: any) {
     setFile(e.target.value);
   }
   function handleUpload() {}
   return (
-    <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
+    <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1300px] w-full md:grid-cols-[auto,1fr]">
       <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
         <Sidebar />
       </div>
@@ -48,7 +48,14 @@ Upload your piece of art on Google Drive (make it public!)`;
         <Header />
       </div>
       <div className="">
-      <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
+        <NavbarMissionOnboarding
+          title={title}
+          description={description}
+          heading1={missionSteps[0]}
+          heading2={missionSteps[1]}
+          subheading1={missionSteps[2]}
+          subheading2={missionSteps[3]}
+        />
       </div>
       <div className="flex">
         <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
@@ -72,10 +79,10 @@ Upload your piece of art on Google Drive (make it public!)`;
             </div>
           </div>
 
-          <div className="absolute top-[200px] left-[1120px]  text-[#ffffff] w-[auto] h-[auto] ml-[20px] rounded-xl">
-            <ShareFeedbackCard
-              feedback="Write a kickass blog post for Firebond"
-              tag={["Writing", "Marketing"]}
+          <div className="text-[#ffffff] w-[auto] h-[auto]  rounded-xl">
+            <BeAchamp
+              title="Write a kickass blog post for Firebond"
+              tags={["Writing", "Marketing"]}
               val="2.9"
             />
           </div>

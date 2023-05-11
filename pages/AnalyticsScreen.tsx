@@ -7,7 +7,7 @@ import NewMemberCardAnalyticScreen from "../components/molecules/NewMemberCardAn
 import UserBaseAnalytics from "../components/molecules/UserBaseAnalytics";
 import TopContributorCardLeaderboardScreen from "../components/molecules/TopContributorCardLeaderboardScreen";
 import TopContentCard from "../components/molecules/TopContentCard";
-
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 const users = [
   {
     key: 1,
@@ -135,4 +135,4 @@ const AnalyticsScreen = () => {
   );
 };
 
-export default AnalyticsScreen;
+export default RouteGuardAdmin(AnalyticsScreen);

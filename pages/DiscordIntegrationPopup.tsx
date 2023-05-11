@@ -5,8 +5,8 @@ import ProfileIcon from "../components/atoms/ProfileAvatar";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-export default function DiscordIntegrationPopup() {
+import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+function DiscordIntegrationPopup() {
   const router = useRouter();
   function handleProfileClick() {}
   function discordlink() {
@@ -103,3 +103,5 @@ export default function DiscordIntegrationPopup() {
     </>
   );
 }
+
+export default DiscordIntegrationPopup

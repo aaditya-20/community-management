@@ -20,7 +20,7 @@ const coinType = "USDC";
 export default function MissionOnboardingMisison() {
   return (
     <div>
-      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1100px] w-full md:grid-cols-[auto,1fr]">
+      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-full w-auto md:grid-cols-[auto,1fr]">
         <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
           <Sidebar />
         </div>
@@ -55,8 +55,8 @@ export default function MissionOnboardingMisison() {
               />
             </div>
           </div>
-          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[100px]">
-            <BeAchamp val="1000" />
+          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
+            <BeAchamp val="1000" tags={tags} title = 'Be A Champion'/>
           </div>
         </div>
       </div>
