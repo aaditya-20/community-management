@@ -10,15 +10,18 @@ import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
 
 // const [file, setFile] = useState("");
 function MissionForUser(props:any) {
-  const title = props.missionDetails.title==""?"Mission title":props.missionDetails.title;
+  if(props.missionDetails==undefined||props.missionDetails==null){
+    props.missionDetails = {};
+  }
+  const title = (props.missionDetails.title==undefined||props.missionDetails.title=="")?"Mission title":props.missionDetails.title;
   
 const description = props.missionDetails.description==""?`here comes the description.`:props.missionDetails.description;
 const tags = ["onboarding"];
 const missionSteps = [
-  props.missionDetails.heading1==""?"Heading 1":props.missionDetails.heading1,
-  props.missionDetails.subheading1==""?"Subheading 1":props.missionDetails.subheading1,
-  props.missionDetails.heading2==""?"Heading 2":props.missionDetails.heading2,
-  props.missionDetails.subheading2==""?"Subheading2":props.missionDetails.subheading2,
+  (props.missionDetails.heading1==undefined||props.missionDetails.heading1=="")?"Heading 1":props.missionDetails.heading1,
+  (props.missionDetails.subheading1==undefined||props.missionDetails.subheading1=="")?"Subheading 1":props.missionDetails.subheading1,
+  (props.missionDetails.heading2==undefined||props.missionDetails.heading2=="")?"Heading 2":props.missionDetails.heading2,
+  (props.missionDetails.heading2==undefined||props.missionDetails.subheading2=="")?"Subheading2":props.missionDetails.subheading2,
 ];
 const reward = 1000;
 const coinType = "USDC";
