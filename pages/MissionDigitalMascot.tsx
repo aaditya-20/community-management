@@ -22,7 +22,7 @@ const coinType = "USDC";
 function MissionDigitalMascot() {
   return (
     <div>
-      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
+      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[full] w-full md:grid-cols-[auto,1fr]">
         <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
           <Sidebar />
         </div>
@@ -40,14 +40,14 @@ function MissionDigitalMascot() {
           />
         </div>
         <div className="flex">
-          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
-            <Image
-              src="/../public/Icons/MissionPageBanner.png"
-              width={800}
-              height={1}
-              alt="kjdfhah"
-              className="mx-[10px] my-[10px]"
-            />
+          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto] overflow-auto  border-[1px] border-[#353B43] rounded-[20px]">
+          <Image
+            src="/../public/Icons/MissionPageBanner.png"
+            width={800}
+            height={1}
+            alt="kjdfhah"
+            className="mx-[10px] my-[10px]"
+          />
             <div className="mx-[30px] my-[30px]">
               <div className="font-[600] text-[24px] text-[#ffffff]">
                 Design our company digital mascot
@@ -98,15 +98,17 @@ function MissionDigitalMascot() {
               />
             </div>
           </div>
-        </div>
-        <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
+          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
           <BeAchamp
             title="Design our company digital mascot "
             tags={["Writing", "Marketing"]}
             val="2.9"
           />
         </div>
+        </div>
+        
       </div>
+      
     </div>
   );
 }

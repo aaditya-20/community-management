@@ -6,10 +6,29 @@ import BeAchamp from '@/components/molecules/BeAchamp';
 import MissionStepsCard from '@/components/molecules/MissionStepCard';
 import Image from 'next/image';
 import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
-function MissionForUser() {
+
+
+// const [file, setFile] = useState("");
+function MissionForUser(props:any) {
+  if(props.missionDetails==undefined||props.missionDetails==null){
+    props.missionDetails = {};
+  }
+  const title = (props.missionDetails.title==undefined||props.missionDetails.title=="")?"Mission title":props.missionDetails.title;
+  
+const description = props.missionDetails.description==""?`here comes the description.`:props.missionDetails.description;
+const tags = ["onboarding"];
+const missionSteps = [
+  (props.missionDetails.heading1==undefined||props.missionDetails.heading1=="")?"Heading 1":props.missionDetails.heading1,
+  (props.missionDetails.subheading1==undefined||props.missionDetails.subheading1=="")?"Subheading 1":props.missionDetails.subheading1,
+  (props.missionDetails.heading2==undefined||props.missionDetails.heading2=="")?"Heading 2":props.missionDetails.heading2,
+  (props.missionDetails.heading2==undefined||props.missionDetails.subheading2=="")?"Subheading2":props.missionDetails.subheading2,
+];
+const reward = 1000;
+const coinType = "USDC";
+
   return (
     <div>
-        <div className="grid grid-cols-[1400px] gap-0  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[1400px] ">
+        <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
         
         <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
           <Image src="/../public/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
@@ -21,43 +40,44 @@ function MissionForUser() {
         </div>
         </div>
        
-        <div className='flex'>
-            <div className='text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]'>
-                
-            <Image src="/../public/Icons/MissionPageBanner.png" width={960} height={1} alt='kjdfhah' className='mx-[10px] my-[10px]'/>
-              
-                <div className='mx-[30px] my-[30px] max-w-[960px]'>
-                    <div className='font-[600] text-[24px] text-[#ffffff]'>Onboard 10 new community members</div>
-                    <div className='font-[500] text-[16px] text-[#D9D9D9] my-[10px]'>This bounty is for onboarding 10 new people into Firebond Discord community. You’d do that by generating a new invite link (we’re not counting past invitations) from our Discord and sharing it with people who are genuinely mission aligned.
-                        <ol type="1" className='font-[General Sans] list-decimal mx-[20px] my-[50px]'>
-                            <li>No prize if it looks like you’re just gaming the system by inviting random people who don’t care about Próspera’s mission. So be thoughtful about who you invite.</li>
-                            
-                            <li> When they arrive they should introduce themselves so we understand their story. This also helps us know they’re not just friends helpin</li>
+        <div className="flex">
+        <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
+          <Image
+            src="/../public/Icons/MissionPageBanner.png"
+            width={800}
+            height={1}
+            alt="kjdfhah"
+            className="mx-[10px] my-[10px]"
+          />
+          <div className="font-semibold text-2xl text-white mx-3">
+           {title}
+          </div>
+          <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
+            <pre className="overflow-auto no-scrollbar">{description}</pre>
+            <div className="my-[60px]">
+              <MissionStepsCard
+                heading1={missionSteps[0]}
+                descp1={missionSteps[1]}
+                heading2={missionSteps[2]}
+                descp2={missionSteps[3]}
+              />
+            </div>
+          </div>
 
-                            <li>When you reach 10 people, submit your claim and we’ll review.</li>
-
-                            
-                        </ol>
-                       <div className='my-[20px]'>
-                       For those who recruit the right people and help us build out our community with high quality participants, this mission can extend beyond 20.
-                        </div>             
-                    </div>  
-                
-
-                </div>
-                <div className='mx-[30px] my-[40px]'>
-                   <MissionStepsCard className="mx-[20px]" heading1="Onboard 10 new members.................................................................                      " heading2="Submit mission" descp1="Invite new members..........................................................." descp2="Share the proof of work" />  
-                  
-                </div>
-               
-                </div>
-            <div className='text-[#ffffff] flex w-[auto] h-[auto] ml-[20px]'>
-                <BeAchamp val="1000"/>
-                <div className='text-[#ffffff] absolute text-center  w-[321px] h-[50px] top-[300px] rounded-[8px] border-[1px] border-[white]'>
-                       Submit Work
-                 </div>
-                </div>
+         
         </div>
+        <div className="flex flex-col text-[#ffffff] mx-[auto] ">
+              {/* hello */}
+            <BeAchamp
+              title={title}
+              tags={tags}
+              val={reward}
+            />
+            <div className='mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
+              <span className='relative top-3'>submit work</span> 
+            </div>
+          </div>
+      </div>
         
 
     
