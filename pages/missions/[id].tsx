@@ -77,13 +77,13 @@ export default function Id() {
     )
    }
     
-    
+   console.log(missionDetails);
   return (
 
     <div>
       {/* {missionDetails==null?<div className='text-white'>Mission Not found</div>:<MissionForUser/>} */}
       {/* after mission is found have to display things here */}
-      <MissionForUser/>
+      <MissionForUser missionDetails ={missionDetails}/>
     </div>
   )
 }

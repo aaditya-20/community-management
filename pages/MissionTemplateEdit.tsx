@@ -44,9 +44,8 @@ const MissionTemplateEdit = () => {
   }
 
   // random string generator
-  const generateRandom = () =>
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(23).substring(2, 5);
+  let date = new Date;
+  const generateRandom = () => String(date.getTime());
 
   async function onCreateClick() {
     var temp = generateRandom();

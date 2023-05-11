@@ -10,22 +10,22 @@ import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
 
 // const [file, setFile] = useState("");
 function MissionForUser(props:any) {
-  const title = props.title==null?"Mission title":props.title;
+  const title = props.missionDetails.title==""?"Mission title":props.missionDetails.title;
   
-const description = props.description==null?`here comes the description.`:props.description;
+const description = props.missionDetails.description==""?`here comes the description.`:props.missionDetails.description;
 const tags = ["onboarding"];
 const missionSteps = [
-  props.heading1==null?"Heading 1":props.heading1,
-  props.subheading1==null?"Subheading 1":props.subheading1,
-  props.heading2==null?"Heading 2":props.heading2,
-  props.subheading2==null?"Subheading2":props.subheading2,
+  props.missionDetails.heading1==""?"Heading 1":props.missionDetails.heading1,
+  props.missionDetails.subheading1==""?"Subheading 1":props.missionDetails.subheading1,
+  props.missionDetails.heading2==""?"Heading 2":props.missionDetails.heading2,
+  props.missionDetails.subheading2==""?"Subheading2":props.missionDetails.subheading2,
 ];
 const reward = 1000;
 const coinType = "USDC";
 
   return (
     <div>
-        <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[1400px] ">
+        <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
         
         <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
           <Image src="/../public/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
