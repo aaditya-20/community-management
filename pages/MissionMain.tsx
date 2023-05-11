@@ -302,7 +302,7 @@ const MissionMain = () => {
                 </h1>
                 {Discord.map((item) => {
                   return (
-                    <div onClick={() => router.push("/MissionTwitter")}
+                    <div onClick={() => router.push("/MissionDiscord")}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >
