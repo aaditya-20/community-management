@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 // console.log(useState)
+const { isAddress } = require('ethereum-address');
+
 import Sidebar from "../components/molecules/Sidebar";
 import Header from "../components/atoms/Header";
 import { supabase } from "../utils/supabaseClient";
@@ -14,6 +16,7 @@ export default function Home() {
     const [wallet, setWallet] = useState("");
 
   if (typeof window !== 'undefined') {
+  
     //supabase code retriving users informtion from database
     const storedJsonData = localStorage.getItem('data');
     const jsonData = JSON.parse(storedJsonData ?? '{}');
@@ -62,7 +65,11 @@ export default function Home() {
     }
 
     const handelWalletClick = async () => {
-      const { data: dataUpdate, error: updateError } = await supabase
+      const ethAddress = wallet; // Replace with the Ethereum address you want to validate
+
+      if (isAddress(ethAddress)) {
+        console.log('Valid Ethereum address');
+        const { data: dataUpdate, error: updateError } = await supabase
         .from('community_data')
         .update({ wallet_id: `${walletId}` })
         .eq('wallet_id', walletId)
@@ -71,6 +78,11 @@ export default function Home() {
       } else {
         alert(`Wallet Address Updated Successfully with:${wallet}`)
       }
+      } else {
+        console.log('Invalid Ethereum address');
+        alert("Invalid Ethereum address");
+      }
+     
       // localStorage.setItem("wallet",wallet);
       // alert("Wallet updated successfully");
     }
