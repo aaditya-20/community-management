@@ -18,6 +18,10 @@ const Header = () => {
       if (jsonData != null && jsonData.name) setName(jsonData.name);
     }
   }, [name]);
+  const handleLogout=()=>{
+    localStorage.clear();
+    router.push("/FirstPage");
+  }
   const onWalletLink = linkWallet();
   return (
     <div className="w-full h-[80px] bg-[#171C23] border-b border-[#353B43] py-5 px-4">
@@ -25,7 +29,7 @@ const Header = () => {
         <div className="flex gap-[15px]">
           <button type="button"
             className="h-[40px] w-auto px-6 bg-[#313131] rounded-[25px] cursor-pointer"
-            onClick={() => router.push("/FirstPage")}
+            onClick={handleLogout}
           >
             <h1 className="text-white font-normal text-base">logout</h1>
           </button>
