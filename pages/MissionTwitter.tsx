@@ -74,14 +74,15 @@ export default function MissionDiscord() {
             </div>
           </div>
 
-          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
+          
+        </div>
+        <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
             <BeAchamp
               title="Twitter Mission"
               tags={["Writing", "Marketing"]}
               val="2.9"
             />
           </div>
-        </div>
       </div>
     </div>
   );

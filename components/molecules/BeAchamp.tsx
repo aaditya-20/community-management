@@ -2,7 +2,7 @@ import React from "react";
 
 const BeAchamp = (props: any) => {
   return (
-    <div className="bg-gray-800  w-[346px] h-[267px] left-[1142px] top-[219px] rounded-2xl ">
+    <div className="bg-[#232B35]  w-[346px] h-[267px] left-[1142px] top-[219px] rounded-2xl ">
       <div className="text-2xl font-bold mb-4 text-white w-[292px] h-[64px] left-[1166px] top-[242px] ml-[15px] mt-[15px]">
         {props.title}
       </div>
@@ -29,7 +29,7 @@ const BeAchamp = (props: any) => {
             </span>
             {props.tags?.map((tag: any) => (
               <span key={tag}>
-                <button className="bg-gray-600 text-m m-1 p-1 mb-3 text-white h-8 w-30">
+                <button className="bg-gray-600 text-m m-1 p-1 mb-3 rounded-lg text-white h-8 w-30">
                   <p>{tag}</p>
                 </button>
               </span>

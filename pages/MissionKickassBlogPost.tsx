@@ -25,7 +25,7 @@ Upload your piece of art on Google Drive (make it public!)`;
   const tags = ["onboarding"];
 
   const missionSteps = [
-    " Write a kickass blog",
+    "Write a kickass blog",
     "Write a blog",
     "Submit your work",
     "Share the proof of work",
@@ -34,7 +34,7 @@ Upload your piece of art on Google Drive (make it public!)`;
   const reward = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
-
+   
   function handleFileSelect(e: any) {
     setFile(e.target.value);
   }
