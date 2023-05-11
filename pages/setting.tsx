@@ -9,30 +9,83 @@ import { supabase } from "../utils/supabaseClient";
 
 
 export default function Home() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [wallet, setWallet] = useState("");
+  //supabase code retriving users informtion from database
+  const storedJsonData = localStorage.getItem('data');
+const jsonData = JSON.parse(storedJsonData ?? '{}');
+let name = jsonData.name;
+let emailId = jsonData.email;
+let walletId = jsonData.wallet_id;
+// console.log(name,emailId,walletId)
+
+  const [username, setUsername] = useState(name);
+  const [email, setEmail] = useState(emailId);
+  const [wallet, setWallet] = useState(walletId);
 const handleInputChange = (event:any) => {
   setUsername(event.target.value);
 }
 const handelEmailChange = (event:any) => {
   setEmail(event.target.value);
 }
-const handelEmailClick = (event:any) => {
-  localStorage.setItem("email",email);
-  alert("Email updated successfully");
-  
-}
-const handleUpdateClick=()=>{
-  localStorage.setItem("username",username);
-  alert("Username updated successfully");
-}
 const handleWalletChange = (event:any) => {
   setWallet(event.target.value);
 }
-const handelWalletClick = (event:any) => {
-  localStorage.setItem("wallet",wallet);
-  alert("Wallet updated successfully");
+const handelEmailClick = async() => {
+  const { data:dataUpdate, error:updateError } = await supabase
+  .from('community_data')
+  .update({ email: `${emailId}` })
+  .eq('wallet_id', walletId)
+  if(updateError){
+    alert("Error")
+  }else{
+    alert(`Username Updated Successfully ${email}`)
+  }
+  // localStorage.setItem("email",email);
+  // alert("Email updated successfully");
+  
+}
+//Updating username
+const handleUpdateClick=async ()=>{
+  const { data:dataUpdate, error:updateError } = await supabase
+  .from('community_data')
+  .update({ name: `${username}` })
+  .eq('wallet_id', walletId)
+  if(updateError){
+    alert("Error")
+  }else{
+    alert(`Username Updated Successfully:${username}`)
+  }
+  //localStorage.setItem("username",username);
+  // alert("Username updated successfully");
+}
+
+const handelWalletClick = async() => {
+  const { data:dataUpdate, error:updateError } = await supabase
+  .from('community_data')
+  .update({ wallet_id: `${walletId}` })
+  .eq('wallet_id', walletId)
+  if(updateError){
+    alert("Error")
+  }else{
+    alert(`Wallet Address Updated Successfully with:${wallet}`)
+  }
+  // localStorage.setItem("wallet",wallet);
+  // alert("Wallet updated successfully");
+}
+const handelDelete=async()=>{
+  const { data:dataUpdate, error:updateError } = await supabase
+  .from('community_data')
+  .delete()
+  .eq('wallet_id', walletId)
+
+if(confirm("Are you sure you want to delete your account?")){
+  if(updateError){
+    alert("Error")
+  }else{
+    alert(`Account Deleted Successfully`)
+  }
+  localStorage.clear();
+  window.location.href = "/";
+}
 }
 
   return (
@@ -142,7 +195,7 @@ const handelWalletClick = (event:any) => {
 
             <section className="section-three">
               <div> Danger Zone </div>
-              <button> Delete My Account </button>
+              <button onClick={handelDelete}> Delete My Account </button>
             </section>
           </div>
         </main>
