@@ -85,7 +85,7 @@ const MissionCreationFormPage = () => {
           />
         </div>
       </Modal>
-      <div className="min-h-screen  bg-[#171C23]">
+      <div className="min-h-screen overflow-x-hidden bg-[#171C23]">
         <div className="h-full flex ">
           <Sidebar />
           <div className="h-full w-full">

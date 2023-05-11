@@ -15,34 +15,37 @@ import {
   startOfToday,
   startOfWeek,
 } from "date-fns";
+import { BsFillTriangleFill } from "react-icons/bs";
 
-const BasicInfoCard = (props:any) => {
+const BasicInfoCard = (props: any) => {
   const [on, setOn] = useState(Array(5).fill(false));
   const [amount, setAmount] = useState(0);
+  const [xp, setXp] = useState(100);
   const [selectedDate, changeSelectedDate] = useState("");
-  const[input,setInput] = useState(props.title)
+  const [input, setInput] = useState(props.title);
   const [visibiliy, setVisibility] = useState({
     src: "Icons/visible.svg",
     title: "Public",
   });
   const obj = MissionFormData();
-  
- 
-  
-  
-  
 
-  
   // Calendar implementation
 
-  function handleInput(e: any){
-    setInput(e.target.value)
+  function handleInput(e: any) {
+    setInput(e.target.value);
   }
 
-  
+  const increaseXP = () => {
+    const newXp = xp + 50;
+    setXp(newXp);
+  };
 
-  
+  const decreaseXP = () => {
+    if (xp <= 0) return;
 
+    const newXp = xp - 50;
+    setXp(newXp);
+  };
   const today = startOfToday();
   const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
   const colStartClasses = [
@@ -75,9 +78,9 @@ const BasicInfoCard = (props:any) => {
     setCurrMonth(format(firstDayOfNextMonth, "MMM-yyyy"));
   };
 
-  obj.title = input
+  obj.title = input;
   obj.amount = amount;
-  obj.seleted_date = selectedDate
+  obj.seleted_date = selectedDate;
   obj.submission = 52;
 
   return (
@@ -90,12 +93,12 @@ const BasicInfoCard = (props:any) => {
         Mission title
       </h1>
       <div className="w-full h-[41px] bg-[#2E363F] rounded-lg overflow-hidden mb-[29px]">
-        <input className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
-        value = {input}
-        onChange={handleInput}
-        placeholder = {props.title}/>
-        
-        
+        <input
+          className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
+          value={input}
+          onChange={handleInput}
+          placeholder={props.title}
+        />
       </div>
       <div className="w-full flex justify-between">
         <button
@@ -106,7 +109,7 @@ const BasicInfoCard = (props:any) => {
             setOn(newState);
           }}
         >
-          <div className=" w-full h-full flex gap-[6.5px]">
+          <div className=" w-full h-full flex items-center justify-center gap-[6.5px]">
             <Image src="Icons/calender.svg" alt="" height={13} width={13} />
             <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px]">
               {selectedDate != "" ? (
@@ -136,7 +139,7 @@ const BasicInfoCard = (props:any) => {
             setOn(newState);
           }}
         >
-          <div className="flex w-full h-full">
+          <div className="flex items-center w-full h-full">
             <Image src={visibiliy.src} alt="" height={20} width={20} />
             <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px] ml-3 mr-[19.28px]">
               {visibiliy.title}
@@ -155,17 +158,23 @@ const BasicInfoCard = (props:any) => {
           <div className=" w-full h-full flex items-center justify-center">
             <Image src="Icons/Star.svg" alt="" height={17.7} width={20.22} />
             <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px] ml-[18.26px] mr-[30px]">
-              100 XP
+              {xp} XP
             </h1>
             <div>
-              <Image src="Icons/Polygon.svg" height={7} width={7} alt="" />
+              
+
+                <BsFillTriangleFill className=" active:text-green-600 text-[#757575]" size={10} onClick={()=>{increaseXP()}}/>
+                <BsFillTriangleFill className="-rotate-180 origin-center active:text-red-600 mt-[3px] text-[#757575]" size={10} onClick={()=>{decreaseXP()}} />
+              
+              {/* <Image src="Icons/Polygon.svg" height={12} width={12} alt="" onClick={()=>{increaseXP()}}/>
               <Image
                 src="Icons/Polygon.svg"
-                height={7}
-                width={7}
+                height={12.5}
+                width={12.5}
                 alt=""
                 className="-rotate-180"
-              />
+                onClick={()=>{decreaseXP()}}
+              /> */}
             </div>
           </div>
         </button>
@@ -178,7 +187,7 @@ const BasicInfoCard = (props:any) => {
             setOn(newState);
           }}
         >
-          <div className=" h-full w-full flex gap-2">
+          <div className=" h-full w-full flex gap-2 items-center">
             <Image src="Icons/dollar.svg" alt="" height={18.05} width={20} />
             <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px]">
               {amount != 0 ? `${amount} USDC` : "Add Bounty"}
@@ -291,7 +300,7 @@ const BasicInfoCard = (props:any) => {
         <div className="absolute left-[265px] top-[239px] w-[521px] h-[263px] bg-[#171C23] rounded-[20px] z-10">
           <button className="relative top-[23px] left-[471px] mb-[18px]">
             <RxCross2
-              size={16}
+              size={20}
               className="text-white"
               onClick={() => {
                 const newState = [...on];
@@ -308,7 +317,13 @@ const BasicInfoCard = (props:any) => {
             <h1 className="text-[#D9D9D9] text-sm font-normal ">
               USDC (Ethereum Mainnet)
             </h1>
-            <Image src="Icons/ArrowDown.svg" alt="" height={16} width={16} />
+            <Image
+              src="Icons/Arrow_Down.svg"
+              alt=""
+              height={16}
+              width={16}
+              className="cursor-pointer"
+            />
           </div>
 
           <h1 className="text-[#D9D9D9] text-sm font-semibold ml-[60px] mb-2">
@@ -322,6 +337,13 @@ const BasicInfoCard = (props:any) => {
                 value={amount}
                 onChange={(e) => {
                   setAmount(Number(e.target.value));
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const newState = [...on];
+                    newState[4] = false;
+                    setOn(newState);
+                  }
                 }}
               />
             </div>
