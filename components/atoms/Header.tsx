@@ -8,6 +8,10 @@ let data = 0;
 
 declare var window: any;
 
+function handlelogout() {
+  localStorage.removeItem("data");
+  router.push("/FirstPage");
+}
 const Header = () => {
   const [name, setName] = useState("user");
 
@@ -69,7 +73,7 @@ const Header = () => {
         <button
           type="button"
           className="text-white font-small"
-          onClick={() => router.push("/FirstPage")}
+          onClick={handlelogout}
         >
           Logout
         </button>
