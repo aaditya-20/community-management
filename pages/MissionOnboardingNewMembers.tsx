@@ -54,7 +54,7 @@ const MissionOnboardingNewMembers = () => {
         </div>
 
         <div className="flex">
-          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px">
+          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
             <Image
               src="/../public/Icons/MissionPageBanner.png"
               width={800}
@@ -79,7 +79,7 @@ const MissionOnboardingNewMembers = () => {
               descp2="Share the proof of work"
             />
           </div>
-          <div className="text-[#ffffff] w-[auto] h-[auto] mr-[250px]">
+          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
             <BeAchamp
               val="1000"
               tags={tags}
