@@ -115,7 +115,7 @@ If you do not include these two items, you will not be considered.`;
             </div>
           </div>
 
-          <div>
+          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
             <BeAchamp
               title="Technical Tutorials for Firebond"
               tags={tags}

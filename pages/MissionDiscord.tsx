@@ -77,14 +77,15 @@ This quest will auto-validate when you claim it.`;
             </div>
           </div>
 
-          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
+         
+        </div>
+        <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
             <BeAchamp
               title="Discord Mission for Firebond"
               tags={["Writing", "Marketing"]}
               val="2.9"
             />
           </div>
-        </div>
       </div>
     </div>
   );
