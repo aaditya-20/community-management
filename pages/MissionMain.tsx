@@ -10,6 +10,7 @@ import MissionTemplateEdit from "./MissionTemplateEdit";
 import { supabase } from "@/utils/supabaseClient";
 import { useState } from "react";
 import { getDate } from "date-fns";
+import Photo from "@/components/atoms/Photo";
 const twitter = [
   {
     id: 1,
@@ -40,14 +41,14 @@ const Community = [
     title: "Be A Champion",
     button: 2.9,
     mission: "Follow firebond twitter and get ...",
-    route:'/MissionOnboardingMisison',
+    route: "/MissionOnboardingMisison",
   },
   {
     id: 2,
     title: "Feedback",
     button: 2.9,
     mission: "Give your feedback regarding the ...",
-    route:'/MissionShareYourFeedback',
+    route: "/MissionShareYourFeedback",
   },
 ];
 
@@ -63,19 +64,17 @@ const MissionMain = () => {
   // }];
 
   // to display number of days left
-  function daysleft(dueDate:any){
-    let temp = getDate(new Date(dueDate.seleted_date)) - getDate(new Date);
-      if(dueDate==""||dueDate==null){
-          return "No Due Date";
-      }
-      else if(temp>=0){
-        return `${temp} Days Left`;
-      }
-      else{
-        return "Expired";
-      }
+  function daysleft(dueDate: any) {
+    let temp = getDate(new Date(dueDate.seleted_date)) - getDate(new Date());
+    if (dueDate == "" || dueDate == null) {
+      return "No Due Date";
+    } else if (temp >= 0) {
+      return `${temp} Days Left`;
+    } else {
+      return "Expired";
+    }
   }
-  const [missions,setmissions] = useState([{}]);
+  const [missions, setmissions] = useState([{}]);
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
     // console.log(storedJsonData)
@@ -84,133 +83,106 @@ const MissionMain = () => {
     console.log(jsonData);
   }
 
-  
-  useEffect(()=>{
+  useEffect(() => {
     fetchData();
-  },[])
+  }, []);
 
-  async function fetchData(){
-
-  try {
-    // Fetch the community data row using the user's wallet_id as a filter condition
-    const { data: rowData, error } = await supabase
-      .from("community_data")
-      .select("*")
-      .eq("wallet_id", wallet_id)
-      .single();
-    if (error) {
+  async function fetchData() {
+    try {
+      // Fetch the community data row using the user's wallet_id as a filter condition
+      const { data: rowData, error } = await supabase
+        .from("community_data")
+        .select("*")
+        .eq("wallet_id", wallet_id)
+        .single();
+      if (error) {
+        console.error(error);
+        return;
+      }
+      console.log(rowData.missions);
+      // missions = rowData.missions;
+      setmissions(rowData.missions);
+    } catch (error) {
       console.error(error);
-      return;
     }
-    console.log(rowData.missions);
-    // missions = rowData.missions;
-    setmissions( rowData.missions)
-
-  } catch (error) {
-    console.error(error);
   }
-}
-// console.log("->missions->  jad->",missions);
+  // console.log("->missions->  jad->",missions);
 
   return (
-    <div className="h-screen bg-[#171c23]">
+    <div className="min-h-screen overflow-x-hidden bg-[#171c23]">
       {/* Main Div */}
       <div className="h-full w-full  flex">
         {/* Sidebar */}
         <Sidebar />
-        <div className="w-full h-full overflow-scroll scrollbar-hide">
+        <div className="w-full h-full">
           <Header />
-          <div className="h-[172px] w-full p-6 border-t-[1px] border-b-[1px] border-[#353B43]">
-            <div className=" h-full w-full">
-              <h1 className="font-semibold text-2xl text-white">Missions</h1>
-              <p className="font-normal text-[16px] leading-[22px] text-[#A6A6A6]">
-                Boost your community with missions
-              </p>
-              <div className="flex justify-between mt-6">
-                <div className="flex gap-3 items-center justify-center">
-                  <button className="h-[33px] w-[90px] bg-white/[0.05] rounded-[8px] flex justify-center items-center">
-                    <div className="flex gap-[8.28px] justify-center items-center">
-                      <h1 className="font-normal text-xs">Twitter</h1>
-                      <Image
-                        src="Icons/arrowDown.svg"
-                        height={3.72}
-                        width={7.45}
-                        alt=""
+          <div className="w-full h-full">
+            <div className="h-[172px] w-full p-6 border-b-[1px] border-[#353B43]">
+              <div className=" h-full w-full">
+                <h1 className="font-semibold text-2xl text-white">Missions</h1>
+                <p className="font-normal text-[16px] leading-[22px] text-[#A6A6A6]">
+                  Boost your community with missions
+                </p>
+                <div className="flex justify-between mt-6">
+                  <div className="flex gap-3 items-center justify-center">
+                    <button className="h-[33px] w-[90px] bg-white/[0.05] rounded-[8px] flex justify-center items-center">
+                      <div className="flex gap-[8.28px] justify-center items-center">
+                        <h1 className="font-normal text-xs">Twitter</h1>
+                        <Image
+                          src="Icons/arrowDown.svg"
+                          height={3.72}
+                          width={7.45}
+                          alt=""
+                        />
+                      </div>
+                    </button>
+                    <h1 className="font-[500px] text-xs text-[#EAEBEB]">
+                      with skills
+                    </h1>
+                    <button className="h-[33px] w-[116px] px-3 py-2 bg-[#23272e] rounded-[8px] flex items-center justify-between">
+                      <div className="h-[19.71px] w-[68.41px] bg-[#363C44] rounded-[4px] flex justify-center items-center gap-[2.39px]">
+                        <Image
+                          src="Icons/✍️.svg"
+                          alt=""
+                          height={12}
+                          width={12}
+                        />
+                        <h1 className="font-normal text-[11.5px] leading-4 text-white ">
+                          Writing
+                        </h1>
+                      </div>
+                      <AiOutlinePlusCircle
+                        className="text-[#7C7C7C]"
+                        size={16}
                       />
-                    </div>
-                  </button>
-                  <h1 className="font-[500px] text-xs text-[#EAEBEB]">
-                    with skills
-                  </h1>
-                  <button className="h-[33px] w-[116px] px-3 py-2 bg-[#23272e] rounded-[8px] flex items-center justify-between">
-                    <div className="h-[19.71px] w-[68.41px] bg-[#363C44] rounded-[4px] flex justify-center items-center gap-[2.39px]">
-                      <Image src="Icons/✍️.svg" alt="" height={12} width={12} />
-                      <h1 className="font-normal text-[11.5px] leading-4 text-white ">
-                        Writing
-                      </h1>
-                    </div>
-                    <AiOutlinePlusCircle className="text-[#7C7C7C]" size={16} />
-                  </button>
-                </div>
-                <div className="flex gap-3 justify-center items-center">
-                  <div className="w-[52.5px] h-[21px] flex overflow-hidden relative ">
-                    <div className="h-[21px] w-[21px] rounded-full overflow-hidden  absolute left-0">
-                      <Image
-                        src="Icons/Ellipse_26.svg"
-                        alt=""
-                        height={21}
-                        width={21}
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="h-[21px] w-[21px] rounded-full overflow-hidden absolute right-[21px]">
-                      <Image
-                        src="Icons/Ellipse_27.svg"
-                        alt=""
-                        height={21}
-                        width={21}
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="h-[21px] w-[21px] rounded-full overflow-hidden absolute left-[21px]">
-                      <Image
-                        src="Icons/Ellipse_28.svg"
-                        alt=""
-                        height={21}
-                        width={21}
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="h-[21px] w-[21px] rounded-full overflow-hidden absolute right-0 ">
-                      <Image
-                        src="Icons/Ellipse_29.svg"
-                        alt=""
-                        height={21}
-                        width={21}
-                        className="object-cover"
-                      />
-                    </div>
+                    </button>
                   </div>
-                  <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]">
-                    <Image
-                      src="Icons/Add_user.svg"
-                      alt=""
-                      height={14.17}
-                      width={12.75}
-                    />
-                    <h1 className="font-[500px] text-sm text-[#757575]">
-                      Invite
-                    </h1>
-                  </button>
-                  <button
-                    onClick={createhandleclick}
-                    className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
-                  >
-                    <AiOutlinePlusCircle className="text-[#7C7C7C]" size={16} />
-                    <h1 className="font-[500px] text-sm text-[#757575]">
-                      Create
-                    </h1>
-                  </button>
+                  <div className="flex gap-3 justify-center items-center">
+                   <Photo/>
+                    <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]">
+                      <Image
+                        src="Icons/Add_user.svg"
+                        alt=""
+                        height={14.17}
+                        width={12.75}
+                      />
+                      <h1 className="font-[500px] text-sm text-[#757575]">
+                        Invite
+                      </h1>
+                    </button>
+                    <button
+                      onClick={createhandleclick}
+                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                    >
+                      <AiOutlinePlusCircle
+                        className="text-[#7C7C7C]"
+                        size={16}
+                      />
+                      <h1 className="font-[500px] text-sm text-[#757575]">
+                        Create
+                      </h1>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -223,28 +195,25 @@ const MissionMain = () => {
               <div className="h-auto w-auto">
                 <div className="w-full h-full flex flex-wrap justify-center">
                   {missions &&
-                    missions.map((item:any, index) => {
+                    missions.map((item: any, index) => {
                       return (
-                      <div className="m-[8px] " key={index}>
-                         <MissionMainCard
-                          
-                          profileUrl1={"/Avatar.png"}
-                          profileUrl2={"/Avatar.png"}
-                          profileUrl3={"/Avatar.png"}
-                          profileUrl4={"/Avatar.png"}
-                          submission={item.submission}
-                          daysLeft={daysleft(item)}
-                          usdc={item.amount}
-                          title={item.title}
-                          tags = {item.tags}
-                        />
-                      </div>
-                       
+                        <div className="m-[8px] " key={index}>
+                          <MissionMainCard
+                            profileUrl1={"/Avatar.png"}
+                            profileUrl2={"/Avatar.png"}
+                            profileUrl3={"/Avatar.png"}
+                            profileUrl4={"/Avatar.png"}
+                            submission={item.submission}
+                            daysLeft={daysleft(item)}
+                            usdc={item.amount}
+                            title={item.title}
+                            tags={item.tags}
+                          />
+                        </div>
                       );
                     })}
-                
+
                   <AddMoreCard />
-                  
                 </div>
               </div>
             </div>
@@ -275,7 +244,8 @@ const MissionMain = () => {
                 </h1>
                 {twitter.map((item) => {
                   return (
-                    <div onClick={() => router.push("/MissionTwitter")}
+                    <div
+                      onClick={() => router.push("/MissionTwitter")}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >
@@ -302,7 +272,9 @@ const MissionMain = () => {
                 </h1>
                 {Discord.map((item) => {
                   return (
+
                     <div onClick={() => router.push("/MissionDiscord")}
+
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >
@@ -329,7 +301,10 @@ const MissionMain = () => {
                 </h1>
                 {Community.map((item) => {
                   return (
-                    <div onClick={()=>{router.push(item.route)}}
+                    <div
+                      onClick={() => {
+                        router.push(item.route);
+                      }}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >

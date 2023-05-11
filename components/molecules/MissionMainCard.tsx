@@ -102,7 +102,7 @@ const MissionMainCard: React.FC<MissionMainCardProps> = ({
           </div>
 
           <div className="flex gap-1 justify-center items-center">
-            <Image width={14} height={14} src="Icons/timer (1).svg" alt="" />
+            <Image width={14} height={14} src="Icons/timeLeft.svg" alt="" />
 
             <h1 className="font-normal text-xs text-[#FE702A]">{daysLeft}</h1>
           </div>

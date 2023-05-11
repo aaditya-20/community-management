@@ -1,6 +1,8 @@
 import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { HiXCircle } from "react-icons/hi2";
+import { RxCrossCircled } from "react-icons/rx";
 
 const Details = (props :any) => {
   const [on, setOn] = useState(false);
@@ -29,9 +31,29 @@ const Details = (props :any) => {
 
   obj.description = description;
 
- 
+  const deleteElement = (item: string)=>{
 
+    const newConditions = conditions.filter(value => value !== item)
+    
+    setConditions(newConditions)
+  }
+
+ 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
+      if (on && !(event.target instanceof Element && event.target.closest('.popup'))) {
+        setOn(false);
+      }
+    }
   
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [on]);
 
 
 
@@ -68,8 +90,9 @@ const Details = (props :any) => {
             {conditions?.map((item, index) => {
               return (
                 <div key={index}>
-                  <div className=" border border-[#757575] w-[65px] h-[36px] flex justify-center items-center rounded-[4px] text-[#AAAAAA] font-normal text-sm">
+                  <div className=" border border-[#757575] w-[65px] h-[36px] flex justify-center items-center rounded-[4px] text-[#AAAAAA] font-normal text-sm relative">
                     {item}
+                    <HiXCircle className="absolute bottom-[20px] left-[50px] text-red-700 cursor-pointer" size={20} onClick={()=>{deleteElement(item)}}/>
                   </div>
                 </div>
               );
@@ -103,7 +126,7 @@ const Details = (props :any) => {
       </div>
       {on && (
         <div className="absolute inset-0 bg-[#00000082] h-[1087px] flex justify-center items-center">
-          <div className="w-[598px] h-[156px] bg-[#232B35] rounded-[20px]">
+          <div className="w-[598px] h-[156px] bg-[#232B35] rounded-[20px] popup">
             <h1 className="text-white font-normal text-[20px] leading-[27px] mt-6 ml-6">
               Select ons
             </h1>
@@ -135,7 +158,7 @@ const Details = (props :any) => {
               <button
                 className=" border border-[#757575] w-[65px] h-[36px] flex justify-center items-center rounded-[4px] text-[#AAAAAA] font-normal text-sm hover:bg-[#161C23]"
                 onClick={() => {
-                  handleSubmit();
+                  handleClick("Submit");
                 }}
               >
                 Submit

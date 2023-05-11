@@ -167,7 +167,7 @@ const Form_Builder_Info = () => {
    
   return (
     
-    <div className="min-h-screen bg-[#171C23] flex ">
+    <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden ">
       <Modal
         onClose={()=>{setSelectIntegration(!selectIntegration)}}
         open={selectIntegration}
