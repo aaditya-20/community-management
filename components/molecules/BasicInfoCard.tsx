@@ -15,7 +15,11 @@ import {
   startOfToday,
   startOfWeek,
 } from "date-fns";
+
+import { supabase } from "@/utils/supabaseClient";
+
 import { BsFillTriangleFill } from "react-icons/bs";
+
 
 const BasicInfoCard = (props: any) => {
   const [on, setOn] = useState(Array(5).fill(false));
@@ -33,6 +37,43 @@ const BasicInfoCard = (props: any) => {
 
   function handleInput(e: any) {
     setInput(e.target.value);
+  }
+  function handleAttachment() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".png, .jpg, .jpeg";
+    input.hidden = true; // Add the hidden attribute
+    let files: File[];
+    input.addEventListener("change", async () => {
+      const files = input.files;
+      console.log(files);
+      if (files && files.length > 0) {
+        console.log(files[0]);
+        let file: File;
+        file = files[0];
+        if (!file) {
+          return;
+        }
+        console.log(file.name);
+        // from here we can send image to supabase storage.
+
+        const { data, error } = await supabase.storage
+          .from("images")
+          .upload(file.name, file, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+        if (error) {
+          console.log("Error uploading file:", error);
+        } else {
+          console.log("File uploaded successfully:", data);
+        }
+      } else {
+        return;
+      }
+    });
+    input.click();
   }
 
   const increaseXP = () => {
@@ -121,7 +162,7 @@ const BasicInfoCard = (props: any) => {
           </div>
         </button>
 
-        <button className="pt-[9px] pr-[11px] pb-[9px] pl-[12px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center">
+        <button className="pt-[9px] pr-[11px] pb-[9px] pl-[12px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center" onClick={handleAttachment}>
           <div className=" w-full h-full flex gap-[7px]">
             <Image src="Icons/paper_pin.svg" alt="" height={16} width={16} />
             <h1 className="font-normal text-[#D0D0D0CC] text-[14px] leading-[19px]">

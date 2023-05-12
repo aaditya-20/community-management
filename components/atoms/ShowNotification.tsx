@@ -1,13 +1,15 @@
 import Image from "next/image";
 import { useState } from "react";
 
+// notification API fetched data here.
+const messages = [
+  { message: "Hello this is message 1" },
+  { message: "Hello this is message 2" },
+  { message: "Hello this is message 3" },
+];
 function ShowNotifications() {
   const [showMessages, setShowMessages] = useState(false);
-  const [unread, setUnread] = useState([
-    { message: "Hello this is message 1" },
-    { message: "Hello this is message 2" },
-    { message: "Hello this is message 3" },
-  ]);
+  const [unread, setUnread] = useState(messages);
 
   // Example data variable
 
