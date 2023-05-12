@@ -64,7 +64,7 @@ const Tags = () => {
           <div className="my-3 h-7 rounded-md overflow-hidden">
             <input
               type="text"
-              className="w-full h-full outline-none px-6 text-ellipsis overflow-hidden text-xs text-[#A6A6A6] placeholder:text-[#A6A6A6]"
+              className="w-full h-full outline-none px-6 text-ellipsis overflow-hidden text-xs text-black placeholder:text-black"
               placeholder="add tag"
               value = {tag}
               onChange = {(e)=>{setTag(e.target.value)}}
