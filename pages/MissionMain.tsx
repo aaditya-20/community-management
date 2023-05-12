@@ -53,15 +53,23 @@ const Community = [
 ];
 
 const MissionMain = () => {
+
   const router = useRouter();
   function createhandleclick() {
     router.push("/MissionCreationFormPage");
   }
+  function handleCardClick(missionDetails:any){
+    console.log("details->",missionDetails);
+    router.push({
+      pathname: '/MissionViewPage',
+      query: {
+        myData: JSON.stringify(missionDetails),
+       }
+    },)
+  }
 
   var wallet_id = "";
-  // var missions = [{
-  //   title : ''
-  // }];
+  
 
   // to display number of days left
   function daysleft(dueDate: any) {
@@ -106,7 +114,7 @@ const MissionMain = () => {
       console.error(error);
     }
   }
-  // console.log("->missions->  jad->",missions);
+  
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#171c23]">
@@ -197,7 +205,7 @@ const MissionMain = () => {
                   {missions &&
                     missions.map((item: any, index) => {
                       return (
-                        <div className="m-[8px] " key={index}>
+                        <div className="m-[8px] " key={index} onClick={()=>{handleCardClick(item)}}>
                           <MissionMainCard
                             profileUrl1={"/Avatar.png"}
                             profileUrl2={"/Avatar.png"}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import Sidebar from '@/components/molecules/Sidebar';
 import Header from '@/components/atoms/Header';
 import NavbarMissionOnboarding from '@/components/molecules/NavbarMissionOnboarding';
@@ -6,36 +6,55 @@ import BeAchamp from '@/components/molecules/BeAchamp';
 import MissionStepsCard from '@/components/molecules/MissionStepCard';
 import Image from 'next/image';
 import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
+import { useRouter } from 'next/router';
+import { render } from 'react-dom';
 
 
-// const [file, setFile] = useState("");
-function MissionForUser(props:any) {
-  // you cant extend props as it is a non extensible object (to be resolved)
-  if(props.missionDetails==undefined||props.missionDetails==null){
-    props.missionDetails = {};
-  }
-  const title = (props.missionDetails.title==undefined||props.missionDetails.title=="")?"Mission title":props.missionDetails.title;
+function MissionViewPage() {
+    const router = useRouter();
+    const [title,settitle] = useState("Mission title");
   
-const description = props.missionDetails.description==""?`here comes the description.`:props.missionDetails.description;
+    const [description,setdescription] = useState(`here comes the description.`);
+    const [tags,settags] = useState(["NoTags"]);
+    const [missionSteps,setmissionSteps] =  useState( [
+        "Heading 1",
+        "Subheading 1",
+        "Heading 2",
+        "Subheading2",
+    ]);
+    const [reward,setreward] = useState(1000);
+    const [coinType,setcoinType] = useState("USDC");
+    let missionDetails:any;
+    console.log(router.query.myData);
+    if(router.query.myData !== undefined){
+       
+        missionDetails =  JSON.parse((router.query.myData as string))
+    }
+    else{
+        missionDetails = {};
+    }
+    const [data, setData] = useState()
+    useEffect(() => {
+        setreward(missionDetails.amount)
+        let newTags:any = [];
+         
+        if(missionDetails.tags!=null&&missionDetails.tags!=undefined){
+            newTags = [];
+          missionDetails.tags.map((val:any)=>{
+                newTags.push(val.title);
+            });
+        }
+
+        settags(newTags);
+        settitle(missionDetails.title)
+        setdescription(missionDetails.description)
+        setmissionSteps([missionDetails.heading1||"NotAvailable",missionDetails.subheading1||"NotAvailable",missionDetails.heading2||"NotAvailable",missionDetails.subheading2||"NotAvailable"])
+      }, [router.query.myData]);
+      
 
 
-//regarding tags to be shown in 'be a champ card'.
-let tags = ["NoTags"];
-if(props.missionDetails.tags!=null&&props.missionDetails.tags!=undefined){
-    tags = [];
-    props.missionDetails.tags.map((val:any)=>{
-        tags.push(val.title);
-    });
-}
+  
 
-const missionSteps = [
-  (props.missionDetails.heading1==undefined||props.missionDetails.heading1=="")?"Heading 1":props.missionDetails.heading1,
-  (props.missionDetails.subheading1==undefined||props.missionDetails.subheading1=="")?"Subheading 1":props.missionDetails.subheading1,
-  (props.missionDetails.heading2==undefined||props.missionDetails.heading2=="")?"Heading 2":props.missionDetails.heading2,
-  (props.missionDetails.heading2==undefined||props.missionDetails.subheading2=="")?"Subheading2":props.missionDetails.subheading2,
-];
-const reward = 1000;
-const coinType = "USDC";
 
   return (
     <div>
@@ -44,9 +63,9 @@ const coinType = "USDC";
         <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
           <Image src="/../public/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
           <div className="absolute w-[124px] h-[39px] right-[0px] top-[20px]  bg-[#313131] rounded-[25px] flex items-center justify-center">
-        {/*Pending :: Change color of button when onWalletLink is called and user have connected his wallet */ }
-            <button type="button" className="text-white font-small"  >
-                Link wallet
+
+            <button type="button" className="text-white font-small" onClick={()=>{router.push('/MissionMain')}} >
+                All Missions
             </button>
         </div>
         </div>
@@ -78,14 +97,14 @@ const coinType = "USDC";
          
         </div>
         <div className="flex flex-col text-[#ffffff] mx-[auto] ">
-              {/* hello */}
+             
             <BeAchamp
               title={title}
               tags={tags}
               val={reward}
             />
             <div className='mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
-              <span className='relative top-3'>submit work</span> 
+              <span className='relative top-3'>Edit</span> 
             </div>
           </div>
       </div>
@@ -97,4 +116,4 @@ const coinType = "USDC";
   )
 }
 
-export default RouteGuardAdmin(MissionForUser)
+export default RouteGuardAdmin(MissionViewPage)
