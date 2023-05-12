@@ -89,7 +89,7 @@ If you do not include these two items, you will not be considered.`;
         <div className="flex">
           <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
             <Image
-              src="/../public/Icons/MissionPageBanner.png"
+              src="/MissionPageBanner.png"
               width={800}
               height={1}
               alt="alt"
