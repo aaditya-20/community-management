@@ -9,8 +9,23 @@ import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+function missionCheck(discord_id:string){
+
+  fetch("https://discord.com/api/users/@me", {
+    headers: {
+      authorization: `Bearer ${discord_id}`,
+    },
+  })
+    .then((result) => result.json())
+    .then(async (response) => {
+      console.log(response);
+    });
+  
+}
 
 function MissionDiscord() {
+  
+  //missionCheck()
   const title = "Discord Mission";
   const description = `Get a Discord Role and introduce yourself to the community
 GUIDE 📚
