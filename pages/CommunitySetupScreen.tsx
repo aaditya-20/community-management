@@ -72,7 +72,7 @@ const CommunitySetupScreen = (): ReactElement => {
       },
       })
       .then(result => result.json())
-      .then(response => {
+      .then(async(response) => {
           console.log(response);
           const { username, discriminator, avatar, id,email} = response;
           let profile={
@@ -82,6 +82,16 @@ const CommunitySetupScreen = (): ReactElement => {
             avatar: avatar,
             id: id
           }
+          const { data, error } = await supabase.from('community_data').insert([
+            { DiscordToken: profile.id},
+          ])
+          if(error){
+            alert("Discord Integration Failed");
+          }else{
+            alert("Discord Integration Successful");
+          }
+          //alert("Discord Integration Successful");
+
           localStorage.setItem('profile', JSON.stringify(profile));
       })
       .catch(console.error);
