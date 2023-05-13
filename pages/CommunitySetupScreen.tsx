@@ -82,14 +82,14 @@ const CommunitySetupScreen = (): ReactElement => {
             avatar: avatar,
             id: id
           }
-          const { data, error } = await supabase.from('community_data').insert([
-            { DiscordToken: profile.id},
-          ])
-          if(error){
-            alert("Discord Integration Failed");
-          }else{
-            alert("Discord Integration Successful");
-          }
+          // const { data, error } = await supabase.from('community_data').insert([
+          //   { DiscordToken: profile.id},
+          // ])
+          // if(error){
+          //   alert("Discord Integration Failed");
+          // }else{
+          //   alert("Discord Integration Successful");
+          // }
           //alert("Discord Integration Successful");
 
           localStorage.setItem('profile', JSON.stringify(profile));
