@@ -10,7 +10,7 @@ import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 function missionCheck(){
-  let k =localStorage.getItem("accessToken")
+  let k =localStorage.getItem("accessToken")||"";
 
   fetch("https://discord.com/api/users/@me/guilds", {
     headers: {
