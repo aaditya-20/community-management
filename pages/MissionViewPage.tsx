@@ -8,12 +8,15 @@ import Image from 'next/image';
 import RouteGuardAdmin from '@/utils/RouteGuardAdmin';
 import { useRouter } from 'next/router';
 import { render } from 'react-dom';
-
+import CopyToClipboard from 'react-copy-to-clipboard'
+import { setRequestMeta } from 'next/dist/server/request-meta';
 
 function MissionViewPage() {
+    // let missionUrl;
+    const [missionUrl,setmissionUrl] = useState("");
     const router = useRouter();
     const [title,settitle] = useState("Mission title");
-  
+    const [copyLink,setcopyLink] = useState("Copy");
     const [description,setdescription] = useState(`here comes the description.`);
     const [tags,settags] = useState(["NoTags"]);
     const [missionSteps,setmissionSteps] =  useState( [
@@ -27,8 +30,9 @@ function MissionViewPage() {
     let missionDetails:any;
     console.log(router.query.myData);
     if(router.query.myData !== undefined){
-       
+
         missionDetails =  JSON.parse((router.query.myData as string))
+
     }
     else{
         missionDetails = {};
@@ -45,6 +49,7 @@ function MissionViewPage() {
             });
         }
 
+        setmissionUrl(`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${missionDetails.mission_id}`);
         settags(newTags);
         settitle(missionDetails.title)
         setdescription(missionDetails.description)
@@ -61,12 +66,24 @@ function MissionViewPage() {
         <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
         
         <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
-          <Image src="/../public/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
+          <Image src="/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
           <div className="absolute w-[124px] h-[39px] right-[0px] top-[20px]  bg-[#313131] rounded-[25px] flex items-center justify-center">
-
+                
             <button type="button" className="text-white font-small" onClick={()=>{router.push('/MissionMain')}} >
                 All Missions
             </button>
+        </div>
+        <div className="absolute mr-[10px] w-[124px] h-[39px] right-[124px] top-[20px]  bg-[#313131]  flex items-center justify-center">
+            
+        <CopyToClipboard text={missionUrl}>
+
+              <button type="button" className="text-white font-small" onClick={()=>{setcopyLink("Copied")}} >
+                {copyLink}
+            </button>      
+              
+               
+         </CopyToClipboard>
+         
         </div>
         </div>
        

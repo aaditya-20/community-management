@@ -42,7 +42,7 @@ const coinType = "USDC";
         <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
         
         <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
-          <Image src="/../public/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
+          <Image src="/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
           <div className="absolute w-[124px] h-[39px] right-[0px] top-[20px]  bg-[#313131] rounded-[25px] flex items-center justify-center">
         {/*Pending :: Change color of button when onWalletLink is called and user have connected his wallet */ }
             <button type="button" className="text-white font-small"  >
