@@ -140,7 +140,7 @@ function CommunitySetUpIntegration() {
   //Simple is to href at call back url
   function handleDiscordClick() {
     if (flagDiscord == "hidden") {
-      const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
+      const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
       
 
       window.location.href = authUrl;
