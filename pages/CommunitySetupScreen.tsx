@@ -73,7 +73,7 @@ const CommunitySetupScreen = (): ReactElement => {
       })
       .then(result => result.json())
       .then(response => {
-          //console.log(response);
+          console.log(response);
           const { username, discriminator, avatar, id,email} = response;
           let profile={
             email: email,
@@ -88,15 +88,9 @@ const CommunitySetupScreen = (): ReactElement => {
      
   }}
   function discord(){
-    const redirectUri = encodeURIComponent(
-      "http://localhost:3000/CommunitySetupScreen"
-    );
-    const clientId = "1101935237652557855";
-    const scope = encodeURIComponent("identify");
-    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-lzpmgo97f-firebond-admin-team.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email`;
-    const lauthUrl=`https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email`  
+    const authUrl="https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read"
 
-    window.location.href = lauthUrl;
+    window.location.href = authUrl;
   }
   useEffect(() => {
     discordToken();
