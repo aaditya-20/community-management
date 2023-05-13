@@ -10,12 +10,8 @@ function DiscordIntegrationPopup() {
   const router = useRouter();
   function handleProfileClick() {}
   function discordlink() {
-    const redirectUri = encodeURIComponent(
-      "https://firebond-client-iwa2wdp0f-firebond-admin-team.vercel.app/Step1CommunitySetup"
-    );
-    const clientId = "1101935237652557855";
-    const scope = encodeURIComponent("identify");
-    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}`;
+    
+    const authUrl = `tps://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
 
     window.location.href = authUrl;
   }
@@ -72,7 +68,7 @@ function DiscordIntegrationPopup() {
           imageUrl="Icons/Discord.svg"
           size={87}
           classNameCircle="border-dashed border-[0.7px] border-white flex justify-center"
-          onProfileIconClick={handleProfileClick}
+          onProfileIconClick={discordlink}
         />
       </div>
       </div>
