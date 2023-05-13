@@ -4,28 +4,45 @@ import { supabase } from "@/utils/supabaseClient";
 import IconButton from "../components/atoms/IconButton";
 import ProfileIcon from "../components/atoms/ProfileAvatar";
 import BackGroundPage from "../components/molecules/BackGroundPage";
-import { ReactElement, useState,useEffect } from "react";
-import Card from "../components/atoms/Card";
+import { ReactElement, useState, useEffect } from "react";
 import DiscordIntegrationPopup from "./DiscordIntegrationPopup";
 import Link from "next/link";
 import TextInput from "../components/atoms/TextInput";
 import EmailInput from "../components/atoms/EmailInput";
-import Popup from "reactjs-popup";
 import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
-import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+
 const CommunitySetupScreen = (): ReactElement => {
   const obj = FormData();
   const [InputValue, setInputvalue] = useState("");
   const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
+  let community_admin_avatar = "";
+  let file: File;
   async function onContinueClick() {
-    setOpenDiscord(!OpenDiscord);
-    obj.name = InputValue;
-    
     obj.email = InputEmail;
+    AdminAvatarUpload(file);
+    obj.name = InputValue;
+    obj.community_admin_avatar = community_admin_avatar;
+    setOpenDiscord(!OpenDiscord);
   }
-  const bucket_name = "Store";
+  const bucket_name = "community_admin_avatar";
+  async function AdminAvatarUpload(file: any) {
+    const { data, error } = await supabase.storage
+      .from(bucket_name)
+      .upload(`${obj.email}`, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(data);
+      obj.community_admin_avatar = data.path;
+      console.log("mai hu file path");
+      console.log(data.path);
+    }
+  }
   async function handleProfileClick() {
     const input = document.createElement("input");
     input.type = "file";
@@ -34,19 +51,9 @@ const CommunitySetupScreen = (): ReactElement => {
     input.addEventListener("change", async () => {
       const files = input.files;
       if (files && files.length > 0) {
-        const file = files[0];
+        file = files[0];
+        console.log("mai hu file");
         console.log(file);
-        const { data, error } = await supabase.storage
-          .from(bucket_name)
-          .upload(`community_admin/${file.name}`, file, {
-            cacheControl: "3600",
-            upsert: false,
-          });
-        if (error) {
-          console.error(error);
-        } else {
-          console.log(data);
-        }
       }
     });
     input.click();
@@ -58,48 +65,39 @@ const CommunitySetupScreen = (): ReactElement => {
   function handleEmail(e: any) {
     setInputemail(e.target.value);
   }
-  function discordToken(){
-    // console.log(window.location.href);
-     if((window.location.href).includes("access_token")){
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-   
-    const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-    console.log(fragment,"fragment",accessToken,tokenType);
-    localStorage.setItem('accessToken', accessToken||'');
-    fetch('https://discord.com/api/users/@me', {
-      headers: {
+  function discordToken() {
+    if (window.location.href.includes("access_token")) {
+      const fragment = new URLSearchParams(window.location.hash.slice(1));
+
+      const [accessToken, tokenType] = [
+        fragment.get("access_token"),
+        fragment.get("token_type"),
+      ];
+      console.log(fragment, "fragment", accessToken, tokenType);
+      localStorage.setItem("accessToken", accessToken || "");
+      fetch("https://discord.com/api/users/@me", {
+        headers: {
           authorization: `${tokenType} ${accessToken}`,
-      },
+        },
       })
-      .then(result => result.json())
-      .then(async(response) => {
+        .then((result) => result.json())
+        .then(async (response) => {
           console.log(response);
-          const { username, discriminator, avatar, id,email} = response;
-          let profile={
+          const { username, discriminator, avatar, id, email } = response;
+          let profile = {
             email: email,
             username: username,
             discriminator: discriminator,
             avatar: avatar,
-            id: id
-          }
-          // const { data, error } = await supabase.from('community_data').insert([
-          //   { DiscordToken: profile.id},
-          // ])
-          // if(error){
-          //   alert("Discord Integration Failed");
-          // }else{
-          //   alert("Discord Integration Successful");
-          // }
-          //alert("Discord Integration Successful");
-
-          localStorage.setItem('profile', JSON.stringify(profile));
-      })
-      .catch(console.error);
-     
-  }}
-  function discord(){
-      const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
-      
+            id: id,
+          };
+          localStorage.setItem("profile", JSON.stringify(profile));
+        })
+        .catch(console.error);
+    }
+  }
+  function discord() {
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
 
     window.location.href = authUrl;
   }

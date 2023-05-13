@@ -3,8 +3,10 @@ let formData = {
   community_name: "",
   community_description: "",
   email: "",
-  wallet_id : " "
-}
+  wallet_id: " ",
+  community_admin_avatar: "",
+  community_logo: "",
+};
 
 export default function FormData() {
   return formData;
