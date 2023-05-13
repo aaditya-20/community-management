@@ -15,7 +15,6 @@ import { useRouter } from "next/router";
 import FormData from "@/utils/FormData";
 import Modal from "@material-ui/core/Modal";
 import TwitterHandlePopUp from "@/components/molecules/TwitterHandlePopUp";
-import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 const Step1CommunitySetup = (): ReactElement => {
   const obj = FormData();
   const router = useRouter();
@@ -26,12 +25,13 @@ const Step1CommunitySetup = (): ReactElement => {
   const [TwitterPopUpVisibility, setTwitterPopUpVisibility] = useState(false);
   const [WebsitePopUpVisibility, setWebsitePopUpVisibility] = useState(false);
   const [selectedButton, setSelectedButton] = useState(null);
-
+  let community_logo = "";
+  let file: File;
   function handleProfileClick() {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".png, .jpg, .jpeg";
-    input.hidden = true; // Add the hidden attribute
+    input.hidden = true;
     let files: File[];
     input.addEventListener("change", async () => {
       const files = input.files;
@@ -40,32 +40,25 @@ const Step1CommunitySetup = (): ReactElement => {
         console.log(files[0]);
         let file: File;
         file = files[0];
-        if (!file) {
-          return;
-        }
         console.log(file.name);
-        // from here we can send image to supabase storage.
-
-        const { data, error } = await supabase.storage
-          .from("images")
-          .upload(file.name, file, {
-            cacheControl: "3600",
-            upsert: false,
-          });
-
-        if (error) {
-          console.log("Error uploading file:", error);
-        } else {
-          console.log("File uploaded successfully:", data);
-        }
-      } else {
-        return;
       }
     });
     input.click();
   }
-  console.log(TwitterHandle);
-
+  async function CommunityLogoUpload(file: any) {
+    const { data, error } = await supabase.storage
+      .from("community_logo")
+      .upload(`${obj.email}` , file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+    if (error) {
+      console.log("Error uploading file:", error);
+    } else {
+      console.log("File uploaded successfully:", data);
+      obj.community_logo = data.path;
+    }
+  }
   function handleInput(e: any) {
     setInputvalue(e.target.value);
   }
@@ -74,8 +67,10 @@ const Step1CommunitySetup = (): ReactElement => {
   }
 
   function onContinueClick() {
+    CommunityLogoUpload(file)
     obj.community_name = InputValue;
     obj.community_description = description;
+    obj.community_logo = community_logo;
     router.push("/CommunitySetUpIntegration");
   }
 
@@ -83,8 +78,8 @@ const Step1CommunitySetup = (): ReactElement => {
     setWebsitePopUpVisibility(!WebsitePopUpVisibility);
   }
 
-  function handleTwitterContinueClick(){
-        setTwitterPopUpVisibility(false);
+  function handleTwitterContinueClick() {
+    setTwitterPopUpVisibility(false);
   }
   function handleWebsiteUrlContinueClick() {
     setWebsitePopUpVisibility(false);
@@ -256,7 +251,6 @@ const Step1CommunitySetup = (): ReactElement => {
             // classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
           />
           {/* </a> */}
-
           <IconButton
             icon={VscBlank}
             label="Back"
@@ -264,7 +258,6 @@ const Step1CommunitySetup = (): ReactElement => {
             classNameIcon=""
             onClick={() => router.push("/CommunitySetupScreen")}
           />
-
           <IconButton
             icon={VscBlank}
             label="Continue"
@@ -273,7 +266,6 @@ const Step1CommunitySetup = (): ReactElement => {
             onClick={onContinueClick}
           />
         </div>
-        {/* <p className='absolute font-[General Sans] left-[600px] top-[600px] font-normal text-base leading-6 text-white font-generalsans'>Already have account? <Link href="/" className='font-[General Sans] text-[#A6A6A6CC]'>Sign in</Link></p> */}
       </div>
     </>
   );

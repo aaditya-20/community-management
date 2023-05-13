@@ -55,22 +55,20 @@ function CommunitySetUpIntegration() {
             id: id,
             email: email,
           };
-          const { data, error } = await supabase
-            .from("community_data")
-            .insert([
-              {
-                name: profile.username,
-                email: profile.email,
-                community_name: "Discord",
-                wallet_id: accessToken,
-              },
-            ]);
+          const { data, error } = await supabase.from("community_data").insert([
+            {
+              name: profile.username,
+              email: profile.email,
+              community_name: "Discord",
+              wallet_id: accessToken,
+            },
+          ]);
           console.log(data, error);
           setDiscord("visible");
         })
         .catch(console.error);
-    }else{
-      if(localStorage.getItem('accessToken')){
+    } else {
+      if (localStorage.getItem("accessToken")) {
         setDiscord("visible");
       }
     }
@@ -78,12 +76,10 @@ function CommunitySetUpIntegration() {
 
   useEffect(() => {
     getCurrentWalletConnected();
-
     // addWalletListener();
   }, [walletAddress]);
   useEffect(() => {
     discordToken();
-
     // addWalletListener();
   }, []);
 
@@ -124,7 +120,7 @@ function CommunitySetUpIntegration() {
       }
     } else {
       /* MetaMask is not installed */
-      console.log("Please install my  MetaMask");
+      console.log("Please install my MetaMask");
       Metamask();
     }
   };
@@ -141,8 +137,6 @@ function CommunitySetUpIntegration() {
   function handleDiscordClick() {
     if (flagDiscord == "hidden") {
       const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetUpIntegration&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
-      
-
       window.location.href = authUrl;
     }
   }
@@ -164,13 +158,14 @@ function CommunitySetUpIntegration() {
       alert("Please Connect Ethereum Wallet");
       return;
     }
-    console.log("yaha tak aya")
     const { data, error } = await supabase.from("community_data").insert({
       name: obj.name,
       community_name: obj.community_name,
       community_description: obj.community_description,
       email: obj.email,
       wallet_id: obj.wallet_id,
+      community_admin_avatar: obj.community_admin_avatar,
+      community_logo: obj.community_logo,
     });
     if (error) {
       console.log("Error uploading file:", error.message);
