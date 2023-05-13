@@ -15,7 +15,7 @@ const mainMenu = [
   {
     src: "Icons/box.svg",
     size: 24,
-    title: "User's Space",
+    title: "’s Space",
     route: "/NewDashboard",
   },
   {
