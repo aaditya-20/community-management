@@ -8,6 +8,7 @@ import UserBaseAnalytics from "../components/molecules/UserBaseAnalytics";
 import TopContributorCardLeaderboardScreen from "../components/molecules/TopContributorCardLeaderboardScreen";
 import TopContentCard from "../components/molecules/TopContentCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+import TopContributorAnalyticsScreen from "@/components/molecules/TopContributorAnalyticsScreen";
 const users = [
   {
     key: 1,
@@ -95,8 +96,8 @@ const AnalyticsScreen = () => {
             {/* Right Section */}
             <div>
 
-              <div className="w-[505px] h-[433px] bg-[#232B35] rounded-[20px] ml-[13px] mb-[26px]">
-                <h1>Top Contributors Section</h1>
+              <div className="w-[505px] h-[433px] bg-[#232B35] rounded-[20px]  overflow-hidden ml-[13px] mb-[26px]">
+                <TopContributorAnalyticsScreen/>
               </div>
               <div className="h-[449px] w-[503px] overflow-hidden rounded-[20px] bg-[#232B35] p-6 ml-[28px]">
                 <div className="h-full w-full">
