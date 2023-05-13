@@ -9,23 +9,36 @@ import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
-function missionCheck(discord_id:string){
+function missionCheck(){
+  let k =localStorage.getItem("accessToken")
 
-  fetch("https://discord.com/api/users/@me", {
+  fetch("https://discord.com/api/users/@me/guilds", {
     headers: {
-      authorization: `Bearer ${discord_id}`,
+      authorization: `Bearer ${k}`,
     },
   })
     .then((result) => result.json())
     .then(async (response) => {
       console.log(response);
+      let data = response;
+      let flag = false;
+      for (let i = 0; i < data.length; i++) {
+        //server id
+        if (data[i].id == "882790547252959498") {
+          flag = true;
+          break;
+        }
+      }
+      if (flag) {
+        localStorage.setItem("discordMission", "true");
+      }
     });
   
 }
 
 function MissionDiscord() {
   
-  //missionCheck()
+  missionCheck()
   const title = "Discord Mission";
   const description = `Get a Discord Role and introduce yourself to the community
 GUIDE 📚
