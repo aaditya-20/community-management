@@ -9,8 +9,7 @@ import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import ShareFeedbackCard from "@/components/molecules/ShareFeedbackCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
-function missionCheck(){
-  let k =localStorage.getItem("accessToken")||"";
+function missionCheck(k:string){
 
   fetch("https://discord.com/api/users/@me/guilds", {
     headers: {
@@ -37,8 +36,11 @@ function missionCheck(){
 }
 
 function MissionDiscord() {
+  if (typeof window !== "undefined"){
+  let k =localStorage.getItem("accessToken")||"";
   
-  missionCheck()
+  missionCheck(k)
+  }
   const title = "Discord Mission";
   const description = `Get a Discord Role and introduce yourself to the community
 GUIDE 📚
