@@ -11,6 +11,7 @@ import TextInput from "../components/atoms/TextInput";
 import EmailInput from "../components/atoms/EmailInput";
 import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
+import router from "next/router";
 
 const CommunitySetupScreen = (): ReactElement => {
   const obj = FormData();
@@ -193,7 +194,9 @@ const CommunitySetupScreen = (): ReactElement => {
           </div>
           <p className="relative text-center my-[30px] font-[General Sans] font-normal text-base leading-6 text-white font-generalsans">
             Already have account?{" "}
-            <Link href="/" className="font-[General Sans] text-[#A6A6A6CC]">
+            <Link
+              onClick={() => router.push("/LoginSection")}
+              className="font-[General Sans] text-[#A6A6A6CC]" href={""}            >
               Sign in
             </Link>
           </p>
