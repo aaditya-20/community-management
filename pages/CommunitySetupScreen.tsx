@@ -17,6 +17,8 @@ const CommunitySetupScreen = (): ReactElement => {
   const [InputValue, setInputvalue] = useState("");
   const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
+  const [imageUrl, setImageUrl] = useState("/Icons/DefaultUserIcon.png");
+
   let community_admin_avatar = "";
   let file: File;
   async function onContinueClick() {
@@ -24,6 +26,8 @@ const CommunitySetupScreen = (): ReactElement => {
     AdminAvatarUpload(file);
     obj.name = InputValue;
     obj.community_admin_avatar = community_admin_avatar;
+    // Removing userImage stored in local Storage
+    localStorage.removeItem("userImage");
     setOpenDiscord(!OpenDiscord);
   }
   const bucket_name = "community_admin_avatar";
@@ -54,6 +58,13 @@ const CommunitySetupScreen = (): ReactElement => {
         file = files[0];
         console.log("mai hu file");
         console.log(file);
+        const reader = new FileReader(); 
+        reader.readAsDataURL(file); 
+        reader.onloadend = () => {
+          const imageUrl = reader.result as string; 
+          localStorage.setItem("userImage", imageUrl); 
+          setImageUrl(imageUrl); 
+        };
       }
     });
     input.click();
@@ -141,9 +152,9 @@ const CommunitySetupScreen = (): ReactElement => {
             </div>
             <ProfileIcon
               size={94}
-              imageUrl="/Icons/DefaultUserIcon.png"
+              imageUrl={imageUrl}
               alt="nothing"
-              classNameCircle=" relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white"
+              classNameCircle="relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white"
               classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
               onProfileIconClick={handleProfileClick}
             />
