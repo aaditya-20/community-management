@@ -49,7 +49,7 @@ const Header = () => {
             className="h-[40px] w-auto px-6 bg-[#313131] rounded-[25px] cursor-pointer"
             onClick={handleLogout}
           >
-            <h1 className="text-white font-normal text-base">logout</h1>
+            <h1 className="text-white font-normal text-base">Logout</h1>
           </button>
           {/* Notifications */}
           <ShowNotifications />

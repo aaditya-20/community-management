@@ -32,8 +32,8 @@ function Mission(props: any) {
             </button>
             <button className="w-[195px] h-[52px] rounded-[10px] border border-[#FFFFFF3B] bg-[#FFFFFF24] flex items-center">
               <p className=" text-white font-open-sans font-semibold text-2xl px-[23px]">
-                {props.progress ? props.progress : 0}{" "}
-                <span className="font-extralight text-xs">in progress</span>
+                {props.review ? props.review : 0}{" "}
+                <span className="font-extralight text-xs">in review</span>
               </p>
             </button>
           </div>
