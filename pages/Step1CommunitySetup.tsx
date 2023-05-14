@@ -25,6 +25,7 @@ const Step1CommunitySetup = (): ReactElement => {
   const [TwitterPopUpVisibility, setTwitterPopUpVisibility] = useState(false);
   const [WebsitePopUpVisibility, setWebsitePopUpVisibility] = useState(false);
   const [selectedButton, setSelectedButton] = useState(null);
+  const [imageUrl, setImageUrl] = useState("/ImageIcon.png");
   let community_logo = "";
   let file: File;
   function handleProfileClick() {
@@ -41,6 +42,13 @@ const Step1CommunitySetup = (): ReactElement => {
         let file: File;
         file = files[0];
         console.log(file.name);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          const imageUrl = reader.result as string;
+          localStorage.setItem("userImage", imageUrl);
+          setImageUrl(imageUrl);
+        };
       }
     });
     input.click();
@@ -71,6 +79,7 @@ const Step1CommunitySetup = (): ReactElement => {
     obj.community_name = InputValue;
     obj.community_description = description;
     obj.community_logo = community_logo;
+    localStorage.removeItem("userImage");
     router.push("/CommunitySetUpIntegration");
   }
 
@@ -157,7 +166,7 @@ const Step1CommunitySetup = (): ReactElement => {
           <div>
             <ProfileIcon
               size={65}
-              imageUrl="/ImageIcon.png"
+              imageUrl={imageUrl}
               alt="nothing"
               classNameCircle=" relative w-[10px] top-[40px] left-[25px] border-dashed border-[0.7px] border-white"
               classNameImage=" relative left-[10px] top-[15px] w-[40.6px] h-[35.24px]"
