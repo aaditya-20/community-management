@@ -11,17 +11,31 @@ type EmailInputProps = {
 };
 
 const EmailInput = ({ label  ,placeholder = '', className = '',classNameLabel='',classNameInput='',handleChange2,handleValue = ''}: EmailInputProps): ReactElement => {
-  // state to hold the current input value
+  // state to hold the current input value and error message
   const [value, setValue] = useState('');
+  const [error, setError] = useState('');
 
   // function to handle input change events
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // update the state with the new value
-    setValue(e.target.value);
-    
+    const inputValue = e.target.value;
+    setValue(inputValue);
+
+    // validate the input value and update the error message if necessary
+    const isValid = /^\S+@\S+\.\S+$/.test(inputValue);
+    if (!isValid) {
+      setError('Please enter a valid email address');
+    } else {
+      setError('');
+    }
+
+    // call the handleChange2 prop if it exists
+    if (handleChange2) {
+      handleChange2(e);
+    }
   };
 
-  // render the input element with a label
+  // render the input element with a label and error message if applicable
   return (
     <div className={`flex flex-col ${className}`}>
       {/* label for the input */}
@@ -30,11 +44,16 @@ const EmailInput = ({ label  ,placeholder = '', className = '',classNameLabel=''
       {/* the input element itself */}
       <input
         type="email"
-        value={handleValue} // set the value of the input to the current state
-        onChange={handleChange2} // call handleChange2 on input change events
+        value={value} // set the value of the input to the current state
+        onChange={handleChange} // call handleChange on input change events
         placeholder={placeholder}
         className={`px-3 py-2 mt-1 ${classNameInput}`}
       />
+
+      {/* error message if applicable */}
+      {error && (
+        <span className="text-sm text-red-500">{error}</span>
+      )}
     </div>
   );
 };
