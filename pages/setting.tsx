@@ -211,7 +211,7 @@ const headerMenu = [
   },
 ];
 
-const setting = () => {
+const Setting = () => {
   const [Component, setComponent] = useState([true, false, false]);
 
   // Function for handling component
@@ -253,6 +253,7 @@ const setting = () => {
                 {headerMenu.map((item, index) => {
                   return (
                     <button
+                      key={index}
                       className="px-5 ml-4 py-[14px] flex justify-center items-center rounded-[4px] hover:bg-[#FFFFFF0D]"
                       onClick={() => {
                         handleClick(index);
@@ -278,4 +279,4 @@ const setting = () => {
   );
 };
 
-export default setting;
+export default Setting;
