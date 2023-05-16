@@ -10,9 +10,13 @@ import { useRouter } from 'next/router';
 import { render } from 'react-dom';
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { setRequestMeta } from 'next/dist/server/request-meta';
+import EditMission from '@/utils/EditMission';
+import MissionFormData from '@/utils/MissionFormData';
 
 function MissionViewPage() {
     // let missionUrl;
+    const obj2 = EditMission();
+    let obj = MissionFormData();
     const [missionUrl,setmissionUrl] = useState("");
     const router = useRouter();
     const [title,settitle] = useState("Mission title");
@@ -43,8 +47,8 @@ function MissionViewPage() {
         let newTags:any = [];
          
         if(missionDetails.tags!=null&&missionDetails.tags!=undefined){
-            newTags = [];
-          missionDetails.tags.map((val:any)=>{
+                newTags = [];
+                 missionDetails.tags.map((val:any)=>{
                 newTags.push(val.title);
             });
         }
@@ -56,7 +60,41 @@ function MissionViewPage() {
         setmissionSteps([missionDetails.heading1||"NotAvailable",missionDetails.subheading1||"NotAvailable",missionDetails.heading2||"NotAvailable",missionDetails.subheading2||"NotAvailable"])
       }, [router.query.myData]);
       
+     function onEditClick(){
+      // function handleEdit(){
+        console.log("in");
+        if(missionDetails!==undefined){
 
+          obj.title = missionDetails.title;
+          obj.amount = missionDetails.amount;
+          obj.seleted_date = missionDetails.seleted_date 
+          obj.description = missionDetails.description 
+          obj.submission  = missionDetails.submission 
+          obj.filename = missionDetails.filename
+          obj.wallet_id = missionDetails.wallet_id 
+          obj.visibility  = missionDetails.visibility 
+          obj.submission_type  = missionDetails.submission_type 
+          obj.status  = missionDetails.status 
+          obj.priority  = missionDetails.priority 
+          obj.tags  = missionDetails.tags
+          obj.recurrence  = missionDetails.recurrence 
+          obj.mission_id = missionDetails.mission_id
+          obj.heading1 = missionDetails.heading1 
+          obj.subheading1  = missionDetails.subheading1 
+          obj.heading2  = missionDetails.heading2 
+          obj.subheading2  = missionDetails.subheading2
+          
+          //  obj = missionDetails;
+             console.log("obj->",obj);
+             console.log("md->",missionDetails);
+             router.push('/MissionEdit');
+        }
+       
+    
+        // router.push('/MissionTemplateEdit');
+        
+      // }
+     }
 
   
 
@@ -120,7 +158,7 @@ function MissionViewPage() {
               tags={tags}
               val={reward}
             />
-            <div className='mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
+            <div onClick={onEditClick} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
               <span className='relative top-3'>Edit</span> 
             </div>
           </div>

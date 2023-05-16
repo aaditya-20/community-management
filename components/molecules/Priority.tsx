@@ -4,9 +4,10 @@ import React, { useState } from "react";
 
 const Priority = () => {
   const [on, setOn] = useState(false);
-  const [status, setStatus] = useState("High");
-
   const obj = MissionFormData();
+
+  const [status, setStatus] = useState(obj.priority);
+
 
   obj.priority = status;
 

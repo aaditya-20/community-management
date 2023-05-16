@@ -10,13 +10,16 @@ let formData = {
   submission_type : '',
   status : '',
   priority : '',
-  tags : [{}],
+  tags : [{src:'',title:''}],
   recurrence : '',
   mission_id:'',
   heading1: '',
   subheading1 : '',
   heading2 : '',
   subheading2 : ''
+  // to add xp 
+  // have to make steps an array
+  //
 };
 
 export default function MissionFormData() {
