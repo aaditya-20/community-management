@@ -17,6 +17,9 @@ let formData = {
   subheading1 : '',
   heading2 : '',
   subheading2 : ''
+  // to add xp 
+  // have to make steps an array
+  //
 };
 
 export default function MissionFormData() {

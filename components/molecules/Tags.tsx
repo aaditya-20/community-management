@@ -5,17 +5,22 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BsXCircleFill } from "react-icons/bs";
 import { HiXCircle } from "react-icons/hi2";
 
-const Tags = () => {
-  const [Tags, setTags] = useState([
-    { src: "Icons/✍️.svg", title: "Writing" },
-    { src: "Icons/📢.svg", title: "Marketing" },
-  ]);
-  const [addTagPopup, setaddTagPopup] = useState(false);
-  const [tag,setTag] = useState('');
+const Tags = (props:any) => {
   const obj = MissionFormData();
 
+  const [Tags, setTags] = useState(
+    obj.tags.length>0?obj.tags:
+    [
+    { src: "Icons/✍️.svg", title: "Writing" },
+    { src: "Icons/📢.svg", title: "Marketing" },
+  ]
+  );
+  const [addTagPopup, setaddTagPopup] = useState(false);
+  const [tag,setTag] = useState('');
+ 
+  // if(obj.tags!=null)
   obj.tags = Tags;
-
+  
   const handleClick = () => {
     setaddTagPopup(!addTagPopup);
   };

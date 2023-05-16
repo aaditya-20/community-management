@@ -22,16 +22,17 @@ import { BsFillTriangleFill } from "react-icons/bs";
 
 
 const BasicInfoCard = (props: any) => {
+  const obj = MissionFormData();
   const [on, setOn] = useState(Array(5).fill(false));
   const [amount, setAmount] = useState(0);
   const [xp, setXp] = useState(100);
-  const [selectedDate, changeSelectedDate] = useState("");
+  const [selectedDate, changeSelectedDate] = useState(obj.seleted_date);
   const [input, setInput] = useState(props.title);
   const [visibiliy, setVisibility] = useState({
     src: "Icons/visible.svg",
     title: "Public",
   });
-  const obj = MissionFormData();
+  
 
   // Calendar implementation
 
@@ -88,7 +89,7 @@ const BasicInfoCard = (props: any) => {
     setXp(newXp);
   };
   const today = startOfToday();
-  const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+  const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]; 
   const colStartClasses = [
     "",
     "col-start-2",
@@ -121,7 +122,10 @@ const BasicInfoCard = (props: any) => {
 
   obj.title = input;
   obj.amount = amount;
+
+  // if(selectedDate!=="")
   obj.seleted_date = selectedDate;
+
   obj.submission = 52;
 
   return (
