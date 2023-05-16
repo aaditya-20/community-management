@@ -6,7 +6,7 @@ import router from "next/router";
 function Mission(props: any) {
   return (
     <div
-      className="w-[469px] h-[315px] bg-[#232A35] rounded-[20px] overflow-hidden flex items-end"
+      className="w-full h-full bg-[#232A35] rounded-[20px] overflow-hidden flex items-end"
       style={{ boxShadow: "20px 35px 50px rgba(0, 0, 0, 0.25)" }}
     >
       <div className="w-full h-[285px] bg-[#404A5473] rounded-[20px] p-6">
