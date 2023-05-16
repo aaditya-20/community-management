@@ -11,6 +11,8 @@ import { supabase } from "@/utils/supabaseClient";
 import { useState } from "react";
 import { getDate } from "date-fns";
 import Photo from "@/components/atoms/Photo";
+import { Modal } from "@material-ui/core";
+import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 const twitter = [
   {
     id: 1,
@@ -53,6 +55,7 @@ const Community = [
 ];
 
 const MissionMain = () => {
+  const [OpenMission,setOpenMission] = useState(false)
 
   const router = useRouter();
   function createhandleclick() {
@@ -83,6 +86,7 @@ const MissionMain = () => {
     }
   }
   const [missions, setmissions] = useState([{}]);
+  const[communityId,setcommunityId] =useState('');
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
     // console.log(storedJsonData)
@@ -110,6 +114,7 @@ const MissionMain = () => {
       console.log(rowData.missions);
       // missions = rowData.missions;
       setmissions(rowData.missions);
+      setcommunityId(rowData.id);
     } catch (error) {
       console.error(error);
     }
@@ -117,7 +122,22 @@ const MissionMain = () => {
   
 
   return (
+    
     <div className="min-h-screen overflow-x-hidden bg-[#171c23]">
+      <Modal
+        onClose={() => {
+          setOpenMission(!OpenMission);
+        }}
+        open={OpenMission}
+        style={{}}
+      >
+        <div className="absolute m-[auto] top-[30vh] left-[40vw]">
+          <CopyLinkPopUpFormBuilder
+            url={`${typeof window == "undefined"?"dontknow":window.location.origin}/community/${communityId}`}
+            forWhichComponent="community"
+          />
+        </div>
+      </Modal>
       {/* Main Div */}
       <div className="h-full w-full  flex">
         {/* Sidebar */}
@@ -167,14 +187,14 @@ const MissionMain = () => {
                   </div>
                   <div className="flex gap-3 justify-center items-center">
                    <Photo/>
-                    <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]">
+                    <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]" onClick={()=>{setOpenMission(!OpenMission)}}>
                       <Image
                         src="Icons/Add_user.svg"
                         alt=""
                         height={14.17}
                         width={12.75}
                       />
-                      <h1 className="font-[500px] text-sm text-[#757575]">
+                      <h1 className="font-[500px] text-sm text-[#757575]" >
                         Invite
                       </h1>
                     </button>
