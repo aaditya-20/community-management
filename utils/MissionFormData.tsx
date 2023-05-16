@@ -10,7 +10,7 @@ let formData = {
   submission_type : '',
   status : '',
   priority : '',
-  tags : [{}],
+  tags : [{src:'',title:''}],
   recurrence : '',
   mission_id:'',
   heading1: '',
