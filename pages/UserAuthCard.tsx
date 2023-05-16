@@ -20,13 +20,13 @@ const UserCard = [
     button: "Connect",
   },
 ];
-
-const UserAuthCard = () => {
+// you will recieve communityId in props
+const UserAuthCard = (props:any) => {
   const [verified, setVerified] = useState(UserCard.map(() => false));
   const [email, setEmail] = useState("");
   const [wallet, setWalletAddress] = useState("");
   const [flag,setFlag] = useState(false);
-
+ 
   const connectWallet = async () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       try {
@@ -42,7 +42,7 @@ const UserAuthCard = () => {
         console.error(err);
       }
       UserCard[0].button = "Connected";
-      setFlag(!flag);
+      setFlag(!flag); 
 
     } else {
       /* MetaMask is not installed */
