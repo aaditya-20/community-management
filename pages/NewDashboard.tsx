@@ -44,9 +44,10 @@ const NewDashboard = () => {
     }
   }, [name]);
   return (
-    <div className="min-h-screen  bg-[#171C23] flex  scrollbar-hide">
+
+    <div className="min-h-screen min-w-fit bg-[#171C23] flex  scrollbar-hide">
       <Sidebar />
-      <div className="h-full">
+      <div className="h-full w-full">
         <Header />
         {/* Main Section */}
         <div className="h-full w-full  flex justify-between">
