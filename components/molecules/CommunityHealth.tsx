@@ -7,7 +7,7 @@ interface CommunityHealthProps {
 
 export default function CommunityHealth(prop: any) {
   return (
-    <div className="card card-side shadow-xl absolute w-[469px] h-[390px]  bg-[#242B35] flex justify-center items-center rounded-3xl">
+    <div className="card card-side shadow-xl absolute w-full h-full  bg-[#242B35] flex justify-center items-center rounded-3xl">
       <p className="absolute left-10 top-7 w-258 h-32 font-semibold font-weight-[600px] text-white text-2xl leading-8">
         Community Health
       </p>
@@ -43,13 +43,13 @@ export default function CommunityHealth(prop: any) {
         <div className="flex justify-center space-x-4 relative h-[18px] left-[-100px] top-[30px]">
           <label className="inline-flex items-center">
             <div className="h-[18px] w-[18px] rounded-full bg-gray-600"></div>
-            <span className="text-[#D9D9D9] ml-2 font-generalsans font-normal font-medium text-base md:text-lg leading-6 md:leading-7">
+            <span className="text-[#D9D9D9] ml-2 font-generalsans  font-medium text-base md:text-lg leading-6 md:leading-7">
               Discord
             </span>
           </label>
           <label className="inline-flex items-center">
             <div className="h-[18px] w-[18px] rounded-full bg-amber-500"></div>
-            <span className="text-[#D9D9D9] ml-2 font-generalsans font-normal font-medium text-base md:text-lg leading-6 md:leading-7">
+            <span className="text-[#D9D9D9] ml-2 font-generalsans  font-medium text-base md:text-lg leading-6 md:leading-7">
               Twitter
             </span>
           </label>

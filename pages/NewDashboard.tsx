@@ -44,22 +44,24 @@ const NewDashboard = () => {
     }
   }, [name]);
   return (
-    <div className="min-h-screen bg-[#171C23] flex  scrollbar-hide">
+    <div className="min-h-screen  bg-[#171C23] flex  scrollbar-hide">
       <Sidebar />
-      <div className="h-full w-full">
+      <div className="h-full">
         <Header />
         {/* Main Section */}
         <div className="h-full w-full  flex justify-between">
           {/* Left Section */}
-          <div className="min-h-screen w-full px-6 pt-[29px] flex justify-center items-center">
+          <div className="h-full w-full px-6 pt-[29px] flex justify-center bg-[#171C23] items-center">
             <div>
-              <div className="h-full w-full">
+              <div className="h-full w-full ">
                 <h2 className="text-white text-2xl font-semibold mb-2">
-                  {name} Space
+                  {name}’s Space
                 </h2>
-                <h3 className="font-normal text-base text-[#A6A6A6] mb-6">Here’s what’s happening with your community</h3>
+                <h3 className="font-normal text-base text-[#A6A6A6] mb-6">
+                  Here’s what’s happening with your community
+                </h3>
                 {/* Main Section */}
-                <div className="flex gap-6">
+                <div className="flex flex-wrap gap-6 mb-10">
                   {/* Analytics & Recently Joined Section */}
                   <div className="w-[400px] h-[750px] bg-[#232B35] rounded-[20px] overflow-hidden pt-[29px] ">
                     <div>
@@ -71,11 +73,14 @@ const NewDashboard = () => {
                   </div>
 
                   {/* Mission & Community Health Section */}
-                  <div>
-                    <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end mb-5">
+                  <div className="flex flex-col justify-between gap-5">
+                    <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end">
                       <Mission contributors="50" submission="150" />
                     </div>
+                    <div className="relative w-[469px] h-[414px]">
+
                     <CommunityHealth Twitter="30" Total="59.5K" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -83,7 +88,7 @@ const NewDashboard = () => {
           </div>
 
           {/* Right Section */}
-          <div className="w-[304px] min-h-screen px-6 border-l border-[#333840]">
+          <div className="w-auto h-auto px-6 border-l bg-[#171C23] border-[#333840]">
             <h1 className="text-white font-semibold text-[22px] leading-[29.6px] mt-[29px] mb-[55px]">
               Onboarding Experience
             </h1>
