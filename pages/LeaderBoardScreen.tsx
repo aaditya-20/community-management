@@ -27,7 +27,7 @@ const Leaderboard = () => {
           return b.xp - a.xp;
         });
         let temp_arr = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < Math.min(5,data.length); i++) {
           temp_arr.push(data[i]);
         }
         setCards(temp_arr);
