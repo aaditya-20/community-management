@@ -1,20 +1,35 @@
 import Header from "@/components/atoms/Header";
+import HelpCard from "@/components/molecules/HelpCard";
 import NavbarHelpCentre from "@/components/molecules/NavbarHelpCentre";
 import Sidebar from "@/components/molecules/Sidebar";
 import React from "react";
 
 export default function HelpCentre() {
   return (
-    <div>
-      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-full w-full md:grid-cols-[auto,1fr]">
-        <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
-          <Sidebar />
+    <div className="min-h-screen bg-[#171C23] flex">
+      <Sidebar />
+      <div className="h-auto w-full">
+        <Header />
+
+        {/* Introduction */}
+        <div className="w-full h-[115px] border-b border-[#253B43] flex items-center justify-start px-6 mb-[33px]">
+          <div className="w-full">
+            <h1 className="mb-2 font-semibold text-2xl text-white">
+              Help center
+            </h1>
+            <h2 className="font-medium text-sm text-[#A6A6A6]">
+              Get the answers you need for any issues
+            </h2>
+          </div>
         </div>
-        <div className="border-b-[1px] border-b-[#353B43]">
-          <Header />
-        </div>
-        <div className="">
-          <NavbarHelpCentre />
+        {/* Main Content */}
+        <div className="w-full h-auto px-6">
+          <div className="w-full h-auto flex flex-wrap gap-6">
+            <div className="w-[346px] h-[355px]">
+              <HelpCard title="hello" description="hello" />
+            </div>
+            
+          </div>
         </div>
       </div>
     </div>
