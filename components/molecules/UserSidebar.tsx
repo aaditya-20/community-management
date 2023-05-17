@@ -113,10 +113,10 @@ const UserSidebar = () => {
               <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">
                 <Image width={24} height={24} src="Icons/icons.svg" alt="" />
                 <span
-                  onClick={() => router.push("/MissionMain")}
+                  onClick={() => router.push("/LeaderboardScreen")}
                   className="text-white font-semibold text-base"
                 >
-                  Missions
+                  Leaderboard
                 </span>
               </li>
             </ul>

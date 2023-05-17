@@ -6,12 +6,12 @@ import { Context } from "vm";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Days = () => {
+const Days = (props:any) => {
   const data = {
     datasets: [
       {
         labels: ["completed", "remaining"],
-        data: [43.3, 56.7],
+        data: [props.days, 56.7],
         backgroundColor: ["#01B763", "#505050"],
         borderColor: ["transparent", "transparent"],
         circumference: 252,
@@ -50,7 +50,7 @@ const Days = () => {
             Days
           </h1>
           <h3 className="text-white font-medium text-[43.94px] leading-[59.32px] absolute top-[83.55px] left-[38.04px]">
-            156
+            {props.days}
           </h3>
         </div>
       </div>

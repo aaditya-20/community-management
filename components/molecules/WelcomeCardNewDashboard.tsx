@@ -6,7 +6,7 @@ import Days from "../atoms/Days";
 
 
 
-const WelcomeCardNewDashboard = () => {
+const WelcomeCardNewDashboard = (props:any) => {
   
 
   return (
@@ -32,18 +32,18 @@ const WelcomeCardNewDashboard = () => {
             @playraxis
           </h3>
           <h1 className="text-white text-3xl font-thin mb-6">
-            Welcome, <span className="font-semibold">Andrew Bate</span>
+            Welcome, <span className="font-semibold">{props.name}</span>
           </h1>
 
           <button className="w-[400px] h-[60px] bg-[#FE702A] rounded-[10px] flex justify-center items-center">
             <div className="flex items-center">
               <h1 className="font-medium text-base text-[#1C1C1C]">
-                <span className="font-semibold text-lg">$0.00</span> Total
+                <span className="font-semibold text-lg">{props.bounty}</span> Total
                 Bounty
               </h1>
               <div className="h-0 w-[31px] border border-[#1C1C1C] rotate-90"></div>
               <h1 className="font-medium text-base text-[#1C1C1C]">
-                <span className="font-semibold text-lg">00</span> Total XP
+                <span className="font-semibold text-lg">{props.xp}</span> Total XP
               </h1>
             </div>
           </button>
@@ -52,10 +52,10 @@ const WelcomeCardNewDashboard = () => {
         {/* Mission and days count section */}
         <div className="flex gap-[71px] items-center">
           <div className="w-[153.8px] h-[153.8px] relative">
-            <Mission/>
+            <Mission count = {props.missionCount}/>
           </div>
           <div className="w-[153.8px] h-[153.8px] relative">
-            <Days/>
+            <Days  days ={props.days}/>
           </div>
         </div>
       </div>
