@@ -24,7 +24,7 @@ const mainMenu = [
     route: "/AnalyticsScreen",
   },
   {
-    src: "Icons/icons.svg",
+    src: "Icons/misson.svg",
     size: 24,
     title: "Missions",
     route: "/MissionMain",
@@ -36,7 +36,7 @@ const mainMenu = [
     route: "/MemberScreen",
   },
   {
-    src: "Icons/misson.svg",
+    src: "Icons/icons.svg",
     size: 24,
     title: "Leaderboard",
     route: "/LeaderBoardScreen",
