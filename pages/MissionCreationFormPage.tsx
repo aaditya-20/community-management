@@ -81,11 +81,13 @@ const MissionCreationFormPage = () => {
         open={OpenMission}
         style={{}}
       >
-        <div className="absolute m-[auto] top-[30vh] left-[40vw]">
+        <div className="flex justify-center items-center">
+        <div className="absolute m-[auto] top-[30vh]">
           <CopyLinkPopUpFormBuilder
             url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
             forWhichComponent="mission"
           />
+        </div>
         </div>
       </Modal>
       <div className="min-h-screen min-w-fit overflow-auto scrollbar-hide bg-[#171C23]">

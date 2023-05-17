@@ -166,27 +166,33 @@ const Form_Builder_Info = () => {
    
    
   return (
-    
     <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden ">
       <Modal
-        onClose={()=>{setSelectIntegration(!selectIntegration)}}
-        open={selectIntegration}
-        style={{
-              
+        onClose={() => {
+          setSelectIntegration(!selectIntegration);
         }}
+        open={selectIntegration}
+        style={{}}
       >
-
-         <div className='absolute m-[auto] top-[30vh] left-[40vw]'><IntegrationSelectFormBuilder/></div>
+        <div className="absolute m-[auto] top-[30vh] left-[40vw]">
+          <IntegrationSelectFormBuilder />
+        </div>
       </Modal>
       <Modal
-        onClose={()=>{setuniqueLink(!uniqueLink)}}
-        open={uniqueLink}
-        style={{
-              
+        onClose={() => {
+          setuniqueLink(!uniqueLink);
         }}
+        open={uniqueLink}
+        style={{}}
       >
-
-     <div className='absolute m-[auto] top-[30vh] left-[40vw]'><CopyLinkPopUpFormBuilder url="https://firebond.com/firebondhandle/23458394849" forWhichComponent="form"/></div>
+        <div className="flex justify-center items-center">
+          <div className="absolute m-[auto] top-[30vh]">
+            <CopyLinkPopUpFormBuilder
+              url="https://firebond.com/firebondhandle/23458394849"
+              forWhichComponent="form"
+            />
+          </div>
+        </div>
       </Modal>
       {/* SideBar */}
       <Sidebar />
@@ -218,7 +224,12 @@ const Form_Builder_Info = () => {
                   </h1>
                 </div>
               </button>
-              <button onClick={()=>{setuniqueLink(!uniqueLink)}} className="h-[33px] flex justify-center items-center rounded-lg pl-[17px] pr-[19px] border hover:border-[#C32F14] border-[#FFFFFF] group">
+              <button
+                onClick={() => {
+                  setuniqueLink(!uniqueLink);
+                }}
+                className="h-[33px] flex justify-center items-center rounded-lg pl-[17px] pr-[19px] border hover:border-[#C32F14] border-[#FFFFFF] group"
+              >
                 <div className="h-full w-full flex justify-center items-center gap-[11px]">
                   <HiOutlineRocketLaunch
                     size={14}
