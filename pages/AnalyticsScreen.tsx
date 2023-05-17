@@ -73,7 +73,7 @@ const AnalyticsScreen = () => {
                   bgColor="#64CFF6"
                 />
                 <UserBaseAnalytics
-                  imageUrl="Icons/discord.svg"
+                  imageUrl="Icons/Discord.svg"
                   height={14.78}
                   width={20}
                   title="New Discord users"
