@@ -22,204 +22,190 @@ const UserCard = [
   // },
 ];
 // you will recieve communityId in props
-const UserAuthCard = (props:any) => {
+const UserAuthCard = (props: any) => {
   const [verified, setVerified] = useState(UserCard.map(() => false));
   const [email, setEmail] = useState("");
   const [wallet, setWalletAddress] = useState("");
-  const [flag,setFlag] = useState(false );
-  const [Username,setUsesrname] = useState(''); 
-  const [UsernamePopUp,setUsernamePopUp] = useState(false);
+  const [flag, setFlag] = useState(false);
+  const [Username, setUsesrname] = useState("");
+  const [UsernamePopUp, setUsernamePopUp] = useState(false);
 
-  let wallet_id2:any;
-  const checkUserExists = async (table:any, wallet_id:string) => {
+  let wallet_id2: any;
+  const checkUserExists = async (table: any, wallet_id: string) => {
     const { data, error } = await supabase
       .from(table)
-      .select('*')
-      .eq('wallet_id',wallet_id )
-      
-  
+      .select("*")
+      .eq("wallet_id", wallet_id);
+
     if (error) {
-    
-      console.error('Error checking row existence:', error);
-     
-      return ;
+      console.error("Error checking row existence:", error);
+
+      return;
     }
     // console.log("data of usertable row->",data);
-    if(data.length > 0){
+    if (data.length > 0) {
       // no need to take name
       let is_already_a_member = false;
-      
-        // console.log('user exist hence redirect it and take care of whether he already a member or not');
-        // checking whether the guy already memebr of that community
-        const { data:new_data, error } = await supabase
-        .from('community_data')
-        .select('*')
-        .eq('id',Number(props.communityId)); 
-        if(error){
-          console.log('error in fetching data of community',error);
 
+      // console.log('user exist hence redirect it and take care of whether he already a member or not');
+      // checking whether the guy already memebr of that community
+      const { data: new_data, error } = await supabase
+        .from("community_data")
+        .select("*")
+        .eq("id", Number(props.communityId));
+      if (error) {
+        console.log("error in fetching data of community", error);
+      } else {
+        // console.log('new_data',new_data);
+        let members_arr = new_data[0].Members;
+        if (members_arr != null) {
+          members_arr.forEach((value: any, index: any) => {
+            // console.log('already a member of community')
+            if (value.user_wallet_id == wallet_id) {
+              // console.log('already a member of community')
+              is_already_a_member = true;
+            }
+          });
         }
-        else{
-          // console.log('new_data',new_data);
-          let members_arr = new_data[0].Members;
-          if(members_arr!=null){
-              members_arr.forEach((value:any,index:any)=>{
-                // console.log('already a member of community')
-                if(value.user_wallet_id==wallet_id){
-                  // console.log('already a member of community')
-                    is_already_a_member = true;
-                }
+        // console.log('is already a member',is_already_a_member);
+        if (!is_already_a_member) {
+          // not a member so made it a member
+          //also have to update communities column of that user
+
+          let user_communities = data[0].communities;
+          user_communities.push(props.communityId);
+          // console.log('usercommunities',user_communities);
+          // console.log('wallet->',wallet_id);
+
+          const { data: updating_user_data, error: user_error } = await supabase
+            .from("userdata")
+            .update({
+              communities: user_communities,
             })
+            .eq("wallet_id", wallet_id);
+
+          if (user_error) {
+            console.log(
+              "error in updating communitites in userdata table",
+              user_error
+            );
+            return;
+          } else {
+            // to be added community adding feature inside community data table
+
+            console.log(
+              "communities updated succesfully in user table so redirect now"
+            );
           }
-          // console.log('is already a member',is_already_a_member);
-          if(!is_already_a_member){
-            // not a member so made it a member
-            //also have to update communities column of that user
-            
-            let user_communities  = data[0].communities;
-            user_communities.push(props.communityId);
-            // console.log('usercommunities',user_communities);
-            // console.log('wallet->',wallet_id);
-            
-            const { data:updating_user_data, error:user_error } = await supabase
-                                                                  .from("userdata")
-                                                                  .update({
-                                                                    communities: user_communities,
-                                                                  })
-                                                                  .eq('wallet_id',wallet_id)
+          // now communities column is updated till now
 
-            if(user_error){
-              console.log('error in updating communitites in userdata table',user_error);
-              return ;
-
-            }
-            else{
-              // to be added community adding feature inside community data table
-              
-
-              console.log('communities updated succesfully in user table so redirect now');
-              
-
-            }
-            // now communities column is updated till now
-
-            if(members_arr!=null){
-              members_arr.push({
-                User_name:data[0].name,
-                user_wallet_id:wallet_id,
-                date_of_join:new Date(),
-                missions_completed : [],
-                current_xp:0,
-                current_bounty:0,
-              });
-            }
-            else{
-              members_arr = [{
-                User_name:data[0].name,
-                user_wallet_id:wallet_id,
-                date_of_join:new Date(),
-                missions_completed : [],
-                current_xp:0,
-                current_bounty:0,
-              }]
-            }
-          
-            //update data inside community data table
-            const { data:updating_data, error } = await supabase.from("community_data")
-                                        .update({
-                                          Members: members_arr,
-                                        })
-                                        .eq('id',Number(props.communityId));
-            if(error){
-              console.log('error in updating members',error);
-              return ;
-            }
-            else{
-              // to be added community adding feature inside community data table
-              console.log('members updated succesfully in community so redirect now');
-            }
-            
+          if (members_arr != null) {
+            members_arr.push({
+              User_name: data[0].name,
+              user_wallet_id: wallet_id,
+              date_of_join: new Date(),
+              missions_completed: [],
+              current_xp: 0,
+              current_bounty: 0,
+            });
+          } else {
+            members_arr = [
+              {
+                User_name: data[0].name,
+                user_wallet_id: wallet_id,
+                date_of_join: new Date(),
+                missions_completed: [],
+                current_xp: 0,
+                current_bounty: 0,
+              },
+            ];
           }
-          else{
-            console.log('already a member of community so redirect him directly after updating its keys and values in local sto');
+
+          //update data inside community data table
+          const { data: updating_data, error } = await supabase
+            .from("community_data")
+            .update({
+              Members: members_arr,
+            })
+            .eq("id", Number(props.communityId));
+          if (error) {
+            console.log("error in updating members", error);
+            return;
+          } else {
+            // to be added community adding feature inside community data table
+            console.log(
+              "members updated succesfully in community so redirect now"
+            );
           }
-          // now pushing him to your space -> aps handles things from here
-            if(window!==undefined){
-                window.localStorage.setItem('community_id',props.communityId)
-                window.localStorage.setItem('user_wallet_id',wallet_id)
-                // console.log("wallet id of new user->",wallet_id);
-                router.push('/YourSpace');
-            }
-          
+        } else {
+          console.log(
+            "already a member of community so redirect him directly after updating its keys and values in local sto"
+          );
         }
-        
-    }
-    else{
+        // now pushing him to your space -> aps handles things from here
+        if (window !== undefined) {
+          window.localStorage.setItem("community_id", props.communityId);
+          window.localStorage.setItem("user_wallet_id", wallet_id);
+          // console.log("wallet id of new user->",wallet_id);
+          router.push("/YourSpace");
+        }
+      }
+    } else {
       // need to take user name
       setUsernamePopUp(true);
       // alert('input name');
       // console.log('new user');
     }
-   
   };
   // right now we have wallet authentication only
-  
-  const connectWallet = async () => {
-    
 
+  const connectWallet = async () => {
     let accounts = "";
     //acccounts will be an array of size 1 which contain wallet id of the guy.
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
       try {
         /* MetaMask is installed */
-         accounts = await window.ethereum.request({
+        accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
         setWalletAddress(accounts[0]);
         wallet_id2 = accounts[0];
         // console.log("letsee->",accounts[0]);
-   
       } catch (err) {
-
         console.error(err);
       }
       UserCard[0].button = "Connected";
-      setFlag(!flag); 
+      setFlag(!flag);
       // console.log(accounts);
-      if(accounts!==""){//means accounts will have data know
+      if (accounts !== "") {
+        //means accounts will have data know
         // console.log("inside acount");
         // console.log(props.communityId);
-        const {data,error} = await supabase
-                            .from('community_data')
-                            .select('*')
-                            .eq('id', props.communityId);
-            if(error){
-              console.log('error in fetching');
-            }
-            else{
-              console.log('data of community->',data);
-              if(accounts[0]===data[0].wallet_id){
-                console.log('u are the community manager');
-                router.push('/NewDashboard')
-              }
-              else{
-                //now to check if he is a new user to our website whose data is not registered?
-                checkUserExists('userdata',accounts[0]);
-                console.log('welcome to my community');
-              }
-            }
-
+        const { data, error } = await supabase
+          .from("community_data")
+          .select("*")
+          .eq("id", props.communityId);
+        if (error) {
+          console.log("error in fetching");
+        } else {
+          console.log("data of community->", data);
+          if (accounts[0] === data[0].wallet_id) {
+            console.log("u are the community manager");
+            router.push("/NewDashboard");
+          } else {
+            //now to check if he is a new user to our website whose data is not registered?
+            checkUserExists("userdata", accounts[0]);
+            console.log("welcome to my community");
+          }
+        }
       }
-
     } else {
       /* MetaMask is not installed */
       console.log("Please install my MetaMask");
       Metamask();
-
     }
   };
   async function handleSubmit() {
-
     const { data, error } = await supabase.from("userdata").insert({
       wallet_id: wallet,
     });
@@ -244,97 +230,98 @@ const UserAuthCard = (props:any) => {
   function Metamask() {
     setMetamask(!InstallMeta);
   }
-  async function onOkClick(){
+  async function onOkClick() {
     // to be put username unique check,right now considering that everyone has unique name because of hurry
-    
-      const { data, error } = await supabase
-        .from('userdata')
-        .select('name')
-        .eq('name',Username);
-        
-    
-      if (error) {
-      
-        console.error('Error checking unique name existence:', error);
-       
-        return ;
-      }
-      // console.log("data->",data);
-      if(data.length > 0){
-        alert('username already exist try another one');   
-        return;
-      }
-     
-     setUsernamePopUp(false);
-     let arr = [props.communityId];
-     const { data:new_data, error:new_error } = await supabase.from("userdata").insert({
-      wallet_id: wallet,
-      name:Username,
-      communities:arr,
-    });
-    if(new_error){
-      console.log('erorr in inserting the data of username',new_error);
-    }
-    else{
-      console.log('username succesfully inserted in our db now redirecting..');
 
+    const { data, error } = await supabase
+      .from("userdata")
+      .select("name")
+      .eq("name", Username);
+
+    if (error) {
+      console.error("Error checking unique name existence:", error);
+
+      return;
+    }
+    // console.log("data->",data);
+    if (data.length > 0) {
+      alert("username already exist try another one");
+      return;
+    }
+
+    setUsernamePopUp(false);
+    let arr = [props.communityId];
+    const { data: new_data, error: new_error } = await supabase
+      .from("userdata")
+      .insert({
+        wallet_id: wallet,
+        name: Username,
+        communities: arr,
+      });
+    if (new_error) {
+      console.log("erorr in inserting the data of username", new_error);
+    } else {
+      console.log("username succesfully inserted in our db now redirecting..");
 
       // have to update in community data table too.
       let member_data;
-      const {data:communityData,error} = await supabase.from('community_data')
-                                         .select('Members')
-                                         .eq('id',Number(props.communityId));
+      const { data: communityData, error } = await supabase
+        .from("community_data")
+        .select("Members")
+        .eq("id", Number(props.communityId));
 
-      if(error){
-        console.log('error in uodating community while new user data',error);
+      if (error) {
+        console.log("error in uodating community while new user data", error);
+      } else {
+        console.log(
+          "data of community tabel on the basis of new user->",
+          communityData
+        );
       }
-      else{
-        console.log('data of community tabel on the basis of new user->',communityData);
-      }
-      if(communityData!=null)
-       member_data = communityData[0].Members;
+      if (communityData != null) member_data = communityData[0].Members;
 
-      if(member_data==null||member_data==undefined){
-        member_data = [{
-          User_name:Username,
-          user_wallet_id:wallet,
-          date_of_join:new Date(),
-          missions_completed : [],
-          current_xp:0,
-          current_bounty:0,
-        }]
-      }
-      else{
+      if (member_data == null || member_data == undefined) {
+        member_data = [
+          {
+            User_name: Username,
+            user_wallet_id: wallet,
+            date_of_join: new Date(),
+            missions_completed: [],
+            current_xp: 0,
+            current_bounty: 0,
+          },
+        ];
+      } else {
         member_data.push({
-          User_name:Username,
-          user_wallet_id:wallet,
-          date_of_join:new Date(),
-          missions_completed : [],
-          current_xp:0,
-          current_bounty:0,
+          User_name: Username,
+          user_wallet_id: wallet,
+          date_of_join: new Date(),
+          missions_completed: [],
+          current_xp: 0,
+          current_bounty: 0,
+        });
+      }
+      const { data: new_data2, error: new_error2 } = await supabase
+        .from("community_data")
+        .update({
+          Members: member_data,
         })
-      }                                 
-      const { data:new_data2, error:new_error2 } = await supabase.from("community_data").update({
-        Members:member_data,
-      })
-      .eq('id',Number(props.communityId));
-      if(new_error2){
-        console.log('erorr in updagting members data in community data when a user is a new user',new_error);
+        .eq("id", Number(props.communityId));
+      if (new_error2) {
+        console.log(
+          "erorr in updagting members data in community data when a user is a new user",
+          new_error
+        );
+      } else {
+        console.log("updated in community table for new member");
       }
-      else{
-        console.log('updated in community table for new member');
+      if (window !== undefined) {
+        window.localStorage.setItem("community_id", props.communityId);
+        window.localStorage.setItem("user_wallet_id", wallet_id2);
+        // console.log("wallet id of new user->",wallet_id2);
+        router.push("/YourSpace");
       }
-      if(window!==undefined){
-          window.localStorage.setItem('community_id',props.communityId)
-          window.localStorage.setItem('user_wallet_id',wallet_id2)
-          // console.log("wallet id of new user->",wallet_id2);
-          router.push('/YourSpace');
-      }
-      
-
-      
     }
-
   }
 
   return (
@@ -358,24 +345,18 @@ const UserAuthCard = (props:any) => {
         open={UsernamePopUp}
         style={{}}
       >
-      <div className="absolute top-[30vh] left-[30vw] flex flex-col w-[300px]">
-        
-              <div>Enter your username:
-               
-              </div>
-              <input
-                  type="text" 
-                  value={Username}
-                  onChange={(e) => setUsesrname(e.target.value)}
-                  className="text-black"
-                />
-              <button className="bg-[green]" onClick={onOkClick}>OK</button>
-          
-      </div>
-      
-         
-
-       
+        <div className="absolute top-[30vh] left-[30vw] flex flex-col w-[300px]">
+          <div>Enter your username:</div>
+          <input
+            type="text"
+            value={Username}
+            onChange={(e) => setUsesrname(e.target.value)}
+            className="text-black"
+          />
+          <button className="bg-[green]" onClick={onOkClick}>
+            OK
+          </button>
+        </div>
       </Modal>
       <div className="absolute top-[30vh] left-[30vw] ml-[23px] w-[598px] h-auto bg-[#232B35] rounded-[15.4264px] p-6">
         <div className="w-full h-auto">

@@ -7,12 +7,12 @@ import { Context } from "vm";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Mission = () => {
+const Mission = (props:any) => {
   const data = {
     datasets: [
       {
         labels: ["completed", "remaining"],
-        data: [60.93,39.07],
+        data: [props.count,39.07],
         backgroundColor: (context : Context) => {
           const chart = context.chart;
           const { ctx, chartArea } = chart;
@@ -71,7 +71,7 @@ const Mission = () => {
             Missions
           </h1>
           <h3 className="text-white font-medium text-[43.94px] leading-[59.32px] absolute top-[83.55px] left-[38.04px]">
-            156
+            {props.count}
           </h3>
         </div>
       </div>
