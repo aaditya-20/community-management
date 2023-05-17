@@ -28,7 +28,7 @@ function AnalyticsCardMainDashboard() {
         datasets: [
           {
             data: [20, 25, 15, 20, 30, 10, 20, 10, 20, 20, 10,10],
-            label: "Twitter",
+            label: "Discord",
             
           
             borderSkipped:'middle',
@@ -43,21 +43,21 @@ function AnalyticsCardMainDashboard() {
             },
             // borderWidth: 2
           },
-          {
-            data: [30, 40, 25, 30, 40, 30, 40, 25, 30, 35, 30,20],
-            label: "Discord",
-            // borderSkipped:false,
-            borderRadius: {
-                topLeft:10,
-                topRight:10,
-                bottomLeft:10,
-                bottomRight:10,
-            },
-            barThickness: 25,
-            backgroundColor: "#313031",
+          // {
+          //   data: [30, 40, 25, 30, 40, 30, 40, 25, 30, 35, 30,20],
+          //   label: "Discord",
+          //   // borderSkipped:false,
+          //   borderRadius: {
+          //       topLeft:10,
+          //       topRight:10,
+          //       bottomLeft:10,
+          //       bottomRight:10,
+          //   },
+          //   barThickness: 25,
+          //   backgroundColor: "#313031",
             
             
-          },
+          // },
         ],
       },
 
@@ -117,26 +117,27 @@ function AnalyticsCardMainDashboard() {
         
          {/*for legend */}
          <div className="flex justify-center space-x-4 absolute h-[5px] left-[140px] top-[25px]">
+         
           <label className="inline-flex items-center">
-            <div className="h-[15px] w-[15px] rounded-full bg-[#313031]"></div>
+            <div className="h-[15px] w-[15px] rounded-full bg-[#5DDCFE]"></div>
             <span className="text-[#FFFFFF] opacity-[.4]  ml-2 font-['generalsans']  text-[15px]">
               Discord
             </span>
           </label>
           <label className="inline-flex items-center">
-            <div className="h-[15px] w-[15px] rounded-full bg-[#5DDCFE]"></div>
-            <span className="text-[#FFFFFF] opacity-[.4]  ml-2 font-['generalsans']  text-[15px]">
-              Twitter
-            </span>
+            <div className="h-[15px] w-[15px] rounded-full bg-[#b727dbf7]"></div>
+             { <span className="text-[#FFFFFF] opacity-[.4]  ml-2 font-['generalsans']  text-[15px]"> 
+              Twitch~Upcoming
+            </span> }
           </label>
         </div>
         {/* legend over */}
 
 
 
-        <button className="absolute text-[#FFFFFF] top-[13px] rounded-[4px] w-[74px] h-[26px] left-[300px] font-[Public Sans] text-[12px] bg-[#393939]">
+        {/* <button className="absolute text-[#FFFFFF] top-[13px] rounded-[4px] w-[74px] h-[26px] left-[300px] font-[Public Sans] text-[12px] bg-[#393939]">
           full stats
-        </button>
+        </button> */}
         <div className="relative overflow-scroll no-scrollbar w-[400px] h-[300px] top-[70px]">
             <div className="w-[660px] h-[250px]">
                 <canvas
@@ -153,15 +154,15 @@ function AnalyticsCardMainDashboard() {
 
 {/*  */}
         <div id="" className="absolute  top-[325px] left-[25px] justify-center">
-          <button
+          {/* <button
             id="dropdownDefaultButton"
             data-dropdown-toggle="dropdown"
             className="text-[#FFFFFF]   font-[500] text-[16px] rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center h-[61px] w-[342px] bg-[#212021]"
             type="button"
             onClick={handleDropDown}
-          >
-            Member growth{" "}
-            <svg
+          > */}
+            {/* Member growth{" "} */}
+            {/* <svg
               className="absolute w-4 h-4 ml-2 left-[300px]"
               aria-hidden="true"
               fill="none"
@@ -176,7 +177,7 @@ function AnalyticsCardMainDashboard() {
                 d="M19 9l-7 7-7-7"
               ></path>
             </svg>
-          </button>
+          </button> */}
           {/* <!-- Dropdown menu --> */}
           <div
             id="dropdown"

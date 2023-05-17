@@ -100,16 +100,21 @@ const AnalyticsScreen = () => {
                 <TopContributorAnalyticsScreen/>
               </div>
               <div className="h-[449px] w-[503px] overflow-hidden rounded-[20px] bg-[#232B35] p-6 ml-[28px]">
-                <div className="h-full w-full">
+                <div className="h-full w-full blur">
                   <div className="flex justify-between items-center mb-[30px]">
+                    
                     <h1 className="text-white font-medium text-[24px] leading-[32.4px]">
                       Top content
                     </h1>
+                    
                     <button className="text-[#D9D9D9] font-normal text-[15px] leading-[20.25px]">
                       Show all
                     </button>
                   </div>
+            
                   <div>
+                    
+                 
                     {users.map((item) => {
                       return (
                         <div key={item.key} className="mb-4">
@@ -122,10 +127,14 @@ const AnalyticsScreen = () => {
                             tag={item.tag}
                           />
                         </div>
+                        
                       );
+                      
                     })}
                   </div>
+                  
                 </div>
+                
               </div>
             </div>
           </div>
@@ -133,6 +142,7 @@ const AnalyticsScreen = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 
