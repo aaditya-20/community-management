@@ -12,7 +12,7 @@ const SubmissionCard = () => {
     }
   };
   return (
-    <div className="w-full h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6">
+    <div className="max-w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6">
       <h1 className="font-normal text-[20px] leading-[26px] text-white">
         Submission type
       </h1>

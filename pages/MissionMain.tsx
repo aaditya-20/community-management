@@ -123,7 +123,7 @@ const MissionMain = () => {
 
   return (
     
-    <div className="min-h-screen overflow-x-hidden bg-[#171c23]">
+    <div className="min-h-screen min-w-fit bg-[#171c23]">
       <Modal
         onClose={() => {
           setOpenMission(!OpenMission);
