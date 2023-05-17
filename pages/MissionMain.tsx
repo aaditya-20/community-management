@@ -122,7 +122,6 @@ const MissionMain = () => {
   
 
   return (
-    
     <div className="min-h-screen min-w-fit bg-[#171c23]">
       <Modal
         onClose={() => {
@@ -131,11 +130,17 @@ const MissionMain = () => {
         open={OpenMission}
         style={{}}
       >
-        <div className="absolute m-[auto] top-[30vh] left-[40vw]">
-          <CopyLinkPopUpFormBuilder
-            url={`${typeof window == "undefined"?"dontknow":window.location.origin}/community/${communityId}`}
-            forWhichComponent="community"
-          />
+        <div className="flex justify-center items-center">
+          <div className="absolute m-[auto] top-[30vh]">
+            <CopyLinkPopUpFormBuilder
+              url={`${
+                typeof window == "undefined"
+                  ? "dontknow"
+                  : window.location.origin
+              }/community/${communityId}`}
+              forWhichComponent="community"
+            />
+          </div>
         </div>
       </Modal>
       {/* Main Div */}
@@ -180,22 +185,27 @@ const MissionMain = () => {
                         </h1>
                       </div>
                       {/* Will be introduced in next iteration */}
-                       <AiOutlinePlusCircle
+                      <AiOutlinePlusCircle
                         className="text-[#7C7C7C]"
                         size={16}
-                      /> 
+                      />
                     </button>
                   </div>
                   <div className="flex gap-3 justify-center items-center">
-                   <Photo/>
-                    <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]" onClick={()=>{setOpenMission(!OpenMission)}}>
+                    {/* <Photo/> */}
+                    <button
+                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                      onClick={() => {
+                        setOpenMission(!OpenMission);
+                      }}
+                    >
                       <Image
                         src="/Add_user.svg"
                         alt=""
                         height={14.17}
                         width={12.75}
                       />
-                      <h1 className="font-[500px] text-sm text-[#757575]" >
+                      <h1 className="font-[500px] text-sm text-[#757575]">
                         Invite
                       </h1>
                     </button>
@@ -226,7 +236,13 @@ const MissionMain = () => {
                   {missions &&
                     missions.map((item: any, index) => {
                       return (
-                        <div className="m-[8px] " key={index} onClick={()=>{handleCardClick(item)}}>
+                        <div
+                          className="m-[8px] "
+                          key={index}
+                          onClick={() => {
+                            handleCardClick(item);
+                          }}
+                        >
                           <MissionMainCard
                             profileUrl1={"/Avatar.png"}
                             profileUrl2={"/Avatar.png"}
@@ -301,9 +317,8 @@ const MissionMain = () => {
                 </h1>
                 {Discord.map((item) => {
                   return (
-
-                    <div onClick={() => router.push("/MissionDiscord")}
-
+                    <div
+                      onClick={() => router.push("/MissionDiscord")}
                       key={item.id}
                       className="w-full rounded-[10px] p-[19px] border-[1px] bg-[#232B35] border-[rgb(117,117,117)]/[0.04] mb-5 flex justify-between items-center"
                     >

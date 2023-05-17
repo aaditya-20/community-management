@@ -4,7 +4,6 @@ import Header from "../components/atoms/Header";
 import Image from "next/image";
 import Modal from "@material-ui/core/Modal";
 import { supabase } from "@/utils/supabaseClient";
-import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 import Todo from "@/components/molecules/Todo";
 import Priority from "@/components/molecules/Priority";
 import Tags from "@/components/molecules/Tags";

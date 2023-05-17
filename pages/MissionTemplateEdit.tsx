@@ -115,11 +115,17 @@ const MissionTemplateEdit = () => {
         open={OpenMission}
         style={{}}
       >
-        <div className="absolute m-[auto] top-[30vh] left-[40vw]">
-          <CopyLinkPopUpFormBuilder
-             url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
-            forWhichComponent="mission"
-          />
+        <div className="flex justify-center items-center">
+          <div className="absolute m-[auto] top-[30vh]">
+            <CopyLinkPopUpFormBuilder
+              url={`${
+                typeof window == "undefined"
+                  ? "dontknow"
+                  : window.location.origin
+              }/missions/${MissionId}`}
+              forWhichComponent="mission"
+            />
+          </div>
         </div>
       </Modal>
 
@@ -151,7 +157,7 @@ const MissionTemplateEdit = () => {
                 </div>
               </div>
             </div>
-           
+
             {/* Main Section */}
             <div className="h-full flex justify-between">
               {/* Left Section */}
