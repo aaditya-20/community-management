@@ -179,17 +179,18 @@ const MissionMain = () => {
                           Writing
                         </h1>
                       </div>
-                      <AiOutlinePlusCircle
+                      {/* Will be introduced in next iteration */}
+                       <AiOutlinePlusCircle
                         className="text-[#7C7C7C]"
                         size={16}
-                      />
+                      /> 
                     </button>
                   </div>
                   <div className="flex gap-3 justify-center items-center">
                    <Photo/>
                     <button className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]" onClick={()=>{setOpenMission(!OpenMission)}}>
                       <Image
-                        src="Icons/Add_user.svg"
+                        src="/Add_user.svg"
                         alt=""
                         height={14.17}
                         width={12.75}
