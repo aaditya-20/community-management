@@ -88,7 +88,7 @@ const MissionCreationFormPage = () => {
           />
         </div>
       </Modal>
-      <div className="min-h-screen overflow-auto scrollbar-hide bg-[#171C23]">
+      <div className="min-h-screen min-w-fit overflow-auto scrollbar-hide bg-[#171C23]">
         <div className="h-full flex ">
           <Sidebar />
           <div className="h-full w-full">
@@ -118,9 +118,9 @@ const MissionCreationFormPage = () => {
             </div>
 
             {/* Main Section */}
-            <div className="h-full flex justify-between">
+            <div className="h-full flex flex-wrap justify-between">
               {/* Left Section */}
-              <div className="w-full h-full mt-[28px] flex justify-center ">
+              <div className="max-w-[800px] h-full mt-[28px] flex justify-center mx-auto items-center">
                 <div>
                   {/* Basic Info */}
                   <BasicInfoCard />
@@ -134,7 +134,7 @@ const MissionCreationFormPage = () => {
               </div>
 
               {/* Right Section */}
-              <div className="min-h-screen w-[437px] border-l-[1px] border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
+              <div className="h-auto max-w-[437px] md:border-l-[1px] md:border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
                 <div>
                   {/* Status */}
                   <Todo />

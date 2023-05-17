@@ -52,7 +52,7 @@ const Leaderboard = () => {
 
   return (
 
-    <div className="min-h-screen bg-[#171C23] flex">
+    <div className="min-h-screen min-w-fit bg-[#171C23] flex">
       {/* Sidebar */}
       <Sidebar />
 

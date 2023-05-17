@@ -44,9 +44,9 @@ const users = [
 
 const AnalyticsScreen = () => {
   return (
-    <div className="min-h-screen bg-[#171C23] flex overflow-x-hidden scrollbar-hide">
+    <div className="min-h-screen min-w-fit bg-[#171C23] flex scrollbar-hide">
       <Sidebar />
-      <div className="w-full">
+      <div className="w-full h-full">
         <Header />
 
         <div className=" w-full flex justify-center items-center">
@@ -62,7 +62,7 @@ const AnalyticsScreen = () => {
           <div className="flex">
             {/* Left Section */}
             <div>
-              <div className="flex gap-[26px] mb-[26px]">
+              <div className="flex  gap-[26px] mb-[26px]">
                 <UserBaseAnalytics
                   imageUrl="Icons/twitter.svg"
                   height={16.25}
@@ -94,9 +94,9 @@ const AnalyticsScreen = () => {
               </div>
             </div>
             {/* Right Section */}
-            <div>
+            <div className=" flex flex-col gap-[26px] flex-wrap">
 
-              <div className="w-[505px] h-[433px] bg-[#232B35] rounded-[20px]  overflow-hidden ml-[13px] mb-[26px]">
+              <div className="w-[505px] h-[433px] bg-[#232B35] rounded-[20px]  overflow-hidden ml-[13px]">
                 <TopContributorAnalyticsScreen/>
               </div>
               <div className="h-[449px] w-[503px] overflow-hidden rounded-[20px] bg-[#232B35] p-6 ml-[28px]">
