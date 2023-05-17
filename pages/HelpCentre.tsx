@@ -6,7 +6,7 @@ import React from "react";
 
 export default function HelpCentre() {
   return (
-    <div className="min-h-screen bg-[#171C23] flex">
+    <div className="min-h-screen min-w-fit bg-[#171C23] flex">
       <Sidebar />
       <div className="h-auto w-full">
         <Header />
