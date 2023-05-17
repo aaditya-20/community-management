@@ -66,7 +66,7 @@ export default function CommunityId() {
 
     <div>
      
-      <UserAuthCard communityId = {CommunityId}/>
+      <UserAuthCard communityId = {router.query.communityId}/>
     </div>
   )
 }
