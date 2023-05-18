@@ -24,7 +24,11 @@ const CommunitySetupScreen = (): ReactElement => {
   let file: File;
   //Function to check wheather the email is already registered or not
   async function emailExist(InputEmail: any) {
-    let flag = false;
+    let flag;
+    if (InputEmail.length == 0) {
+      flag = "2";
+      return flag;
+    }
     await supabase
       .from("community_data")
       .select("*")
@@ -33,11 +37,10 @@ const CommunitySetupScreen = (): ReactElement => {
         console.log(data);
         if (data.data.length > 0) {
           console.log("Email already exist");
-          //alert("Email already exist");
-          flag = false;
+          flag = "3";
         } else {
           console.log("Email does not exist");
-          flag = true;
+          flag = "1";
         }
       });
     console.log("Flag value=", flag);
@@ -45,7 +48,7 @@ const CommunitySetupScreen = (): ReactElement => {
   }
   async function onContinueClick() {
     console.log(InputEmail, await emailExist(InputEmail));
-    if (await emailExist(InputEmail)) {
+    if ((await emailExist(InputEmail)) == "1") {
       obj.email = InputEmail;
       AdminAvatarUpload(file);
       obj.name = InputValue;
@@ -53,8 +56,10 @@ const CommunitySetupScreen = (): ReactElement => {
       // Removing userImage stored in local Storage
       localStorage.removeItem("userImage");
       setOpenDiscord(!OpenDiscord);
-    } else {
+    } else if ((await emailExist(InputEmail)) == "3") {
       alert("Email already exist");
+    } else {
+      alert("Please Enter Email");
     }
   }
   const bucket_name = "community_admin_avatar";
