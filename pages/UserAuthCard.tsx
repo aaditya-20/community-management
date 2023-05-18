@@ -6,6 +6,7 @@ import React, { use, useState } from "react";
 import InstallMetamaskPopup from "./InstallMetamaskPopup";
 import { Modal } from "@material-ui/core";
 import CommunityId from "./community/[communityId]";
+import { FaFire } from "react-icons/fa";
 // import { supabase } from "@/utils/supabaseClient";
 const UserCard = [
   {
@@ -318,7 +319,6 @@ const UserAuthCard = (props: any) => {
       if (window !== undefined) {
         window.localStorage.setItem("community_id", props.communityId);
         window.localStorage.setItem("user_wallet_id", wallet_id2);
-        // console.log("wallet id of new user->",wallet_id2);
         router.push("/YourSpace");
       }
     }
@@ -345,17 +345,44 @@ const UserAuthCard = (props: any) => {
         open={UsernamePopUp}
         style={{}}
       >
-        <div className="absolute top-[30vh] left-[30vw] flex flex-col w-[300px]">
-          <div>Enter your username:</div>
-          <input
-            type="text"
-            value={Username}
-            onChange={(e) => setUsesrname(e.target.value)}
-            className="text-black"
-          />
-          <button className="bg-[green]" onClick={onOkClick}>
-            OK
-          </button>
+        {/* // This is popup which will pop when use not signed up,comes at community Invite
+        // Only Storing Wallet id and Name at the moment
+        // Pending-Email,Avatar */}
+        <div className="flex items-center justify-center h-screen">
+          <div className="bg-gray-800 text-white rounded-lg p-6 w-260">
+            <div className="flex items-center mb-4">
+              <Image alt="" src="/Icons/RedFire.svg" width={25} height={25} />
+              <h2 className="text-xl font-bold">Welcome to the community</h2>
+            </div>
+            <div className="flex flex-col gap-4">
+              <label htmlFor="name" className="text-sm">
+                Enter Name
+              </label>
+              <input
+                className="w-full h-10 bg-[#2E363F] rounded-lg text-white px-4"
+                placeholder="Name"
+                type="text"
+                value={Username}
+                onChange={(e) => setUsesrname(e.target.value)}
+              />
+              <label htmlFor="email" className="text-sm">
+                Enter Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                className="w-full h-10 bg-[#2E363F] rounded-lg text-white px-4"
+                placeholder="Email"
+              />
+              <button
+                // ok==continue
+                onClick={onOkClick}
+                className="bg-[#FE702A] text-white rounded-lg py-2"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
         </div>
       </Modal>
       <div className="absolute top-[30vh] left-[30vw] ml-[23px] w-[598px] h-auto bg-[#232B35] rounded-[15.4264px] p-6">
