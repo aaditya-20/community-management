@@ -24,7 +24,7 @@ export default function YourSpace(props: any) {
   const [communityName, setCommunityName] = useState("Satoshi");
   const router = useRouter();
 
-  var community_id = "";
+  var community_id ="";
   var user_wallet_id = "";
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -84,6 +84,7 @@ export default function YourSpace(props: any) {
       const members = rowData.Members.filter(
         (item: any) => item.user_wallet_id === user_wallet_id
       );
+      console.log(members[0]);
       setName(members[0].User_name);
       setXp(members[0].current_xp);
       setBounty(members[0].current_bounty);
