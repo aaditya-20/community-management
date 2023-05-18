@@ -13,6 +13,9 @@ import { getDate } from "date-fns";
 import Photo from "@/components/atoms/Photo";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
+import Tags from "@/components/molecules/Tags";
+import MissionFormData from "@/utils/MissionFormData";
+import FilterTags from "@/utils/FilterTags";
 const twitter = [
   {
     id: 1,
@@ -55,7 +58,12 @@ const Community = [
 ];
 
 const MissionMain = () => {
+  const obj = FilterTags();
+
+  
+  
   const [OpenMission,setOpenMission] = useState(false)
+  const [hideTagInput,sethideTagInput] = useState(true);
 
   const router = useRouter();
   function createhandleclick() {
@@ -94,10 +102,15 @@ const MissionMain = () => {
     wallet_id = jsonData.wallet_id;
     console.log(jsonData);
   }
-
+  const [allMissions,setallMissions] = useState([{}]);
+  // let 
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    // console.log('in');
+     console.log('obj tags->',obj.tags);
+  }, [FilterTags().tags]);
 
   async function fetchData() {
     try {
@@ -111,15 +124,85 @@ const MissionMain = () => {
         console.error(error);
         return;
       }
+      
       console.log(rowData.missions);
+      setallMissions(rowData.missions);
+      // filter logic;
+      let new_missions;
+      if(rowData.missions!=null){
+        console.log(obj.tags);
+         new_missions = rowData.missions.filter((val:any)=>{
+          if(obj.tags.length<=0||obj.tags[0].title==''){//no tags are there.
+            return true;
+          }
+          else{
+            for(let i = 0;i<obj.tags.length;i++){
+                let flag = false;
+                for(let j = 0;j<val.tags.length;j++){
+                  if(obj.tags[i].title==val.tags[j].title){
+                    flag = true;
+                  }
+                }
+                if(flag==false){
+                  return false;
+                }
+            }
+            return true; 
+          }
+      });
+
+      }
+      else{
+      console.log('filtered_missions',new_missions);
+
+         new_missions = rowData.missions;
+      }
+      console.log('filtered_missions',new_missions);
+      
       // missions = rowData.missions;
-      setmissions(rowData.missions);
+      setmissions(new_missions);
       setcommunityId(rowData.id);
     } catch (error) {
       console.error(error);
     }
   }
-  
+  function handleFilterClick(){
+    let new_missions;
+    sethideTagInput(!hideTagInput);
+    if(allMissions!=null){
+      console.log(obj.tags);
+       new_missions = allMissions.filter((val:any)=>{
+        if(obj.tags.length<=0||obj.tags[0].title==''){//no tags are there.
+          return true;
+        }
+        else{
+          for(let i = 0;i<obj.tags.length;i++){
+              let flag = false;
+              for(let j = 0;j<val.tags.length;j++){
+                if(obj.tags[i].title==val.tags[j].title){
+                  flag = true;
+                }
+              }
+              if(flag==false){
+                return false;
+              }
+          }
+          return true; 
+        }
+    });
+
+    }
+    else{
+    console.log('filtered_missions',new_missions);
+
+       new_missions = allMissions;
+    }
+    console.log('filtered_missions',new_missions);
+    
+    // missions = rowData.missions;
+    setmissions(new_missions);
+    
+  }
 
   return (
     <div className="min-h-screen min-w-fit bg-[#171c23]">
@@ -150,15 +233,25 @@ const MissionMain = () => {
         <div className="w-full h-full">
           <Header />
           <div className="w-full h-full">
-            <div className="h-[172px] w-full p-6 border-b-[1px] border-[#353B43]">
+            <div className="h-[auto] w-full p-6 border-b-[1px] border-[#353B43]">
               <div className=" h-full w-full">
                 <h1 className="font-semibold text-2xl text-white">Missions</h1>
                 <p className="font-normal text-[16px] leading-[22px] text-[#A6A6A6]">
                   Boost your community with missions
                 </p>
-                <div className="flex justify-between mt-6">
-                  <div className="flex gap-3 items-center justify-center">
-                    <button className="h-[33px] w-[90px] bg-white/[0.05] rounded-[8px] flex justify-center items-center">
+                <div className="flex justify-between ">
+               
+                   <div className="flex flex-row gap-6 items-center justify-center">
+                    
+                     <Tags title = 'Filter On the Basis of Tags' filter='yes' tagInputVisibility={hideTagInput} />
+                     <button  
+                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                      onClick={handleFilterClick}>
+                     <h1 className="font-[500px] text-sm text-[#757575]">
+                        Apply
+                      </h1>
+                     </button>
+                   {/* <button className="h-[33px] w-[90px] bg-white/[0.05] rounded-[8px] flex justify-center items-center">
                       <div className="flex gap-[8.28px] justify-center items-center">
                         <h1 className="font-normal text-xs">Twitter</h1>
                         <Image
@@ -184,13 +277,15 @@ const MissionMain = () => {
                           Writing
                         </h1>
                       </div>
-                      {/* Will be introduced in next iteration */}
+                 
                       <AiOutlinePlusCircle
                         className="text-[#7C7C7C]"
                         size={16}
                       />
                     </button>
-                  </div>
+                    */}
+                  </div> 
+                  {/*  */}
                   <div className="flex gap-3 justify-center items-center">
                     {/* <Photo/> */}
                     <button
