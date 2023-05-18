@@ -1,34 +1,47 @@
 import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BsXCircleFill } from "react-icons/bs";
 import { HiXCircle } from "react-icons/hi2";
+import FilterTags from "@/utils/FilterTags";
+// import FormData from "@/utils/MissionFormData";
 
 const Tags = (props:any) => {
+  let title = 'Tags';
+  if(props.title!=undefined){
+    title = props.title;
+  }
   const obj = MissionFormData();
-
+  
   const [Tags, setTags] = useState(
-    obj.tags.length>0?obj.tags:
+    (obj.tags.length>0&&obj.tags[0].title!='')?obj.tags:
     [
-    { src: "Icons/✍️.svg", title: "Writing" },
-    { src: "Icons/📢.svg", title: "Marketing" },
   ]
   );
   const [addTagPopup, setaddTagPopup] = useState(false);
   const [tag,setTag] = useState('');
  
-  // if(obj.tags!=null)
-  obj.tags = Tags;
-  
+
+   
+     if(props.filter!=undefined&&props.filter==='yes'){
+            FilterTags().tags = Tags;
+     }
+     else{
+        obj.tags = Tags;
+     }
+     console.log('filtertags->',FilterTags().tags);
   const handleClick = () => {
     setaddTagPopup(!addTagPopup);
   };
-
+  useEffect(()=>{
+   
+    setaddTagPopup(false);
+  },[props.tagInputVisibility])
   return (
     <div>
-      <h1 className="font-medium text-[16px] mt-6 leading-[22px] text-white mb-[10px]">
-        Tags
+      <h1 className="font-medium text-[16px] mt-6  leading-[22px] text-white mb-[10px]">
+        {title}
       </h1>
       <div className="w-[383px] h-auto py-3 bg-[#232B35] rounded-[8px] pr-3 pl-[23px] ">
         <div className="flex justify-start items-center ">
@@ -41,9 +54,9 @@ const Tags = (props:any) => {
                 {tag.src != "" && (
                   <Image width={11} height={10} alt="" src={tag.src} />
                 )}
-                <h1 className="font-normal text-[10.2174px] text-white font-open-sans">
+                {tag.title!=''&&(<h1 className="font-normal text-[10.2174px] text-white font-open-sans">
                   {tag.title}
-                </h1>
+                </h1>)}
 
                 <HiXCircle
                   size={11}
