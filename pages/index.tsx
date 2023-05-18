@@ -13,7 +13,7 @@ import CopyLinkPopUpFormBuilder from '@/components/molecules/CopyLinkPopUpFormBu
 export default function index() {
   return (
     <div>
-      <CopyLinkPopUpFormBuilder url="loda"/>
+      <FirstPage/>
     </div>
   );
 }
