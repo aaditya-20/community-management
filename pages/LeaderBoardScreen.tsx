@@ -45,19 +45,21 @@ const Leaderboard = () => {
       console.error(error);
     }
   }
-  console.log('ye card hai',cards)
-
-  const ele = cards.map((card: any, index: any) => {
-    return (
-      <div key={index}>
-        <LeaderboardCard
-          rank={index + 1}
-          name={card.User_name}
-          point={card.current_xp}
-        />
-      </div>
-    );
-  });
+  let ele:any
+  console.log("ye card hai", cards);
+  if (cards!=null) {
+    ele = cards.map((card: any, index: any) => {
+      return (
+        <div key={index}>
+          <LeaderboardCard
+            rank={index + 1}
+            name={card.User_name}
+            point={card.current_xp}
+          />
+        </div>
+      );
+    });
+  }
 
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex">
@@ -76,7 +78,7 @@ const Leaderboard = () => {
               <h3 className="text-[#A6A6A6] font-normal text-base">
                 Check who’s ahead of everyone
               </h3>
-{/* 
+              {/* 
               <button className="border border-[#757575] rounded-lg py-[7px] px-[11px]">
                 <div className="flex gap-[8.28px]">
                   <h1 className="text-[#757575] font-medium text-sm">

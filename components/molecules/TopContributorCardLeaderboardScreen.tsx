@@ -83,7 +83,7 @@ export default function MemberListCardMissionPage(props:any) {
           </div>
 
           <div className="max-h-[550px] overflow-auto scrollbar-hide">
-            {cards.map((item : any, index : any) => {
+            {cards && cards.map((item : any, index : any) => {
               return (
                 <div className="grid grid-cols-9 mb-[19.72px]" key={index}>
                   <div className="col-span-3 ">
