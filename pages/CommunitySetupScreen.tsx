@@ -23,40 +23,38 @@ const CommunitySetupScreen = (): ReactElement => {
   let community_admin_avatar = "";
   let file: File;
   //Function to check wheather the email is already registered or not
-  async function  emailExist(InputEmail:any){
+  async function emailExist(InputEmail: any) {
     let flag = false;
     await supabase
       .from("community_data")
       .select("*")
       .eq("email", InputEmail)
-      .then((data:any) => {
+      .then((data: any) => {
         console.log(data);
         if (data.data.length > 0) {
           console.log("Email already exist");
           //alert("Email already exist");
           flag = false;
-        }else{
+        } else {
           console.log("Email does not exist");
           flag = true;
-        } 
-      }
-      )
-      console.log("Flag value=",flag);
-      return flag;
-
+        }
+      });
+    console.log("Flag value=", flag);
+    return flag;
   }
   async function onContinueClick() {
-    console.log(InputEmail,await emailExist(InputEmail));
-    if(await emailExist(InputEmail)){
-    obj.email = InputEmail;
-    AdminAvatarUpload(file);
-    obj.name = InputValue;
-    obj.community_admin_avatar = community_admin_avatar;
-    // Removing userImage stored in local Storage
-    localStorage.removeItem("userImage");
-    setOpenDiscord(!OpenDiscord);
-    }else{
-      alert("Email already exist" );
+    console.log(InputEmail, await emailExist(InputEmail));
+    if (await emailExist(InputEmail)) {
+      obj.email = InputEmail;
+      AdminAvatarUpload(file);
+      obj.name = InputValue;
+      obj.community_admin_avatar = community_admin_avatar;
+      // Removing userImage stored in local Storage
+      localStorage.removeItem("userImage");
+      setOpenDiscord(!OpenDiscord);
+    } else {
+      alert("Email already exist");
     }
   }
   const bucket_name = "community_admin_avatar";
@@ -87,12 +85,12 @@ const CommunitySetupScreen = (): ReactElement => {
         file = files[0];
         console.log("mai hu file");
         console.log(file);
-        const reader = new FileReader(); 
-        reader.readAsDataURL(file); 
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
         reader.onloadend = () => {
-          const imageUrl = reader.result as string; 
-          localStorage.setItem("userImage", imageUrl); 
-          setImageUrl(imageUrl); 
+          const imageUrl = reader.result as string; // No need to cast to string
+          localStorage.setItem("userImage", imageUrl);
+          setImageUrl(imageUrl);
         };
       }
     });
@@ -224,7 +222,9 @@ const CommunitySetupScreen = (): ReactElement => {
             Already have account?{" "}
             <Link
               onClick={() => router.push("/LoginSection")}
-              className="font-[General Sans] text-[#A6A6A6CC]" href={""}            >
+              className="font-[General Sans] text-[#A6A6A6CC]"
+              href={""}
+            >
               Sign in
             </Link>
           </p>

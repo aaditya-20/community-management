@@ -145,8 +145,8 @@ const UserAuthCard = (props: any) => {
         }
         // now pushing him to your space -> aps handles things from here
         if (window !== undefined) {
-          window.localStorage.setItem("community_id", props.communityId);
-          window.localStorage.setItem("user_wallet_id", wallet_id);
+          await window.localStorage.setItem("community_id", props.communityId);
+          await window.localStorage.setItem("user_wallet_id", wallet_id);
           // console.log("wallet id of new user->",wallet_id);
           router.push("/YourSpace");
         }
@@ -317,8 +317,8 @@ const UserAuthCard = (props: any) => {
         console.log("updated in community table for new member");
       }
       if (window !== undefined) {
-        window.localStorage.setItem("community_id", props.communityId);
-        window.localStorage.setItem("user_wallet_id", wallet_id2);
+        await window.localStorage.setItem("community_id", props.communityId);
+        await window.localStorage.setItem("user_wallet_id", wallet_id2);
         router.push("/YourSpace");
       }
     }
