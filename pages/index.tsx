@@ -8,11 +8,12 @@ import NoAccountPopup from './NoAccountPopup'
 import LoginSplit from './LoginSplit'
 import MissionKickassBlogPost from './MissionKickassBlogPost'
 import InstallMetamaskPopup from './InstallMetamaskPopup'
+import CopyLinkPopUpFormBuilder from '@/components/molecules/CopyLinkPopUpFormBuilder'
 
 export default function index() {
   return (
     <div>
-      <FirstPage />
+      <CopyLinkPopUpFormBuilder url="loda"/>
     </div>
   );
 }
