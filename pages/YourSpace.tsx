@@ -44,12 +44,9 @@ export default function YourSpace(props: any) {
   }, []);
 
   function handleCardClick(missionDetails: any) {
-    router.push({
-      pathname: "/MissionViewPage",
-      query: {
-        myData: JSON.stringify(missionDetails),
-      },
-    });
+   
+    router.push(`/missions/${missionDetails.mission_id}`);
+    
   }
 
   function daysleft(dueDate: any) {

@@ -23,6 +23,7 @@ const UserCard = [
   // },
 ];
 // you will recieve communityId in props
+let wallet_id2: any;
 const UserAuthCard = (props: any) => {
   const [verified, setVerified] = useState(UserCard.map(() => false));
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ const UserAuthCard = (props: any) => {
   const [Username, setUsesrname] = useState("");
   const [UsernamePopUp, setUsernamePopUp] = useState(false);
 
-  let wallet_id2: any;
+ 
   const checkUserExists = async (table: any, wallet_id: string) => {
     const { data, error } = await supabase
       .from(table)
@@ -174,6 +175,7 @@ const UserAuthCard = (props: any) => {
         // console.log("letsee->",accounts[0]);
       } catch (err) {
         console.error(err);
+        return;
       }
       UserCard[0].button = "Connected";
       setFlag(!flag);
@@ -261,7 +263,7 @@ const UserAuthCard = (props: any) => {
       });
     if (new_error) {
       console.log("erorr in inserting the data of username", new_error);
-    } else {
+    } else {  
       console.log("username succesfully inserted in our db now redirecting..");
 
       // have to update in community data table too.
