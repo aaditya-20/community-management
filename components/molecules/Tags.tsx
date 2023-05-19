@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BsXCircleFill } from "react-icons/bs";
-import { HiXCircle } from "react-icons/hi2";
+import { HiOutlinePlusCircle, HiXCircle } from "react-icons/hi2";
 import FilterTags from "@/utils/FilterTags";
 // import FormData from "@/utils/MissionFormData";
 
@@ -70,7 +70,7 @@ const Tags = (props:any) => {
               </div>
             ))}
           </div>
-          <AiOutlinePlusCircle
+          <HiOutlinePlusCircle
             size={16}
             className="ml-[13px] cursor-pointer text-[#757575]"
             onClick={() => handleClick()}

@@ -34,61 +34,118 @@ const coinType = "USDC";
 
 const MissionOnboardingNewMembers = () => {
   return (
-    <div>
-      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
-        <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
-          <Sidebar />
-        </div>
-        <div className="border-b-[1px] border-b-[#353B43]">
-          <Header />
-        </div>
-        <div className="">
-          <NavbarMissionOnboarding
-            title={title}
-            description={description}
-            heading1={missionSteps[0]}
-            heading2={missionSteps[1]}
-            subheading1={missionSteps[2]}
-            subheading2={missionSteps[3]}
-          />
-        </div>
+    <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
+      <Sidebar />
+      <div className="w-full h-full">
+        <Header />
 
-        <div className="flex">
-          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
-            <Image
-              src="/MissionPageBanner.png"
-              width={800}
-              height={1}
-              alt="kjdfhah"
-              className="mx-[10px] my-[10px]"
-            />
+        {/* Edit Section */}
 
-            <div className="font-semibold text-2xl text-white mx-3">
-              Onboard 10 new community members
+        <NavbarMissionOnboarding
+          title={title}
+          description={description}
+          heading1={missionSteps[0]}
+          heading2={missionSteps[1]}
+          subheading1={missionSteps[2]}
+          subheading2={missionSteps[3]}
+        />
+
+        {/* Main Content Section */}
+        <div className="mt-6 flex justify-center items-center">
+          <div className="flex">
+            <div className="text-[#ffffff] ml-[20px] w-[auto] mb-[50px] border-[1px] border-[#353B43] rounded-[20px]">
+              <Image
+                src="Icons/TechnicalBg.svg"
+                width={800}
+                height={1}
+                alt="kjdfhah"
+                className="mx-[10px] my-[10px] mb-[40px]"
+              />
+              <div className="font-semibold text-2xl text-white mx-3">
+                Onboard 10 new community members
+              </div>
+              <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
+                <pre className="overflow-auto no-scrollbar font-['General Sans']">
+                  {description}
+                </pre>
+              </div>
+              <div className="mt-[60px] mb-3 px-3">
+              <MissionStepsCard
+                className="mx-[20px]"
+                heading1="Onboard 10 new members "
+                heading2="Submit mission"
+                descp1="Invite new members"
+                descp2="Share the proof of work"
+              />
+              </div>
             </div>
-            <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
-              <pre className="overflow-auto no-scrollbar font-['General Sans']">
-                {description}
-              </pre>
+            <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
+              <BeAchamp
+                val="1000"
+                tags={tags}
+                title="Onboarding 10 new community members"
+              />
             </div>
-            <MissionStepsCard
-              className="mx-[20px]"
-              heading1="Onboard 10 new members "
-              heading2="Submit mission"
-              descp1="Invite new members"
-              descp2="Share the proof of work"
-            />
-          </div>
-          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
-            <BeAchamp
-              val="1000"
-              tags={tags}
-              title="Onboarding 10 new community members"
-            />
           </div>
         </div>
       </div>
     </div>
+
+    // <div>
+    //   <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
+    //     <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
+    //       <Sidebar />
+    //     </div>
+    //     <div className="border-b-[1px] border-b-[#353B43]">
+    //       <Header />
+    //     </div>
+    //     <div className="">
+    //       <NavbarMissionOnboarding
+    //         title={title}
+    //         description={description}
+    //         heading1={missionSteps[0]}
+    //         heading2={missionSteps[1]}
+    //         subheading1={missionSteps[2]}
+    //         subheading2={missionSteps[3]}
+    //       />
+    //     </div>
+
+    //     <div className="flex">
+    //       <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
+    //         <Image
+    //           src="/MissionPageBanner.png"
+    //           width={800}
+    //           height={1}
+    //           alt="kjdfhah"
+    //           className="mx-[10px] my-[10px]"
+    //         />
+
+    //         <div className="font-semibold text-2xl text-white mx-3">
+    //           Onboard 10 new community members
+    //         </div>
+    //         <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
+    //           <pre className="overflow-auto no-scrollbar font-['General Sans']">
+    //             {description}
+    //           </pre>
+    //         </div>
+    //         <MissionStepsCard
+    //           className="mx-[20px]"
+    //           heading1="Onboard 10 new members "
+    //           heading2="Submit mission"
+    //           descp1="Invite new members"
+    //           descp2="Share the proof of work"
+    //         />
+    //       </div>
+    //       <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
+    //         <BeAchamp
+    //           val="1000"
+    //           tags={tags}
+    //           title="Onboarding 10 new community members"
+    //         />
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

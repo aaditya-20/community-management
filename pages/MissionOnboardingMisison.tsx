@@ -37,33 +37,31 @@ export default function MissionOnboardingMisison() {
         {/* Main Content Section */}
         <div className="mt-6 flex justify-center items-center">
           <div className="flex">
-            <div className="flex">
-              <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
-                <Image
-                  src="/MissionPageBanner.png"
-                  width={800}
-                  height={1}
-                  alt="kjdfhah"
-                  className="mx-[10px] my-[10px]"
+            <div className="text-[#ffffff] ml-[20px] mb-[50px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
+              <Image
+                src="/MissionPageBanner.png"
+                width={800}
+                height={1}
+                alt="kjdfhah"
+                className="mx-[10px] my-[10px]"
+              />
+              <Image
+                src="/../public/Icons/MissionPageBanner2.png"
+                width={800}
+                height={1}
+                alt="kjdfhah"
+                className="mx-[10px] "
+              />
+              <div className="mx-[30px] mb-3">
+                <MissionStepsCard
+                  heading1={"Follow @firebondapp on Twitter"}
+                  descp1={"Follow us!"}
+                  heading2="Get verified using the onboarding form"
+                  descp2={"Fill the onboarding form"}
                 />
-                <Image
-                  src="/../public/Icons/MissionPageBanner2.png"
-                  width={800}
-                  height={1}
-                  alt="kjdfhah"
-                  className="mx-[10px] mb-[10px]"
-                />
-                <div className="mx-[30px]">
-                  <MissionStepsCard
-                    heading1={"Follow @firebondapp on Twitter"}
-                    descp1={"Follow us!"}
-                    heading2="Get verified using the onboarding form"
-                    descp2={"Fill the onboarding form"}
-                  />
-                </div>
               </div>
             </div>
-            <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
+            <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
               <BeAchamp val="1000" tags={tags} title="Be A Champion" />
             </div>
           </div>
@@ -82,7 +80,7 @@ export default function MissionOnboardingMisison() {
     //     <NavbarMissionOnboarding title={title} description = {description} heading1={missionSteps[0]} heading2={missionSteps[1]} subheading1={missionSteps[2]} subheading2={missionSteps[3]}/>
     //     </div>
     //     <div className="flex">
-    //       <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
+    //       <div className="text-[#ffffff] ml-[20px]  w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
     //         <Image
     //           src="/MissionPageBanner.png"
     //           width={800}
@@ -95,7 +93,7 @@ export default function MissionOnboardingMisison() {
     //           width={800}
     //           height={1}
     //           alt="kjdfhah"
-    //           className="mx-[10px] mb-[10px]"
+    //           className="mx-[10px] "
     //         />
     //         <div className="mx-[30px]">
     //           <MissionStepsCard

@@ -9,7 +9,7 @@ export default function MissionShareYourFeedback() {
   const title = "Share Your Feedback";
   const description =
     "Share your feedback about our product on Product Hunt and upload a screenshot.";
-  const tags = ["writing","marketing"];
+  const tags = ["writing", "marketing"];
   const missionSteps = [
     "Write Feedback about product",
     "Submit Mission",
@@ -20,15 +20,15 @@ export default function MissionShareYourFeedback() {
   const coinType = "USDC";
   const submissionType = 'text';
   return (
-    <div>
-      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,130px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
-        <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
-          <Sidebar />
-        </div>
-        <div className="border-b-[1px] border-b-[#353B43]">
-          <Header />
-        </div>
-        <div className="">
+
+    
+
+       <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
+      <Sidebar />
+      <div className="w-full h-full">
+        <Header />
+       
+       
           <NavbarMissionOnboarding
             title={title}
             description={description}
@@ -38,9 +38,10 @@ export default function MissionShareYourFeedback() {
             subheading2={missionSteps[3]}
             submission_type = {submissionType}
           />
-        </div>
-        <div className="flex">
-          <div className="text-[#ffffff] ml-[20px] mb-[550px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
+      
+        <div className="mt-6 flex justify-center items-center">
+          <div className="flex">
+            <div className="text-[#ffffff] ml-[20px] mb-[50px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
             <Image
               src="/MissionPageBanner.png"
               width={800}
@@ -49,33 +50,37 @@ export default function MissionShareYourFeedback() {
               className="mx-[10px] my-[10px]"
             />
             <div className="mx-[30px] my-[30px]">
-              <div className="font-[600] text-[24px] text-[#ffffff]">
-                Share your feedback
+                <div className="font-[600] text-[24px] text-[#ffffff]">
+                  Share your feedback
+                </div>
+                <div className="font-[500] text-[16px] text-[#D9D9D9]">
+                  Share your feedback about our product on Product Hunt and
+                  upload a screenshot.
+                </div>
+
               </div>
-              <div className="font-[500] text-[16px] text-[#D9D9D9]">
-                Share your feedback about our product on Product Hunt and upload
-                a screenshot.
+              <div className="mx-[30px] my-[30px]">
+                <MissionStepsCard
+                  className="mx-[20px]"
+                  heading1="Onboard 10 new members "
+                  heading2="Submit mission"
+                  descp1="Invite new members"
+                  descp2="Share the proof of work"
+                />
               </div>
             </div>
+
             <div className="mx-[30px] my-[30px]">
-              <MissionStepsCard
-                className="mx-[20px]"
-                heading1="Write Feedback about product"
-                heading2="Submit mission"
-                descp1="                  "
-                descp2="Share the proof of work"
-              />
-            </div>
-          </div>
-          <div className="text-[#ffffff] w-[auto] h-[auto] ml-[20px]">
             <BeAchamp
               val="1000"
-              tags={tags}
-              title="Share your feedback for Firebond"
-            />
+               tags={tags}
+               title="Share your feedback for Firebond"
+           />
+            </div>
           </div>
         </div>
       </div>
     </div>
+    
   );
 }
