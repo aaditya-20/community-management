@@ -1,59 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BeAchamp from "@/components/molecules/BeAchamp";
 import MissionStepsCard from "@/components/molecules/MissionStepCard";
 import Image from "next/image";
 import router from "next/router";
 import { supabase } from "@/utils/supabaseClient";
+import EditMission from '@/utils/EditMission';
+import { useRouter } from 'next/router';
+import MissionFormData from '@/utils/MissionFormData';
 declare var window: any;
 // const [file, setFile] = useState("");
 function MissionForUser(props: any) {
   // you cant extend props as it is a non extensible object (to be resolved)
-  if (props.missionDetails == undefined || props.missionDetails == null) {
-    props.missionDetails = {};
+  // to implement router vaali thing after khana khaakey. 
+  const obj2 = EditMission();
+  let obj = MissionFormData();
+  const [missionUrl,setmissionUrl] = useState("");
+  const router = useRouter();
+  const [title,settitle] = useState("Mission title");
+  const [copyLink,setcopyLink] = useState("Copy");
+  const [description,setdescription] = useState(`here comes the description.`);
+  const [tags,settags] = useState(["NoTags"]);
+  const [missionSteps,setmissionSteps] =  useState( [
+      "Heading 1",
+      "Subheading 1",
+      "Heading 2",
+      "Subheading2",
+  ]);
+  const [reward,setreward] = useState(1000);
+  const [coinType,setcoinType] = useState("USDC");
+  let missionDetails:any;
+  console.log(router.query.myData);
+  if(router.query.myData !== undefined){
+
+      missionDetails =  JSON.parse((router.query.myData as string))
+
   }
-  const title =
-    props.missionDetails.title == undefined || props.missionDetails.title == ""
-      ? "Mission title"
-      : props.missionDetails.title;
-
-  const description =
-    props.missionDetails.description == ""
-      ? `here comes the description.`
-      : props.missionDetails.description;
-
-  //regarding tags to be shown in 'be a champ card'.
-  let tags = ["NoTags"];
-  if (
-    props.missionDetails.tags != null &&
-    props.missionDetails.tags != undefined
-  ) {
-    tags = [];
-    props.missionDetails.tags.map((val: any) => {
-      tags.push(val.title);
-    });
+  else{
+      missionDetails = {};
   }
+  const [data, setData] = useState()
+  useEffect(() => {
+      setreward(missionDetails.amount)
+      let newTags:any = [];
+       
+      if(missionDetails.tags!=null&&missionDetails.tags!=undefined){
+              newTags = [];
+               missionDetails.tags.map((val:any)=>{
+              newTags.push(val.title);
+          });
+      }
 
-  const missionSteps = [
-    props.missionDetails.heading1 == undefined ||
-      props.missionDetails.heading1 == ""
-      ? "Heading 1"
-      : props.missionDetails.heading1,
-    props.missionDetails.subheading1 == undefined ||
-      props.missionDetails.subheading1 == ""
-      ? "Subheading 1"
-      : props.missionDetails.subheading1,
-    props.missionDetails.heading2 == undefined ||
-      props.missionDetails.heading2 == ""
-      ? "Heading 2"
-      : props.missionDetails.heading2,
-    props.missionDetails.heading2 == undefined ||
-      props.missionDetails.subheading2 == ""
-      ? "Subheading2"
-      : props.missionDetails.subheading2,
-  ];
-  const community_id = 194;
-  const reward = 1000;
-  const coinType = "USDC";
+      setmissionUrl(`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${missionDetails.mission_id}`);
+      settags(newTags);
+      settitle(missionDetails.title)
+      setdescription(missionDetails.description)
+      setmissionSteps([missionDetails.heading1||"NotAvailable",missionDetails.subheading1||"NotAvailable",missionDetails.heading2||"NotAvailable",missionDetails.subheading2||"NotAvailable"])
+    }, [router.query.myData]);
+    
+  // const coinType = "USDC";
   const [walletAddress, setWalletAddress] = useState("");
   const connectWallet = async () => {
     if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -71,10 +75,15 @@ function MissionForUser(props: any) {
             .eq("wallet_id", accounts[0])
             .single();
           console.log(data);
-          if (data != null && data.id === community_id) {
-            await window.localStorage.setItem("data", JSON.stringify(data));
-            router.push("/MissionViewPage");
-          }
+          // console.log('commub inside->',community_id);
+          // if (data != null && data.id === community_id) {
+          //   await window.localStorage.setItem("data", JSON.stringify(data));
+          //   router.push("/MissionViewPage");
+          // }
+          // else {
+          //   console.log('helko');
+          //   router.push("/UserLoginSignupPopup");
+          // }
         
         } catch {
           console.log("Data not found - Error")
@@ -83,17 +92,15 @@ function MissionForUser(props: any) {
         console.log("MetaMask Error")
       }
     }
-    else {
-      router.push("/VerficationCard");
-    }
+   
     }
     async function HandleSubmit() {
       // Also need to store data to put in Admin's Review Section
       // if admin->routerpush-edit
       // else
-      await connectWallet();
+      // await connectWallet();
     }
-
+    
     return (
       <div>
         <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
