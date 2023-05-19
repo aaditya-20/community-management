@@ -18,6 +18,7 @@ export default function MissionShareYourFeedback() {
   ];
   const reward = 1000;
   const coinType = "USDC";
+  const submissionType = 'text';
   return (
     <div>
       <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,130px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
@@ -35,6 +36,7 @@ export default function MissionShareYourFeedback() {
             heading2={missionSteps[1]}
             subheading1={missionSteps[2]}
             subheading2={missionSteps[3]}
+            submission_type = {submissionType}
           />
         </div>
         <div className="flex">
