@@ -2,7 +2,7 @@ import React from "react";
 
 const BeAchamp = (props: any) => {
   return (
-    <div className="w-[346px] h-[267px] rounded-[20px] bg-[#232B35] overflow-auto scrollbar-hide relative">
+    <div className="w-[346px] h-[267px] rounded-[20px] bg-[#232B35] relative">
       <h1 className="p-6  text-white font-semibold text-2xl">
         {props.title}
       </h1>

@@ -83,20 +83,20 @@ This quest will auto-validate when you claim it.`;
         {/* Main Content Section */}
         <div className="mt-6 flex justify-center items-center">
           <div className="flex">
-            <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
+            <div className="text-[#ffffff] ml-[20px] mb-[50px] w-[auto]  border-[1px] border-[#353B43] rounded-[20px]">
               <Image
-                src="/MissionPageBanner.png"
+                src="Icons/TechnicalBg.svg"
                 width={800}
                 height={1}
                 alt="kjdfhah"
-                className="mx-[10px] my-[10px]"
+                className="mx-[10px] my-[10px] mb-[40px]"
               />
               <div className="font-semibold text-2xl text-white mx-3">
                 Discord Mission
               </div>
               <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
                 <pre className="overflow-auto no-scrollbar">{description}</pre>
-                <div className="my-[60px]">
+                <div className="mt-[60px] mb-3">
                   <MissionStepsCard
                     heading1={"Join our Discord"}
                     descp1={missionSteps[0]}

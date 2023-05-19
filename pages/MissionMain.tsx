@@ -16,6 +16,7 @@ import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBu
 import Tags from "@/components/molecules/Tags";
 import MissionFormData from "@/utils/MissionFormData";
 import FilterTags from "@/utils/FilterTags";
+import { HiOutlinePlusCircle } from "react-icons/hi2";
 const twitter = [
   {
     id: 1,
@@ -239,15 +240,15 @@ const MissionMain = () => {
                 <p className="font-normal text-[16px] leading-[22px] text-[#A6A6A6]">
                   Boost your community with missions
                 </p>
-                <div className="flex justify-between ">
+                <div className="flex justify-between items-end ">
                
                    <div className="flex flex-row gap-6 items-end justify-center">
                     
                      <Tags title = 'Filter On the Basis of Tags' filter='yes' tagInputVisibility={hideTagInput} />
                      <button  
-                      className="w-[98px] h-10  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                      className="w-[98px] h-10  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px] font-medium text-sm text-[#757575] hover:bg-white "
                       onClick={handleFilterClick}>
-                     <h1 className="font-[500px] text-sm text-[#757575]">
+                     <h1 className="">
                         Apply
                       </h1>
                      </button>
@@ -256,7 +257,7 @@ const MissionMain = () => {
                   <div className="flex gap-3 justify-center items-center">
                     {/* <Photo/> */}
                     <button
-                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px] font-medium text-sm text-[#757575] hover:bg-white "
                       onClick={() => {
                         setOpenMission(!OpenMission);
                       }}
@@ -267,19 +268,19 @@ const MissionMain = () => {
                         height={14.17}
                         width={12.75}
                       />
-                      <h1 className="font-[500px] text-sm text-[#757575]">
+                      <h1 className="">
                         Invite
                       </h1>
                     </button>
                     <button
                       onClick={createhandleclick}
-                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px] font-medium text-sm text-[#757575] hover:bg-white "
                     >
-                      <AiOutlinePlusCircle
-                        className="text-[#7C7C7C]"
+                      <HiOutlinePlusCircle
+                        className=""
                         size={16}
                       />
-                      <h1 className="font-[500px] text-sm text-[#757575]">
+                      <h1 className="">
                         Create
                       </h1>
                     </button>
