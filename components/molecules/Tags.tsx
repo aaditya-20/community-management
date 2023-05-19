@@ -82,7 +82,7 @@ const Tags = (props:any) => {
           <div className="my-3 h-7 rounded-md overflow-hidden">
             <input
               type="text"
-              className="w-full h-full outline-none px-6 text-ellipsis overflow-hidden text-xs text-black placeholder:text-black"
+              className="w-full h-full outline-none px-6 text-ellipsis overflow-hidden text-xs text-[#A9A9A9] placeholder:text-[#A9A9A9]"
               placeholder="add tag"
               value = {tag}
               onChange = {(e)=>{setTag(e.target.value)}}

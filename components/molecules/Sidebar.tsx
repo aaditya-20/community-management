@@ -95,7 +95,7 @@ const Sidebar = () => {
                 setHideMenu(!hideMenu);
               }}
             >
-              <div className="flex relative h-[18px] w-[18px] text-center">
+              <div className="flex relative h-[18px] w-[18px] left-[6px] text-center">
                 <Image
                   height={6.75}
                   width={13.5}

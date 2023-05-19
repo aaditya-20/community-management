@@ -2,17 +2,17 @@ import React from "react";
 
 const BeAchamp = (props: any) => {
   return (
-    <div className="w-[346px] h-[267px] rounded-[20px] bg-[#232B35] overflow-auto scrollbar-hide">
-      <h1 className="p-6 mb-6 text-white font-semibold text-2xl">
+    <div className="w-[346px] h-[267px] rounded-[20px] bg-[#232B35] overflow-auto scrollbar-hide relative">
+      <h1 className="p-6  text-white font-semibold text-2xl">
         {props.title}
       </h1>
-      <div className="border border-[#75757566] w-full h-0 "></div>
+      <div className=" absolute top-[103px] border border-[#75757566] w-full h-0 "></div>
 
       {/* Reward and Tags Section */}
-      <div className="w-full h-full px-6 pt-[30px] pb-[50px]">
+      <div className="w-full h-full px-6 absolute top-[133px]">
         <div className="h-full w-full">
         {/* Reward */}
-          <div className="flex items-center gap-8 mb-[30px]">
+          <div className="flex items-center gap-8 mb-[30px] ">
             <h1 className="text-sm font-normal text-[#A6A6A680]">Reward</h1>
             <button className="text-[#FFBA03] font-bold text-xs p-2 rounded-lg bg-[#FFBA035C]">
               {props.val} USDC
