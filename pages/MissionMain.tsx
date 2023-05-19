@@ -241,49 +241,16 @@ const MissionMain = () => {
                 </p>
                 <div className="flex justify-between ">
                
-                   <div className="flex flex-row gap-6 items-center justify-center">
+                   <div className="flex flex-row gap-6 items-end justify-center">
                     
                      <Tags title = 'Filter On the Basis of Tags' filter='yes' tagInputVisibility={hideTagInput} />
                      <button  
-                      className="w-[98px] h-[33px]  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
+                      className="w-[98px] h-10  border-[1px] border-[#757575] rounded-[8px] flex justify-center items-center gap-[9.13px]"
                       onClick={handleFilterClick}>
                      <h1 className="font-[500px] text-sm text-[#757575]">
                         Apply
                       </h1>
                      </button>
-                   {/* <button className="h-[33px] w-[90px] bg-white/[0.05] rounded-[8px] flex justify-center items-center">
-                      <div className="flex gap-[8.28px] justify-center items-center">
-                        <h1 className="font-normal text-xs">Twitter</h1>
-                        <Image
-                          src="Icons/arrowDown.svg"
-                          height={3.72}
-                          width={7.45}
-                          alt=""
-                        />
-                      </div>
-                    </button>
-                    <h1 className="font-[500px] text-xs text-[#EAEBEB]">
-                      with skills
-                    </h1>
-                    <button className="h-[33px] w-[116px] px-3 py-2 bg-[#23272e] rounded-[8px] flex items-center justify-between">
-                      <div className="h-[19.71px] w-[68.41px] bg-[#363C44] rounded-[4px] flex justify-center items-center gap-[2.39px]">
-                        <Image
-                          src="Icons/✍️.svg"
-                          alt=""
-                          height={12}
-                          width={12}
-                        />
-                        <h1 className="font-normal text-[11.5px] leading-4 text-white ">
-                          Writing
-                        </h1>
-                      </div>
-                 
-                      <AiOutlinePlusCircle
-                        className="text-[#7C7C7C]"
-                        size={16}
-                      />
-                    </button>
-                    */}
                   </div> 
                   {/*  */}
                   <div className="flex gap-3 justify-center items-center">

@@ -23,7 +23,7 @@ const LoginSplit = () => {
         </div>
       </Modal>
       <div className="flex justify-center items-center h-auto absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]">
-        <div className="bg-[#232B35] h-auto w-[485px] shadow-[6px,6px,20px,rgba(15,15,15,0.26)]">
+        <div className="bg-[#232B35] h-auto w-[485px] shadow-[6px,6px,20px,rgba(15,15,15,0.26)] rounded-md">
           <div className="w-full h-[54px] border-b border-[#353B43] flex items-center pl-[30px]">
             <h1 className="text-[#AEABD8] font-open-sans font-normal text-[13.1px] leading-[17.68px] tracking-[0.16em]">
               LOGIN AS

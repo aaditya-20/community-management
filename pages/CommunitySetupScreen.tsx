@@ -186,7 +186,7 @@ const CommunitySetupScreen = (): ReactElement => {
               size={94}
               imageUrl={imageUrl}
               alt="nothing"
-              classNameCircle="relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white"
+              classNameCircle="relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white cursor-pointer"
               classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
               onProfileIconClick={handleProfileClick}
             />

@@ -79,7 +79,7 @@ const NewDashboard = () => {
                     <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end">
                       <Mission contributors="50" submission="150" />
                     </div>
-                    <div className="relative w-[469px] h-[414px] relative filter blur-sm">
+                    <div className="relative w-[469px] h-[414px] filter blur-sm">
                       <CommunityHealth Twitter="30" Total="59.5K" />
                     </div>
                   </div>
