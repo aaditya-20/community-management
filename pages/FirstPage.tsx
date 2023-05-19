@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Modal from "@material-ui/core/Modal";
@@ -10,6 +10,7 @@ export default function FirstPage() {
   const router = useRouter();
   const [OpenLogin, setOpenLogin] = useState(false);
   const [OpenSignUp, setOpenSignup] = useState(false);
+  const [on, setOn] = useState(false);
   function onLoginClick() {
     setOpenLogin(!OpenLogin);
   }
@@ -25,6 +26,8 @@ export default function FirstPage() {
         }}
         open={OpenLogin}
         style={{}}
+        BackdropProps={{onClick: ()=>setOpenLogin(false),}}
+       
       >
         <div>
           <LoginSplit />
@@ -36,6 +39,7 @@ export default function FirstPage() {
         }}
         open={OpenSignUp}
         style={{}}
+        BackdropProps={{onClick: ()=>setOpenSignup(false),}}
       >
         <div>
           <SignupSplit />
