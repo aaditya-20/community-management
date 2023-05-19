@@ -22,9 +22,9 @@ const UserCard = [
   //   button: "Connect",
   // },
 ];
-// you will recieve communityId in props
+// you will recieve communityId and missionDetails in props from [id].tsx
 let wallet_id2: any;
-const UserAuthCard = (props: any) => {
+const MissionUserAuthCard = (props: any) => {
   const [verified, setVerified] = useState(UserCard.map(() => false));
   const [email, setEmail] = useState("");
   const [wallet, setWalletAddress] = useState("");
@@ -32,7 +32,7 @@ const UserAuthCard = (props: any) => {
   const [Username, setUsesrname] = useState("");
   const [UsernamePopUp, setUsernamePopUp] = useState(false);
 
- 
+ // it will check whether user exist in our db 
   const checkUserExists = async (table: any, wallet_id: string) => {
     const { data, error } = await supabase
       .from(table)
@@ -44,8 +44,8 @@ const UserAuthCard = (props: any) => {
 
       return;
     }
-    // console.log("data of usertable row->",data);
-    if (data.length > 0) {
+ 
+    if (data.length > 0) {// already a user of firebond
       // no need to take name
       let is_already_a_member = false;
 
@@ -102,7 +102,7 @@ const UserAuthCard = (props: any) => {
           // now communities column is updated till now
 
           if (members_arr != null) {
-            members_arr.push({
+              members_arr.push({
               User_name: data[0].name,
               user_wallet_id: wallet_id,
               date_of_join: new Date(),
@@ -144,12 +144,17 @@ const UserAuthCard = (props: any) => {
             "already a member of community so redirect him directly after updating its keys and values in local sto"
           );
         }
-        // now pushing him to your space -> aps handles things from here
+        // now pushing him to mission for user page -> aps handles things from here
         if (window !== undefined) {
           await window.localStorage.setItem("community_id", props.communityId);
           await window.localStorage.setItem("user_wallet_id", wallet_id);
           // console.log("wallet id of new user->",wallet_id);
-          router.push("/YourSpace");
+          router.push({
+            pathname: '/MissionForUser',
+            query: {
+              myData: JSON.stringify(props.missionDetails),
+             }
+          },)
         }
       }
     } else {
@@ -159,7 +164,7 @@ const UserAuthCard = (props: any) => {
       // console.log('new user');
     }
   };
-  // right now we have wallet authentication only
+
 
   const connectWallet = async () => {
     let accounts = "";
@@ -184,6 +189,7 @@ const UserAuthCard = (props: any) => {
         //means accounts will have data know
         // console.log("inside acount");
         // console.log(props.communityId);
+        //<----- not req----->
         const { data, error } = await supabase
           .from("community_data")
           .select("*")
@@ -192,9 +198,16 @@ const UserAuthCard = (props: any) => {
           console.log("error in fetching");
         } else {
           console.log("data of community->", data);
-          if (accounts[0] === data[0].wallet_id) {
+          if (accounts[0] === data[0].wallet_id) {//community manager is opening his mission
             console.log("u are the community manager");
-            router.push("/NewDashboard");
+            router.push({
+              pathname: '/MissionViewPage',
+              query: {
+                myData: JSON.stringify(props.missionDetails),
+               }
+            },)
+            // router.push("/NewDashboard");
+           
           } else {
             //now to check if he is a new user to our website whose data is not registered?
             checkUserExists("userdata", accounts[0]);
@@ -217,7 +230,13 @@ const UserAuthCard = (props: any) => {
     } else {
       await window.localStorage.setItem("data", JSON.stringify(data));
       console.log("File uploaded successfully:", data);
-      router.push("/YourSpace");
+      router.push({
+        pathname: '/MissionForUser',
+        query: {
+          myData: JSON.stringify(props.missionDetails),
+         }
+      },)
+      // router.push("/YourSpace");
     }
   }
   async function handleclick() {
@@ -234,7 +253,7 @@ const UserAuthCard = (props: any) => {
     setMetamask(!InstallMeta);
   }
   async function onOkClick() {
-    // to be put username unique check,right now considering that everyone has unique name because of hurry
+    // to be put username unique check , -> done
 
     const { data, error } = await supabase
       .from("userdata")
@@ -312,7 +331,7 @@ const UserAuthCard = (props: any) => {
         .eq("id", Number(props.communityId));
       if (new_error2) {
         console.log(
-          "erorr in updagting members data in community data when a user is a new user",
+          "erorr in updating members data in community data when a user is a new user",
           new_error
         );
       } else {
@@ -321,7 +340,12 @@ const UserAuthCard = (props: any) => {
       if (window !== undefined) {
         await window.localStorage.setItem("community_id", props.communityId);
         await window.localStorage.setItem("user_wallet_id", wallet_id2);
-        router.push("/YourSpace");
+        router.push({
+          pathname: '/MissionForUser',
+          query: {
+            myData: JSON.stringify(props.missionDetails),
+           }
+        },)
       }
     }
   }
@@ -347,9 +371,9 @@ const UserAuthCard = (props: any) => {
         open={UsernamePopUp}
         style={{}}
       >
-        {/* // This is popup which will pop when use not signed up,comes at community Invite
+      { /* // This is popup which will pop when use not signed up,comes at community Invite
         // Only Storing Wallet id and Name at the moment
-        // Pending-Email,Avatar */}
+        // Pending-Email,Avatar */ }
         <div className="flex items-center justify-center h-screen">
           <div className="bg-gray-800 text-white rounded-lg p-6 w-260">
             <div className="flex items-center mb-4">
@@ -475,4 +499,4 @@ const UserAuthCard = (props: any) => {
   );
 };
 
-export default UserAuthCard;
+export default MissionUserAuthCard;
