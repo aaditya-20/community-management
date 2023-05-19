@@ -26,7 +26,7 @@ export default function FirstPage() {
         }}
         open={OpenLogin}
         style={{}}
-        BackdropProps={{onClick: ()=>setOpenLogin(false),}}
+        BackdropProps={{onClick: ()=>setOpenLogin(false)}}
        
       >
         <div>
@@ -39,7 +39,7 @@ export default function FirstPage() {
         }}
         open={OpenSignUp}
         style={{}}
-        BackdropProps={{onClick: ()=>setOpenSignup(false),}}
+        BackdropProps={{onClick: ()=>setOpenSignup(false)}}
       >
         <div>
           <SignupSplit />

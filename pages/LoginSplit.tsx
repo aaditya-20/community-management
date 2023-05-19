@@ -17,6 +17,8 @@ const LoginSplit = () => {
         }}
         open={OpenAdmin}
         style={{}}
+        BackdropProps={{onClick: ()=>setOpenAdmin(false)}}
+
       >
         <div>
           <LoginSection />
