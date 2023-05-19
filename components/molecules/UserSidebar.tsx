@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   const jsonData = JSON.parse(storedJsonData ?? "{}");
   if (jsonData != null && jsonData.name) name = jsonData.name;
 }
-const UserSidebar = () => {
+const UserSidebar = (props:any) => {
   const [hideMenu, setHideMenu] = useState(false);
   return (
     <>
@@ -107,7 +107,7 @@ const UserSidebar = () => {
                   onClick={() => router.push("/YourSpace")}
                   className="text-white font-semibold text-base "
                 >
-                  {name}&apos;s Space
+                  Your&apos;s Space
                 </span>
               </li>
               <li className="w-[226px] h-[57px] pl-[14px] cursor-pointer rounded-[10px] flex gap-[14px] items-center hover:bg-gray-700">

@@ -29,7 +29,7 @@ const WelcomeCardNewDashboard = (props:any) => {
         {/* User Info Section */}
         <div className="ml-[37.79px] mr-[119px]">
           <h3 className="text-lg font-medium text-[#757575] mb-1">
-            @playraxis
+            @{props.name}
           </h3>
           <h1 className="text-white text-3xl font-thin mb-6">
             Welcome, <span className="font-semibold">{props.name}</span>
