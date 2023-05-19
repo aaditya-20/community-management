@@ -32,6 +32,7 @@ export default function MissionDiscord() {
   const reward = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
+  const submission_type = 'link'
 
   function handleFileSelect(e: any) {
     setFile(e.target.value);
@@ -51,6 +52,7 @@ export default function MissionDiscord() {
           heading2={missionSteps[1]}
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
+          submission_type = {submission_type}
         />
 
         {/* Main Content Section */}
