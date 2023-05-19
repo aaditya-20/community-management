@@ -11,16 +11,16 @@ export default function MissionShareYourFeedback() {
     "Share your feedback about our product on Product Hunt and upload a screenshot.";
   const tags = ["writing","marketing"];
   const missionSteps = [
-    "Onboard 10 new Members",
+    "Write Feedback about product",
     "Submit Mission",
-    "Invite new members",
+    "           ",
     "Share the proof of work",
   ];
   const reward = 1000;
   const coinType = "USDC";
   return (
     <div>
-      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,100px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
+      <div className="grid grid-cols-[auto,auto] gap-0  bg-[#171C23] grid-rows-[71px,130px,auto] h-[1500px] w-full md:grid-cols-[auto,1fr]">
         <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
           <Sidebar />
         </div>
@@ -58,9 +58,9 @@ export default function MissionShareYourFeedback() {
             <div className="mx-[30px] my-[30px]">
               <MissionStepsCard
                 className="mx-[20px]"
-                heading1="Onboard 10 new members "
+                heading1="Write Feedback about product"
                 heading2="Submit mission"
-                descp1="Invite new members"
+                descp1="                  "
                 descp2="Share the proof of work"
               />
             </div>
