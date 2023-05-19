@@ -13,6 +13,7 @@ import BasicInfoCard from "@/components/molecules/BasicInfoCard";
 import Details2 from "@/components/molecules/Details2";
 import EditMission from "@/utils/EditMission";
 import MissionFormData from "@/utils/MissionFormData";
+import SubmissionCard from "@/components/molecules/SubmissionCard";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -167,13 +168,16 @@ const MissionTemplateEdit = () => {
                   <BasicInfoCard title={title} />
 
                   <div className="w-[749px] h-auto bg-[#232B35] rounded-[20px] mb-6">
-                    <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
+                    {/* <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
                       <h1 className="font-normal text-[20px] leading-[27px] text-white">
                         Submission type
                       </h1>
                     </div>
-                    <div className="h-auto w-full p-6">
-                      <div className="h-auto flex gap-5">
+                    <div className="h-auto w-full p-6"> */}
+                      <SubmissionCard/>
+                      {/* </div> */}
+                      </div>
+                      {/* <div className="h-auto flex gap-5">
                         <button
                           onClick={() => handleButtonClick(1)}
                           className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
@@ -246,7 +250,7 @@ const MissionTemplateEdit = () => {
                         </button>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="w-[749px] h-auto  bg-[#232B35] rounded-[20px] mb-6">
                     <div className="h-[72px] border-b-[0.5px] border-[#474C52] pl-6"></div>
