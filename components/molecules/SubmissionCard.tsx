@@ -1,7 +1,9 @@
+import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
 import React, { useState } from "react";
 
 const SubmissionCard = () => {
+  const obj = MissionFormData();
   const [type, setType] = useState(Array(6).fill(false));
   const [fileName, setFileName] = useState("");
 
@@ -11,6 +13,16 @@ const SubmissionCard = () => {
       setFileName(file.name);
     }
   };
+  var selected = 4;
+ const arr = ["file", "link", "url", "invite", "empty", "text"];
+  type.forEach((item, index) => {
+    if (item === true) {
+      selected = index;
+    }
+  });
+  console.log(arr[selected]);
+  obj.submission_type = arr[selected];
+
   return (
     <div className="max-w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6">
       <h1 className="font-normal text-[20px] leading-[26px] text-white">
@@ -20,69 +32,82 @@ const SubmissionCard = () => {
 
       <div className="w-full mt-[45px] flex gap-[18px]">
         <button
-          className="rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23]"
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 0 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
           onClick={() => {
-            const newState = Array(6).fill(false)
-            newState[0] = !(type[0]);
+            const newState = Array(6).fill(false);
+            newState[0] = !type[0];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">File</h1>
         </button>
         <button
-          className="rounded-[4px] border border-[#656565] h-[36px] w-[58px] flex justify-center items-center hover:bg-[#161C23]"
+            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+              selected === 1 ? "bg-black text-white" : "bg-[#2E363F]"
+            }`}
           onClick={() => {
-            const newState = Array(6).fill(false)
-            newState[1] = !(type[1]);
+            const newState = Array(6).fill(false);
+            newState[1] = !type[1];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Link</h1>
         </button>
         <button
-          className="rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23]"
+            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+              selected === 2 ? "bg-black text-white" : "bg-[#2E363F]"
+            }`}
           onClick={() => {
-            const newState = Array(6).fill(false)
-            newState[2] = !(type[2]);
+            const newState = Array(6).fill(false);
+            newState[2] = !type[2];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">URL</h1>
         </button>
         <button
-          className="rounded-[4px] border border-[#656565] h-[36px] w-[58px] flex justify-center items-center hover:bg-[#161C23]"
+            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+              selected === 3 ? "bg-black text-white" : "bg-[#2E363F]"
+            }`}
           onClick={() => {
-            const newState = Array(6).fill(false)
-            newState[3] = !(type[3]);
+            const newState = Array(6).fill(false);
+            newState[3] = !type[3];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Invite</h1>
         </button>
         <button
-          className="rounded-[4px] border border-[#656565] h-[36px] w-[65px] flex justify-center items-center hover:bg-[#161C23]"
+            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+              selected === 4 ? "bg-black text-white" : "bg-[#2E363F]"
+            }`}
           onClick={() => {
-            const newState = Array(6).fill(false)
-            newState[4] = !(type[4]);
+            const newState = Array(6).fill(false);
+            newState[4] = !type[4];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Empty</h1>
         </button>
         <button
-          className="rounded-[4px] border border-[#656565] h-[36px] w-[58px] flex justify-center items-center hover:bg-[#161C23]"
+            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+              selected === 5 ? "bg-black text-white" : "bg-[#2E363F]"
+            }`}
           onClick={() => {
-            const newState = Array(6).fill(false)
-            newState[5] = !(type[5]);
+            const newState = Array(6).fill(false);
+            newState[5] = !type[5];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Text</h1>
         </button>
-        
       </div>
 
-      {/* Conditional Rendering Section */}
+      
+
+      {/* Conditional Rendering Section
       {type[0] && (
         <div className="mt-[36px]">
           <h1 className="font-medium text-base text-white mb-[11px]">
@@ -155,7 +180,7 @@ const SubmissionCard = () => {
             />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
