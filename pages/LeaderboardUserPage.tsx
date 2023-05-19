@@ -6,22 +6,28 @@ import { supabase } from "@/utils/supabaseClient";
 import { useEffect } from "react";
 import { useState } from "react";
 
-import Image from "next/image";
 
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
-const Leaderboard = () => {
+const LeaderboardUserPage = () => {
   const [cards, setCards] = useState([]);
   // const [leaderboardData, setleaderboardData] = useState([{}]);
 
-  var wallet_id = "";
-  if (typeof window !== "undefined") {
-    const storedJsonData = localStorage.getItem("data");
-    // console.log(storedJsonData)
-    const jsonData = JSON.parse(storedJsonData ?? "{}");
-    wallet_id = jsonData.wallet_id;
-    console.log(jsonData);
-  }
+  var community_id ="";
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log("yahan aa raha");
+      const storedJsonData = localStorage.getItem("data");
+      const storedJsonwallet = localStorage.getItem("user_wallet_id");
+      const storedJsonCommunity = localStorage.getItem("community_id");
+      const jsonData = JSON.parse(storedJsonData ?? "{}");
+      // console.log(storedJsonwallet,storedJsonCommunity)
+      if (storedJsonCommunity !== null) {
+        community_id = storedJsonCommunity;
+      }
+    }
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -33,7 +39,7 @@ const Leaderboard = () => {
       const { data: rowData, error } = await supabase
         .from("community_data")
         .select("*")
-        .eq("wallet_id", wallet_id)
+        .eq("id", community_id)
         .single();
       if (error) {
         console.error(error);
@@ -64,11 +70,11 @@ const Leaderboard = () => {
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex">
       {/* Sidebar */}
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       {/* Main Section */}
       <div className="h-full w-full">
-        <Header />
+        {/* <Header /> */}
         <div className="h-full w-full p-6">
           <div className="h-full w-full">
             <h1 className="text-white font-semibold text-2xl mb-2">
@@ -78,20 +84,7 @@ const Leaderboard = () => {
               <h3 className="text-[#A6A6A6] font-normal text-base">
                 Check who’s ahead of everyone
               </h3>
-              {/* 
-              <button className="border border-[#757575] rounded-lg py-[7px] px-[11px]">
-                <div className="flex gap-[8.28px]">
-                  <h1 className="text-[#757575] font-medium text-sm">
-                    Last week
-                  </h1>
-                  <Image
-                    src="Icons/Arrow_Down.svg"
-                    height={3.72}
-                    width={7.45}
-                    alt=""
-                  />
-                </div>
-              </button> */}
+              
             </div>
 
             <div className="flex gap-3 mb-[30px]">{ele}</div>
@@ -105,4 +98,4 @@ const Leaderboard = () => {
   );
 };
 
-export default RouteGuardAdmin(Leaderboard);
+export default LeaderboardUserPage;

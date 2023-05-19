@@ -16,6 +16,7 @@ const cards = [
     description: "See what you will be able to do with Platform",
     buttonText: "Play Video",
     onclick: "",
+    flag: "0",
   },
   {
     key: 2,
@@ -30,6 +31,7 @@ const cards = [
     description: "Create a form to earn XP",
     buttonText: "Create form",
     onclick: "",
+    flag: "0",
   },
 ];
 
@@ -44,7 +46,6 @@ const NewDashboard = () => {
     }
   }, [name]);
   return (
-
     <div className="min-h-screen min-w-fit bg-[#171C23] flex  scrollbar-hide">
       <Sidebar />
       <div className="h-full w-full">
@@ -78,9 +79,8 @@ const NewDashboard = () => {
                     <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end">
                       <Mission contributors="50" submission="150" />
                     </div>
-                    <div className="relative w-[469px] h-[414px]">
-
-                    <CommunityHealth Twitter="30" Total="59.5K" />
+                    <div className="relative w-[469px] h-[414px] relative filter blur-sm">
+                      <CommunityHealth Twitter="30" Total="59.5K" />
                     </div>
                   </div>
                 </div>
@@ -97,8 +97,9 @@ const NewDashboard = () => {
             {/* Cards */}
             {cards.map((card, index) => {
               return (
-                <div key={card.key}>
+                <div  key={card.key} >
                   <OnboardingExperienceCard
+                    flag={card.flag}
                     key={index}
                     title={card.title}
                     label={card.description}

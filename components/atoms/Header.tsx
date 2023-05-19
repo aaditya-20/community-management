@@ -1,4 +1,3 @@
-import ShowNotifications from "./ShowNotification";
 import React from "react";
 import linkWallet from "@/utils/authentication/linkWallet";
 import router from "next/router";
@@ -21,10 +20,10 @@ const Header = () => {
     const { data } = supabase.storage
       .from("community_admin_avatar")
       .getPublicUrl(`${user.email}`);
-    console.log("yeh hai image ki puclic url")
-    console.log(data.publicUrl)
+    console.log("yeh hai image ki puclic url");
+    console.log(data.publicUrl);
     setAvatar(data.publicUrl);
-  }   
+  }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedJsonData = localStorage.getItem("data");
@@ -52,7 +51,7 @@ const Header = () => {
             <h1 className="text-white font-normal text-base">Logout</h1>
           </button>
           {/* Notifications */}
-          
+
           {/* <ShowNotifications /> */}
 
           {/* Profile */}
