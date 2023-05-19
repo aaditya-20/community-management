@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const ActivityCard = () => {
-  const [divs, setDivs] = useState(Array(130).fill({ color: "bg-[#216435]" }));
+  const [divs, setDivs] = useState(Array(130).fill({ color: "bg-[#171C23]" }));
   const handleClick = (index: number) => {
     const newDiv = [...divs];
     //    here to implement logic of colors

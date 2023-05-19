@@ -45,7 +45,12 @@ export default function YourSpace(props: any) {
 
   function handleCardClick(missionDetails: any) {
    
-    router.push(`/missions/${missionDetails.mission_id}`);
+    router.push({
+      pathname: '/MissionForUser',
+      query: {
+        myData: JSON.stringify(missionDetails),
+       }
+    },)
     
   }
 
@@ -77,7 +82,9 @@ export default function YourSpace(props: any) {
         console.error("error aa raha", error);
         return;
       }
-      console.log("sahi chal raha sab");
+      console.log("sahi chal raha sab",rowData);
+      setCommunityName(rowData.community_name);
+
       const members = rowData.Members.filter(
         (item: any) => item.user_wallet_id === user_wallet_id
       );
@@ -86,6 +93,7 @@ export default function YourSpace(props: any) {
       setXp(members[0].current_xp);
       setBounty(members[0].current_bounty);
       setmissionCount(members[0].missions_completed.length);
+      // setCommunityName(members[0])
       const joinDate = new Date(members[0].date_of_join);
       const currentDate = new Date();
 
@@ -114,9 +122,9 @@ export default function YourSpace(props: any) {
       {/* Main Div */}
       <div className="h-full w-full flex">
         {/* Sidebar */}
-        <UserSidebar />
+        <UserSidebar username = {name} />
         <div className="w-full h-full overflow-scroll scrollbar-hide">
-          <Header />
+          <Header username = {name} />
           {/* Main Section & Right Side Section */}
           <div>
             <h1 className="text-white text-2xl font-bold m-2">

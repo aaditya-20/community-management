@@ -12,7 +12,7 @@ function handlelogout() {
   localStorage.removeItem("data");
   router.push("/FirstPage");
 }
-const Header = () => {
+const Header = (props:any) => {
   const [name, setName] = useState("user");
   const [Avatar, setAvatar] = useState("Icons/Avatar.svg");
   function getPuclicURL(user: any) {
@@ -67,7 +67,7 @@ const Header = () => {
             </div>
 
             <h1 className="text-base font-normal text-[#777879]">
-              Hello, <span className="text-white">{name}</span>
+              Hello, <span className="text-white">{props.username!=undefined?props.username:name}</span>
             </h1>
           </div>
         </div>
