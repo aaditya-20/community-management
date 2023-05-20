@@ -14,14 +14,14 @@ const mainMenu = [
   {
     src: "Icons/box.svg",
     size: 24,
-    title: "’s Space",
-    route: "/NewDashboard",
+    title: "Your’s Space",
+    route: "/YourSpace",
   },
   {
     src: "Icons/icons.svg",
     size: 24,
     title: "Leaderboard",
-    route: "/LeaderBoardScreen",
+    route: "/LeaderboardUserPage",
   },
 ];
 

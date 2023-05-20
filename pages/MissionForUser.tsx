@@ -11,6 +11,8 @@ import UserHeader from "@/components/molecules/UserHeader";
 import UserSidebar from "@/components/molecules/UserSidebar";
 declare var window: any;
 // const [file, setFile] = useState("");
+var community_id = "";
+  var user_wallet_id = "";
 function MissionForUser(props: any) {
   // you cant extend props as it is a non extensible object (to be resolved)
   // to implement router vaali thing after khana khaakey.
@@ -69,8 +71,7 @@ function MissionForUser(props: any) {
 
   // const coinType = "USDC";
   const [walletAddress, setWalletAddress] = useState("");
-  var community_id = "";
-  var user_wallet_id = "";
+  
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -104,19 +105,61 @@ function MissionForUser(props: any) {
         .from("community_data")
         .select("*")
         .eq("id", community_id)
-        .single();
+        .single()
+        
       if (error) {
         console.error("error aa raha", error);
         return;
       }
       console.log("sahi chal raha sab", rowData);
       // setCommunityName(rowData.community_name);
+     let updated_rowData = rowData;
+     
+     updated_rowData.Members.forEach((val:any,index:any)=>{
+              if(val.user_wallet_id===user_wallet_id){
+                     console.log('in');
+                     console.log(updated_rowData.Members[index].current_xp,xp,index);
+                     
+                    updated_rowData.Members[index].current_xp += Number(xp);  
+                    updated_rowData.Members[index].missions_completed.push({
+                          missionId:missionDetails.mission_id,
+                          Date_Of_Completion: new Date(),
+                    })
+                    
+              }
+     })
+     console.log('updated data',updated_rowData,'previous data',rowData);
+     
+            const { data: new_data2, error: new_error2 } = await supabase
+                                            .from("community_data")
+                                            .update({
+                                              Members: updated_rowData.Members,
+                                  
+                                            })
+                                            .eq("id", Number(community_id));
+                                          if (new_error2) {
+                                            console.log(
+                                              "erorr in updating members data in community data when a user is a new user",
+                                              new_error2
+                                            );
+                                          } else {
+                                            // push him to your space.
 
-      const members = rowData.Members.filter(
-        (item: any) => item.user_wallet_id === user_wallet_id
-      );
-
-      console.log(members[0].xp);
+                                            console.log("xp is distributed and missions are pushed in its array");
+                                            router.push('/YourSpace');
+                                          }
+      // const members = updated_rowData.Members.filter(
+      //   (item: any,index:any) =>{ 
+      //     if(item.user_wallet_id === user_wallet_id){
+            
+      //       console.log('in');
+      //       return true;
+      //           // updated_rowData.Members[index] += xp; 
+      //     }
+      //   }
+      // );
+      // updated_rowData.
+      // console.log(members[0]);
       //update here in the supabase xp of member
     } catch (err) {
       console.error(err);
@@ -129,14 +172,21 @@ function MissionForUser(props: any) {
     // else
     // await connectWallet();
     console.log("clicked");
-    const xp = missionDetails.xp;
-    await fetchData(missionDetails.xp);
+
+    // not recieving xp inside mission so replacing it with amount.
+    let xp = missionDetails.xp;
+    console.log(xp);
+    if(xp==undefined){
+      xp = 0;
+    }
+    console.log(xp);
+     fetchData(xp);
 
     //community id leni hai local storage se
 
     //us community ke saare members pe jaana hai jo match kiya uska xp badhana hai
 
-    router.push("/YourSpace");
+    // router.push("/YourSpace");
   }
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,7 +223,17 @@ function MissionForUser(props: any) {
                   <div className="font-semibold text-2xl text-white mx-3">
                     {title}
                   </div>
-
+                  <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
+                    <pre className="overflow-auto no-scrollbar">{description}</pre>
+            {/* <div className="my-[60px]">
+              <MissionStepsCard
+                heading1={missionSteps[0]}
+                descp1={missionSteps[1]}
+                heading2={missionSteps[2]}
+                descp2={missionSteps[3]}
+              />
+            </div> */}
+          </div>
                   {type == 0 && (
                     <div className="mt-[36px]">
                       <h1 className="font-medium text-base text-white mb-[11px]">
@@ -259,12 +319,11 @@ function MissionForUser(props: any) {
                 </div>
                 <div className="flex flex-col text-[#ffffff] mx-[auto] cursor-pointer ">
                   <BeAchamp title={title} tags={tags} val={reward} />
-                  <button
-                    onClick={HandleSubmit}
-                    className="mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]"
-                  >
-                    Submit Work
-                  </button>
+                  <div onClick={()=>{
+                    HandleSubmit();
+                  }} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
+                  <span className='relative top-3'>Submit</span> 
+                </div>
                 </div>
               </div>
             </div>
