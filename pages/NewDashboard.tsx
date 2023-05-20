@@ -45,7 +45,7 @@ const NewDashboard = () => {
       const storedJsonData = localStorage.getItem("data");
       const jsonData = JSON.parse(storedJsonData ?? "{}");
       if (jsonData != null && jsonData.name) setName(jsonData.name);
-      created = jsonData.missions.length;
+      if (jsonData != null) created = jsonData.missions.length;
       active = created > 0 ? created - 2 : 0;
     }
   }, [name]);
