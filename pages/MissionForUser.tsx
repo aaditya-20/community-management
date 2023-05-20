@@ -98,7 +98,7 @@ function MissionForUser(props: any) {
     }
   }, []);
 
-  async function fetchData(xp:any) {
+  async function fetchData(xp: any) {
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
       const { data: rowData, error } = await supabase
@@ -161,7 +161,6 @@ function MissionForUser(props: any) {
       // updated_rowData.
       // console.log(members[0]);
       //update here in the supabase xp of member
-      
     } catch (err) {
       console.error(err);
     }
@@ -198,27 +197,24 @@ function MissionForUser(props: any) {
   };
 
   return (
-    <div>
-      <div className="min-h-screen min-w-fit bg-[#171C23] flex  scrollbar-hide">
-        <UserSidebar />
-        <div className="h-full w-full">
-          <UserHeader />
-          <div className="h-full w-full  flex justify-between">
-            <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
-              <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
-                <Image
-                  src="/Icons/FireBondIcon.png"
-                  width={160}
-                  height={10}
-                  alt="alt"
-                  className=""
-                />
-              </div>
+    <div className="min-h-screen min-w-fit bg-[#171C23] flex scrollbar-hide">
+      <UserSidebar />
+      <div className="w-full h-full">
+        <UserHeader />
+        <div className="w-full h-[80px] border-b border-[#353B43] flex items-center">
+          <Image
+            src="/Icons/firebondLogo.svg"
+            width={160}
+            height={10}
+            alt="alt"
+            className=""
+          />
+        </div>
 
-              <div className="flex">
-                <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
-                  <Image
-                    src="/MissionPageBanner.png"
+                   <div className="flex mt-5">
+                 <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
+              <Image
+                    src="Icons/TechnicalBg.svg"
                     width={800}
                     height={1}
                     alt="kjdfhah"
@@ -321,7 +317,7 @@ function MissionForUser(props: any) {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col text-[#ffffff] mx-[auto] ">
+                <div className="flex flex-col text-[#ffffff] mx-[auto] cursor-pointer ">
                   <BeAchamp title={title} tags={tags} val={reward} />
                   <div onClick={()=>{
                     HandleSubmit();
@@ -332,9 +328,137 @@ function MissionForUser(props: any) {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+       
+
+
+    // <div>
+    //   <div className="min-h-screen min-w-fit bg-[#171C23] flex  scrollbar-hide">
+    //     <UserSidebar />
+    //     <div className="h-full w-full">
+    //       <UserHeader />
+    //       <div className="h-full w-full  flex justify-between">
+    //         <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
+    //           <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
+    //             <Image
+    //               src="/Icons/FireBondIcon.png"
+    //               width={160}
+    //               height={10}
+    //               alt="alt"
+    //               className=""
+    //             />
+    //           </div>
+
+    //           <div className="flex">
+    //             <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
+    //               <Image
+    //                 src="Icons/TechnicalBg.svg"
+    //                 width={800}
+    //                 height={1}
+    //                 alt="kjdfhah"
+    //                 className="mx-[10px] my-[10px]"
+    //               />
+    //               <div className="font-semibold text-2xl text-white mx-3">
+    //                 {title}
+    //               </div>
+
+    //               {type == 0 && (
+    //                 <div className="mt-[36px]">
+    //                   <h1 className="font-medium text-base text-white mb-[11px]">
+    //                     Upload the file
+    //                   </h1>
+    //                   <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] px-[25px] ">
+    //                     <Image
+    //                       src="Icons/upload.svg"
+    //                       alt=""
+    //                       height={20}
+    //                       width={20}
+    //                     />
+    //                     <input
+    //                       type="file"
+    //                       className=" absolute w-full h-full outline-none bg-inherit opacity-0"
+    //                       onChange={handleFileUpload}
+    //                     />
+    //                     <h1 className="text-xs text-[#D0D0D0A6] font-normal">
+    //                       {fileName ? fileName : "Upload the submission"}
+    //                     </h1>
+    //                   </div>
+    //                   <h1 className="text-xs text-[#A6A6A6] font-normal mt-[9px]">
+    //                     File can be pdf, png, jpeg, doc.x
+    //                   </h1>
+    //                 </div>
+    //               )}
+    //               {type == 1 && (
+    //                 <div className="mt-[36px]">
+    //                   <h1 className="font-medium text-base text-white mb-[11px]">
+    //                     Enter the Link
+    //                   </h1>
+    //                   <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+    //                     <input
+    //                       type="url"
+    //                       className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+    //                       placeholder="Enter the Link"
+    //                     />
+    //                   </div>
+    //                 </div>
+    //               )}
+    //               {type == 2 && (
+    //                 <div className="mt-[36px]">
+    //                   <h1 className="font-medium text-base text-white mb-[11px]">
+    //                     Enter the URL
+    //                   </h1>
+    //                   <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+    //                     <input
+    //                       type="url"
+    //                       className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+    //                       placeholder="Enter URL"
+    //                     />
+    //                   </div>
+    //                 </div>
+    //               )}
+    //               {type == 3 && (
+    //                 <div className="mt-[36px]">
+    //                   <h1 className="font-medium text-base text-white mb-[11px]">
+    //                     Number of invites
+    //                   </h1>
+    //                   <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+    //                     <input
+    //                       type="number"
+    //                       className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+    //                       placeholder="number of invites"
+    //                     />
+    //                   </div>
+    //                 </div>
+    //               )}
+    //               {type == 4 && (
+    //                 <div className="mt-[36px]">
+    //                   <h1 className="font-medium text-base text-white mb-[11px]">
+    //                     Enter Text
+    //                   </h1>
+    //                   <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+    //                     <input
+    //                       type="text"
+    //                       className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+    //                       placeholder="Enter text"
+    //                     />
+    //                   </div>
+    //                 </div>
+    //               )}
+    //             </div>
+    //             <div className="flex flex-col text-[#ffffff] mx-[auto] ">
+    //               <BeAchamp title={title} tags={tags} val={reward} />
+    //               <button
+    //                 onClick={HandleSubmit}
+    //                 className="mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]"
+    //               >
+    //                 Submit Work
+    //               </button>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
