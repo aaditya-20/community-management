@@ -14,14 +14,14 @@ const mainMenu = [
   {
     src: "Icons/box.svg",
     size: 24,
-    title: "’s Space",
-    route: "/NewDashboard",
+    title: "Your’s Space",
+    route: "/YourSpace",
   },
   {
     src: "Icons/icons.svg",
     size: 24,
     title: "Leaderboard",
-    route: "/LeaderBoardScreen",
+    route: "/LeaderboardUserPage",
   },
 ];
 
@@ -36,10 +36,7 @@ const secondMenu = [
 const UserSidebar = (props:any) => {
   const [hideMenu, setHideMenu] = useState(false);
   const [name, setName] = useState("");
-  if(props.username!=undefined){
-    mainMenu[0].title = `${props.username}’s Space`;
 
-  }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedJsonData = localStorage.getItem("data");
