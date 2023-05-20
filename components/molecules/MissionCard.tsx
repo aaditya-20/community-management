@@ -4,6 +4,7 @@ import Photo from "../atoms/Photo";
 import router from "next/router";
 
 function Mission(props: any) {
+  console.log(props);
   return (
     <div
       className="w-full h-full bg-[#232A35] rounded-[20px] overflow-hidden flex items-end"
@@ -26,14 +27,16 @@ function Mission(props: any) {
           <div className="flex justify-between items-center mb-[64px]">
             <button className="w-[195px] h-[52px] rounded-[10px] border border-[#FFFFFF3B] bg-[#FFFFFF24] flex items-center">
               <p className=" text-white font-open-sans font-semibold text-2xl px-[23px]">
-                {props.progress ? props.progress : 0}{" "}
-                <span className="font-extralight text-xs">in progress</span>
+                {/* Progress is denoting = total mission Created */}
+                {props.created ? props.created : 0}{" "}
+                <span className="font-extralight text-xs">Created</span>
               </p>
             </button>
             <button className="w-[195px] h-[52px] rounded-[10px] border border-[#FFFFFF3B] bg-[#FFFFFF24] flex items-center">
               <p className=" text-white font-open-sans font-semibold text-2xl px-[23px]">
-                {props.review ? props.review : 0}{" "}
-                <span className="font-extralight text-xs">in review</span>
+                {/* Review right now is representing = Active Mission */}
+                {props.active ? props.active : 0}{" "}
+                <span className="font-extralight text-xs">Active</span>
               </p>
             </button>
           </div>
