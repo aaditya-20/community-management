@@ -36,7 +36,10 @@ const secondMenu = [
 const UserSidebar = (props:any) => {
   const [hideMenu, setHideMenu] = useState(false);
   const [name, setName] = useState("");
+  if(props.username!=undefined){
+    mainMenu[0].title = `${props.username}’s Space`;
 
+  }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedJsonData = localStorage.getItem("data");

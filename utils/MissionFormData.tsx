@@ -16,8 +16,8 @@ let formData = {
   heading1: '',
   subheading1 : '',
   heading2 : '',
-  subheading2 : ''
-  // to add xp 
+  subheading2 : '',
+   xp : 0, 
   // have to make steps an array
   //
 };

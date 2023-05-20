@@ -174,7 +174,7 @@ function MissionForUser(props: any) {
     console.log("clicked");
 
     // not recieving xp inside mission so replacing it with amount.
-    let xp = missionDetails.amount;
+    let xp = missionDetails.xp;
     console.log(xp);
     if(xp==undefined){
       xp = 0;
@@ -224,7 +224,7 @@ function MissionForUser(props: any) {
                     {title}
                   </div>
                   <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
-            <pre className="overflow-auto no-scrollbar">{description}</pre>
+                    <pre className="overflow-auto no-scrollbar">{description}</pre>
             {/* <div className="my-[60px]">
               <MissionStepsCard
                 heading1={missionSteps[0]}
