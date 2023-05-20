@@ -16,7 +16,7 @@ export default function MissionShareYourFeedback() {
     "           ",
     "Share the proof of work",
   ];
-  const reward = 1000;
+  const xp = 2.9;
   const coinType = "USDC";
   const submissionType = 'text';
   return (
@@ -37,6 +37,7 @@ export default function MissionShareYourFeedback() {
             subheading1={missionSteps[2]}
             subheading2={missionSteps[3]}
             submission_type = {submissionType}
+            xp = {xp}
           />
       
         <div className="mt-6 flex justify-center items-center">
@@ -62,9 +63,9 @@ export default function MissionShareYourFeedback() {
               <div className="mx-[30px] my-[30px]">
                 <MissionStepsCard
                   className="mx-[20px]"
-                  heading1="Onboard 10 new members "
+                  heading1="Write Feedback about product"
                   heading2="Submit mission"
-                  descp1="Invite new members"
+                  descp1="Upload screenshot"
                   descp2="Share the proof of work"
                 />
               </div>
@@ -72,7 +73,7 @@ export default function MissionShareYourFeedback() {
 
             <div className="mx-[30px] my-[30px]">
             <BeAchamp
-              val="1000"
+              val="2.9"
                tags={tags}
                title="Share your feedback for Firebond"
            />

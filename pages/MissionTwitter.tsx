@@ -29,7 +29,7 @@ export default function MissionDiscord() {
     "Follow us",
     "Share the proof of work",
   ];
-  const reward = 1000;
+  const xp = 2.9;
   const coinType = "USDC";
   const [file, setFile] = useState("");
   const submission_type = 'link'
@@ -53,6 +53,7 @@ export default function MissionDiscord() {
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
           submission_type = {submission_type}
+          xp = {xp}
         />
 
         {/* Main Content Section */}

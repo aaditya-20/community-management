@@ -56,7 +56,8 @@ This quest will auto-validate when you claim it.`;
     "Start a conversation ",
     "Start a conversation on any discord channel you like containing at least 10 characters",
   ];
-  const reward = 1000;
+  const xp = 1000;
+  const submission_type = "link"
   const coinType = "USDC";
   const [file, setFile] = useState("");
 
@@ -78,6 +79,8 @@ This quest will auto-validate when you claim it.`;
           heading2={missionSteps[1]}
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
+          submission_type = {submission_type}
+          xp = {xp}
         />
 
         {/* Main Content Section */}

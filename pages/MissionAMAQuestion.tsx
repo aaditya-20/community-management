@@ -21,6 +21,7 @@ const missionSteps = [
 ];
 const reward = 2.9;
 const coinType = "USDC";
+const submissionType = "link"
 function MissionAMAQuestion() {
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
@@ -36,6 +37,7 @@ function MissionAMAQuestion() {
           heading2={missionSteps[1]}
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
+          submission_type={submissionType}
         />
 
         {/* Main Content Section */}
