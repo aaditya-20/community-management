@@ -47,7 +47,7 @@ const UserHeader = () => {
           >
             <h1 className="text-white font-normal text-base">Logout</h1>
           </button>
-          <div className="h-[40px] w-auto pr-5 pl-1 rounded-full bg-[#242627] flex gap-[10px] items-center cursor-pointer">
+          <div className="h-[40px] w-auto px-5  rounded-full bg-[#242627] flex gap-[10px] items-center  cursor-pointer">
             <h1 className="text-base font-normal text-[#777879]">
               Hello, <span className="text-white">{name}</span>
             </h1>
