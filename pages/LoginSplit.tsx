@@ -42,14 +42,14 @@ const LoginSplit = () => {
                 </h1>
               </div>
             </button>
-            <button
+            {/* <button
               onClick={() => router.push("/UserLoginSignupPopup")}
               className="w-full h-[45px] bg-white border border-[#EAEAEA] flex justify-center items-center rounded-[9px]"
             >
               <div className="flex gap-[14px] items-center justify-center">
                 <h1 className="font-medium text-xs text-black">User</h1>
               </div>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
