@@ -7,6 +7,8 @@ import { supabase } from "@/utils/supabaseClient";
 import EditMission from "@/utils/EditMission";
 import { useRouter } from "next/router";
 import MissionFormData from "@/utils/MissionFormData";
+import UserHeader from "@/components/molecules/UserHeader";
+import UserSidebar from "@/components/molecules/UserSidebar";
 declare var window: any;
 // const [file, setFile] = useState("");
 function MissionForUser(props: any) {
@@ -67,43 +69,6 @@ function MissionForUser(props: any) {
 
   // const coinType = "USDC";
   const [walletAddress, setWalletAddress] = useState("");
-
-  // const connectWallet = async () => {
-  //   if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
-  //     try {
-  //       /* MetaMask is installed */
-  //       const accounts = await window.ethereum.request({
-  //         method: "eth_requestAccounts",
-  //       });
-  //       setWalletAddress(accounts[0]);
-  //       console.log(accounts[0]);
-  //       try {
-  //         const { data, error } = await supabase
-  //           .from("community_data")
-  //           .select("*")
-  //           .eq("wallet_id", accounts[0])
-  //           .single();
-  //         console.log('data hai ye',data);
-
-  // console.log('commub inside->',community_id);
-  // if (data != null && data.id === community_id) {
-  //   await window.localStorage.setItem("data", JSON.stringify(data));
-  //   router.push("/MissionViewPage");
-  // }
-  // else {
-  //   console.log('helko');
-  //   router.push("/UserLoginSignupPopup");
-  // }
-
-  //     } catch {
-  //       console.log("Data not found - Error")
-  //     }
-  //   } catch {
-  //     console.log("MetaMask Error")
-  //   }
-  // }
-
-  // }
   var community_id = "";
   var user_wallet_id = "";
 
@@ -184,122 +149,129 @@ function MissionForUser(props: any) {
 
   return (
     <div>
-      <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
-        <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
-          <Image
-            src="/Icons/FireBondIcon.png"
-            width={160}
-            height={10}
-            alt="alt"
-            className=""
-          />
-          {/* <div className="absolute w-[124px] h-[39px] right-[0px] top-[20px]  bg-[#313131] rounded-[25px] flex items-center justify-center"> */}
-          {/*Pending :: Change color of button when onWalletLink is called and user have connected his wallet */}
-          {/* <button type="button" className="text-white font-small"  > */}
-          {/* Link wallet */}
-          {/* </button> */}
-          {/* </div> */}
-        </div>
+      <div className="min-h-screen min-w-fit bg-[#171C23] flex  scrollbar-hide">
+        <UserSidebar />
+        <div className="h-full w-full">
+          <UserHeader />
+          <div className="h-full w-full  flex justify-between">
+            <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
+              <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
+                <Image
+                  src="/Icons/FireBondIcon.png"
+                  width={160}
+                  height={10}
+                  alt="alt"
+                  className=""
+                />
+              </div>
 
-        <div className="flex">
-          <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
-            <Image
-              src="/MissionPageBanner.png"
-              width={800}
-              height={1}
-              alt="kjdfhah"
-              className="mx-[10px] my-[10px]"
-            />
-            <div className="font-semibold text-2xl text-white mx-3">
-              {title}
+              <div className="flex">
+                <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
+                  <Image
+                    src="/MissionPageBanner.png"
+                    width={800}
+                    height={1}
+                    alt="kjdfhah"
+                    className="mx-[10px] my-[10px]"
+                  />
+                  <div className="font-semibold text-2xl text-white mx-3">
+                    {title}
+                  </div>
+
+                  {type == 0 && (
+                    <div className="mt-[36px]">
+                      <h1 className="font-medium text-base text-white mb-[11px]">
+                        Upload the file
+                      </h1>
+                      <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] px-[25px] ">
+                        <Image
+                          src="Icons/upload.svg"
+                          alt=""
+                          height={20}
+                          width={20}
+                        />
+                        <input
+                          type="file"
+                          className=" absolute w-full h-full outline-none bg-inherit opacity-0"
+                          onChange={handleFileUpload}
+                        />
+                        <h1 className="text-xs text-[#D0D0D0A6] font-normal">
+                          {fileName ? fileName : "Upload the submission"}
+                        </h1>
+                      </div>
+                      <h1 className="text-xs text-[#A6A6A6] font-normal mt-[9px]">
+                        File can be pdf, png, jpeg, doc.x
+                      </h1>
+                    </div>
+                  )}
+                  {type == 1 && (
+                    <div className="mt-[36px]">
+                      <h1 className="font-medium text-base text-white mb-[11px]">
+                        Enter the Link
+                      </h1>
+                      <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+                        <input
+                          type="url"
+                          className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+                          placeholder="Enter the Link"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {type == 2 && (
+                    <div className="mt-[36px]">
+                      <h1 className="font-medium text-base text-white mb-[11px]">
+                        Enter the URL
+                      </h1>
+                      <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+                        <input
+                          type="url"
+                          className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+                          placeholder="Enter URL"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {type == 3 && (
+                    <div className="mt-[36px]">
+                      <h1 className="font-medium text-base text-white mb-[11px]">
+                        Number of invites
+                      </h1>
+                      <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+                        <input
+                          type="number"
+                          className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+                          placeholder="number of invites"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {type == 4 && (
+                    <div className="mt-[36px]">
+                      <h1 className="font-medium text-base text-white mb-[11px]">
+                        Enter Text
+                      </h1>
+                      <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+                        <input
+                          type="text"
+                          className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+                          placeholder="Enter text"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col text-[#ffffff] mx-[auto] ">
+                  <BeAchamp title={title} tags={tags} val={reward} />
+                  <button
+                    onClick={HandleSubmit}
+                    className="mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]"
+                  >
+                    Submit Work
+                  </button>
+                </div>
+              </div>
             </div>
-
-            {type == 0 && (
-              <div className="mt-[36px]">
-                <h1 className="font-medium text-base text-white mb-[11px]">
-                  Upload the file
-                </h1>
-                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] px-[25px] ">
-                  <Image src="Icons/upload.svg" alt="" height={20} width={20} />
-                  <input
-                    type="file"
-                    className=" absolute w-full h-full outline-none bg-inherit opacity-0"
-                    onChange={handleFileUpload}
-                  />
-                  <h1 className="text-xs text-[#D0D0D0A6] font-normal">
-                    {fileName ? fileName : "Upload the submission"}
-                  </h1>
-                </div>
-                <h1 className="text-xs text-[#A6A6A6] font-normal mt-[9px]">
-                  File can be pdf, png, jpeg, doc.x
-                </h1>
-              </div>
-            )}
-            {type == 1 && (
-              <div className="mt-[36px]">
-                <h1 className="font-medium text-base text-white mb-[11px]">
-                  Enter the Link
-                </h1>
-                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
-                  <input
-                    type="url"
-                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
-                    placeholder="Enter the Link"
-                  />
-                </div>
-              </div>
-            )}
-            {type == 2 && (
-              <div className="mt-[36px]">
-                <h1 className="font-medium text-base text-white mb-[11px]">
-                  Enter the URL
-                </h1>
-                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
-                  <input
-                    type="url"
-                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
-                    placeholder="Enter URL"
-                  />
-                </div>
-              </div>
-            )}
-            {type == 3 && (
-              <div className="mt-[36px]">
-                <h1 className="font-medium text-base text-white mb-[11px]">
-                  Number of invites
-                </h1>
-                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
-                  <input
-                    type="number"
-                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
-                    placeholder="number of invites"
-                  />
-                </div>
-              </div>
-            )}
-            {type == 4 && (
-              <div className="mt-[36px]">
-                <h1 className="font-medium text-base text-white mb-[11px]">
-                  Enter Text
-                </h1>
-                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
-                  <input
-                    type="text"
-                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
-                    placeholder="Enter text"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col text-[#ffffff] mx-[auto] ">
-            <BeAchamp title={title} tags={tags} val={reward} />
-            <button
-              onClick={HandleSubmit}
-              className="mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]"
-            >
-              Submit Work
-            </button>
           </div>
         </div>
       </div>
