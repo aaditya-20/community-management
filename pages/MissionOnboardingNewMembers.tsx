@@ -29,8 +29,9 @@ const missionSteps = [
   "Submit mission",
   "Share the proof of work",
 ];
-const reward = 1000;
+const xp = 1000;
 const coinType = "USDC";
+const submission_type = "invite"
 
 const MissionOnboardingNewMembers = () => {
   return (
@@ -48,6 +49,8 @@ const MissionOnboardingNewMembers = () => {
           heading2={missionSteps[1]}
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
+          submission_type = {submission_type}
+          xp = {xp}
         />
 
         {/* Main Content Section */}

@@ -12,13 +12,14 @@ const description =
   "We want to Design our company digital mascot Requirements:the body of the NFT design consists of a combination of our icon and precious items such as gemstones, gold, etc.The design should include the project name: Mew Protocolanimation effects. Format ca be GIF, WEBP, etc.the NFT design should be consistent with the design style of our projectWe will choose 3 prizes: $40 for the first place, $10 for the second and the third place.Reference:www.mewprotocol.com";
 const tags = ["writing", "marketing"];
 const missionSteps = [
-  " Follow our Twitter handle",
+  " Upload your Design",
   "Follow us!",
   "Submit your work",
   "Share the proof of work",
 ];
-const reward = 2.9;
+const xp = 2.9;
 const coinType = "USDC";
+const submission_type = "file"
 function MissionDigitalMascot() {
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
@@ -34,6 +35,8 @@ function MissionDigitalMascot() {
             heading2={missionSteps[1]}
             subheading1={missionSteps[2]}
             subheading2={missionSteps[3]}
+            xp = {xp}
+            submission_type = {submission_type}
           />
 
         {/* Main Content Section */}
@@ -91,8 +94,8 @@ function MissionDigitalMascot() {
 
                 <div className="mt-[60px] mb-3 px-3">
                   <MissionStepsCard
-                    heading1={"Join our Discord"}
-                    descp1={missionSteps[0]}
+                    heading1={"Upload your Design"}
+                    descp1={"Be consistent with it"}
                     heading2="Start a conversation"
                     descp2={missionSteps[1]}
                   />
