@@ -6,12 +6,12 @@ import { supabase } from "@/utils/supabaseClient";
 import { useEffect } from "react";
 import { useState } from "react";
 
-import Image from "next/image";
 
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
 const Leaderboard = () => {
   const [cards, setCards] = useState([]);
+  const [cards1, setCards1] = useState([{}]);
   // const [leaderboardData, setleaderboardData] = useState([{}]);
 
   var wallet_id = "";
@@ -40,6 +40,18 @@ const Leaderboard = () => {
         return;
       }
       console.log("members hain", rowData.Members);
+      rowData.Members.sort((a:any,b:any)=>{
+        return b.current_xp - a.current_xp;
+      })
+      let temp_arr = [];
+      for (let i = 0; i < Math.min(5,rowData.Members.length); i++) {
+        temp_arr.push(rowData.Members[i]);
+      }
+      setCards1(temp_arr);
+      console.log(rowData.Members)
+     
+      
+      
       setCards(rowData.Members);
     } catch (error) {
       console.error(error);
@@ -48,7 +60,7 @@ const Leaderboard = () => {
   let ele:any
   console.log("ye card hai", cards);
   if (cards!=null) {
-    ele = cards.map((card: any, index: any) => {
+    ele = cards1.map((card: any, index: any) => {
       return (
         <div key={index}>
           <LeaderboardCard

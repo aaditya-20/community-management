@@ -40,6 +40,10 @@ export default function MemberListCardMissionPage() {
         return;
       }
       console.log("members hain", rowData.Members);
+      rowData.Members.sort((a:any,b:any)=>{
+        return b.missions_completed.length - a.missions_completed.length;
+      })
+      console.log("after sorting",rowData.Members)
       setPlayers(rowData.Members);
     } catch (error) {
       console.error(error);
