@@ -1,26 +1,37 @@
 import React from "react";
 import router from "next/router";
 import { useState, useEffect } from "react";
+import { supabase } from "@/utils/supabaseClient";
 
-let data = 0;
+
 
 declare var window: any;
 let username = "";
 const UserHeader = () => {
   const [name, setName] = useState("user");
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedJsonData = localStorage.getItem("user_wallet_id");
-      const jsonData = storedJsonData;
-      if (jsonData != null && jsonData)
-        //    const { data , error } = await supabase
-        //       .from("community_data")
-        //       .select("*")
-        //       .eq("user_wallet_id", jsonData);
-        // username=data.username.
-        setName(username);
-    }
-  }, [name]);
+    const fetchData = async () => {
+      if (typeof window !== "undefined") {
+        const storedJsonData = localStorage.getItem("user_wallet_id");
+        const jsonData = storedJsonData;
+        if (jsonData != null && jsonData) {
+          const { data, error } = await supabase
+            .from("userdata")
+            .select("*")
+            .eq("wallet_id", jsonData);
+           if (data && data.length > 0) {
+             const firstItem = data[0]; 
+             const name = firstItem.name;
+             console.log(name)
+             setName(name);
+           }
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
   const handleLogout = () => {
     localStorage.clear();
     router.push("/FirstPage");
