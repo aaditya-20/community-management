@@ -34,7 +34,9 @@ const cards = [
     flag: "0",
   },
 ];
-
+// Todo-Active will come from selected data
+let active = 10;
+let created = 10;
 const NewDashboard = () => {
   const [name, setName] = useState("user");
 
@@ -43,6 +45,8 @@ const NewDashboard = () => {
       const storedJsonData = localStorage.getItem("data");
       const jsonData = JSON.parse(storedJsonData ?? "{}");
       if (jsonData != null && jsonData.name) setName(jsonData.name);
+      created = jsonData.missions.length;
+      active = created > 0 ? created - 2 : 0;
     }
   }, [name]);
   return (
@@ -77,7 +81,12 @@ const NewDashboard = () => {
                   {/* Mission & Community Health Section */}
                   <div className="flex flex-col justify-between gap-5">
                     <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end">
-                      <Mission contributors="50" submission="150" />
+                      <Mission
+                        contributors="50"
+                        submission="150"
+                        created={created.toString()}
+                        active={active.toString()}
+                      />
                     </div>
                     <div className="relative w-[469px] h-[414px] filter blur-sm">
                       <CommunityHealth Twitter="30" Total="59.5K" />
@@ -97,7 +106,7 @@ const NewDashboard = () => {
             {/* Cards */}
             {cards.map((card, index) => {
               return (
-                <div  key={card.key} >
+                <div key={card.key}>
                   <OnboardingExperienceCard
                     flag={card.flag}
                     key={index}
