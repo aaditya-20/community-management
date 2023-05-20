@@ -21,6 +21,12 @@ const TopContributorAnalyticsScreen = () => {
       xp: 521,
       rank: "3rd",
     },
+    {
+      icon: "/Icons/funkyPic.svg",
+      id: "@elilu#5690",
+      xp: 521,
+      rank: "3rd",
+    },
   ]);
   return (
     <div className="h-full w-full">
@@ -64,11 +70,11 @@ const TopContributorAnalyticsScreen = () => {
         })}
       </div>
 
-      <div className="w-full h-full px-6 mt-[25px]">
+      {/* <div className="w-full h-full px-6 mt-[25px]">
         <button className=" w-full h-12 rounded-[10px] border border-white hover:bg-white hover:text-[#232B35] text-white font-normal text-base flex justify-center items-center">
           <h1>View leadership</h1>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

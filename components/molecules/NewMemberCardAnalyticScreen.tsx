@@ -6,8 +6,8 @@ export default function NewMemberCardAnalyticScreen() {
     <>
        <div className='h-[350px] w-[668px] bg-[#242B35] rounded-[20px] relative'>
        <div>
-        <div className="absolute text-[#FFFFFF] font-[General Sans] font-[500] text-[24px] left-[24px] top-[22px]  ">750+ new members</div>
-        <div className="absolute text-[#D9D9D9] font-[General Sans] font-[400] text-[14px] left-[592px] top-[32px]  ">Show All</div>
+        <div className="absolute text-[#FFFFFF] font-[General Sans] font-[500] text-[24px] left-[24px] top-[22px]  ">New members</div>
+        {/* <div className="absolute text-[#D9D9D9] font-[General Sans] font-[400] text-[14px] left-[592px] top-[32px]  ">Show All</div> */}
 
         <div>
             <div className="absolute text-[#A6A6A6] text-[12px] font-[400] font-[General Sans] top-[85px] left-[24px]">
