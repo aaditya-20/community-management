@@ -42,6 +42,7 @@ const NavbarMissionOnboarding = (props: any) => {
     obj.description=props.description;
     obj.submission_type = props.submission_type;
     obj.mission_id = temp;
+    obj.xp = props.xp; 
     setOpenMission(!OpenMission)
     console.log(obj);
     try {

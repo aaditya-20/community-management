@@ -22,12 +22,12 @@ A link to a Graph Protocol tutorial that you have written before
 Your Twitter/Github profile
 If you do not include these two items, you will not be considered.`;
   const missionSteps = [
-    "Follow our Twitter handle",
+    "Create a technical tutorial video",
     "Submit your work",
-    "Follow us",
+    "Upload Video",
     "Share the proof of work",
   ];
-  const reward = 1000;
+  const xp = 1000;
   const coinType = "USDC";
   const [input, setInput] = useState("");
 
@@ -67,6 +67,7 @@ If you do not include these two items, you will not be considered.`;
     });
     input.click();
   }
+  const submissionType = "file"
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
       <Sidebar />
@@ -81,6 +82,8 @@ If you do not include these two items, you will not be considered.`;
           heading2={missionSteps[1]}
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
+          submission_type = {submissionType}
+          xp = {xp}
         />
 
         {/* Main Content Section */}
@@ -105,10 +108,10 @@ If you do not include these two items, you will not be considered.`;
 
                 <div className="mt-[60px] mb-3">
                   <MissionStepsCard
-                    heading1={"Write a kickass blog"}
-                    descp1={missionSteps[0]}
-                    heading2="Share the proof of work"
-                    descp2={missionSteps[1]}
+                    heading1={"Create a technical tutorial video"}
+                    descp1={"Upload video"}
+                    heading2="Submit Work"
+                    descp2={missionSteps[3]}
                   />
                 </div>
               </div>
