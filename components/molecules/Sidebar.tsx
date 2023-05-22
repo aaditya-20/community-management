@@ -42,10 +42,10 @@ const mainMenu = [
     route: "/LeaderBoardScreen",
   },
   {
-    src: "Icons/Fire_Scrolls.svg",
+    src: "Icons/shining-star.svg",
     size: 24,
-    title: "Fire Scrolls",
-    route: "/MissionReview",
+    title: "Review",
+    route: "/Review",
   },
 ];
 
@@ -63,10 +63,10 @@ const secondMenu = [
     route: "/setting",
   },
   {
-    src: "Icons/shining-star.svg",
+    src: "Icons/Fire_Scrolls.svg",
     size: 24,
-    title: "Review",
-    route: "/Review",
+    title: "Fire Scrolls",
+    route: "/MissionReview",
   },
 ];
 const Sidebar = () => {
