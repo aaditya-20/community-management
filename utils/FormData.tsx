@@ -6,6 +6,7 @@ let formData = {
   wallet_id: " ",
   community_admin_avatar: "",
   community_logo: "",
+  discordToken:""
 };
 
 export default function FormData() {
