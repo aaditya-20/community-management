@@ -50,7 +50,7 @@ const AnalyticsScreen = () => {
         <Header />
 
         <div className=" w-full flex justify-center items-center">
-          <div className="mt-[29px]">
+          <div className="mt-[5px] p-6">
             <h1 className="font-semibold text-[24px] leading-[32.4px] text-white mb-2">
               Analytics
             </h1>
@@ -93,7 +93,7 @@ const AnalyticsScreen = () => {
                 </div>
               </div>
               {/* Right Section */}
-              <div className=" flex flex-col gap-[26px] flex-wrap">
+              <div className=" flex flex-col gap-[26px] ">
                 <div className="w-[505px] h-[433px] bg-[#232B35] rounded-[20px]  overflow-hidden ml-[13px]">
                   <TopContributorAnalyticsScreen />
                 </div>

@@ -108,7 +108,7 @@ const CommunitySetupScreen = (): ReactElement => {
   function handleEmail(e: any) {
     setInputemail(e.target.value);
   }
-  function discordToken() {
+  async function  discordToken() {
     if (window.location.href.includes("access_token")) {
       const fragment = new URLSearchParams(window.location.hash.slice(1));
 
@@ -117,7 +117,11 @@ const CommunitySetupScreen = (): ReactElement => {
         fragment.get("token_type"),
       ];
       console.log(fragment, "fragment", accessToken, tokenType);
+      //write a code to store the access token in local in supabase table named as community_data
+      // const { data, error } = await supabase.from("community_data").insert([{ DiscordToken: accessToken || ""}])
+      
       localStorage.setItem("accessToken", accessToken || "");
+      alert("Discord Integration Successful");
       fetch("https://discord.com/api/users/@me", {
         headers: {
           authorization: `${tokenType} ${accessToken}`,

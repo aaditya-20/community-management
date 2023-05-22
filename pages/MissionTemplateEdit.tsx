@@ -49,6 +49,14 @@ const MissionTemplateEdit = () => {
   const generateRandom = () => String(date.getTime());
 
   async function onCreateClick() {
+    if(obj.title==''){
+      alert('title cant be empty');
+      return;
+    }
+    else if(obj.description==''){
+      alert('Please add some description');
+      return;
+    }
     var temp = generateRandom();
     setMissionId(temp);
     obj.mission_id = temp;
@@ -78,8 +86,14 @@ const MissionTemplateEdit = () => {
         })
         .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
       if (updateError) {
+        alert('Failed to create mission please create again');
         console.error(updateError);
       } else {
+        setOpenMission(!OpenMission)
+        setTimeout(() => {
+          
+          setOpenMission(false);
+        }, 3000);
         console.log("Missions updated successfully!");
       }
     } catch (error) {

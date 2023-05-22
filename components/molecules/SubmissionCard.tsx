@@ -1,11 +1,18 @@
 import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
 import React, { useState } from "react";
+import QuizCard from "./QuizCard";
+import QuizMission from "@/utils/QuizMission";
 
 const SubmissionCard = () => {
   const obj = MissionFormData();
-  const [type, setType] = useState(Array(6).fill(false));
+  const obj2 = QuizMission();
+  const [type, setType] = useState(Array(7).fill(false));
   const [fileName, setFileName] = useState("");
+  const [link, setLink] = useState("");
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState(null);
+
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -13,8 +20,17 @@ const SubmissionCard = () => {
       setFileName(file.name);
     }
   };
+  
   var selected = 4;
- const arr = ["file", "link", "url", "invite", "empty", "text"];
+  const arr = [
+    "file",
+    { type: "link", link : link },
+    "url",
+    "invite",
+    "empty",
+    "text",
+    {type : "quiz" , question : obj2.ques , ans : obj2.ans }
+  ];
   type.forEach((item, index) => {
     if (item === true) {
       selected = index;
@@ -22,6 +38,10 @@ const SubmissionCard = () => {
   });
   console.log(arr[selected]);
   obj.submission_type = arr[selected];
+
+  function handlelink(e: any) {
+    setLink(e.target.value);
+  }
 
   return (
     <div className="max-w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6">
@@ -36,7 +56,7 @@ const SubmissionCard = () => {
             selected === 0 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(6).fill(false);
+            const newState = Array(7).fill(false);
             newState[0] = !type[0];
             setType(newState);
           }}
@@ -44,23 +64,23 @@ const SubmissionCard = () => {
           <h1 className="font-normal text-sm text-[#AAAAAA]">File</h1>
         </button>
         <button
-            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
-              selected === 1 ? "bg-black text-white" : "bg-[#2E363F]"
-            }`}
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[73px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 1 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
           onClick={() => {
-            const newState = Array(6).fill(false);
+            const newState = Array(7).fill(false);
             newState[1] = !type[1];
             setType(newState);
           }}
         >
-          <h1 className="font-normal text-sm text-[#AAAAAA]">Link</h1>
+          <h1 className="font-normal text-sm text-[#AAAAAA]">Visit Link</h1>
         </button>
         <button
-            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
-              selected === 2 ? "bg-black text-white" : "bg-[#2E363F]"
-            }`}
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 2 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
           onClick={() => {
-            const newState = Array(6).fill(false);
+            const newState = Array(7).fill(false);
             newState[2] = !type[2];
             setType(newState);
           }}
@@ -68,11 +88,11 @@ const SubmissionCard = () => {
           <h1 className="font-normal text-sm text-[#AAAAAA]">URL</h1>
         </button>
         <button
-            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
-              selected === 3 ? "bg-black text-white" : "bg-[#2E363F]"
-            }`}
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 3 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
           onClick={() => {
-            const newState = Array(6).fill(false);
+            const newState = Array(7).fill(false);
             newState[3] = !type[3];
             setType(newState);
           }}
@@ -80,11 +100,11 @@ const SubmissionCard = () => {
           <h1 className="font-normal text-sm text-[#AAAAAA]">Invite</h1>
         </button>
         <button
-            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
-              selected === 4 ? "bg-black text-white" : "bg-[#2E363F]"
-            }`}
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 4 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
           onClick={() => {
-            const newState = Array(6).fill(false);
+            const newState = Array(7).fill(false);
             newState[4] = !type[4];
             setType(newState);
           }}
@@ -92,22 +112,32 @@ const SubmissionCard = () => {
           <h1 className="font-normal text-sm text-[#AAAAAA]">Empty</h1>
         </button>
         <button
-            className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
-              selected === 5 ? "bg-black text-white" : "bg-[#2E363F]"
-            }`}
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 5 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
           onClick={() => {
-            const newState = Array(6).fill(false);
+            const newState = Array(7).fill(false);
             newState[5] = !type[5];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Text</h1>
         </button>
+        <button
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[49px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 6 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
+          onClick={() => {
+            const newState = Array(7).fill(false);
+            newState[6] = !type[6];
+            setType(newState);
+          }}
+        >
+          <h1 className="font-normal text-sm text-[#AAAAAA]">Quiz</h1>
+        </button>
       </div>
 
-      
-
-      {/* Conditional Rendering Section
+      {/* /* Conditional Rendering Section
       {type[0] && (
         <div className="mt-[36px]">
           <h1 className="font-medium text-base text-white mb-[11px]">
@@ -128,7 +158,7 @@ const SubmissionCard = () => {
             File can be pdf, png, jpeg, doc.x
           </h1>
         </div>
-      )}
+      )} */}
       {type[1] && (
         <div className="mt-[36px]">
           <h1 className="font-medium text-base text-white mb-[11px]">
@@ -137,12 +167,77 @@ const SubmissionCard = () => {
           <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
             <input
               type="url"
-              className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]" placeholder="Enter the Link"
+              value={link}
+              className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+              placeholder="Enter the Link"
+              onChange={handlelink}
             />
           </div>
         </div>
       )}
-      {type[2] && (
+      {type[3] && (
+        <div className="mt-[36px]">
+          <h1 className="font-medium text-base text-white mb-[11px]">
+            Number of invites
+          </h1>
+          <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+            <input
+              type="number"
+              className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+              placeholder="number of invites"
+            />
+          </div>
+        </div>
+      )}
+      {type[6] && (
+        <div className="mt-[36px]">
+        <QuizCard />
+        </div>
+      )}
+      {/* {type[6] && (
+        <div className="mt-36">
+          <div className="rounded-lg h-41 w-full flex gap-14 items-center relative bg-2E363F overflow-hidden">
+            <input
+              type="text"
+              className="w-full h-full outline-none bg-inherit text-xs placeholder-text-D0D0D0A6 text-white font-normal overflow-hidden text-ellipsis px-25"
+              placeholder="Enter your question"
+              value={question}
+              onChange={handleQuestionChange}
+            />
+          </div>
+        </div>
+      )}
+      {type[6] && (
+        <div className="mt-4">
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="trueOption"
+              name="answer"
+              value="true"
+              checked={answer === 'true'}
+              onChange={handleAnswerChange}
+            />
+            <label htmlFor="trueOption" className="ml-2 text-white">
+              True
+            </label>
+          </div>
+          <div className="flex items-center">
+            <input
+              type="radio"
+              id="falseOption"
+              name="answer"
+              value="false"
+              checked={answer === 'false'}
+              onChange={handleAnswerChange}
+            />
+            <label htmlFor="falseOption" className="ml-2 text-white">
+              False
+            </label>
+          </div>
+        </div>
+      )} */}
+      {/* {type[2] && (
         <div className="mt-[36px]">
           <h1 className="font-medium text-base text-white mb-[11px]">
             Enter the URL
@@ -155,19 +250,7 @@ const SubmissionCard = () => {
           </div>
         </div>
       )}
-      {type[3] && (
-        <div className="mt-[36px]">
-          <h1 className="font-medium text-base text-white mb-[11px]">
-            Number of invites
-          </h1>
-          <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
-            <input
-            type="number"
-              className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]" placeholder="number of invites"
-            />
-          </div>
-        </div>
-      )}
+      
       {type[5] && (
         <div className="mt-[36px]">
           <h1 className="font-medium text-base text-white mb-[11px]">

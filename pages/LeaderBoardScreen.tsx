@@ -6,7 +6,6 @@ import { supabase } from "@/utils/supabaseClient";
 import { useEffect } from "react";
 import { useState } from "react";
 
-
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 
 const Leaderboard = () => {
@@ -40,26 +39,24 @@ const Leaderboard = () => {
         return;
       }
       console.log("members hain", rowData.Members);
-      rowData.Members.sort((a:any,b:any)=>{
+      rowData.Members.sort((a: any, b: any) => {
         return b.current_xp - a.current_xp;
-      })
+      });
       let temp_arr = [];
-      for (let i = 0; i < Math.min(5,rowData.Members.length); i++) {
+      for (let i = 0; i < Math.min(5, rowData.Members.length); i++) {
         temp_arr.push(rowData.Members[i]);
       }
       setCards1(temp_arr);
-      console.log(rowData.Members)
-     
-      
-      
+      console.log(rowData.Members);
+
       setCards(rowData.Members);
     } catch (error) {
       console.error(error);
     }
   }
-  let ele:any
+  let ele: any;
   console.log("ye card hai", cards);
-  if (cards!=null) {
+  if (cards != null) {
     ele = cards1.map((card: any, index: any) => {
       return (
         <div key={index}>
