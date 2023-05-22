@@ -67,7 +67,7 @@ const NewDashboard = () => {
                   Here’s what’s happening with your community
                 </h3>
                 {/* Main Section */}
-                <div className="flex flex-wrap gap-6 mb-10">
+                <div className="flex gap-6 mb-10">
                   {/* Analytics & Recently Joined Section */}
                   <div className="w-[400px] h-[750px] bg-[#232B35] rounded-[20px] overflow-hidden pt-[29px] ">
                     <div>
