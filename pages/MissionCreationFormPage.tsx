@@ -16,7 +16,7 @@ import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
-
+console.log("missiontempeditobj->",MissionFormData());
 const MissionCreationFormPage = () => {
   const [OpenMission, setOpenMission] = useState(false);
   const obj = MissionFormData();
@@ -32,11 +32,21 @@ const MissionCreationFormPage = () => {
   const generateRandom = () => String(date.getTime());
 
   async function onCreateClick() {
+    if(obj.title==''||obj.title==undefined){
+      alert(`Title can't be empty`);  
+      return;
+    }
+    else if(obj.description==''||obj.description==undefined){
+      alert('Please add some description');
+      return;
+    }
+    
     var temp = generateRandom();
     setMissionId(temp);
     obj.mission_id = temp;
-    setOpenMission(!OpenMission)
-    console.log(obj);
+    
+    console.log("obj->",obj);
+    // console.log(obj);
 
     try {
       // Fetch the community data row using the user's wallet_id as a filter condition
@@ -63,8 +73,13 @@ const MissionCreationFormPage = () => {
         })
         .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
       if (updateError) {
+        alert('Failed to create mission please create again');
         console.error(updateError);
       } else {
+        setOpenMission(!OpenMission)
+        setTimeout(() => {
+          setOpenMission(false);
+        }, 3000);
         console.log("Missions updated successfully!");
       }
     } catch (error) {

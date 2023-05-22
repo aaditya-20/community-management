@@ -23,6 +23,10 @@ import { BsFillTriangleFill } from "react-icons/bs";
 
 const BasicInfoCard = (props: any) => {
   const obj = MissionFormData();
+  const [titleError,settitleError] = useState(obj.title==''||obj.title==undefined?true:false);
+ 
+  const [descriptionError,SetdescriptionError] = useState(obj.description==''?true:false);
+
   const [on, setOn] = useState(Array(5).fill(false));
   const [amount, setAmount] = useState(0);
   const [xp, setXp] = useState(100);
@@ -37,7 +41,15 @@ const BasicInfoCard = (props: any) => {
   // Calendar implementation
 
   function handleInput(e: any) {
+
     setInput(e.target.value);
+    if(e.target.value.length&&e.target.value.length>0){
+      settitleError(false);
+    }
+    else{
+      settitleError(true);
+    }
+    
   }
   function handleAttachment() {
     const input = document.createElement("input");
@@ -137,14 +149,19 @@ const BasicInfoCard = (props: any) => {
       <h1 className="font-medium text-base text-white mb-[10px] mt-[45px]">
         Mission title
       </h1>
-      <div className="w-full h-[41px] bg-[#2E363F] rounded-lg overflow-hidden mb-[29px]">
+      <div className="w-full h-[41px] bg-[#2E363F] rounded-lg  mb-[29px]">
         <input
           className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
           value={input}
           onChange={handleInput}
           placeholder={props.title}
         />
+         {/* error message if applicable */}
+        {titleError && (
+          <span className="text-sm text-red-500">*Please enter title</span>
+        )}
       </div>
+      
       <div className="w-full flex justify-between">
         <button
           className="pt-[9px] pr-[19px] pl-4 pb-[9px] bg-[#171C23] hover:bg-white/[0.05] rounded-[4px] flex justify-center items-center"
