@@ -12,6 +12,7 @@ import EmailInput from "../components/atoms/EmailInput";
 import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
 import router from "next/router";
+import { set } from "date-fns";
 
 const CommunitySetupScreen = (): ReactElement => {
   const obj = FormData();
@@ -55,12 +56,19 @@ const CommunitySetupScreen = (): ReactElement => {
       obj.community_admin_avatar = community_admin_avatar;
       // Removing userImage stored in local Storage
       localStorage.removeItem("userImage");
-      setOpenDiscord(!OpenDiscord);
+      if(!localStorage.getItem("accessToken"))
+      {
+        setOpenDiscord(!OpenDiscord);
+      }else{
+        router.push("/Step1CommunitySetup")
+      }
     } else if ((await emailExist(InputEmail)) == "3") {
       alert("Email already exist");
     } else {
       alert("Please Enter Email");
     }
+   
+  
   }
   const bucket_name = "community_admin_avatar";
   async function AdminAvatarUpload(file: any) {
@@ -155,10 +163,10 @@ const CommunitySetupScreen = (): ReactElement => {
   useEffect(() => {
     discordToken();
   });
-
   return (
     <>
       <BackGroundPage />
+     
       <Modal
         onClose={() => {
           setOpenDiscord(!OpenDiscord);
@@ -166,10 +174,15 @@ const CommunitySetupScreen = (): ReactElement => {
         open={OpenDiscord}
         style={{}}
       >
+        
         <div className="">
+         {/* check of Discord is connected or not */}
+         
+         
           <DiscordIntegrationPopup />
         </div>
       </Modal>
+     
       <div className="flex items-center justify-center ">
         <div className="absolute block w-[662px] h-[431px] top-[20vh] bg-gray-800 shadow-md ">
           <div className="relative block w-[662px] h-[54px] border-b-[1px] border-[#353B43]">

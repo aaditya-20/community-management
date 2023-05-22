@@ -30,6 +30,7 @@ function DiscordIntegrationPopup() {
   //   .catch((error) => {
   //     console.error(error);
   //   });
+ const access_token= localStorage.getItem("accessToken");
 
   return (
     <>
