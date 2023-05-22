@@ -20,7 +20,7 @@ function MissionViewPage() {
     const [missionUrl,setmissionUrl] = useState("");
     const router = useRouter();
     const [title,settitle] = useState("Mission title");
-    const [copyLink,setcopyLink] = useState("Copy");
+    const [copyLink,setcopyLink] = useState("Copy Mission Link");
     const [description,setdescription] = useState(`here comes the description.`);
     const [tags,settags] = useState(["NoTags"]);
     const [missionSteps,setmissionSteps] =  useState( [
@@ -43,7 +43,7 @@ function MissionViewPage() {
     }
     const [data, setData] = useState()
     useEffect(() => {
-        setreward(missionDetails.amount)
+        setreward(missionDetails.xp)
         let newTags:any = [];
          
         if(missionDetails.tags!=null&&missionDetails.tags!=undefined){
@@ -100,11 +100,15 @@ function MissionViewPage() {
 
 
   return (
-    <div>
-        <div className="grid grid-cols-[1400px] gap-10  bg-[#171C23] grid-rows-[71px,auto] h-[1200px] w-[auto] ">
-        
-        <div className="flex align-middle border-b-[1px] border-b-[#353B43]">
-          <Image src="/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
+
+    // <div>
+        <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
+        <Sidebar />
+        <div className="w-full h-full">
+          <Header />
+
+        {/* <div className="flex align-middle border-b-[1px] border-b-[#353B43]"> */}
+          {/* <Image src="/Icons/FireBondIcon.png" width={160} height={10} alt='kjdfhah' className=''/>
           <div className="absolute w-[124px] h-[39px] right-[0px] top-[20px]  bg-[#313131] rounded-[25px] flex items-center justify-center">
                 
             <button type="button" className="text-white font-small" onClick={()=>{router.push('/MissionMain')}} >
@@ -122,11 +126,11 @@ function MissionViewPage() {
                
          </CopyToClipboard>
          
-        </div>
-        </div>
+        </div> */}
+        {/* </div> */}
        
         <div className="flex">
-        <div className="text-[#ffffff] ml-[20px] mb-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
+        <div className="text-[#ffffff] ml-[20px] m-[10px] w-[auto]  border-[1px] border-[#353B43]  rounded-[20px]">
           <Image
             src="/MissionPageBanner.png"
             width={800}
@@ -151,7 +155,7 @@ function MissionViewPage() {
 
          
         </div>
-        <div className="flex flex-col text-[#ffffff] mx-[auto] ">
+        <div className="flex flex-col text-[#ffffff] m-[10px] ">
              
             <BeAchamp
               title={title}
@@ -160,6 +164,9 @@ function MissionViewPage() {
             />
             <div onClick={onEditClick} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
               <span className='relative top-3'>Edit</span> 
+            </div>
+            <div onClick={()=>{setcopyLink("Mission Link Copied")}} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
+              <span className='relative top-3'>{copyLink}</span> 
             </div>
           </div>
       </div>
