@@ -121,7 +121,11 @@ const CommunitySetupScreen = (): ReactElement => {
       // const { data, error } = await supabase.from("community_data").insert([{ DiscordToken: accessToken || ""}])
       
       localStorage.setItem("accessToken", accessToken || "");
+      //popup counter
+      if(localStorage.getItem("popupCounter") == null)
       alert("Discord Integration Successful");
+      localStorage.setItem("popupCounter", "1");
+    
       fetch("https://discord.com/api/users/@me", {
         headers: {
           authorization: `${tokenType} ${accessToken}`,
