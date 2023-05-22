@@ -90,7 +90,17 @@ function MissionForUser(props: any) {
       if (storedJsonwallet !== null) {
         user_wallet_id = storedJsonwallet;
       }
-      const arr = ["file", "link", "url", "invite", "text", "empty", "quiz","feedback"];
+      const arr = [
+        "file",
+        "link",
+        "url",
+        "invite",
+        "text",
+        "empty",
+        "quiz",
+        "feedback",
+        "referral",
+      ];
       arr.forEach((item, index) => {
         if (
           (index !== 1 &&
@@ -103,7 +113,7 @@ function MissionForUser(props: any) {
           setType(index);
         }
       });
-      if(type === 5 || type ===6){
+      if (type === 5 || type === 6) {
         setIsCompleted(true);
       }
       console.log("mission detalis ka submission type", type);
@@ -184,19 +194,19 @@ function MissionForUser(props: any) {
     // else
     // await connectWallet();
     console.log("clicked");
-    
+
     if (isCompleted === false) {
       alert("Please complete the quest");
       return;
     }
 
     // not recieving xp inside mission so replacing it with amount.
-     xp = missionDetails.xp;
+    xp = missionDetails.xp;
     console.log(xp);
     if (xp == undefined) {
       xp = 0;
     }
-    console.log('yahan hai xp',xp);
+    console.log("yahan hai xp", xp);
     fetchData(xp);
 
     //community id leni hai local storage se
@@ -225,20 +235,18 @@ function MissionForUser(props: any) {
     setIsCompleted(true);
   }
 
-  
-
   const [url, setUrl] = useState("");
   function handleURL(e: any) {
     setUrl(e.target.value);
     if (url !== "") setIsCompleted(true);
   }
 
-  const [True,setTrue] = useState("false");
+  const [True, setTrue] = useState("false");
 
-  const [feedback,setFeedback] = useState('')
+  const [feedback, setFeedback] = useState("");
 
-  function handleFeedback(e : any){
-    setFeedback(e.target.value)
+  function handleFeedback(e: any) {
+    setFeedback(e.target.value);
   }
 
   return (
@@ -269,8 +277,10 @@ function MissionForUser(props: any) {
               {title}
             </div>
             <div className="font-medium text-lg text-white-400 mx-3 mt-1  w-[800px]">
-              <pre className="overflow-auto no-scrollbar mb-6 ml-6">{description}</pre>
-             <DiscordVerificationUser/>
+              <pre className="overflow-auto no-scrollbar mb-6 ml-6">
+                {description}
+              </pre>
+              <DiscordVerificationUser />
             </div>
             {type == 0 && (
               <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
@@ -381,12 +391,33 @@ function MissionForUser(props: any) {
                 </div>
               </div>
             )}
-             {type == 7 && (
+            {type == 7 && (
               <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
                 <h1 className="font-medium text-base text-white mb-[11px]">
                   Share Your Feedback here
                 </h1>
                 <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+                  <input
+                    type="text"
+                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+                    placeholder="Write Feedback about product"
+                    value={text}
+                    onChange={handleText}
+                  />
+                </div>
+              </div>
+            )}
+            {type == 8 && (
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 relative">
+                <h1 className="font-large text-bold text-white ">
+                  Share Your Referral Link
+                </h1>
+                <h6 className="mb-6 text-gray">
+                  When your friends complete the referral , you will get the
+                  rewards for your action
+                </h6>
+
+                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden blur-sm">
                   <input
                     type="text"
                     className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
