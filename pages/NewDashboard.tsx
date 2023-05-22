@@ -35,8 +35,8 @@ const cards = [
   },
 ];
 // Todo-Active will come from selected data
-let active = 10;
-let created = 10;
+let active = 0;
+let created = 0;
 const NewDashboard = () => {
   const [name, setName] = useState("user");
 
@@ -46,7 +46,7 @@ const NewDashboard = () => {
       const jsonData = JSON.parse(storedJsonData ?? "{}");
       if (jsonData != null && jsonData.name) setName(jsonData.name);
       if (jsonData != null && jsonData.missions!=null) created = jsonData.missions.length;
-      active = created > 0 ? created - 2 : 0;
+      active = created > 1 ? created - 2 : 0;
     }
   }, [name]);
   return (
