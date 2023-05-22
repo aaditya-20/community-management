@@ -96,7 +96,7 @@ function MissionForUser(props: any) {
           (index !== 1 &&
             index !== 6 &&
             item === missionDetails.submission_type) ||
-          (index === 1 && missionDetails.submission_type === item) ||
+          (index === 1 && missionDetails.submission_type.type === item) ||
           (index === 6 && missionDetails.submission_type.type === item)
         ) {
           console.log("dekho", missionDetails.submission_type);
