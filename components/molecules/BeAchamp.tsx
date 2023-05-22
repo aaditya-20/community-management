@@ -15,7 +15,7 @@ const BeAchamp = (props: any) => {
           <div className="flex items-center gap-8 mb-[30px] ">
             <h1 className="text-sm font-normal text-[#A6A6A680]">Reward</h1>
             <button className="text-[#FFBA03] font-bold text-xs p-2 rounded-lg bg-[#FFBA035C]">
-              {props.val} USDC
+              {props.val} XP
             </button>
           </div>
 

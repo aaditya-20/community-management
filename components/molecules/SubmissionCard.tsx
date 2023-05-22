@@ -7,7 +7,7 @@ import QuizMission from "@/utils/QuizMission";
 const SubmissionCard = () => {
   const obj = MissionFormData();
   const obj2 = QuizMission();
-  const [type, setType] = useState(Array(7).fill(false));
+  const [type, setType] = useState(Array(8).fill(false));
   const [fileName, setFileName] = useState("");
   const [link, setLink] = useState("");
   const [question, setQuestion] = useState("");
@@ -29,7 +29,8 @@ const SubmissionCard = () => {
     "invite",
     "empty",
     "text",
-    {type : "quiz" , question : obj2.ques , ans : obj2.ans }
+    {type : "quiz" , question : obj2.ques , ans : obj2.ans },
+    'feedback'
   ];
   type.forEach((item, index) => {
     if (item === true) {
@@ -56,7 +57,7 @@ const SubmissionCard = () => {
             selected === 0 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[0] = !type[0];
             setType(newState);
           }}
@@ -68,7 +69,7 @@ const SubmissionCard = () => {
             selected === 1 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[1] = !type[1];
             setType(newState);
           }}
@@ -80,7 +81,7 @@ const SubmissionCard = () => {
             selected === 2 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[2] = !type[2];
             setType(newState);
           }}
@@ -92,7 +93,7 @@ const SubmissionCard = () => {
             selected === 3 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[3] = !type[3];
             setType(newState);
           }}
@@ -104,7 +105,7 @@ const SubmissionCard = () => {
             selected === 4 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[4] = !type[4];
             setType(newState);
           }}
@@ -116,7 +117,7 @@ const SubmissionCard = () => {
             selected === 5 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[5] = !type[5];
             setType(newState);
           }}
@@ -128,13 +129,26 @@ const SubmissionCard = () => {
             selected === 6 ? "bg-black text-white" : "bg-[#2E363F]"
           }`}
           onClick={() => {
-            const newState = Array(7).fill(false);
+            const newState = Array(8).fill(false);
             newState[6] = !type[6];
             setType(newState);
           }}
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Quiz</h1>
         </button>
+        <button
+          className={`rounded-[4px] border border-[#656565] h-[36px] w-[85px] flex justify-center items-center hover:bg-[#161C23] ${
+            selected === 7 ? "bg-black text-white" : "bg-[#2E363F]"
+          }`}
+          onClick={() => {
+            const newState = Array(8).fill(false);
+            newState[7] = !type[7];
+            setType(newState);
+          }}
+        >
+          <h1 className="font-normal text-sm text-[#AAAAAA]">Feedback</h1>
+        </button>
+        
       </div>
 
       {/* /* Conditional Rendering Section
