@@ -56,7 +56,8 @@ const CommunitySetupScreen = (): ReactElement => {
       obj.community_admin_avatar = community_admin_avatar;
       // Removing userImage stored in local Storage
       localStorage.removeItem("userImage");
-      if(!localStorage.getItem("accessToken"))
+      const access_token=localStorage.getItem("accessToken")||"";
+      if(!access_token)
       {
         setOpenDiscord(!OpenDiscord);
       }else{
