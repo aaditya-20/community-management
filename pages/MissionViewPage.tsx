@@ -165,9 +165,16 @@ function MissionViewPage() {
             <div onClick={onEditClick} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
               <span className='relative top-3'>Edit</span> 
             </div>
-            <div onClick={()=>{setcopyLink("Mission Link Copied")}} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
-              <span className='relative top-3'>{copyLink}</span> 
-            </div>
+                      <CopyToClipboard text={missionUrl}>
+
+                        <div onClick={()=>{setcopyLink("Mission Link Copied")}} className='cursor-pointer mt-[30px] text-center align-middle  font-[500] font-[General Sans] text-[14px]  w-[346px] h-[47px] rounded-[8px] border-white border-[1px]'>
+                        <span className='relative top-3'>{copyLink}</span> 
+                        
+                    </div> 
+
+          
+          </CopyToClipboard>
+           
           </div>
       </div>
         
