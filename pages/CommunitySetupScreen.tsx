@@ -167,13 +167,13 @@ const CommunitySetupScreen = (): ReactElement => {
           <div className="relative block w-[662px] h-[54px] border-b-[1px] border-[#353B43]">
             <Link
               href="/"
-              className="relative top-[15px] left-[30px] text-[#AEABD8]"
+              className="relative top-[15px] left-[30px] text-[#AEABD8] tracking-[16%]"
             >
               SIGN UP
             </Link>
           </div>
           <div className="relative">
-            <p className="relative w-[236px] h-[32px] top-[0px] left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
+            <p className="relative w-[236px] h-[32px] top-[0px] mt-6 left-[30px] text-[#FFFFFF] font-sans font-normal font-bold:text-600 text-2xl leading-8">
               What do we call you?
             </p>
             <p className="relative w-[200px] h-[22px] top-[10px] left-[30px] font-sans font-normal text-base leading-6 text-gray-500">

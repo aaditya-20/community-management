@@ -6,7 +6,7 @@ export default function BackGroundPage(props:any) {
    
         <>
    
-            <div className={`flex items-center justify-center bg-[#171C23] h-[1100px] w-[100vw]${props.className}`} >
+            <div className={`flex items-center justify-center bg-[#171C23] min-h-screen ${props.className}`} >
                <Image src="/Icons/FireBondIcon.png" alt="My Image" width={500} height={500} className=" absolute top-10 w-[193px] h-[68.1px] m-auto" />
             </div>
           </>
