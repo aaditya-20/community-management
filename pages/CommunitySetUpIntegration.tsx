@@ -69,6 +69,7 @@ function CommunitySetUpIntegration() {
         .catch(console.error);
     } else {
       if (localStorage.getItem("accessToken")) {
+        obj.discordToken=localStorage.getItem("accessToken")||'Not Found';
         setDiscord("visible");
       }
     }
@@ -158,6 +159,7 @@ function CommunitySetUpIntegration() {
       alert("Please Connect Ethereum Wallet");
       return;
     }
+
     const { data, error } = await supabase.from("community_data").insert({
       name: obj.name,
       community_name: obj.community_name,
@@ -166,6 +168,7 @@ function CommunitySetUpIntegration() {
       wallet_id: obj.wallet_id,
       community_admin_avatar: obj.community_admin_avatar,
       community_logo: obj.community_logo,
+      DiscordToken: obj.discordToken,
     });
     if (error) {
       console.log("Error uploading file:", error.message);
