@@ -10,6 +10,7 @@ import MissionFormData from "@/utils/MissionFormData";
 import UserHeader from "@/components/molecules/UserHeader";
 import UserSidebar from "@/components/molecules/UserSidebar";
 import QuizMission from "@/utils/QuizMission";
+import DiscordVerificationUser from "@/components/molecules/DiscordVerificationUser";
 declare var window: any;
 // const [file, setFile] = useState("");
 var community_id = "";
@@ -89,14 +90,14 @@ function MissionForUser(props: any) {
       if (storedJsonwallet !== null) {
         user_wallet_id = storedJsonwallet;
       }
-      const arr = ["file", "link", "url", "invite", "text", "empty", "quiz"];
+      const arr = ["file", "link", "url", "invite", "text", "empty", "quiz","feedback"];
       arr.forEach((item, index) => {
         if (
           (index !== 1 &&
             index !== 6 &&
             item === missionDetails.submission_type) ||
-          (index === 1 && missionDetails.submission_type.type) ||
-          (index === 6 && missionDetails.submission_type.type)
+          (index === 1 && missionDetails.submission_type === item) ||
+          (index === 6 && missionDetails.submission_type.type === item)
         ) {
           console.log("dekho", missionDetails.submission_type);
           setType(index);
@@ -175,6 +176,8 @@ function MissionForUser(props: any) {
     }
   }
 
+  var xp = 0;
+
   async function HandleSubmit() {
     // Also need to store data to put in Admin's Review Section
     // if admin->routerpush-edit
@@ -188,12 +191,12 @@ function MissionForUser(props: any) {
     }
 
     // not recieving xp inside mission so replacing it with amount.
-    let xp = missionDetails.xp;
+     xp = missionDetails.xp;
     console.log(xp);
     if (xp == undefined) {
       xp = 0;
     }
-    console.log(xp);
+    console.log('yahan hai xp',xp);
     fetchData(xp);
 
     //community id leni hai local storage se
@@ -232,6 +235,12 @@ function MissionForUser(props: any) {
 
   const [True,setTrue] = useState("false");
 
+  const [feedback,setFeedback] = useState('')
+
+  function handleFeedback(e : any){
+    setFeedback(e.target.value)
+  }
+
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex scrollbar-hide">
       <UserSidebar />
@@ -256,22 +265,15 @@ function MissionForUser(props: any) {
               alt="kjdfhah"
               className="mx-[10px] my-[10px]"
             />
-            <div className="font-semibold text-2xl text-white mx-3">
+            <div className="font-semibold text-2xl text-white mx-3 ml-10">
               {title}
             </div>
-            <div className="font-medium text-lg text-gray-400 mx-3 mt-4 w-[800px]">
-              <pre className="overflow-auto no-scrollbar">{description}</pre>
-              {/* <div className="my-[60px]">
-              <MissionStepsCard
-                heading1={missionSteps[0]}
-                descp1={missionSteps[1]}
-                heading2={missionSteps[2]}
-                descp2={missionSteps[3]}
-              />
-            </div> */}
+            <div className="font-medium text-lg text-white-400 mx-3 mt-1  w-[800px]">
+              <pre className="overflow-auto no-scrollbar mb-6 ml-6">{description}</pre>
+             <DiscordVerificationUser/>
             </div>
             {type == 0 && (
-              <div className="mt-[36px]">
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
                 <h1 className="font-medium text-base text-white mb-[11px]">
                   Upload the file
                 </h1>
@@ -292,7 +294,7 @@ function MissionForUser(props: any) {
               </div>
             )}
             {type == 1 && (
-              <div className="mt-[36px]">
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
                 <h1 className="font-medium text-base text-white mb-[11px]">
                   Click on the link
                 </h1>
@@ -304,7 +306,7 @@ function MissionForUser(props: any) {
               </div>
             )}
             {type == 2 && (
-              <div className="mt-[36px]">
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
                 <h1 className="font-medium text-base text-white mb-[11px]">
                   Enter the URL
                 </h1>
@@ -334,7 +336,7 @@ function MissionForUser(props: any) {
               </div>
             )}
             {type == 4 && (
-              <div className="mt-[36px]">
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
                 <h1 className="font-medium text-base text-white mb-[11px]">
                   Enter Text
                 </h1>
@@ -350,7 +352,7 @@ function MissionForUser(props: any) {
               </div>
             )}
             {type == 6 && (
-              <div className="mt-[36px]">
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
                 <h1 className="font-medium text-large text-white mb-[11px]">
                   {missionDetails.submission_type.question}
                 </h1>
@@ -379,9 +381,25 @@ function MissionForUser(props: any) {
                 </div>
               </div>
             )}
+             {type == 7 && (
+              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
+                <h1 className="font-medium text-base text-white mb-[11px]">
+                  Share Your Feedback here
+                </h1>
+                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden ">
+                  <input
+                    type="text"
+                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
+                    placeholder="Write Feedback about product"
+                    value={text}
+                    onChange={handleText}
+                  />
+                </div>
+              </div>
+            )}
           </div>
           <div className="flex flex-col text-[#ffffff] mx-[auto] cursor-pointer ">
-            <BeAchamp title={title} tags={tags} val={reward} />
+            <BeAchamp title={title} tags={tags} val={xp} />
             <div
               onClick={() => {
                 HandleSubmit();
