@@ -5,10 +5,12 @@ import { HiXCircle } from "react-icons/hi2";
 import { RxCrossCircled } from "react-icons/rx";
 
 const Details = (props :any) => {
+  const obj = MissionFormData();
+  const [descriptionError,setdescriptionError] = useState(obj.description==''||obj.description==undefined?true:false);
   const [on, setOn] = useState(false);
   const [conditions, setConditions] = useState([""]);
   const[description,setDescription] = useState(props.description)
-  const obj = MissionFormData();
+  
 
   
 
@@ -27,6 +29,13 @@ const Details = (props :any) => {
   };
   function handleDescription(e:any){
     setDescription(e.target.value)
+    // console.log(descriptionError);
+    if(e.target.value.length&&e.target.value.length>0){
+      setdescriptionError(false);
+    }
+    else{
+      setdescriptionError(true);
+    }
   }
 
   obj.description = description;
@@ -73,7 +82,7 @@ const Details = (props :any) => {
         <h1 className="font-medium text-base text-white mb-[12px] mt-[45px]">
           Description
         </h1>
-        <div className="h-[103px] w-full bg-[#2E363F] overflow-hidden text-ellipsis rounded-lg mb-6">
+        <div className="h-[103px] w-full bg-[#2E363F]  text-ellipsis rounded-lg mb-6">
           <textarea
             className="h-full w-full overflow-hidden text-ellipsis outline-none resize-none pt-[16.21px] px-[18.38px] bg-inherit placeholder:text-[#D0D0D0A6] text-white text-[12px] leading-[16.2px]"
             placeholder={"Add description to let the members know more about your mission"}
@@ -81,6 +90,9 @@ const Details = (props :any) => {
             onChange={handleDescription}
             
           />
+            {descriptionError && (
+          <span className="text-sm text-red-500">*Please enter some description</span>
+        )}
         </div>
         <h1 className="font-medium text-base text-white mb-[22px] mt-[45px]">
           Mission ons
