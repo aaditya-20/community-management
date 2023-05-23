@@ -4,9 +4,12 @@ let formData = {
   community_description: "",
   email: "",
   wallet_id: " ",
-  community_admin_avatar: "",
+  community_admin_avatar: " ",
   community_logo: "",
-  discordToken:""
+  discordToken:" ",
+  community_type : 1,
+  twitter_handle : " ",
+  website_handle : " "
 };
 
 export default function FormData() {

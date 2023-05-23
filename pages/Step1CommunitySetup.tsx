@@ -27,7 +27,7 @@ const Step1CommunitySetup = (): ReactElement => {
   const [WebsiteUrl, setWebsiteUrl] = useState("");
   const [TwitterPopUpVisibility, setTwitterPopUpVisibility] = useState(false);
   const [WebsitePopUpVisibility, setWebsitePopUpVisibility] = useState(false);
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selected, setSelected] = useState(1);
   const [imageUrl, setImageUrl] = useState("/ImageIcon.png");
   let community_logo = "";
   let file: File;
@@ -77,11 +77,14 @@ const Step1CommunitySetup = (): ReactElement => {
     setDescription(e.target.value);
   }
 
+  
+
   function onContinueClick() {
     CommunityLogoUpload(file);
     obj.community_name = InputValue;
     obj.community_description = description;
     obj.community_logo = community_logo;
+    obj.community_type = selected;
     localStorage.removeItem("userImage");
     router.push("/CommunitySetUpIntegration");
   }
@@ -99,10 +102,6 @@ const Step1CommunitySetup = (): ReactElement => {
   function handleTwitterClick() {
     setTwitterPopUpVisibility(!TwitterPopUpVisibility);
   }
-
-  const handleButtonClick = (buttonNumber: any) => {
-    setSelectedButton(buttonNumber === selectedButton ? null : buttonNumber);
-  };
 
   return (
     <>
@@ -212,26 +211,31 @@ const Step1CommunitySetup = (): ReactElement => {
 
               <div className="flex gap-[13.1px] w-full mb-[41.77px]">
                 <button
-                  className="h-[40.94px] w-[65.5px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px]  bg-[#2E363F] rounded-lg"
-                  onClick={() => handleButtonClick(1)}
+                  className={`h-[40.94px] w-[65.5px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px]  bg-[#2E363F] rounded-lg ${
+                    selected === 1 ? "bg-black text-white" : "bg-[#2E363F]"
+                  }`}
+                  onClick={() => setSelected(1)}
                 >
                   DAO
                 </button>
                 <button
-                  className="h-[40.94px] w-[122.81px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg"
-                  onClick={() => handleButtonClick(2)}
+                  className={`h-[40.94px] w-[122.81px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg ${
+                    selected === 2 ? "bg-black text-white" : "bg-[#2E363F]"}`}
+                  onClick={() => setSelected(2)}
                 >
                   NFT Community
                 </button>
                 <button
-                  className="h-[40.94px] w-[112.98px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg"
-                  onClick={() => handleButtonClick(3)}
+                  className={`h-[40.94px] w-[112.98px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg ${
+                    selected === 3 ? "bg-black text-white" : "bg-[#2E363F]"}`}
+                  onClick={() => setSelected(3)}
                 >
                   Content Creator
                 </button>
                 <button
-                  className="h-[40.94px] w-[65.5px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg"
-                  onClick={() => handleButtonClick(4)}
+                  className={`h-[40.94px] w-[65.5px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg ${
+                    selected === 4 ? "bg-black text-white" : "bg-[#2E363F]"}`}
+                  onClick={() => setSelected(4)}
                 >
                   Social
                 </button>

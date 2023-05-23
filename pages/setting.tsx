@@ -191,12 +191,14 @@
 //   }
 // }
 
+
 import Header from "@/components/atoms/Header";
 import CommunityProfileSettingPage from "@/components/molecules/CommunityProfileSettingPage";
 import GeneralInfoSettingPage from "@/components/molecules/GeneralInfoSettingPage";
 import Sidebar from "@/components/molecules/Sidebar";
 import React, { useState } from "react";
 import IntegrationsSettingPage from "@/components/molecules/IntegrationsSettingPage";
+import { json } from "stream/consumers";
 
 // Header Menu
 const headerMenu = [
@@ -214,11 +216,36 @@ const headerMenu = [
 const Setting = () => {
   const [Component, setComponent] = useState([true, false, false]);
 
+  
+  var wallet_id = "";
+  var name = "";
+  var email = "";
+  var community_type = 0;
+  var community_name = "";
+  var community_description = "";
+  if (typeof window !== "undefined") {
+    const storedJsonData = localStorage.getItem("data");
+    // console.log(storedJsonData)
+    const jsonData = JSON.parse(storedJsonData ?? "{}");
+    wallet_id = jsonData.wallet_id;
+    name = jsonData.name;
+    email = jsonData.email;
+    community_type = jsonData.community_type;
+    community_name = jsonData.community_name;
+    community_description = jsonData.community_description;
+    console.log(jsonData.emailId);
+  }
+  
+
   // Function for handling component
   const handleClick = (item: number) => {
     const newState = Component.map((value, index) => index === item);
     setComponent(newState);
   };
+
+  function UpdateValue(){
+    
+  }
 
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex">
@@ -233,7 +260,7 @@ const Setting = () => {
                 Update/edit your profile
               </h3>
               <div className="flex gap-[14px]">
-                <button className="w-[72px] h-[33px] rounded-lg flex justify-center items-center border border-[#757575] hover:border-white text-medium font-sm text-[#A6A6A6] hover:text-white">
+                <button className="w-[72px] h-[33px] rounded-lg flex justify-center items-center border border-[#757575] hover:border-white text-medium font-sm text-[#A6A6A6] hover:text-white" onClick={UpdateValue}>
                   Save
                 </button>
                 <button className="w-[72px] h-[33px] rounded-lg flex justify-center items-center border border-[#757575] hover:border-white text-medium font-sm text-[#A6A6A6] hover:text-white">
@@ -267,9 +294,9 @@ const Setting = () => {
             </div>
 
             {/* Form Section */}
-            {Component[0] && <GeneralInfoSettingPage />}
+            {Component[0] && <GeneralInfoSettingPage name = {name} email = {email} />}
 
-            {Component[1] && <CommunityProfileSettingPage />}
+            {Component[1] && <CommunityProfileSettingPage community_name = {community_name} community_description = {community_description} community_type = {community_type}/>} 
 
             {Component[2] && <IntegrationsSettingPage />}
           </div>
