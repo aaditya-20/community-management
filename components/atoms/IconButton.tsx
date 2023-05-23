@@ -9,12 +9,14 @@ type IconButtonProps = {
   classNameIcon: string;
   onClick?: () => void;
   children?: ReactNode;
+  disabled?:boolean;
 };
 // while importing dont forget to add props 
-const IconButton = ({ icon: Icon, label, className = '', onClick, classNameIcon='', children, ...props }: IconButtonProps): ReactElement => {
+const IconButton = ({ icon: Icon, label, className = '', onClick, classNameIcon='', children,disabled, ...props }: IconButtonProps): ReactElement => {
   return (
     <button
-      className={`flex items-center justify-center gap-2 px-4 py-2 font-medium text-white   ${className}`}
+      className={`flex items-center justify-center gap-2 px-4 py-2 font-medium text-white   ${className} ` }
+      disabled={disabled}
       onClick={onClick}
       {...props}
     >
