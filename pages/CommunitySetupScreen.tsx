@@ -19,7 +19,7 @@ const CommunitySetupScreen = (): ReactElement => {
   const [InputValue, setInputvalue] = useState("");
   const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
-  const [flagDiscord, setDiscord] = useState('bg-purple-700');
+  const [flagDiscord, setDiscord] = useState('bg-\[\#8570E4\]');
   const [disableDiscord,setdisableDiscord]=useState(false)
   const [imageUrl, setImageUrl] = useState("/Icons/DefaultUserIcon.png");
 
