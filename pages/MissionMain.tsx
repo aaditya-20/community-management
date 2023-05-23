@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import MissionTemplateEdit from "./MissionTemplateEdit";
 import { supabase } from "@/utils/supabaseClient";
 import { useState } from "react";
-import { getDate } from "date-fns";
+import { getDate, getTime } from "date-fns";
 import Photo from "@/components/atoms/Photo";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
@@ -85,11 +85,14 @@ const MissionMain = () => {
 
   // to display number of days left
   function daysleft(dueDate: any) {
-    let temp = getDate(new Date(dueDate.seleted_date)) - getDate(new Date());
+    let temp = getTime(new Date(dueDate.seleted_date)) - getTime(new Date());
+    temp = temp/(1000*60*60*24)
+    temp = Math.floor(temp);
+    console.log('days left',temp);
     if (dueDate == "" || dueDate == null) {
       return "No Due Date";
     } else if (temp >= 0) {
-      return `${temp} Days Left`;
+      return `${temp} Days`;
     } else {
       return "Expired";
     }
@@ -316,6 +319,7 @@ const MissionMain = () => {
                             usdc={item.amount}
                             title={item.title}
                             tags={item.tags}
+                            xp = {item.xp}
                           />
                         </div>
                       );

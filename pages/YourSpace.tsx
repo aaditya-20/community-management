@@ -200,6 +200,7 @@ export default function YourSpace(props: any) {
                               usdc={item.amount}
                               title={item.title}
                               tags={item.tags}
+                              xp={item.xp}
                             />
                           </div>
                         );
