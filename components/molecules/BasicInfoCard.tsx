@@ -149,7 +149,7 @@ const BasicInfoCard = (props: any) => {
       <h1 className="font-medium text-base text-white mb-[10px] mt-[45px]">
         Mission title
       </h1>
-      <div className="w-full h-[41px] bg-[#2E363F] rounded-lg  mb-[29px]">
+      <div className="w-full h-[41px] bg-[#2E363F] rounded-lg  mb-[29px] overflow-hidden">
         <input
           className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
           value={input}
