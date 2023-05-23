@@ -234,7 +234,7 @@ const MissionMain = () => {
         <div className="w-full h-full">
           <Header />
           <div className="w-full h-full">
-            <div className="h-[auto] w-full p-6 border-b-[1px] border-[#353B43]">
+            <div className="h-auto w-full p-6 border-b-[1px] border-[#353B43]">
               <div className=" h-full w-full">
                 <h1 className="font-semibold text-2xl text-white">Missions</h1>
                 <p className="font-normal text-[16px] leading-[22px] text-[#A6A6A6]">
@@ -294,8 +294,8 @@ const MissionMain = () => {
           <div className="flex justify-between h-full w-full  ">
             {/* Main Section */}
             <div className="w-full h-full flex justify-center overflow-auto scrollbar-hide p-6 ">
-              <div className="h-auto w-auto">
-                <div className="w-full h-full flex flex-wrap justify-center">
+              <div className="h-full w-auto">
+                <div className="w-full max-h-screen overflow-auto scrollbar-hide grid grid-cols-2 gap-6">
                   {missions &&
                     missions.map((item: any, index) => {
                       return (
@@ -322,6 +322,8 @@ const MissionMain = () => {
                     })}
 
                   <AddMoreCard />
+
+
                 </div>
               </div>
             </div>
