@@ -19,7 +19,7 @@ const CommunitySetupScreen = (): ReactElement => {
   const [InputValue, setInputvalue] = useState("");
   const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
-  const [flagDiscord, setDiscord] = useState("#8570E4");
+  const [flagDiscord, setDiscord] = useState('bg-purple-700');
   const [disableDiscord,setdisableDiscord]=useState(false)
   const [imageUrl, setImageUrl] = useState("/Icons/DefaultUserIcon.png");
 
@@ -120,12 +120,12 @@ const CommunitySetupScreen = (): ReactElement => {
     setInputemail(e.target.value);
   }
   async function  discordToken() {
-    if(localStorage.getItem("accessToken")){
-      console.log(flagDiscord, "flagDiscord");
-      setDiscord("#006400");
-      setdisableDiscord(true)
-    }
+   
     if (window.location.href.includes("access_token")) {
+      console.log(flagDiscord, "flagDiscord");
+      setDiscord('bg-green-800');
+      setdisableDiscord(true)
+    
       const fragment = new URLSearchParams(window.location.hash.slice(1));
 
       const [accessToken, tokenType] = [
@@ -241,7 +241,8 @@ const CommunitySetupScreen = (): ReactElement => {
             
               icon={FaDiscord}
               label="Discord"
-              className={`relative bg-[${flagDiscord}] top-[89px] left-[0px] w-[331px] h-[67px]`}
+              className={`relative ${flagDiscord} top-[89px] left-[0px] w-[331px] h-[67px]`}
+              
               classNameIcon=""
               onClick={discord}
               disabled={disableDiscord}
