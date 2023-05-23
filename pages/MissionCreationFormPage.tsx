@@ -135,9 +135,9 @@ const MissionCreationFormPage = () => {
             </div>
 
             {/* Main Section */}
-            <div className="h-full flex flex-wrap justify-between">
+            <div className="h-full flex  justify-between">
               {/* Left Section */}
-              <div className="max-w-[800px] h-full mt-[28px] flex justify-center mx-auto items-center">
+              <div className="max-w-[800px] h-full mt-[28px] flex justify-center px-6 mx-auto items-center">
                 <div>
                   {/* Basic Info */}
                   <BasicInfoCard />
@@ -151,7 +151,7 @@ const MissionCreationFormPage = () => {
               </div>
 
               {/* Right Section */}
-              <div className="h-auto max-w-[437px] md:border-l-[1px] md:border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
+              <div className="h-auto max-w-[437px] border-l-[1px] border-[#353B43] pt-[37px] pl-[30px] pr-[24px]">
                 <div>
                   {/* Status */}
                   <Todo />

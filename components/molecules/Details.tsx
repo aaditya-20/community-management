@@ -72,17 +72,17 @@ const Details = (props :any) => {
 
   return (
     <div>
-      <div className="max-w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 mb-[24px] relative">
-        <div>
-          <h1 className="font-normal text-[20px] leading-[27px] mx-6 text-white">
+      <div className="w-full h-auto rounded-[20px] bg-[#232B35] p-6 mb-[24px] relative">
+        
+          <h1 className="font-normal text-[20px] leading-[27px]  text-white">
             Details
           </h1>
           <div className="w-full h-0 border-[0.5px] border-[#474C52] mt-[21px] mb-6 absolute left-0"></div>
-        </div>
+        
         <h1 className="font-medium text-base text-white mb-[12px] mt-[45px]">
           Description
         </h1>
-        <div className="h-[103px] w-full bg-[#2E363F]  text-ellipsis rounded-lg mb-6">
+        <div className="h-[103px] w-full bg-[#2E363F]  text-ellipsis rounded-lg mb-6 overflow-hidden">
           <textarea
             className="h-full w-full overflow-hidden text-ellipsis outline-none resize-none pt-[16.21px] px-[18.38px] bg-inherit placeholder:text-[#D0D0D0A6] text-white text-[12px] leading-[16.2px]"
             placeholder={"Add description to let the members know more about your mission"}
@@ -95,7 +95,7 @@ const Details = (props :any) => {
         )}
         </div>
         <h1 className="font-medium text-base text-white mb-[22px] mt-[45px]">
-          Mission ons
+          Mission Conditions
         </h1>
         {conditions[0] != "" ? (
           <div className="flex gap-[10px]">
