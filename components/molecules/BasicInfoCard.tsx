@@ -137,7 +137,7 @@ const BasicInfoCard = (props: any) => {
 
   // if(selectedDate!=="")
   obj.seleted_date = selectedDate;
-  obj.submission = 52;
+  obj.submission = 0;
   obj.xp = xp;
 
   return (
