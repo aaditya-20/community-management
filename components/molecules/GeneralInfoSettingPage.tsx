@@ -3,12 +3,12 @@ import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
 import { FaGlobe } from "react-icons/fa";
 
-const GeneralInfoSettingPage = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+const GeneralInfoSettingPage = (props:any) => {
+  const [name, setName] = useState(props.name);
+  const [email, setEmail] = useState(props.email);
   const [role,setRole] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [web, setWeb] = useState("");
+  const [twitter, setTwitter] = useState(props.twitter_handle);
+  const [web, setWeb] = useState(props.website_handle);
 
   return (
     <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
@@ -30,7 +30,7 @@ const GeneralInfoSettingPage = () => {
             <div className="w-full h-[41px] shrink bg-[#2E363F] rounded-lg overflow-hidden">
               <input
                 type="text"
-                placeholder="Enter Name"
+                placeholder="enter name"
                 className="w-full h-full outline-none bg-inherit text-ellipsis px-[18px] placeholder:text-[#D0D0D0] text-[#D0D0D0]"
                 value = {name}
                 onChange={(e)=>setName(e.target.value)}
@@ -60,10 +60,10 @@ const GeneralInfoSettingPage = () => {
             Role Title
           </h1>
           <div className="flex gap-[14px] mb-[34px]">
-            <button className="px-[15px] h-[41px] flex justify-center items-center hover:bg-[#45505C] bg-[#2E363F] rounded-lg hover:text-white text-[#FFFFFFCC] font-medium text-sm " onClick = {()=>{setRole("Community manager")}}>
-              Community manager
+            <button className="px-[15px] h-[41px] flex justify-center items-center hover:bg-[#45505C] bg-[#2E363F] rounded-lg hover:text-white text-[#FFFFFFCC] font-medium text-sm bg-black" >
+              Community Manager
             </button>
-            <button className="px-[15.64px] h-[41px] flex justify-center items-center hover:bg-[#45505C] bg-[#2E363F] rounded-lg hover:text-white text-[#FFFFFFCC] font-normal text-sm" onClick = {()=>{setRole("Contributor")}}>
+            <button className="px-[15.64px] h-[41px] flex justify-center items-center hover:bg-[#45505C] bg-[#2E363F] rounded-lg hover:text-white text-[#FFFFFFCC] font-normal text-sm" >
               Contributor
             </button>
           </div>

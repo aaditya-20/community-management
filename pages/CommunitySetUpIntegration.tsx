@@ -169,6 +169,10 @@ function CommunitySetUpIntegration() {
       community_admin_avatar: obj.community_admin_avatar,
       community_logo: obj.community_logo,
       DiscordToken: obj.discordToken,
+      community_type : obj.community_type,
+      twitter_handle : obj.twitter_handle,
+      website_handle : obj.website_handle
+      
     });
     if (error) {
       console.log("Error uploading file:", error.message);

@@ -92,8 +92,8 @@ const IntegrationsSettingPage = () => {
             </div>
           </div>
 
-          <button className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-white font-normal text-sm">
-            Connect
+          <button className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-black border-[#FFFFFF] font-normal text-sm bg-white">
+            Connected
           </button>
         </div>
       </div>

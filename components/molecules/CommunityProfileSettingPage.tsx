@@ -1,14 +1,17 @@
+import { common } from "@material-ui/core/colors";
 import React, { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
 import { FaGlobe } from "react-icons/fa";
 
-const CommunityProfileSettingPage = () => {
-  const [community, setCommunity] = useState("");
-  const [communityDesc, setCommunityDesc] = useState("");
-  const [communityType, setCommunityType] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [web, setWeb] = useState("");
+const CommunityProfileSettingPage = (props: any) => {
+  const [community, setCommunity] = useState(props.community_name);
+  const [communityDesc, setCommunityDesc] = useState(
+    props.community_description
+  );
+  const [communityType, setCommunityType] = useState(props.community_type);
+  const [twitter, setTwitter] = useState(props.twitter_handle);
+  const [web, setWeb] = useState(props.website_handle);
 
   return (
     <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
@@ -61,16 +64,33 @@ const CommunityProfileSettingPage = () => {
             Community type
           </h1>
           <div className="flex gap-[14px] mb-[34px]">
-            <button className="px-[15px] h-[41px] flex justify-center items-center hover:bg-[#45505C] bg-[#2E363F] rounded-lg hover:text-white text-[#FFFFFFCC] font-medium text-sm " onClick={()=>{setCommunityType("DAOs")}}>
-              DAOs
+            <button
+              className={`h-[40.94px] w-[65.5px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px]  bg-[#2E363F] rounded-lg ${
+                communityType === 1 ? "bg-black text-white" : "bg-[#2E363F]"
+              }`}
+              onClick={() => setCommunityType(1)}
+            >
+              DAO
             </button>
-            <button className="px-[15.64px] h-[41px] flex justify-center items-center bg-[#2E363F] hover:bg-[#45505C] rounded-lg hover:text-white text-[#FFFFFFCC] font-normal text-sm" onClick={()=>{setCommunityType("NFT Community")}}>
+            <button
+              className={`h-[40.94px] w-[122.81px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg ${
+                communityType === 2 ? "bg-black text-white" : "bg-[#2E363F]"}`}
+              onClick={() => setCommunityType(2)}
+            >
               NFT Community
             </button>
-            <button className="px-[15.64px] h-[41px] flex justify-center items-center bg-[#2E363F] hover:bg-[#45505C] rounded-lg hover:text-white text-[#FFFFFFCC] font-normal text-sm" onClick={()=>{setCommunityType("Content Creator")}}>
+            <button
+               className={`h-[40.94px] w-[112.98px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg ${
+                communityType === 3 ? "bg-black text-white" : "bg-[#2E363F]"}`}
+              onClick={() => setCommunityType(3)}
+            >
               Content Creator
             </button>
-            <button className="px-[15.64px] h-[41px] flex justify-center items-center bg-[#2E363F] hover:bg-[#45505C] rounded-lg hover:text-white text-[#FFFFFFCC] font-normal text-sm" onClick={()=>{setCommunityType("Social")}}>
+            <button
+               className={`h-[40.94px] w-[65.5px] flex justify-center items-center text-white font-normal text-[13.1px] leading-[17.68px] bg-[#2E363F] rounded-lg ${
+                communityType === 4 ? "bg-black text-white" : "bg-[#2E363F]"}`}
+              onClick={() => setCommunityType(4)}
+            >
               Social
             </button>
           </div>
@@ -88,7 +108,9 @@ const CommunityProfileSettingPage = () => {
                 placeholder="firebond/twitter"
                 className="w-full h-full outline-none text-ellipsis px-[18px] bg-inherit"
                 value={twitter}
-                onChange={(e)=>{setTwitter(e.target.value)}}
+                onChange={(e) => {
+                  setTwitter(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -103,7 +125,9 @@ const CommunityProfileSettingPage = () => {
                 placeholder="www.firebond.com"
                 className="w-full h-full outline-none text-ellipsis px-[18px] bg-inherit"
                 value={web}
-                onChange={(e)=>{setWeb(e.target.value)}}
+                onChange={(e) => {
+                  setWeb(e.target.value);
+                }}
               />
             </div>
           </div>
