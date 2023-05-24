@@ -65,15 +65,16 @@ export default function NewMemberCardAnalyticScreen() {
                   <img src="/Icons/Ellipse 14.png" alt="Avatar" />
                 </div>
               </div>
-
               <div className="absolute text-[#FFFFFF] text-[16px] font-[400] font-[General Sans] left-[65px]">
                 @{member.User_name}
               </div>
               <div className="absolute text-[#FFFFFF] text-[16px] font-[400] font-[General Sans] left-[280px] w-[110px]">
-                {(member.date_of_join).split('T')[0]}
+                {new Date(member.date_of_join).toLocaleDateString()}
               </div>
               <div className="absolute text-[#FFFFFF] text-[16px] font-[400] font-[General Sans] left-[520px] w-[110px]">
-                {member.missions_completed.length}
+                {Array.isArray(member.missions_completed)
+                  ? member.missions_completed.length
+                  : 0}
               </div>
             </div>
           ))}
