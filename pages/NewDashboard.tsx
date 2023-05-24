@@ -69,11 +69,11 @@ const NewDashboard = () => {
                 {/* Main Section */}
                 <div className="flex gap-6 mb-10">
                   {/* Analytics & Recently Joined Section */}
-                  <div className="w-[400px] h-[750px] bg-[#232B35] rounded-[20px] overflow-hidden pt-[29px] ">
-                    <div>
+                  <div className="w-[400px] h-[750px] bg-[#232B35] rounded-[20px] overflow-hidden relative ">
+                    <div className="absolute top-[29px]">
                       <AnalyticsCardMainDashboard />
                     </div>
-                    <div className="h-auto w-auto">
+                    <div className="h-[350px] w-[400px] z-10 absolute bottom-0">
                       <RecentlyJoinedCardDashboardScreen />
                     </div>
                   </div>

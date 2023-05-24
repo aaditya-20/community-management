@@ -36,7 +36,7 @@ export default function NewMemberCardAnalyticScreen() {
 
   return (
     <>
-      <div className="h-[350px] w-[668px] bg-[#242B35] rounded-[20px] relative">
+      <div className="h-[350px] w-[668px] bg-[#242B35] rounded-[20px] relative ">
         <div>
           <div className="absolute text-[#FFFFFF] font-[General Sans] font-[500] text-[24px] left-[24px] top-[22px]">
             New members
@@ -55,12 +55,12 @@ export default function NewMemberCardAnalyticScreen() {
         </div>
 
         <div className="absolute top-[100px]">
-          {membersData.map((member: any) => (
+          {membersData?.map((member: any) => (
             <div
               key={member.id}
-              className={`flex px-6 justify-between h-[83px] hover:bg-[#D9D9D90F] items-center cursor-pointer`}
+              className={`flex px-6 justify-between h-[83px]  items-center cursor-pointer`}
             >
-              <div className="avatar absolute">
+              <div className="avatar ">
                 <div className="w-[38px] h-[38px] rounded-full">
                   <img src="/Icons/Ellipse 14.png" alt="Avatar" />
                 </div>
