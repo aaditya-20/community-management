@@ -5,6 +5,7 @@ import Image from "next/image";
 import SmallMissionCard from "@/components/molecules/SmallMissionCard"; 
 import MissionShareYourFeedback from "./MissionShareYourFeedback";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 var page = "";
 const content = [
@@ -94,6 +95,7 @@ const content = [
         title: "Participating in AMA",
         mission: "Earn by participating in AMA...",
         usdc: "1000",
+        page : '/MissionAMAQuestion'
       },
       {
         title: "Submit An AMA Question",
@@ -116,8 +118,9 @@ const MissionTemplatePage = () => {
         <div className="w-full h-[205px] border-b border-[#353B43]">
           <Header />
           <div className="flex gap-[3px] text-[#A6A6A6] font-normal text-base mb-2 mt-[29px] ml-6">
-            <h1>Mission</h1>
-            <h1>/Templates</h1>
+          <Link href="/MissionMain" className="inline">Mission</Link>/
+          
+          <div className="inline text-[white] font-[600]">Template</div>
           </div>
           <div className="w-full px-6 flex justify-between">
             <h1 className="text-white font-semibold text-2xl">Templates</h1>

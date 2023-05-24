@@ -6,6 +6,7 @@ import { useState } from "react";
 import { HiPencil, HiRocketLaunch } from "react-icons/hi2";
 import CopyLinkPopUpFormBuilder from "./CopyLinkPopUpFormBuilder";
 import { Modal } from "@material-ui/core";
+import Link from 'next/link';
 
 const NavbarMissionOnboarding = (props: any) => {
   const obj2 = EditMission();
@@ -102,9 +103,13 @@ const NavbarMissionOnboarding = (props: any) => {
       </Modal>
     <div className="h-[115px] w-full border-b border-[#353B43] px-6 py-[28px]">
       <div className="h-full w-full">
-        <h1 className="mb-2 text-[#A6A6A6] text-sm font-medium">
-          Missions/template
+
+        <h1 className="mb-2 flex gap-1 text-[#A6A6A6] text-sm font-medium">
+          <Link href="/MissionMain" className="inline">Mission</Link>/
+          <Link href="/MissionTemplatePage" className="inline">Template</Link>/
+          <div className="inline text-[white] font-[600]">{props.title}</div>
         </h1>
+      
         <div className="flex justify-between">
           <h1 className="text-2xl font-semibold text-white">Missions</h1>
           <div className="flex gap-4">
