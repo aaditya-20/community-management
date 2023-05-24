@@ -99,6 +99,7 @@ function CommunitySetUpIntegration() {
   }, [walletAddress]);
   useEffect(() => {
     discordToken();
+    twitterToken();
     // addWalletListener();
   }, []);
 
