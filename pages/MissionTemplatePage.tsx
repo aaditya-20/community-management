@@ -15,14 +15,14 @@ const content = [
       {
         title: "Follow on Twitter",
         mission: "Follow us on twitter",
-        usdc: "2.9",
+        usdc: "1000",
         page: "/MissionTwitter"
       },
       {
         title: "Write a tweet about Firebond",
         mission:
           "Mission : Write a thoughtful message about firebond on why we rock!...",
-        usdc: "2.9",
+        usdc: "1000",
         page: "/MissionTwitter"
       },
     ],
@@ -34,7 +34,7 @@ const content = [
       {
         title: "Make Friends",
         mission: "Join discord channel and get veri..",
-        usdc: "2.9",
+        usdc: "1000",
         page : '/MissionDiscord'
       },
     ],
@@ -46,7 +46,7 @@ const content = [
       {
         title: "Be A Champion",
         mission: "Follow firebond twitter and get ..",
-        usdc: "2.9",
+        usdc: "1000",
         page : '/MissionOnboardingMisison'
         
       },
@@ -54,34 +54,34 @@ const content = [
         title: "Feedback",
         mission:
           "Mission: Give your feedback regarding the project, if there any issue .....",
-        usdc: "2.9",
+        usdc: "1000",
         page: "./MissionShareYourFeedback",
       },
       {
         title: "Create a video",
         mission:
           "Mission : Create a video demonstrating how to deploy a blockchain validator....",
-        usdc: "2.9",
+        usdc: "1000",
         page : '/MissionTechnicalTutorial'
       },
 
       {
         title: "Design our company digital mascot ",
         mission: "Mission : We want to distribute our NFT to .....",
-        usdc: "2.9",
+        usdc: "1000",
         page : '/MissionDigitalMascot'
       },
 
       {
         title: "Write a kickass blog post for Firebond",
         mission: "Mission : Write a blog piece for firebond.....",
-        usdc: "2.9",
+        usdc: "1000",
         page: "./MissionKickassBlogPost",
       },
       {
         title: "Onboard 10 new community members",
         mission: "Mission : This mission is for onboarding .....",
-        usdc: "2.9",
+        usdc: "1000",
         page : '/MissionOnboardingNewMembers'
       },
     ],
@@ -93,12 +93,12 @@ const content = [
       {
         title: "Participating in AMA",
         mission: "Earn by participating in AMA...",
-        usdc: "2.9",
+        usdc: "1000",
       },
       {
         title: "Submit An AMA Question",
         mission: "Mission: Submit your questions regarding the AMA.....",
-        usdc: "2.9",
+        usdc: "1000",
         page : '/MissionAMAQuestion'
       },
     ],

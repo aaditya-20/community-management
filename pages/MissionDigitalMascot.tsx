@@ -17,7 +17,7 @@ const missionSteps = [
   "Submit your work",
   "Share the proof of work",
 ];
-const xp = 2.9;
+const xp = 1000;
 const coinType = "USDC";
 const submission_type = "file"
 function MissionDigitalMascot() {
@@ -93,19 +93,20 @@ function MissionDigitalMascot() {
                 </div>
 
                 <div className="mt-[60px] mb-3 px-3">
-                  <MissionStepsCard
-                    heading1={"Upload your Design"}
-                    descp1={"Be consistent with it"}
-                    heading2="Start a conversation"
-                    descp2={missionSteps[1]}
-                  />
+                <MissionStepsCard
+                  className="mx-[20px]"
+                  heading1="Follow our Twitter Handle"
+                  heading2="Submit your work"
+                  descp1="Follow us"
+                  descp2="Share the proof of work"
+                />
                 </div>
               </div>
               <div className="text-[#ffffff] w-[auto] h-[auto] ml-[30px]">
                 <BeAchamp
                   title="Design our company digital mascot "
                   tags={["Writing", "Marketing"]}
-                  val="2.9"
+                  val={xp}
                 />
               </div>
             </div>

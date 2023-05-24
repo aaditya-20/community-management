@@ -78,9 +78,9 @@ Upload your piece of art on Google Drive (make it public!)`;
                 <div className="mt-[60px] mb-3">
                   <MissionStepsCard
                     heading1={"Write a kickass blog"}
-                    descp1={missionSteps[0]}
+                    descp1="Write a blog"
                     heading2="Submit your work"
-                    descp2={missionSteps[1]}
+                    descp2="Share the proof of work"
                   />
                 </div>
               </div>
@@ -90,7 +90,7 @@ Upload your piece of art on Google Drive (make it public!)`;
                 <BeAchamp
                   title="Write a kickass blog post for Firebond"
                   tags={["Writing", "Marketing"]}
-                  val="2.9"
+                  val={xp}
                 />
               </div>
           </div>
