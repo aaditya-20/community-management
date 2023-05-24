@@ -31,7 +31,7 @@ const SmallMissionCard: React.FC<SmallMissionCardProps> = ({
         </div>
         <button className="w-[80px] h-[30px] bg-[rgb(255,186,3)]/[0.36] rounded-[8px] flex justify-center items-center hover:shadow-sm">
           <h1 className="font-bold text-[12px] leading-[14px] text-[#FFBA03]">
-            {usdc} USDC
+            {usdc} XP
           </h1>
         </button>
       </div>

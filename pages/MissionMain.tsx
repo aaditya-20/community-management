@@ -373,7 +373,7 @@ const MissionMain = () => {
                       </div>
                       <button className="w-[70px] h-[30px] bg-[rgb(255,186,3)]/[0.36] rounded-[8px]">
                         <h1 className="font-bold text-[12px] leading-[14px] text-[#FFBA03]">
-                          {item.button} USDC
+                          {item.button} XP
                         </h1>
                       </button>
                     </div>
@@ -401,7 +401,7 @@ const MissionMain = () => {
                       </div>
                       <button className="w-[70px] h-[30px] bg-[rgb(255,186,3)]/[0.36] rounded-[8px]">
                         <h1 className="font-bold text-[12px] leading-[14px] text-[#FFBA03]">
-                          {item.button} USDC
+                          {item.button} XP
                         </h1>
                       </button>
                     </div>
@@ -431,7 +431,7 @@ const MissionMain = () => {
                       </div>
                       <button className="w-[70px] h-[30px] bg-[rgb(255,186,3)]/[0.36] rounded-[8px]">
                         <h1 className="font-bold text-[12px] leading-[14px] text-[#FFBA03]">
-                          {item.button} USDC
+                          {item.button} XP
                         </h1>
                       </button>
                     </div>
