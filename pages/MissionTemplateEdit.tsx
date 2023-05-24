@@ -14,6 +14,7 @@ import Details2 from "@/components/molecules/Details2";
 import EditMission from "@/utils/EditMission";
 import MissionFormData from "@/utils/MissionFormData";
 import SubmissionCard from "@/components/molecules/SubmissionCard";
+import Link from "next/link";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -34,7 +35,7 @@ const MissionTemplateEdit = () => {
   const [input3, setInput3] = useState(obj2.heading2);
   const [input4, setInput4] = useState(obj2.description2);
   const [selectedButton, setSelectedButton] = useState(null);
-
+  
   var wallet_id = "";
   if (typeof window !== "undefined") {
     const storedJsonData = localStorage.getItem("data");
@@ -151,8 +152,10 @@ const MissionTemplateEdit = () => {
             <Header />
             <div className="w-full h-[115px] border-t-[1px] border-b-[1px] border-[#353B43] px-6 py-7">
               <div className="h-full w-full">
-                <h1 className="font-medium text-[14px] leading-[18.9px] mb-2 text-[#A6A6A6]">
-                  Missions/Invite 10 new community members
+                <h1 className="font-medium text-[14px] flex gap-1 leading-[18.9px] mb-2 text-[#A6A6A6]">
+                <Link href="/MissionMain" className="inline">Mission</Link>/
+                <Link href="/MissionTemplatePage" className="inline">Template</Link>/
+                <div className="inline text-[white] font-[600]">TemplateEdit</div>
                 </h1>
                 <div className="h-full w-full flex justify-between items-center">
                   <h1 className="font-semibold text-2xl text-white">
