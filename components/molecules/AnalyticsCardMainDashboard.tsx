@@ -3,89 +3,128 @@ import { ChartDataset } from "chart.js";
 import { Chart } from "chart.js/auto";
 import { registerables } from 'chart.js';
 import { supabase } from "../../utils/supabaseClient";
-import { fr } from "date-fns/locale";
+import { da, fr } from "date-fns/locale";
 
 Chart.register(...registerables);
 
-
+let count =  0;
 function AnalyticsCardMainDashboard() {
   const [isOpen, setOpen] = useState(false);
-
+  const [someData,setsomeData] = useState([20, 25, 15, 20, 30, 10, 20, 10, 20, 20, 10,10])
   const handleDropDown = () => {
-    console.log("hello");
     setOpen(!isOpen);
   };
   let k=0;
-  async function chartData() {
-
+  
+  let monthNumber: any ;
+  async function fetchdata() {
+    const result = localStorage.getItem("data");
+    const jsonData = JSON.parse(result ?? "{}");
+    const email = jsonData.email;
+    // Fetch data from discord Details
+    const { data, error } = await supabase
+      .from("discordDetails")
+      .select("*")
+      .eq("email", email);
+      if(error){
+        console.log('error in fetching discord details',error);
+      }
+      else{
+        console.log('discord data',data);
+        monthNumber  = data;
+        let DiscordArray: any[] = [];
+ 
+      // console.log('mothnumber',monthNumber)
+      // console.log('discordarray',DiscordArray)
+      for (let i = 1; i <= 12; i++) {
+        if (monthNumber==undefined||monthNumber[0][i] == null) {
+          DiscordArray.push(0);
+        } else  {
+          DiscordArray.push(monthNumber[0][i]);
+        }
+        
+        
+      }
+      // console.log('discordarray',DiscordArray)
+      if(DiscordArray!=someData){
+        setsomeData(DiscordArray);
+      }
+     
+        
+      }
+    
+  }
+  
+  useEffect( () => {
+    if(count<=0){
+      fetchdata();
+      count++;
+    }
     var canvas = document.getElementById("myChart") as HTMLCanvasElement;
     var ctx = canvas.getContext("2d")!;
-
-    async function fetchdata() {
-      const result = localStorage.getItem("data");
-      const jsonData = JSON.parse(result ?? "{}");
-      const email = jsonData.email;
-      // Fetch data from discord Details
-      const { data, error } = await supabase
-        .from("discordDetails")
-        .select("*")
-        .eq("email", email);
-      return data;
-    }
-
-    const DiscordArray: any[] = [];
-    const monthNumber: any = await fetchdata();
-
-    for (let i = 0; i < 12; i++) {
-      if (monthNumber[0][i] == null) {
-        DiscordArray.push(0);
-      } else {
-        DiscordArray.push(monthNumber[0][i]);
-      }
-    }
-
+   
     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
     gradient.addColorStop(0, '#5DDCFE');
     gradient.addColorStop(1, '#00BFF3');
 
-
-
-    let myChart: any = new Chart(ctx, {
+    var myChart = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JULY", "AUG", "SEP", "OCT", "NOV", "DEC"],
+        labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JULY","AUG", "SEP", "OCT", "NOV","DEC"],
         datasets: [
           {
-            data: DiscordArray,
+            data: someData,
             label: "Discord",
-            borderSkipped: 'middle',
+            
+          
+            borderSkipped:'middle',
             barThickness: 25,
             backgroundColor: gradient,
+         
             borderRadius: {
-              topLeft: 10,
-              topRight: 10,
-              bottomLeft: 10,
-              bottomRight: 10,
+                topLeft:10,
+                topRight:10,
+                bottomLeft:10,
+                bottomRight:10,
             },
+            // borderWidth: 2
           },
+          // {
+          //   data: [30, 40, 25, 30, 40, 30, 40, 25, 30, 35, 30,20],
+          //   label: "Discord",
+          //   // borderSkipped:false,
+          //   borderRadius: {
+          //       topLeft:10,
+          //       topRight:10,
+          //       bottomLeft:10,
+          //       bottomRight:10,
+          //   },
+          //   barThickness: 25,
+          //   backgroundColor: "#313031",
+            
+            
+          // },
         ],
       },
+
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {
+         
             display: false,
             labels: {
-              boxWidth: 13,
-              useBorderRadius: true,
-              borderRadius: 6,
+              boxWidth:13,
+              useBorderRadius:true,
+              borderRadius:6,
             },
           },
         },
         scales: {
           x: {
             ticks: {
+              //labels at x-axis are ticks
               color: "#8C89B4",
               display: true,
             },
@@ -93,157 +132,29 @@ function AnalyticsCardMainDashboard() {
               color: "black",
               display: false,
             },
+
             stacked: true,
           },
           y: {
             display: false,
-            grid: {},
+            grid: {
+              // borderColor:"black",
+              // display:false,
+            },
             stacked: false,
           },
         },
       },
     });
-  
-    k++;
-    // myChart.destroy();
-    // if(myChart.current){
-    //   myChart.current.destroy();
-    // }
+    
+    // run each time whenever a component will unmount
     return () => {
-      myChart.destroy()
-    }
+      myChart.destroy();
+    };
+  }, [someData]);
+  
 
 
-  }
-  useEffect(() => {
-    chartData();
-  }, []);
-
-  // useEffect(() => {
-  //  chartData();
-  // }, []);
-  // async function chartData(){
-  //   var canvas = document.getElementById("myChart") as HTMLCanvasElement;
-  //   var ctx = canvas.getContext("2d")!;
-  //   async function fetchdata() {
-  //     const result = localStorage.getItem("data");
-  //     const jsonData = JSON.parse(result ?? "{}");
-  //     const email = jsonData.email;
-  //     //Fetch data from discord Details
-  //     const { data, error } = await supabase
-  //       .from("discordDetails")
-  //       .select("*")
-  //       .eq("email", email);
-  //     return data;
-  //   }
-  //   const DiscordArray:any=[];
-  //   const monthNumber:any=await fetchdata();
-  //   //console.log(monthNumber[0],"=monthNumber")
-  //   for(let i=0;i<12;i++){
-  //     // DiscordArray.push(data[i].discordName);
-  //     if(monthNumber[0][i]==null){
-  //      DiscordArray.push(0);
-  //     }
-  //     else{
-  //      DiscordArray.push(monthNumber[0][i]);
-  //     }
-
-  //    }
-  //   console.log("Discord Array=",DiscordArray);
-
-
-
-  //   const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-  //   gradient.addColorStop(0, '#5DDCFE');
-  //   gradient.addColorStop(1, '#00BFF3');
-  //   console.log(DiscordArray.length);
-
-  //   var myChart = new Chart(ctx, {
-  //     type: "bar",
-  //     data: {
-  //       labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JULY","AUG", "SEP", "OCT", "NOV","DEC"],
-  //       datasets: [
-  //         {
-  //           data: [20, 25, 15, 20, 30, 10, 20, 10, 20, 20, 10,10],
-  //           label: "Discord",
-
-
-  //           borderSkipped:'middle',
-  //           barThickness: 25,
-  //           backgroundColor: gradient,
-
-  //           borderRadius: {
-  //               topLeft:10,
-  //               topRight:10,
-  //               bottomLeft:10,
-  //               bottomRight:10,
-  //           },
-  //           // borderWidth: 2
-  //         },
-  //         // {
-  //         //   data: [30, 40, 25, 30, 40, 30, 40, 25, 30, 35, 30,20],
-  //         //   label: "Discord",
-  //         //   // borderSkipped:false,
-  //         //   borderRadius: {
-  //         //       topLeft:10,
-  //         //       topRight:10,
-  //         //       bottomLeft:10,
-  //         //       bottomRight:10,
-  //         //   },
-  //         //   barThickness: 25,
-  //         //   backgroundColor: "#313031",
-
-
-  //         // },
-  //       ],
-  //     },
-
-  //     options: {
-  //       responsive: true,
-  //       maintainAspectRatio: false,
-  //       plugins: {
-  //         legend: {
-
-  //           display: false,
-  //           labels: {
-  //             boxWidth:13,
-  //             useBorderRadius:true,
-  //             borderRadius:6,
-  //           },
-  //         },
-  //       },
-  //       scales: {
-  //         x: {
-  //           ticks: {
-  //             //labels at x-axis are ticks
-  //             color: "#8C89B4",
-  //             display: true,
-  //           },
-  //           grid: {
-  //             color: "black",
-  //             display: false,
-  //           },
-
-  //           stacked: true,
-  //         },
-  //         y: {
-  //           display: false,
-  //           grid: {
-  //             // borderColor:"black",
-  //             // display:false,
-  //           },
-  //           stacked: false,
-  //         },
-  //       },
-  //     },
-  //   });
-
-  //   return () => {
-  //     console.log("hi aa raha")
-  //     myChart.destroy();
-  //   };
-
-  // }
   return (
     <>
 
@@ -288,7 +199,7 @@ function AnalyticsCardMainDashboard() {
         </div>
 
 
-
+        
 
         {/*  */}
         <div id="" className="absolute  top-[325px] left-[25px] justify-center">
