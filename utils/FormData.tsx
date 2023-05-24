@@ -9,7 +9,8 @@ let formData = {
   discordToken:" ",
   community_type : 1,
   twitter_handle : " ",
-  website_handle : " "
+  website_handle : " ",
+  twitterCode : " ",
 };
 
 export default function FormData() {
