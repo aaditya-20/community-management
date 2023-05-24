@@ -75,7 +75,7 @@ function CommunitySetUpIntegration() {
     }
   }
   async function twitterToken(){
-    if (window.location.href.includes("access_token"))
+    if (window.location.href.includes("code"))
     {
       const fragment = new URLSearchParams(window.location.hash.slice(1));
 
@@ -161,6 +161,7 @@ function CommunitySetUpIntegration() {
   }
 
   function handleTwitterClick() {
+    if(flagTwitter=="hidden")
     window.location.href=("https://twitter.com/i/oauth2/authorize?response_type=code&client_id=QllVRHgtbzhGSEl0c1lWSUE4UmU6MTpjaQ&redirect_uri=https://firebond-client-staging.vercel.app/CommunitySetUpIntegration&scope=tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain")
     
     // if (flagTwitter == "hidden") {
