@@ -19,7 +19,7 @@ const missionSteps = [
   "Submit your work",
   "Share the proof of work",
 ];
-const reward = 2.9;
+const xp = 1000;
 const coinType = "USDC";
 const submissionType = "link"
 function MissionAMAQuestion() {

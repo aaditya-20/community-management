@@ -108,10 +108,10 @@ If you do not include these two items, you will not be considered.`;
 
                 <div className="mt-[60px] mb-3">
                   <MissionStepsCard
-                    heading1={"Create a technical tutorial video"}
-                    descp1={"Upload video"}
-                    heading2="Submit Work"
-                    descp2={missionSteps[3]}
+                    heading1="Follow our Twitter handle"
+                    descp1="Follow us"
+                    heading2="Submit your work"
+                    descp2="Share the proof of work"
                   />
                 </div>
               </div>
@@ -121,7 +121,7 @@ If you do not include these two items, you will not be considered.`;
               <BeAchamp
                 title="Technical Tutorials for Firebond"
                 tags={tags}
-                val="2.9"
+                val={xp}
               />
             </div>
           </div>

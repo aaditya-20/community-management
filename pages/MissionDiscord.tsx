@@ -101,10 +101,10 @@ This quest will auto-validate when you claim it.`;
                 <pre className="overflow-auto no-scrollbar">{description}</pre>
                 <div className="mt-[60px] mb-3">
                   <MissionStepsCard
-                    heading1={"Join our Discord"}
-                    descp1={missionSteps[0]}
+                    heading1="Join our Discord"
+                    descp1="Join Discord Channel and get verified"
                     heading2="Start a conversation"
-                    descp2={missionSteps[1]}
+                    descp2="Start a conversation on any discord channel you like containing at least 10 characters"
                   />
                 </div>
               </div>
@@ -113,7 +113,7 @@ This quest will auto-validate when you claim it.`;
               <BeAchamp
                 title="Discord Mission for Firebond"
                 tags={["Writing", "Marketing"]}
-                val="2.9"
+                val={xp}
               />
             </div>
           </div>

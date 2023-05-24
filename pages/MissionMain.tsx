@@ -21,13 +21,13 @@ const twitter = [
   {
     id: 1,
     title: "Follow on Twitter",
-    button: 0.1,
+    button: 1000,
     mission: "Follow us on Twitter",
   },
   {
     id: 2,
     title: "Write a tweet about Firebond",
-    button: 2.9,
+    button: 1000,
     mission: "Write a thoughtful message about firebond on why we rock!...",
   },
 ];
@@ -36,7 +36,7 @@ const Discord = [
   {
     id: 1,
     title: "Make Friends",
-    button: 2.9,
+    button: 1000,
     mission: "Join discord channel and got ver...",
   },
 ];
@@ -45,14 +45,14 @@ const Community = [
   {
     id: 1,
     title: "Be A Champion",
-    button: 2.9,
+    button: 1000,
     mission: "Follow firebond twitter and get ...",
     route: "/MissionOnboardingMisison",
   },
   {
     id: 2,
     title: "Feedback",
-    button: 2.9,
+    button: 1000,
     mission: "Give your feedback regarding the ...",
     route: "/MissionShareYourFeedback",
   },

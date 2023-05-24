@@ -29,7 +29,7 @@ export default function MissionDiscord() {
     "Follow us",
     "Share the proof of work",
   ];
-  const xp = 2.9;
+  const xp = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
   const submission_type = 'link'
@@ -75,9 +75,9 @@ export default function MissionDiscord() {
                 <div className="mt-[60px] mb-3">
                   <MissionStepsCard
                     heading1={"Follow our Twitter handle"}
-                    descp1={missionSteps[0]}
+                    descp1="Follow us"
                     heading2="Submit your work"
-                    descp2={missionSteps[1]}
+                    descp2="Share the proof of work"
                   />
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function MissionDiscord() {
               <BeAchamp
                 title="Twitter Mission"
                 tags={["Writing", "Marketing"]}
-                val="2.9"
+                val="1000"
               />
             </div>
           </div>
