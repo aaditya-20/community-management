@@ -13,8 +13,8 @@ const SubmissionCard = () => {
   const [type, setType] = useState(Array(9).fill(false));
   const [fileName, setFileName] = useState("");
   const [link, setLink] = useState("");
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState(null);
+  const [question, setQuestion] = useState([]);
+  const [answer, setAnswer] = useState([]);
 
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ const SubmissionCard = () => {
     "invite",
     "empty",
     "text",
-    {type : "quiz" , question : obj2.ques , ans : obj2.ans },
+    {type : "quiz" , question : obj2.question , options : obj2.options , answer : obj2.answer},
     'feedback',
     'referral'
   ];

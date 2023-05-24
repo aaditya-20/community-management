@@ -1,13 +1,42 @@
 import QuizMission from "@/utils/QuizMission";
 import React, { useState } from "react";
 import { BsTrash3 } from "react-icons/bs";
-const Quiz = (props:any) => {
-  const [question, setQuestion] = useState("");
-  const [True,setTrue] = useState("true");
+const Quiz = (props: any) => {
+  const [text1,setText1] = useState('');
+  const [text2,setText2] = useState('');
+  const [text3,setText3] = useState('');
+  const [text4,setText4] = useState('');
+  const [question, setQuestion] = useState(""); 
+  const [option, setOption] = useState(1);
   const obj = QuizMission();
-  obj.ques = question;
-  obj.ans = True;
-  
+
+  obj.question[props.id] = question;
+  obj.answer[props.id] = option;
+  obj.options[props.id][0] = text1;
+  obj.options[props.id][1] = text2;
+  obj.options[props.id][2] = text3;
+  obj.options[props.id][3] = text4;
+
+  console.log("quiz",obj);
+ 
+  // obj.answer = answer
+
+  // obj.ans = True;
+
+
+  function handleText1(e : any){
+    setText1(e.target.value)
+  }
+  function handleText2(e : any){
+    setText2(e.target.value)
+  }
+  function handleText3(e : any){
+    setText3(e.target.value)
+  }
+  function handleText4(e : any){
+    setText4(e.target.value)
+  }
+
   return (
     <div className="w-full h-auto mb-[31px]">
       <div className="w-full flex justify-between gap-[17px]">
@@ -23,19 +52,82 @@ const Quiz = (props:any) => {
           />
         </div>
         {/* delete button */}
-        <div className="h-[41px] w-[42px] bg-[#474C52] rounded-[4px] flex justify-center items-center cursor-pointer mb-[25px]" onClick={()=>props.delete(props.id)}>
+        <div
+          className="h-[41px] w-[42px] bg-[#474C52] rounded-[4px] flex justify-center items-center cursor-pointer mb-[25px]"
+          onClick={() => props.delete(props.id)}
+        >
           <BsTrash3 />
         </div>
       </div>
       {/* True  / Choice  */}
       <div className="flex gap-4 items-center mb-5">
-        <button onClick={()=>{setTrue('true')}} className={`w-4 h-4 rounded-full border border-white cursor-pointer ${True === 'true' ? "bg-white" : ""}`}></button>
-        <h1 className="text-sm font-normal text-[#D0D0D0]">True</h1>
+        <button
+          onClick={() => {
+            setOption(1);
+          }}
+          className={`w-4 h-4 rounded-full border border-white cursor-pointer ${
+            option === 1 ? "bg-white" : ""
+          }`}
+        ></button>
+        <input
+          type="text"
+          className="w-half px-1 h-full  text-white font-medium text-base bg-[#2E363F] placeholder:text-white"
+          placeholder=" "
+          value={text1}
+          onChange={handleText1}
+        />
       </div>
       {/* False option / Add options */}
       <div className="flex gap-4 items-center mb-5">
-        <button onClick={()=>{setTrue('false')}} className={`w-4 h-4 rounded-full border border-white cursor-pointer ${True === 'false' ? "bg-white" : ""}`}></button>
-        <h1 className="text-sm font-normal text-[#D0D0D0]">False</h1>
+        <button
+          onClick={() => {
+            setOption(2);
+          }}
+          className={`w-4 h-4 rounded-full border border-white cursor-pointer ${
+            option === 2 ? "bg-white" : ""
+          }`}
+        ></button>
+         <input
+          type="text"
+          className="w-half px-1 h-full  text-white font-medium text-base bg-[#2E363F] placeholder:text-white"
+          placeholder=" "
+          value={text2}
+          onChange={handleText2}
+        />
+      </div>
+      <div className="flex gap-4 items-center mb-5">
+        <button
+          onClick={() => {
+            setOption(3);
+          }}
+          className={`w-4 h-4 rounded-full border border-white cursor-pointer ${
+            option === 3 ? "bg-white" : ""
+          }`}
+        ></button>
+         <input
+          type="text"
+          className="w-half px-1 h-full  text-white font-medium text-base bg-[#2E363F] placeholder:text-white"
+          placeholder=" "
+          value={text3}
+          onChange={handleText3}
+        />
+      </div>
+      <div className="flex gap-4 items-center mb-5">
+        <button
+          onClick={() => {
+            setOption(4);
+          }}
+          className={`w-4 h-4 rounded-full border border-white cursor-pointer ${
+            option === 4 ? "bg-white" : ""
+          }`}
+        ></button>
+         <input
+          type="text"
+          className="w-half px-1 h-full  text-white font-medium text-base bg-[#2E363F] placeholder:text-white"
+          placeholder=" "
+          value={text4}
+          onChange={handleText4}
+        />
       </div>
       <div className="w-full h-0 border-[0.5px] border-[#474C52]"></div>
     </div>

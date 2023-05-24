@@ -11,6 +11,7 @@ import UserHeader from "@/components/molecules/UserHeader";
 import UserSidebar from "@/components/molecules/UserSidebar";
 import QuizMission from "@/utils/QuizMission";
 import DiscordVerificationUser from "@/components/molecules/DiscordVerificationUser";
+import QuizForUser from "@/components/molecules/QuizForUser";
 declare var window: any;
 // const [file, setFile] = useState("");
 var community_id = "";
@@ -362,34 +363,7 @@ function MissionForUser(props: any) {
               </div>
             )}
             {type == 6 && (
-              <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
-                <h1 className="font-medium text-large text-white mb-[11px]">
-                  {missionDetails.submission_type.question}
-                </h1>
-                <div className="flex gap-4 items-center mb-5">
-                  <button
-                    onClick={() => {
-                      setTrue("true");
-                    }}
-                    className={`w-4 h-4 rounded-full border border-white cursor-pointer ${
-                      True === "true" ? "bg-white" : ""
-                    }`}
-                  ></button>
-                  <h1 className="text-sm font-normal text-[#D0D0D0]">True</h1>
-                </div>
-                {/* False option / Add options */}
-                <div className="flex gap-4 items-center mb-5">
-                  <button
-                    onClick={() => {
-                      setTrue("false");
-                    }}
-                    className={`w-4 h-4 rounded-full border border-white cursor-pointer ${
-                      True === "false" ? "bg-white" : ""
-                    }`}
-                  ></button>
-                  <h1 className="text-sm font-normal text-[#D0D0D0]">False</h1>
-                </div>
-              </div>
+              <QuizForUser question={missionDetails.submission_type.question} answer={missionDetails.submission_type.answer} options={missionDetails.submission_type.options} />
             )}
             {type == 7 && (
               <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
