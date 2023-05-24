@@ -84,7 +84,7 @@ function CommunitySetUpIntegration() {
       ];
       console.log("code:-", code);
      localStorage.setItem('twitterCode', code||'Not Found');
-     obj.twitterCode=localStorage.getItem("twitterCode")||'Not Found';
+     obj.twitterCode=code||'Not Found';
           if (flagTwitter == "hidden") {
       setTwitter("visible");
     }
