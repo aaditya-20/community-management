@@ -16,11 +16,16 @@ import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+
+import QuizMission from "@/utils/QuizMission";
+
 import Link from "next/link";
+
 console.log("missiontempeditobj->",MissionFormData());
 const MissionCreationFormPage = () => {
   const [OpenMission, setOpenMission] = useState(false);
   const obj = MissionFormData();
+  const obj2 = QuizMission();
   const [MissionId, setMissionId] = useState("");
   var wallet_id: null;
   if (typeof window !== "undefined") {
@@ -66,6 +71,11 @@ const MissionCreationFormPage = () => {
       else {
         mission.push(obj);
       }
+      obj2.question = [""];
+      obj2.options = [["","","",""]];
+      obj2.answer = [0];
+
+
       // Update the row with the new missions
       const { data, error: updateError } = await supabase
         .from("community_data")

@@ -9,6 +9,8 @@ import LoginSplit from './LoginSplit'
 import MissionKickassBlogPost from './MissionKickassBlogPost'
 import InstallMetamaskPopup from './InstallMetamaskPopup'
 import CopyLinkPopUpFormBuilder from '@/components/molecules/CopyLinkPopUpFormBuilder'
+import DiscordVerificationUser from '@/components/molecules/DiscordVerificationUser'
+import MissionForUser from './MissionForUser'
 
 export default function index() {
   return (

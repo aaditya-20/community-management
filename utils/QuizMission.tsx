@@ -1,6 +1,7 @@
 let quizData = {
-   ques : "This is a dummy question",
-   ans : "true"
+   question : [""],
+   options : [["","","",""]],
+   answer : [0]
 }
 
 export default function QuizMission(){
