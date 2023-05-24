@@ -266,17 +266,17 @@ const MissionTemplateEdit = () => {
                     </div>
                   </div> */}
 
-                  <div className="w-[749px] h-auto  bg-[#232B35] rounded-[20px] mb-6">
-                    <div className="h-[72px] border-b-[0.5px] border-[#474C52] pl-6"></div>
-                    <div className="h-auto w-full p-6">
-                      <div className="h-auto relative top-[-97px] left-[-20px]">
+                  {/* <div className="w-full  h-auto  bg-[#232B35] rounded-[20px] mb-6"> */}
+                    {/* <div className="h-[72px] border-b-[0.5px] border-[#474C52] pl-6"></div> */}
+                    {/* <div className="h-auto w-full p-6"> */}
+                      {/* <div className="h-auto relative top-[-97px] left-[-20px]"> */}
                         <Details2 description={description} />
 
                         {/* Mission Steps Section */}
-                        <h1 className="mb-[29px]">Mission steps</h1>
-                        <div className="flex gap-[22.07px]">
+                        {/* <h1 className="mb-[29px]">Mission steps</h1> */}
+                        {/* <div className="flex gap-[22.07px]"> */}
                           {/* left section */}
-                          <div>
+                          {/* <div>
                             <div className="w-[97.93px] h-[34px] bg-[#191F27] rounded-[4px] flex justify-center items-center">
                               <h1 className="font-medium text-xs text-white">
                                 Step 1
@@ -285,10 +285,10 @@ const MissionTemplateEdit = () => {
                             <div className=" w-full flex justify-center">
                               <div className="w-0 h-[182px] border-[1px] border-dashed border-[#44494F]"></div>
                             </div>
-                          </div>
+                          </div> */}
                           {/* right section */}
-                          <div>
-                            <div className="mb-6">
+                          {/* <div> */}
+                            {/* <div className="mb-6">
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Heading
                               </h1>
@@ -302,13 +302,13 @@ const MissionTemplateEdit = () => {
                                   />
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
 
-                            <div className="mb-6">
-                              <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
-                                Sub heading
-                              </h1>
-                              <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
+                            {/* <div className="mb-6"> */}
+                              {/* <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]"> */}
+                                {/* Sub heading
+                              </h1> */}
+                              {/* <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
                                 <div className="w-full h-[41px] bg-[#2E363F] ">
                                   <input
                                     className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
@@ -317,14 +317,14 @@ const MissionTemplateEdit = () => {
                                     placeholder=""
                                   />
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                              </div> */}
+                            {/* </div> */}
+                          {/* </div> */}
+                        {/* </div> */}
 
-                        <div className="flex gap-[22.07px]">
+                        {/* <div className="flex gap-[22.07px]"> */}
                           {/* left section */}
-                          <div>
+                          {/* <div>
                             <div className="w-[97.93px] h-[34px] bg-[#191F27] rounded-[4px] flex justify-center items-center">
                               <h1 className="font-medium text-xs text-white">
                                 Step 2
@@ -333,9 +333,9 @@ const MissionTemplateEdit = () => {
                             <div className=" w-full flex justify-center">
                               <div className="w-0 h-[182px] border-[1px] border-dashed border-[#44494F]"></div>
                             </div>
-                          </div>
+                          </div> */}
                           {/* right section */}
-                          <div>
+                          {/* <div>
                             <div className="mb-6">
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Heading
@@ -367,19 +367,19 @@ const MissionTemplateEdit = () => {
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </div> */}
+                        {/* </div> */}
 
-                        <Image
+                        {/* <Image
                           src="Icons/plus1.svg"
                           alt=""
                           width={29}
                           height={29}
                           className="relative left-[35px] bottom-0 "
-                        />
-                      </div>
-                    </div>
-                  </div>
+                        /> */}
+                      {/* </div> */}
+                    {/* </div> */}
+                  {/* </div> */}
                 </div>
               </div>
 
