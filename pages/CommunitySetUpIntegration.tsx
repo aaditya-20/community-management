@@ -83,6 +83,8 @@ function CommunitySetUpIntegration() {
         fragment.get("code")
       ];
       console.log("code:-", code);
+     localStorage.setItem('twitterCode', code||'Not Found');
+     obj.twitterCode=localStorage.getItem("twitterCode")||'Not Found';
           if (flagTwitter == "hidden") {
       setTwitter("visible");
     }
@@ -193,7 +195,8 @@ function CommunitySetUpIntegration() {
       DiscordToken: obj.discordToken,
       community_type : obj.community_type,
       twitter_handle : obj.twitter_handle,
-      website_handle : obj.website_handle
+      website_handle : obj.website_handle,
+      twitterCode : obj.twitterCode,
       
     });
     if (error) {
