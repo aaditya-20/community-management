@@ -12,6 +12,8 @@ import UserSidebar from "@/components/molecules/UserSidebar";
 import QuizMission from "@/utils/QuizMission";
 import DiscordVerificationUser from "@/components/molecules/DiscordVerificationUser";
 import QuizForUser from "@/components/molecules/QuizForUser";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { MdContentCopy } from "react-icons/md";
 declare var window: any;
 // const [file, setFile] = useState("");
 var community_id = "";
@@ -120,6 +122,22 @@ function MissionForUser(props: any) {
       console.log("mission detalis ka submission type", type);
     }
   }, []);
+
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  };
+
+  let date = new Date;
+  const generateRandom = () => String(date.getTime());
+
+  var hash = generateRandom();
+
+  var hashed = `${typeof window == "undefined"?"dontknow":window.location.origin}/referral/${hash}`
 
   async function fetchData(xp: any) {
     try {
@@ -363,7 +381,11 @@ function MissionForUser(props: any) {
               </div>
             )}
             {type == 6 && (
-              <QuizForUser question={missionDetails.submission_type.question} answer={missionDetails.submission_type.answer} options={missionDetails.submission_type.options} />
+              <QuizForUser
+                question={missionDetails.submission_type.question}
+                answer={missionDetails.submission_type.answer}
+                options={missionDetails.submission_type.options}
+              />
             )}
             {type == 7 && (
               <div className="max-w-[700px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6 ml-9 realtive">
@@ -391,15 +413,19 @@ function MissionForUser(props: any) {
                   rewards for your action
                 </h6>
 
-                <div className="rounded-lg h-[41px] w-full flex gap-[14px] items-center relative bg-[#2E363F] overflow-hidden blur-sm">
-                  <input
-                    type="text"
-                    className="w-full h-full outline-none bg-inherit text-xs placeholder:text-[#D0D0D0A6] text-white font-normal overflow-hidden text-ellipsis  px-[25px]"
-                    placeholder="Write Feedback about product"
-                    value={text}
-                    onChange={handleText}
-                  />
+                <div className="flex flex-row items-center h-[47px] border-[1px] mt-[50px]   bg-[#2E363F] rounded-[8px]">
+                  <div className="flex text-[#D0D0D0] text-[16px] ml-[12px]  ">
+                    {hashed}
+                    <CopyToClipboard text={hashed} onCopy={handleCopy}>
+                      <MdContentCopy size={20} className="ml-[30px]" />
+                    </CopyToClipboard>
+                  </div>
                 </div>
+                {copied && (
+                  <div className="text-[#FFFFFF] text-[14px] mt-[10px]">
+                    Copied!
+                  </div>
+                )}
               </div>
             )}
           </div>
