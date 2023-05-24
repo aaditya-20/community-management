@@ -77,11 +77,7 @@ function CommunitySetUpIntegration() {
   async function twitterToken(){
     if (window.location.href.includes("code"))
     {
-      const fragment = new URLSearchParams(window.location.hash.slice(1));
-
-      const [code] = [
-        fragment.get("code")
-      ];
+      const code=window.location.search.split("code=")[1];
       console.log("code:-", code);
      localStorage.setItem('twitterCode', code||'Not Found');
      obj.twitterCode=code||'Not Found';
