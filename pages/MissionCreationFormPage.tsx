@@ -16,7 +16,11 @@ import { supabase } from "@/utils/supabaseClient";
 import { Modal } from "@material-ui/core";
 import CopyLinkPopUpFormBuilder from "@/components/molecules/CopyLinkPopUpFormBuilder";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
+
 import QuizMission from "@/utils/QuizMission";
+
+import Link from "next/link";
+
 console.log("missiontempeditobj->",MissionFormData());
 const MissionCreationFormPage = () => {
   const [OpenMission, setOpenMission] = useState(false);
@@ -120,7 +124,10 @@ const MissionCreationFormPage = () => {
             <div className="w-full h-[115px]  border-b-[1px] border-[#353B43] px-6 py-7">
               <div className="h-full w-full">
                 <h1 className="font-medium text-[14px] leading-[18.9px] mb-2 text-[#A6A6A6]">
-                  Missions/Create
+
+                 <Link href="/MissionMain" className="inline">Mission</Link>/
+                 <div className="inline text-[white] font-[600]">Create</div>
+                  
                 </h1>
                 <div className="h-full w-full flex justify-between items-center">
                   <h1 className="font-semibold text-2xl text-white">

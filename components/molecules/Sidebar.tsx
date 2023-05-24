@@ -62,12 +62,12 @@ const secondMenu = [
     title: "Settings",
     route: "/setting",
   },
-  {
-    src: "Icons/Fire_Scrolls.svg",
-    size: 24,
-    title: "Fire Scrolls",
-    route: "/MissionReview",
-  },
+  // {
+  //   src: "Icons/Fire_Scrolls.svg",
+  //   size: 24,
+  //   title: "Fire Scrolls",
+  //   route: "/MissionReview",
+  // },
 ];
 const Sidebar = () => {
   const [name, setName] = useState("");
