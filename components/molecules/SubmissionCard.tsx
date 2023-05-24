@@ -226,8 +226,9 @@ const SubmissionCard = () => {
       )}
       {type[8] && (
         <div className="">
-        <ReferralCard val = {1}/>
-        <ReferralCard val = {2}/>
+        <ReferralCard  title = "API KEY" placeholder = "Paste your invite platform api key in the field given below"/>
+        <ReferralCard  title = "REFERRAL KEY URL" placeholder = "Paste your url for the generation of referral key"/>
+        <ReferralCard  title = "VALIDATION URL" placeholder = "Paste your url for user count validation"/>
         </div>
       )}
       {/* {type[6] && (
