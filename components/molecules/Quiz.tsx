@@ -1,7 +1,7 @@
 import QuizMission from "@/utils/QuizMission";
 import React, { useState } from "react";
 import { BsTrash3 } from "react-icons/bs";
-const Quiz = () => {
+const Quiz = (props:any) => {
   const [question, setQuestion] = useState("");
   const [True,setTrue] = useState("true");
   const obj = QuizMission();
@@ -23,7 +23,7 @@ const Quiz = () => {
           />
         </div>
         {/* delete button */}
-        <div className="h-[41px] w-[42px] bg-[#474C52] rounded-[4px] flex justify-center items-center cursor-pointer mb-[25px]">
+        <div className="h-[41px] w-[42px] bg-[#474C52] rounded-[4px] flex justify-center items-center cursor-pointer mb-[25px]" onClick={()=>props.delete(props.id)}>
           <BsTrash3 />
         </div>
       </div>
