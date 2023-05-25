@@ -104,9 +104,16 @@ export default function Id() {
 
     
    console.log(missionDetails);
+   router.push({
+    pathname: '/MissionViewPageForUser',
+    query: {
+      myData: JSON.stringify(missionDetails),
+     }
+  },)
   // if(!showMissionUser){
     return (
-      <MissionUserAuthCard communityId = {communityId} missionDetails={missionDetails}/>
+      <div>correct mission id hence redirecting.....</div>
+      // <MissionUserAuthCard communityId = {communityId} missionDetails={missionDetails}/>
     )
   // }
   // return (

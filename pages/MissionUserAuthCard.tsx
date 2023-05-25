@@ -7,6 +7,7 @@ import InstallMetamaskPopup from "./InstallMetamaskPopup";
 import { Modal } from "@material-ui/core";
 import CommunityId from "./community/[communityId]";
 import { FaFire } from "react-icons/fa";
+import UserDetails from "./UserDetails";
 // import { supabase } from "@/utils/supabaseClient";
 const UserCard = [
   {
@@ -211,7 +212,7 @@ const MissionUserAuthCard = (props: any) => {
           } else {
             //now to check if he is a new user to our website whose data is not registered?
             checkUserExists("userdata", accounts[0]);
-            console.log("welcome to my community");
+            console.log("welcome to my community",accounts[0]);
           }
         }
       }
@@ -252,9 +253,10 @@ const MissionUserAuthCard = (props: any) => {
   function Metamask() {
     setMetamask(!InstallMeta);
   }
+  // need for a new user,usernaame,wallet_id,username,community_id,missiondetails,
   async function onOkClick() {
     // to be put username unique check , -> done
-
+    console.log('in');
     const { data, error } = await supabase
       .from("userdata")
       .select("name")
@@ -271,14 +273,16 @@ const MissionUserAuthCard = (props: any) => {
       return;
     }
 
-    setUsernamePopUp(false);
+    // setUsernamePopUp(false);
     let arr = [props.communityId];
+    // inserting 
     const { data: new_data, error: new_error } = await supabase
       .from("userdata")
       .insert({
         wallet_id: wallet,
         name: Username,
         communities: arr,
+        //insert email too
       });
     if (new_error) {
       console.log("erorr in inserting the data of username", new_error);
@@ -349,7 +353,13 @@ const MissionUserAuthCard = (props: any) => {
       }
     }
   }
+  if(UsernamePopUp){
+    return (
+      
+      <UserDetails communityId={props.communityId} userWalletId = {wallet_id2} missionDetails={props.missionDetails} />
 
+    )
+  }
   return (
     <>
       <Modal
@@ -366,12 +376,12 @@ const MissionUserAuthCard = (props: any) => {
 
       <Modal
         onClose={() => {
-          setUsernamePopUp(!UsernamePopUp);
+          // setUsernamePopUp(!UsernamePopUp);
         }}
-        open={UsernamePopUp}
+        open={false}
         style={{}}
       >
-      { /* // This is popup which will pop when use not signed up,comes at community Invite
+      { /* // This is popup which will pop when user not signed up,comes at community Invite
         // Only Storing Wallet id and Name at the moment
         // Pending-Email,Avatar */ }
         <div className="flex items-center justify-center h-screen">
