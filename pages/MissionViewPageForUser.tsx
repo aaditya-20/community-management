@@ -36,6 +36,7 @@ function MissionViewPageForUser(props: any) {
   const [copyLink, setcopyLink] = useState("Copy");
   const [description, setdescription] = useState(`here comes the description.`);
   const [tags, settags] = useState(["NoTags"]);
+  const [xp,setXp] = useState(0);
   const [missionSteps, setmissionSteps] = useState([
     "Heading 1",
     "Subheading 1",
@@ -109,18 +110,13 @@ function MissionViewPageForUser(props: any) {
         "referral",
       ];
       arr.forEach((item, index) => {
-        if (
-          (index !== 1 &&
-            index !== 6 &&
-            item === missionDetails.submission_type) ||
-          (index === 1 && missionDetails.submission_type.type === item) ||
-          (index === 6 && missionDetails.submission_type.type === item)
-        ) {
+        if (missionDetails.submission_type.type === item) {
           console.log("dekho", missionDetails.submission_type);
           setType(index);
+          setXp(missionDetails.xp);
         }
       });
-      if (type === 5 || type === 6) {
+      if (type === 5) {
         setIsCompleted(true);
       }
       console.log("mission detalis ka submission type", type);
@@ -209,7 +205,7 @@ function MissionViewPageForUser(props: any) {
     }
   }
 
-  var xp = 0;
+  
  const [ShowAuthenticationPage,setShowAuthenticationPage] = useState(false);
   async function LinkWallet() {
     // Also need to store data to put in Admin's Review Section

@@ -18,7 +18,7 @@ export default function MissionShareYourFeedback() {
   ];
   const xp = 1000;
   const coinType = "USDC";
-  const submissionType = 'text';
+  const submissionType = {type : "feedback"}
   return (
 
     

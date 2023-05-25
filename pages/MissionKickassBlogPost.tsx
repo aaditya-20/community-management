@@ -34,7 +34,7 @@ Upload your piece of art on Google Drive (make it public!)`;
   const xp = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
-  const submission_type = "text";
+  const submission_type = {type :"text"}
 
   function handleFileSelect(e: any) {
     setFile(e.target.value);

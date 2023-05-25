@@ -31,7 +31,7 @@ const missionSteps = [
 ];
 const xp = 1000;
 const coinType = "USDC";
-const submission_type = "invite"
+const submission_type = {type : "file"}
 
 const MissionOnboardingNewMembers = () => {
   return (

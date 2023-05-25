@@ -1,9 +1,13 @@
+
 import MissionFormData from "@/utils/MissionFormData";
 import React, { useState } from "react";
 
 const Reccurence = () => {
   const [Recurrence, setReccurence] = useState("");
   const obj = MissionFormData();
+  
+  
+  
 
   obj.recurrence = Recurrence;
   return (
@@ -50,7 +54,17 @@ const Reccurence = () => {
           Monthly
         </button>
       </div>
+      <div className="mt-5">
+        How to Do Referral Mission
+        <div className = "items-center h-[174px] border-[1px] mt-[10px]  bg-[#2E363F] rounded-[8px]">
+          <span className="mb-2">1. Paste your invite platform api key in the API Key field</span><br></br>
+          <span className="mb-2">2. First URL will be responsible for generation of referral key</span><br></br>
+          <span className="mb-2">3. Second URL would be responsible for validation that how many people were actually invited by the user using that particular referral key</span><br></br>
+          
+        </div>
+      </div>
     </div>
+    
   );
 };
 

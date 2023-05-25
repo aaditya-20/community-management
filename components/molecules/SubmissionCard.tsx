@@ -1,15 +1,17 @@
 import MissionFormData from "@/utils/MissionFormData";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import QuizCard from "./QuizCard";
 import QuizMission from "@/utils/QuizMission";
 import DiscordVerificationUser from "./DiscordVerificationUser";
 import BasicInfoCard from "./BasicInfoCard";
 import ReferralCard from "./ReferralCard";
 
+
 const SubmissionCard = () => {
   const obj = MissionFormData();
   const obj2 = QuizMission();
+  
   const [type, setType] = useState(Array(9).fill(false));
   const [fileName, setFileName] = useState("");
   const [link, setLink] = useState("");
@@ -22,6 +24,8 @@ const SubmissionCard = () => {
       setFileName(file.name);
     }
   };
+
+
 
   var selected = 4;
   const arr = [
@@ -51,6 +55,8 @@ const SubmissionCard = () => {
   function handlelink(e: any) {
     setLink(e.target.value);
   }
+
+  
 
   return (
     <div className="max-w-[749px] h-auto rounded-[20px] bg-[#232B35] p-6 relative mb-6">
