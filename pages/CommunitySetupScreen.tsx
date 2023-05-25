@@ -125,7 +125,9 @@ const CommunitySetupScreen = (): ReactElement => {
       console.log(flagDiscord, "flagDiscord");
       setDiscord("bg-green-800");
       setDiscordBtn(false)
-      setdisableDiscord(true);
+      setdisableDiscord(true)
+      setdisableDiscordBot(true);
+      
 
       const fragment = new URLSearchParams(window.location.hash.slice(1));
    
