@@ -58,7 +58,7 @@ const IntegrationsSettingPage = (): ReactElement => {
     }
   }
 
- const handleClick = ()=> {
+ function handleClick()  {
   if(isConnectDisc === false)
   {
     const authUrl = 'https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2Fsetting&response_type=token&scope=identify%20guilds%20email%20guilds.join%20connections%20guilds.members.read';
@@ -91,7 +91,7 @@ const IntegrationsSettingPage = (): ReactElement => {
   },[])
 
   return (
-    <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
+    <div className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
       <div className="p-[37px] h-auto w-auto">
         <h1 className="mb-2 font-semibold text-2xl text-white">Integrations</h1>
         <h3 className="font-normal text-base text-[#A6A6A6]">
@@ -180,7 +180,7 @@ const IntegrationsSettingPage = (): ReactElement => {
           </button>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 

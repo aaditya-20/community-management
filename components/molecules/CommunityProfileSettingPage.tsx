@@ -14,7 +14,7 @@ const CommunityProfileSettingPage = (props: any) => {
   const [web, setWeb] = useState(props.website_handle);
 
   return (
-    <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
+    <div className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
       <div className="p-[37px] h-auto w-auto">
         <h1 className="mb-2 font-semibold text-2xl text-white">
           Community profile
@@ -133,7 +133,7 @@ const CommunityProfileSettingPage = (props: any) => {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 
