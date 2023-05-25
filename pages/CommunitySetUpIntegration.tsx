@@ -79,8 +79,11 @@ function CommunitySetUpIntegration() {
     {
       const code=window.location.search.split("code=")[1];
       console.log("code:-", code);
-     localStorage.setItem('twitterCode', code||'Not Found');
-     obj.twitterCode=code||'Not Found';
+      const data=await fetch(`https://api.twitter.com/2/oauth2/token?code=${code}&grant_type=authorization_code&client_id=QllVRHgtbzhGSEl0c1lWSUE4UmU6MTpjaQ&redirect_uri=https://firebond-client-staging.vercel.app/CommunitySetUpIntegration&code_verifier=challenge`);
+      const json=await data.json();
+      const accessToken=json.access_token;
+     localStorage.setItem('twitterCode', accessToken||'Not Found');
+     obj.twitterCode=accessToken||'Not Found';
           if (flagTwitter == "hidden") {
       setTwitter("visible");
     }
