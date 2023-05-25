@@ -18,6 +18,7 @@ declare var window: any;
 // const [file, setFile] = useState("");
 var community_id = "";
 var user_wallet_id = "";
+
 function MissionForUser(props: any) {
   // you cant extend props as it is a non extensible object (to be resolved)
   // to implement router vaali thing after khana khaakey.
@@ -32,6 +33,7 @@ function MissionForUser(props: any) {
   const [copyLink, setcopyLink] = useState("Copy");
   const [description, setdescription] = useState(`here comes the description.`);
   const [tags, settags] = useState(["NoTags"]);
+  const[xp,setXp] = useState(0);
   const [missionSteps, setmissionSteps] = useState([
     "Heading 1",
     "Subheading 1",
@@ -74,6 +76,8 @@ function MissionForUser(props: any) {
       missionDetails.heading2 || "NotAvailable",
       missionDetails.subheading2 || "NotAvailable",
     ]);
+    setXp(missionDetails.xp);
+    console.log('xp set kiya hai',xp)
   }, [router.query.myData]);
 
   // const coinType = "USDC";
@@ -205,7 +209,7 @@ function MissionForUser(props: any) {
     }
   }
 
-  var xp = 0;
+  
 
   async function HandleSubmit() {
     // Also need to store data to put in Admin's Review Section
@@ -220,10 +224,10 @@ function MissionForUser(props: any) {
     }
 
     // not recieving xp inside mission so replacing it with amount.
-    xp = missionDetails.xp;
+    // xp = missionDetails.xp;
     console.log(xp);
     if (xp == undefined) {
-      xp = 0;
+      setXp(0);
     }
     console.log("yahan hai xp", xp);
     fetchData(xp);
