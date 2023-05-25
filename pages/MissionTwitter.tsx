@@ -32,7 +32,7 @@ export default function MissionDiscord() {
   const xp = 1000;
   const coinType = "USDC";
   const [file, setFile] = useState("");
-  const submission_type = 'link'
+  const submission_type = {type : 'file'}
 
   function handleFileSelect(e: any) {
     setFile(e.target.value);

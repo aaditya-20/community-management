@@ -67,7 +67,7 @@ If you do not include these two items, you will not be considered.`;
     });
     input.click();
   }
-  const submissionType = "file"
+  const submissionType = {type :  "file"}
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
       <Sidebar />

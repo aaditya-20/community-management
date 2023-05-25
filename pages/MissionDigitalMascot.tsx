@@ -19,7 +19,7 @@ const missionSteps = [
 ];
 const xp = 1000;
 const coinType = "USDC";
-const submission_type = "file"
+const submission_type = {type : "file"}
 function MissionDigitalMascot() {
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">

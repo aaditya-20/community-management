@@ -15,8 +15,9 @@ const missionSteps = [
   "Get verified using the onboarding form",
   "Fill the onboarding form",
 ];
-const reward = 1000;
+const xp = 1000;
 const coinType = "USDC";
+const submission_type = {type : "file"}
 export default function MissionOnboardingMisison() {
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex overflow-auto scrollbar-hide">
@@ -32,6 +33,7 @@ export default function MissionOnboardingMisison() {
           heading2={missionSteps[1]}
           subheading1={missionSteps[2]}
           subheading2={missionSteps[3]}
+          xp = {xp}
         />
 
         {/* Main Content Section */}
