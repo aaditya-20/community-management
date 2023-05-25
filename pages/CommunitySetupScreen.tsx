@@ -20,6 +20,7 @@ const CommunitySetupScreen = (): ReactElement => {
   const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
   const [flagDiscord, setDiscord] = useState("bg-[#8570E4]");
+  const [discordBtn, setDiscordBtn] = useState(true);
   const [disableDiscord, setdisableDiscord] = useState(false);
   const [disableDiscordBot, setdisableDiscordBot] = useState(false);
 
@@ -123,6 +124,7 @@ const CommunitySetupScreen = (): ReactElement => {
     if (window.location.href.includes("access_token")) {
       console.log(flagDiscord, "flagDiscord");
       setDiscord("bg-green-800");
+      setDiscordBtn(false)
       setdisableDiscord(true);
 
       const fragment = new URLSearchParams(window.location.hash.slice(1));
@@ -248,7 +250,7 @@ const CommunitySetupScreen = (): ReactElement => {
               handleChange2={handleEmail}
               handleValue={InputEmail}
             />
-            {flagDiscord ? <IconButton
+            {discordBtn ? <IconButton
               icon={FaDiscord}
               label="Discord"
               className={`relative ${flagDiscord} top-[89px] left-[0px] w-[331px] h-[67px]`}
