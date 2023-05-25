@@ -16,25 +16,29 @@ const SubmissionCard = () => {
   const [question, setQuestion] = useState([]);
   const [answer, setAnswer] = useState([]);
 
-
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.name) {
       setFileName(file.name);
     }
   };
-  
+
   var selected = 4;
   const arr = [
-    "file",
-    { type: "link", link : link },
-    "url",
-    "invite",
-    "empty",
-    "text",
-    {type : "quiz" , question : obj2.question , options : obj2.options , answer : obj2.answer},
-    'feedback',
-    'referral'
+    { type: "file" },
+    { type: "link", link: link },
+    { type: "url" },
+    { type: "invite" },
+    { type: "empty" },
+    { type: "text" },
+    {
+      type: "quiz",
+      question: obj2.question,
+      options: obj2.options,
+      answer: obj2.answer,
+    },
+    { type: "feedback" },
+    { type: "referral" },
   ];
   type.forEach((item, index) => {
     if (item === true) {
@@ -164,7 +168,6 @@ const SubmissionCard = () => {
         >
           <h1 className="font-normal text-sm text-[#AAAAAA]">Referral</h1>
         </button>
-        
       </div>
 
       {/* /* Conditional Rendering Section
@@ -221,14 +224,23 @@ const SubmissionCard = () => {
       )}
       {type[6] && (
         <div className="mt-[36px]">
-        <QuizCard />
+          <QuizCard />
         </div>
       )}
       {type[8] && (
         <div className="">
-        <ReferralCard  title = "API KEY" placeholder = "Paste your invite platform api key in the field given below"/>
-        <ReferralCard  title = "REFERRAL KEY URL" placeholder = "Paste your url for the generation of referral key"/>
-        <ReferralCard  title = "VALIDATION URL" placeholder = "Paste your url for user count validation"/>
+          <ReferralCard
+            title="API KEY"
+            placeholder="Paste your invite platform api key in the field given below"
+          />
+          <ReferralCard
+            title="REFERRAL KEY URL"
+            placeholder="Paste your url for the generation of referral key"
+          />
+          <ReferralCard
+            title="VALIDATION URL"
+            placeholder="Paste your url for user count validation"
+          />
         </div>
       )}
       {/* {type[6] && (

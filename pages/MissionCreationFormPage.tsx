@@ -71,9 +71,7 @@ const MissionCreationFormPage = () => {
       else {
         mission.push(obj);
       }
-      // obj2.question = [""];
-      // obj2.options = [["","","",""]];
-      // obj2.answer = [0];
+     
 
 
       // Update the row with the new missions
