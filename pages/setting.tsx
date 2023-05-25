@@ -199,6 +199,8 @@ import Sidebar from "@/components/molecules/Sidebar";
 import React, { useState } from "react";
 import IntegrationsSettingPage from "@/components/molecules/IntegrationsSettingPage";
 import { json } from "stream/consumers";
+import { supabase } from "@/utils/supabaseClient";
+import SettingData from "@/utils/SettingData";
 
 // Header Menu
 const headerMenu = [
@@ -214,7 +216,10 @@ const headerMenu = [
 ];
 
 const Setting = () => {
+
   const [Component, setComponent] = useState([true, false, false]);
+  const obj = SettingData();
+ 
 
   
   var wallet_id = "";
@@ -243,9 +248,29 @@ const Setting = () => {
     setComponent(newState);
   };
 
-  function UpdateValue(){
-    
-  }
+  async function UpdateValue(){
+    const { data, error: updateError } = await supabase
+        .from("community_data")
+        .update({
+          name : obj.name,
+          email : obj.email,
+          community_name : obj.community_name,
+          community_description : obj.community_description
+        })
+        .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
+      if (updateError) {
+        alert('Failed to create mission please create again');
+        console.error(updateError);
+      } else {
+       
+        setTimeout(() => {
+          
+        }, 3000);
+        alert("Data updated successfully!");
+      }
+    } 
+  
+
 
   return (
     <div className="min-h-screen min-w-fit bg-[#171C23] flex">

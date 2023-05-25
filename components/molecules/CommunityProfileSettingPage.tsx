@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
 import { FaGlobe } from "react-icons/fa";
+import SettingData from "@/utils/SettingData";
 
 const CommunityProfileSettingPage = (props: any) => {
+  
   const [community, setCommunity] = useState(props.community_name);
   const [communityDesc, setCommunityDesc] = useState(
     props.community_description
@@ -12,6 +14,10 @@ const CommunityProfileSettingPage = (props: any) => {
   const [communityType, setCommunityType] = useState(props.community_type);
   const [twitter, setTwitter] = useState(props.twitter_handle);
   const [web, setWeb] = useState(props.website_handle);
+  const obj = SettingData();
+  obj.community_name = community;
+  obj.community_description = communityDesc;
+  
 
   return (
     <div className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
@@ -36,6 +42,10 @@ const CommunityProfileSettingPage = (props: any) => {
               <input
                 type="text"
                 placeholder="Firebond"
+                value = {community}
+                onChange={(e) => {
+                  setCommunity(e.target.value);
+                }}
                 className="w-full h-full outline-none bg-inherit text-ellipsis px-[18px] placeholder:text-[#D0D0D0] text-[#D0D0D0]"
               />
             </div>
