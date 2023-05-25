@@ -125,7 +125,6 @@ const CommunitySetupScreen = (): ReactElement => {
       console.log(flagDiscord, "flagDiscord");
       setDiscord("bg-green-800");
       setDiscordBtn(false)
-      setdisableDiscord(true);
 
       const fragment = new URLSearchParams(window.location.hash.slice(1));
    
@@ -170,7 +169,7 @@ const CommunitySetupScreen = (): ReactElement => {
     setdisableDiscordBot(true)
   }
   const discordBot = ()=>{
-    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&permissions=2048&scope=bot&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetupScreen`
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&permissions=2048&scope=bot`
     window.location.href = authUrl;
   }
   function discord() {
