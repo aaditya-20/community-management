@@ -173,14 +173,14 @@ function AnalyticsCardMainDashboard() {
 
             {/*for legend */}
             <div className="flex gap-[14px]">
-              <div className="flex gap-[5px]">
+              <div className="flex gap-[5px] items-center">
                 <div className="h-[10px] w-[10px] flex-nowrap rounded-full bg-[#5DDCFE]"></div>
                 <h1 className="text-[#FFFFFF] opacity-[.4]  ml-2 font-['generalsans']  text-[10px]">
                   Discord
                 </h1>
               </div>
 
-              <div className="flex gap-[5px]">
+              <div className="flex gap-[5px] items-center">
                 <div className="h-[10px] w-[10px] flex-nowrap rounded-full bg-[#b727dbf7]"></div>
                 <h1 className="text-[#FFFFFF] opacity-[.4]  ml-2 font-['generalsans']  text-[10px]">
                   Twitch~Upcoming

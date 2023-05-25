@@ -20,6 +20,7 @@ import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 import QuizMission from "@/utils/QuizMission";
 
 import Link from "next/link";
+import Details2 from "@/components/molecules/Details2";
 
 console.log("missiontempeditobj->",MissionFormData());
 const MissionCreationFormPage = () => {
@@ -160,7 +161,7 @@ const MissionCreationFormPage = () => {
                   <SubmissionCard />
 
                   {/* Details */}
-                  <Details />
+                  <Details2 />
                 </div>
               </div>
 
