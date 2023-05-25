@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
 import router from "next/router";
@@ -10,8 +10,61 @@ import {
 } from "react-icons/fa";
 
 
-const IntegrationsSettingPage = () => {
-  const [isConnectDisc, setIsConnecteDisc] = useState(true)
+const IntegrationsSettingPage = (): ReactElement => {
+  const [isConnectDisc, setIsConnecteDisc] = useState(false)
+  const [disableDiscord,setdisableDiscord] = useState(false)
+
+  async function discordToken() {
+    if (window.location.href.includes("access_token")) {
+      setIsConnecteDisc(true)
+      setdisableDiscord(true);
+
+      const fragment = new URLSearchParams(window.location.hash.slice(1));
+   
+
+      const [accessToken, tokenType] = [
+        fragment.get("access_token"),
+        fragment.get("token_type"),
+      ];
+      console.log(fragment, "fragment", accessToken, tokenType);
+      //write a code to store the access token in local in supabase table named as community_data
+      // const { data, error } = await supabase.from("community_data").insert([{ DiscordToken: accessToken || ""}])
+
+      localStorage.setItem("accessToken", accessToken || "");
+      //popup counter
+      if (localStorage.getItem("popupCounter") == null)
+        alert("Discord Integration Successful");
+      localStorage.setItem("popupCounter", "1");
+
+      fetch("https://discord.com/api/users/@me", {
+        headers: {
+          authorization: `${tokenType} ${accessToken}`,
+        },
+      })
+        .then((result) => result.json())
+        .then(async (response) => {
+          console.log(response);
+          const { username, discriminator, avatar, id, email } = response;
+          let profile = {
+            email: email,
+            username: username,
+            discriminator: discriminator,
+            avatar: avatar,
+            id: id,
+          };
+          localStorage.setItem("profile", JSON.stringify(profile));
+        })
+        .catch(console.error);
+    }
+  }
+
+ const handleClick = ()=> {
+  if(isConnectDisc === false)
+  {
+    const authUrl = 'https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2Fsetting&response_type=token&scope=identify%20guilds%20email%20guilds.join%20connections%20guilds.members.read';
+    window.location.href = authUrl;
+  }
+ }
 
   async function handelDiscord(){
     const data=localStorage.getItem('data')||"";
@@ -25,13 +78,18 @@ const IntegrationsSettingPage = () => {
     {
       console.log("not connected")
       setIsConnecteDisc(false);
-      router.push("/CommunitySetupScreen")
+ 
     }
   
   }
   useEffect(()=>{
     handelDiscord()
   },[])
+
+  useEffect(()=>{
+    discordToken()
+  },[])
+
   return (
     <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
       <div className="p-[37px] h-auto w-auto">
@@ -58,7 +116,7 @@ const IntegrationsSettingPage = () => {
             </div>
           </div>
 
-          <button onClick={handelDiscord} className={`w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center  font-normal text-sm ${isConnectDisc ? "text-black bg-white" : "text-white"}`}
+          <button onClick={handleClick} className={`w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center  font-normal text-sm ${isConnectDisc ? "text-black bg-white" : "text-white"}`} disabled={disableDiscord}
           >
 
             {isConnectDisc ? "Connected" : "connect"}
