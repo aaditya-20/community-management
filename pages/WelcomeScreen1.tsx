@@ -29,7 +29,7 @@ const WelcomePage = () => {
         Hello,{name}
       </h1>
       <div
-        className="absolute top-[388px] right-[159px] bg-blend-color-dodge mix-blend-color-dodge w-[1193px] h-[1458px]"
+        className="absolute top-[388px] left-[50%] translate-x-[-50%] bg-blend-color-dodge mix-blend-color-dodge w-[1193px] h-[1458px]"
         style={{
           background:
             "radial-gradient(58.37% 58.37% at 49.96% 44.14%, #19596A 0%, rgba(38, 38, 38, 0) 100%)",
