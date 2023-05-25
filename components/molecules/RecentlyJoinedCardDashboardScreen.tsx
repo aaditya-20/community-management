@@ -82,7 +82,7 @@ export default function RecentlyJoinedCardDashboardScreen() {
                     <div className="relative">
                       <div className="h-[32px] w-[32px] rounded-full overflow-hidden">
                         <img
-                          src="/Icons/Ellipse 14.png"
+                          src="/Icons/funkyPic.svg"
                           alt=""
                           className="w-full h-full object-cover"
                         />

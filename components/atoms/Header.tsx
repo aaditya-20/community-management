@@ -58,7 +58,7 @@ const Header = (props:any) => {
           <div className="h-[40px] w-auto pr-5 pl-1 rounded-full bg-[#242627] flex gap-[10px] items-center cursor-pointer">
             <div className="w-8 h-8 rounded-full overflow-hidden">
               <Image
-                src={Avatar}
+                src="/AdminAvatar.svg"
                 height={32}
                 width={32}
                 alt=""
