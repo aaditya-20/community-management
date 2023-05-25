@@ -1,25 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
+import router from "next/router";
 import {
   FaDiscord,
   FaEthereum,
   FaGlobe,
   FaTelegramPlane,
 } from "react-icons/fa";
-async function handelDiscord(){
-  const data=localStorage.getItem('data')||"";
-  const obj=JSON.parse(data)
-  const token=obj.DiscordToken
-  if(token){
-    console.log('Discord connected')
-  }
 
-
-
-}
 
 const IntegrationsSettingPage = () => {
+  const [isConnectDisc, setIsConnecteDisc] = useState(true)
+
+  async function handelDiscord(){
+    const data=localStorage.getItem('data')||"";
+    const obj=JSON.parse(data)
+    const token=obj.DiscordToken
+    if(token){
+      console.log('Discord connected')
+      setIsConnecteDisc(true);
+    }
+    else
+    {
+      console.log("not connected")
+      setIsConnecteDisc(false);
+      router.push("/CommunitySetupScreen")
+    }
+  
+  }
   useEffect(()=>{
     handelDiscord()
   },[])
@@ -35,7 +44,7 @@ const IntegrationsSettingPage = () => {
       <div className="border-[0.5px] border-[#474C52] h-0 w-full " />
 
       <div className="h-auto w-auto mt-[37px] pb-[78px]">
-        <div className="w-full h-[80px] px-[37px] flex justify-between items-center border-b border-[#353B43] mb-[10px]">
+        <div className="w-full h-[80px] px-[37px] flex justify-between items-center border-b border-[#353B43] mb-[10px] ">
           <div className="flex gap-6">
             <div className="bg-[#6359E9] h-[46px] w-[46px] flex justify-center items-center rounded-[10px]">
               <FaDiscord size={24} />
@@ -49,10 +58,10 @@ const IntegrationsSettingPage = () => {
             </div>
           </div>
 
-          <button onClick={handelDiscord} className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-white font-normal text-sm"
+          <button onClick={handelDiscord} className={`w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center  font-normal text-sm ${isConnectDisc ? "text-black bg-white" : "text-white"}`}
           >
 
-            Connect
+            {isConnectDisc ? "Connected" : "connect"}
           </button>
         </div>
 
@@ -108,7 +117,7 @@ const IntegrationsSettingPage = () => {
             </div>
           </div>
 
-          <button className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-black border-[#FFFFFF] font-normal text-sm bg-white">
+          <button className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-black  font-normal text-sm bg-white">
             Connected
           </button>
         </div>
