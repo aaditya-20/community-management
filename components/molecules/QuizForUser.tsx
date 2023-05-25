@@ -1,11 +1,18 @@
+import Answer from "@/utils/Answer";
 import { useState } from "react";
 import { setOptions } from "react-chartjs-2/dist/utils";
 
+
 export default function QuizForUser(props: any) {
-  const [True, setOption] = useState("true");
+  let obj = Answer();
   const[option1,setOption1] = useState(0);
   const[option2,setOption2] = useState(0);
   const[option3,setOption3] = useState(0);
+ 
+  obj.options = [option1,option2,option3];
+   
+  
+  
 
   return (
     <>

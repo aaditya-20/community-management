@@ -14,6 +14,7 @@ import DiscordVerificationUser from "@/components/molecules/DiscordVerificationU
 import QuizForUser from "@/components/molecules/QuizForUser";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { MdContentCopy } from "react-icons/md";
+import Answer from "@/utils/Answer";
 declare var window: any;
 // const [file, setFile] = useState("");
 var community_id = "";
@@ -27,13 +28,14 @@ function MissionForUser(props: any) {
   const obj2 = EditMission();
   let obj = MissionFormData();
   const obj3 = QuizMission();
+  let obj4 = Answer();
   const [missionUrl, setmissionUrl] = useState("");
   const router = useRouter();
   const [title, settitle] = useState("Mission title");
   const [copyLink, setcopyLink] = useState("Copy");
   const [description, setdescription] = useState(`here comes the description.`);
   const [tags, settags] = useState(["NoTags"]);
-  const[xp,setXp] = useState(0);
+  const [xp, setXp] = useState(0);
   const [missionSteps, setmissionSteps] = useState([
     "Heading 1",
     "Subheading 1",
@@ -77,7 +79,8 @@ function MissionForUser(props: any) {
       missionDetails.subheading2 || "NotAvailable",
     ]);
     setXp(missionDetails.xp);
-    console.log('xp set kiya hai',xp)
+    console.log("xp set kiya hai", xp);
+    setIsCompleted(false);
   }, [router.query.myData]);
 
   // const coinType = "USDC";
@@ -109,18 +112,12 @@ function MissionForUser(props: any) {
         "referral",
       ];
       arr.forEach((item, index) => {
-        if (
-          (index !== 1 &&
-            index !== 6 &&
-            item === missionDetails.submission_type) ||
-          (index === 1 && missionDetails.submission_type.type === item) ||
-          (index === 6 && missionDetails.submission_type.type === item)
-        ) {
+        if (missionDetails.submission_type.type === item) {
           console.log("dekho", missionDetails.submission_type);
           setType(index);
         }
       });
-      if (type === 5 || type === 6) {
+      if (type === 5) {
         setIsCompleted(true);
       }
       console.log("mission detalis ka submission type", type);
@@ -136,12 +133,14 @@ function MissionForUser(props: any) {
     }, 2000);
   };
 
-  let date = new Date;
+  let date = new Date();
   const generateRandom = () => String(date.getTime());
 
   var hash = generateRandom();
 
-  var hashed = `${typeof window == "undefined"?"dontknow":window.location.origin}/referral/${hash}`
+  var hashed = `${
+    typeof window == "undefined" ? "dontknow" : window.location.origin
+  }/referral/${hash}`;
 
   async function fetchData(xp: any) {
     try {
@@ -209,17 +208,32 @@ function MissionForUser(props: any) {
     }
   }
 
-  
-
   async function HandleSubmit() {
     // Also need to store data to put in Admin's Review Section
     // if admin->routerpush-edit
     // else
     // await connectWallet();
-    console.log("clicked");
+    console.log(isCompleted);
+
+    let flag = 1;
+    if (type == 6) {
+      missionDetails.submission_type.answer.forEach((item: any, index: any) => {
+        if (item !== obj4.options[index]) {
+          console.log("check", obj4.options[index]);
+          flag = 0;
+          return;
+        }
+      });
+      if (flag === 0) {
+        alert("Please choose correct answer");
+        return;
+      } else {
+        setIsCompleted(true);
+      }
+    }
 
     if (isCompleted === false) {
-      alert("Please complete the quest");
+      alert("Please complete the task");
       return;
     }
 
