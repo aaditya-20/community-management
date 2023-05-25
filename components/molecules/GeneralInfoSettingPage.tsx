@@ -1,3 +1,4 @@
+import SettingData from "@/utils/SettingData";
 import React, { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
@@ -9,6 +10,9 @@ const GeneralInfoSettingPage = (props:any) => {
   const [role,setRole] = useState("");
   const [twitter, setTwitter] = useState(props.twitter_handle);
   const [web, setWeb] = useState(props.website_handle);
+  const obj = SettingData();
+  obj.name = name;
+  obj.email = email;
 
   return (
     <div className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
