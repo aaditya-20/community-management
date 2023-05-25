@@ -38,7 +38,10 @@ function AnalyticsCardMainDashboard() {
       // console.log('mothnumber',monthNumber)
       // console.log('discordarray',DiscordArray)
       for (let i = 1; i <= 12; i++) {
-        if (monthNumber == undefined || monthNumber[0][i] == null) {
+        if (
+          monthNumber == undefined ||
+          (monthNumber[0][i] != undefined && monthNumber[0][i] == null)
+        ) {
           DiscordArray.push(0);
         } else {
           DiscordArray.push(monthNumber[0][i]);
