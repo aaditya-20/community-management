@@ -66,8 +66,8 @@ export default function NewMemberCardAnalyticScreen() {
                 >
                   {/* Avatar and username */}
                   <div className=" flex items-center gap-[10.8px]">
-                    <div className="w-[38px] h-[38px] rounded-full">
-                      <img src="/Icons/profileTemplate.jpg" alt="Avatar" />
+                    <div className="w-[38px] h-[38px] rounded-full overflow-hidden">
+                      <img src="/Icons/profileTemplate.jpg" alt="Avatar" className="w-full h-full object-cover"/>
                     </div>
                     <div className=" font-normal text-base text-white">
                       @{member.User_name}
