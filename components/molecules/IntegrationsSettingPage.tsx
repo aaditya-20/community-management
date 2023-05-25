@@ -7,7 +7,17 @@ import {
   FaGlobe,
   FaTelegramPlane,
 } from "react-icons/fa";
+async function handelDiscord(){
+  const data=localStorage.getItem('data')||"";
+  const obj=JSON.parse(data)
+  const token=obj.DiscordToken
+  if(token){
+    console.log('Discord connected')
+  }
 
+
+
+}
 const IntegrationsSettingPage = () => {
   return (
     <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
@@ -35,7 +45,9 @@ const IntegrationsSettingPage = () => {
             </div>
           </div>
 
-          <button className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-white font-normal text-sm">
+          <button onClick={handelDiscord} className="w-[107px] h-[34px] rounded-lg border border-white flex justify-center items-center text-white font-normal text-sm"
+          >
+
             Connect
           </button>
         </div>
