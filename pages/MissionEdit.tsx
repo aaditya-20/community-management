@@ -13,6 +13,7 @@ import Details2 from "@/components/molecules/Details2";
 import EditMission from "@/utils/EditMission";
 import MissionFormData from "@/utils/MissionFormData";
 import { useRouter } from "next/router";
+import SubmissionCard from "@/components/molecules/SubmissionCard";
 declare var window: any;
 var name = "user";
 if (typeof window !== "undefined") {
@@ -190,87 +191,7 @@ const MissionEdit = () => {
                   {/* Basic Info Section */}
                   <BasicInfoCard title={title} />
 
-                  <div className="w-[749px] h-auto bg-[#232B35] rounded-[20px] mb-6">
-                    <div className="h-[72px] border-b-[0.5px] border-[#474C52] pt-6 pl-6">
-                      <h1 className="font-normal text-[20px] leading-[27px] text-white">
-                        Submission type
-                      </h1>
-                    </div>
-                    <div className="h-auto w-full p-6">
-                      <div className="h-auto flex gap-5">
-                        <button
-                          onClick={() => handleButtonClick(1)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 1
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          File
-                        </button>
-                        <button
-                          onClick={() => handleButtonClick(2)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 2
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          Link
-                        </button>
-                        <button
-                          onClick={() => handleButtonClick(3)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 3
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          Invite
-                        </button>
-                        <button
-                          onClick={() => handleButtonClick(4)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 4
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          Empty
-                        </button>
-                        <button
-                          onClick={() => handleButtonClick(5)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 5
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          Text
-                        </button>
-                        <button
-                          onClick={() => handleButtonClick(6)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 6
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          Join Telegram
-                        </button>
-                        <button
-                          onClick={() => handleButtonClick(7)}
-                          className={`px-[11px] py-[8px] hover:bg-[#171C23] border-[1px] border-[#757575] rounded-[4px] text-white text-[14px] leading-[19px] ${
-                            selectedButton === 7
-                              ? "bg-black text-white"
-                              : "bg-[#2E363F]"
-                          }`}
-                        >
-                          Discord Invite
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <SubmissionCard/>
 
                   <div className="w-[749px] h-auto  bg-[#232B35] rounded-[20px] mb-6">
                     <div className="h-[72px] border-b-[0.5px] border-[#474C52] pl-6"></div>
@@ -278,23 +199,21 @@ const MissionEdit = () => {
                       <div className="h-auto relative top-[-97px] left-[-20px]">
                         <Details2 description={description} />
 
-                        {/* Mission Steps Section */}
-                        <h1 className="mb-[29px]">Mission steps</h1>
+                        
+                        {/* <h1 className="mb-[29px]">Mission steps</h1> */}
                         <div className="flex gap-[22.07px]">
                           {/* left section */}
                           <div>
-                            <div className="w-[97.93px] h-[34px] bg-[#191F27] rounded-[4px] flex justify-center items-center">
+                            {/* <div className="w-[97.93px] h-[34px] bg-[#191F27] rounded-[4px] flex justify-center items-center">
                               <h1 className="font-medium text-xs text-white">
                                 Step 1
                               </h1>
-                            </div>
-                            <div className=" w-full flex justify-center">
-                              <div className="w-0 h-[182px] border-[1px] border-dashed border-[#44494F]"></div>
-                            </div>
+                            </div> */}
+                           
                           </div>
                           {/* right section */}
-                          <div>
-                            <div className="mb-6">
+                          {/* <div> */}
+                            {/* <div className="mb-6">
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Heading
                               </h1>
@@ -308,29 +227,29 @@ const MissionEdit = () => {
                                   />
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
 
-                            <div className="mb-6">
-                              <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
+                            {/* <div className="mb-6"> */}
+                              {/* <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Sub heading
-                              </h1>
-                              <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]">
-                                <div className="w-full h-[41px] bg-[#2E363F] ">
+                              </h1> */}
+                              {/* <div className="w-[578px] h-[41px]  flex items-center  bg-[#2E363F] rounded-[8px]"> */}
+                                {/* <div className="w-full h-[41px] bg-[#2E363F] ">
                                   <input
                                     className="w-full h-full px-6 overflow-hidden text-ellipsis outline-none bg-inherit text-white text-base font-medium"
                                     value={input2}
                                     onChange={handleInput2}
                                     placeholder=""
                                   />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                                </div> */}
+                              {/* </div> */}
+                            {/* </div> */}
+                          {/* </div> */}
                         </div>
 
-                        <div className="flex gap-[22.07px]">
+                        {/* <div className="flex gap-[22.07px]"> */}
                           {/* left section */}
-                          <div>
+                          {/* <div>
                             <div className="w-[97.93px] h-[34px] bg-[#191F27] rounded-[4px] flex justify-center items-center">
                               <h1 className="font-medium text-xs text-white">
                                 Step 2
@@ -339,9 +258,9 @@ const MissionEdit = () => {
                             <div className=" w-full flex justify-center">
                               <div className="w-0 h-[182px] border-[1px] border-dashed border-[#44494F]"></div>
                             </div>
-                          </div>
+                          </div> */}
                           {/* right section */}
-                          <div>
+                          {/* <div>
                             <div className="mb-6">
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 Heading
@@ -356,9 +275,9 @@ const MissionEdit = () => {
                                   />
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
 
-                            <div className="mb-6">
+                            {/* <div className="mb-6">
                               <h1 className="font-medium text-[14px] leading-[19px] text-white mb-[11px]">
                                 sub Heading
                               </h1>
@@ -372,17 +291,17 @@ const MissionEdit = () => {
                                   />
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        </div>
+                            </div> */}
+                          {/* </div> */}
+                        {/* </div> */}
 
-                        <Image
+                        {/* <Image
                           src="Icons/plus1.svg"
                           alt=""
                           width={29}
                           height={29}
                           className="relative left-[35px] bottom-0 "
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
