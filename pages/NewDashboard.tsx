@@ -7,6 +7,7 @@ import RecentlyJoinedCardDashboardScreen from "../components/molecules/RecentlyJ
 import OnboardingExperienceCard from "../components/molecules/OnboardingExperienceCard";
 import RouteGuardAdmin from "@/utils/RouteGuardAdmin";
 import { useEffect, useState } from "react";
+import { supabase } from "@/utils/supabaseClient";
 declare var window: any;
 
 const cards = [
@@ -36,17 +37,30 @@ const cards = [
 ];
 // Todo-Active will come from selected data
 let active = 0;
-let created = 0;
+
 const NewDashboard = () => {
   const [name, setName] = useState("user");
-
+  const [membersData, setmembersData] = useState([{}]);
+  const [contributors, setcontributors] = useState(0);
+  const [submissions, setsubmissions] = useState(0);
+  const [created, setcreated] = useState(0);
+  const [active, setactive] = useState(0);
+  
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedJsonData = localStorage.getItem("data");
       const jsonData = JSON.parse(storedJsonData ?? "{}");
       if (jsonData != null && jsonData.name) setName(jsonData.name);
-      if (jsonData != null && jsonData.missions!=null) created = jsonData.missions.length;
-      active = created > 1 ? created - 2 : 0;
+      if (jsonData != null && jsonData.missions != null)
+        setcreated(jsonData.missions.length);
+      setactive(created > 1 ? created - 2 : 0);
+      setcontributors(jsonData.Members.length);
+      let count = 0;
+      for (let i = 0; i < jsonData.Members.length; i++)
+      {
+        count += jsonData.Members[i].missions_completed.length;
+      }
+      setsubmissions(count);
     }
   }, [name]);
   return (
@@ -82,8 +96,8 @@ const NewDashboard = () => {
                   <div className="flex flex-col justify-between gap-5">
                     <div className="h-[315px] w-[469px] bg-[#232A35] rounded-[20px] flex items-end">
                       <Mission
-                        contributors="50"
-                        submission="150"
+                        contributors={contributors}
+                        submission={submissions}
                         created={created.toString()}
                         active={active.toString()}
                       />
