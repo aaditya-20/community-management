@@ -22,7 +22,11 @@ const ProfileIcon = ({ imageUrl, size =32, classNameCircle = '', style, alt = 'P
       className={`relative inline-block rounded-full overflow-hidden ${classNameCircle}`}
       style={{ ...sizeStyle, ...style }}
     >
-      <img src={imageUrl} alt={alt} className={`object-cover ${classNameImage}`} />
+      <img
+        src={"/Icons/profileTemplate.jpg"}
+        alt={alt}
+        className={`object-cover ${classNameImage}`}
+      />
     </div>
   );
 };
