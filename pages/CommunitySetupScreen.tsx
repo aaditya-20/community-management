@@ -19,8 +19,11 @@ const CommunitySetupScreen = (): ReactElement => {
   const [InputValue, setInputvalue] = useState("");
   const [InputEmail, setInputemail] = useState("");
   const [OpenDiscord, setOpenDiscord] = useState(false);
-  const [flagDiscord, setDiscord] = useState('bg-\[\#8570E4\]');
-  const [disableDiscord,setdisableDiscord]=useState(false)
+  const [flagDiscord, setDiscord] = useState("bg-[#8570E4]");
+  const [disableDiscord, setdisableDiscord] = useState(false);
+  const [disableDiscordBot, setdisableDiscordBot] = useState(false);
+
+  
   const [imageUrl, setImageUrl] = useState("/Icons/DefaultUserIcon.png");
 
   let community_admin_avatar = "";
@@ -58,20 +61,17 @@ const CommunitySetupScreen = (): ReactElement => {
       obj.community_admin_avatar = community_admin_avatar;
       // Removing userImage stored in local Storage
       localStorage.removeItem("userImage");
-      const access_token=localStorage.getItem("accessToken")||"";
-      if(!access_token)
-      {
+      const access_token = localStorage.getItem("accessToken") || "";
+      if (!access_token) {
         setOpenDiscord(!OpenDiscord);
-      }else{
-        router.push("/Step1CommunitySetup")
+      } else {
+        router.push("/Step1CommunitySetup");
       }
     } else if ((await emailExist(InputEmail)) == "3") {
       alert("Email already exist");
     } else {
       alert("Please Enter Email");
     }
-   
-  
   }
   const bucket_name = "community_admin_avatar";
   async function AdminAvatarUpload(file: any) {
@@ -119,14 +119,14 @@ const CommunitySetupScreen = (): ReactElement => {
   function handleEmail(e: any) {
     setInputemail(e.target.value);
   }
-  async function  discordToken() {
-   
+  async function discordToken() {
     if (window.location.href.includes("access_token")) {
       console.log(flagDiscord, "flagDiscord");
-      setDiscord('bg-green-800');
-      setdisableDiscord(true)
-    
+      setDiscord("bg-green-800");
+      setdisableDiscord(true);
+
       const fragment = new URLSearchParams(window.location.hash.slice(1));
+   
 
       const [accessToken, tokenType] = [
         fragment.get("access_token"),
@@ -135,13 +135,13 @@ const CommunitySetupScreen = (): ReactElement => {
       console.log(fragment, "fragment", accessToken, tokenType);
       //write a code to store the access token in local in supabase table named as community_data
       // const { data, error } = await supabase.from("community_data").insert([{ DiscordToken: accessToken || ""}])
-      
+
       localStorage.setItem("accessToken", accessToken || "");
       //popup counter
-      if(localStorage.getItem("popupCounter") == null)
-      alert("Discord Integration Successful");
+      if (localStorage.getItem("popupCounter") == null)
+        alert("Discord Integration Successful");
       localStorage.setItem("popupCounter", "1");
-    
+
       fetch("https://discord.com/api/users/@me", {
         headers: {
           authorization: `${tokenType} ${accessToken}`,
@@ -163,6 +163,14 @@ const CommunitySetupScreen = (): ReactElement => {
         .catch(console.error);
     }
   }
+
+  const discordBotToken = ()=>{
+
+  }
+  const discordBot = ()=>{
+    const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&permissions=2048&scope=bot`
+    window.location.href = authUrl;
+  }
   function discord() {
     const authUrl = `https://discord.com/api/oauth2/authorize?client_id=1080905971804668005&redirect_uri=https%3A%2F%2Ffirebond-client-staging.vercel.app%2FCommunitySetupScreen&response_type=token&scope=identify%20guilds%20email%20guilds.join%20guilds.members.read`;
 
@@ -170,11 +178,16 @@ const CommunitySetupScreen = (): ReactElement => {
   }
   useEffect(() => {
     discordToken();
-  });
+  },[]);
+
+  useEffect(() => {
+    discordBotToken();
+  },[])
+  
   return (
     <>
       <BackGroundPage />
-     
+
       <Modal
         onClose={() => {
           setOpenDiscord(!OpenDiscord);
@@ -182,15 +195,13 @@ const CommunitySetupScreen = (): ReactElement => {
         open={OpenDiscord}
         style={{}}
       >
-        
         <div className="">
-         {/* check of Discord is connected or not */}
-         
-         
+          {/* check of Discord is connected or not */}
+
           <DiscordIntegrationPopup />
         </div>
       </Modal>
-     
+
       <div className="flex items-center justify-center ">
         <div className="absolute block w-[662px] h-[431px] top-[20vh] bg-gray-800 shadow-md ">
           <div className="relative block w-[662px] h-[54px] border-b-[1px] border-[#353B43]">
@@ -237,17 +248,22 @@ const CommunitySetupScreen = (): ReactElement => {
               handleChange2={handleEmail}
               handleValue={InputEmail}
             />
-            <IconButton
-            
+            {flagDiscord ? <IconButton
               icon={FaDiscord}
               label="Discord"
               className={`relative ${flagDiscord} top-[89px] left-[0px] w-[331px] h-[67px]`}
-              
               classNameIcon=""
               onClick={discord}
               disabled={disableDiscord}
-             
-            />
+            /> : 
+            <IconButton
+              icon={FaDiscord}
+              label="Connect Discord Bot"
+              className={`relative ${flagDiscord} top-[89px] left-[0px] w-[331px] h-[67px]`}
+              classNameIcon=""
+              onClick={discordBot}
+              disabled={disableDiscordBot}
+            />}
             <IconButton
               icon={VscBlank}
               label="Continue"
