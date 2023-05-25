@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiImageAdd } from "react-icons/bi";
 import { BsTwitter } from "react-icons/bs";
 import {
@@ -18,7 +18,11 @@ async function handelDiscord(){
 
 
 }
+
 const IntegrationsSettingPage = () => {
+  useEffect(()=>{
+    handelDiscord()
+  },[])
   return (
     <form className="w-[641px] h-auto rounded-[10px] mb-[70px] bg-[#232B35]">
       <div className="p-[37px] h-auto w-auto">
