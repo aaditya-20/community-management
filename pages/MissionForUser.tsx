@@ -111,9 +111,13 @@ function MissionForUser(props: any) {
         "feedback",
         "referral",
       ];
+      let temp;
+      // console.log("yahan aa raha",missionDetails)
       arr.forEach((item, index) => {
-        if (missionDetails.submission_type.type === item) {
+        if (missionDetails.submission_type && missionDetails.submission_type.type === item) {
           console.log("dekho", missionDetails.submission_type);
+          temp = index;
+          
           setType(index);
         }
       });
@@ -123,6 +127,8 @@ function MissionForUser(props: any) {
       console.log("mission detalis ka submission type", type);
     }
   }, []);
+
+  
 
   const [copied, setCopied] = useState(false);
 
