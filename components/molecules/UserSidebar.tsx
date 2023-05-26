@@ -168,7 +168,7 @@ const UserSidebar = (props:any) => {
                     alt=""
                   />
                   <span className="text-white font-semibold text-base ">
-                    {index === 0 ? name + item.title : item.title}
+                    { item.title}
                   </span>
                 </li>
               );
