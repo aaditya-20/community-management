@@ -45,7 +45,7 @@ const NewDashboard = () => {
   const [submissions, setsubmissions] = useState(0);
   const [created, setcreated] = useState(0);
   const [active, setactive] = useState(0);
-  
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedJsonData = localStorage.getItem("data");
@@ -54,11 +54,14 @@ const NewDashboard = () => {
       if (jsonData != null && jsonData.missions != null)
         setcreated(jsonData.missions.length);
       setactive(created > 1 ? created - 2 : 0);
-      setcontributors(jsonData.Members.length);
+      if (jsonData != null && jsonData.Members != null)
+        setcontributors(jsonData.Members.length);
       let count = 0;
-      for (let i = 0; i < jsonData.Members.length; i++)
-      {
-        count += jsonData.Members[i].missions_completed.length;
+      if (jsonData.Members != null) {
+        for (let i = 0; i < jsonData.Members.length; i++) {
+          if (jsonData.Members[i].missions_completed != null)
+            count += jsonData.Members[i].missions_completed.length;
+        }
       }
       setsubmissions(count);
     }
