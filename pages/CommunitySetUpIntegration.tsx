@@ -243,14 +243,14 @@ function CommunitySetUpIntegration() {
           <AlreadyAdminPopup />
         </div>
       </Modal>
-      <div className="flex items-center justify-center ">
-        <BackGroundPage className="flex items-center justify-center bg-[#171C23] h-[100vh] w-[100vw]" />
-        pnp
-        <div className="absolute w-[662px] h-[700px] top-[120px]  bg-[#232B35] shadow-md">
+
+      <div className="flex items-center justify-center min-h-screen bg-[#171C23]">
+        
+        <div className="absolute w-[662px] h-[700px]   bg-[#232B35] shadow-md">
           <div className="absolute w-[662px] h-[54px]  border-b-[1px] border-[#353B43]">
             <Link
               href="/"
-              className="relative top-[15px] left-[30px] text-[#AEABD8]"
+              className="relative top-[15px] left-[30px] text-[#AEABD8] tracking-[16%]"
             >
               COMMUNITY SETUP
             </Link>

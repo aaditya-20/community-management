@@ -51,7 +51,6 @@ const Review = () => {
       const { data, error } = await supabase.from("Pending").select("*");
       console.log("dat->", data);
       if (data) {
-       
         setPendingMissions(data);
       } else {
         console.log("pending data is not available");
@@ -71,7 +70,7 @@ const Review = () => {
   }, [forReRender]);
 
   // console.log("hellob->", PendingMissions);
- 
+
   // console.log("helloapproved->", ApprovedMissions);
   const ApprovedMissionsList = ApprovedMissions.map(
     (value: any, index: any) => {
@@ -83,7 +82,6 @@ const Review = () => {
           Question: {value.question}
           <br></br>
           Answer:{value.answer}
-        
         </div>
       );
     }
@@ -121,37 +119,42 @@ const Review = () => {
   });
 
   return (
-    <div className="grid grid-cols-[auto,auto]   bg-[#171C23] grid-rows-[71px,auto] h-[1000px] w-[1450px]    md:grid-cols-[auto,1fr]">
-      <div className="row-span-3 border-r-[1px] border-r-[#353B43]">
-        <Sidebar />
-      </div>
-      <div className="border-b-[1px] border-b-[#353B43]">
+    <div className="min-h-screen bg-[#171C23] flex">
+      <Sidebar />
+      <div className="w-full h-full">
         <Header />
-      </div>
+
+
       <div className="flex flex-col">
-        <div className="text-[#FFFFFF] font-[600] text-[24px] my-[10px] mx-[20px]">
-          Reviews
+     {/* Introduction */}
+     <div className="w-full h-[115px] border-b border-[#253B43] flex items-center justify-start px-6 mb-[33px]">
+          <div className="w-full">
+            <h1 className="font-semibold text-2xl text-white">
+              Reviews
+            </h1>
+            
+          </div>
         </div>
         <hr className="border-[#353B43] border-[1px]" />
         <div className=" grid grid-cols-[auto,auto]  grid-rows-[auto] gap-[70px] m-[50px]">
           <div className=" flex flex-col border-[1px] border-[#353B43] rounded-[20px]">
-            <div className="flex justify-center h-[auto]  w-[400px] text-[30px] text-[white] ">
+            <div className="flex justify-center h-[auto]  w-[400px] text-[30px] text-[white] pt-6 mx-auto ">
               Pending{" "}
             </div>
             <div className="my-[20px] flex-col scrollbar h-[600px] overflow-auto justify-center align-middle text-[30px] text-[white]  ">
               {PendingMissionsList}{" "}
             </div>
-           
           </div>
           <div className=" flex flex-col border-[1px] border-[#353B43] rounded-[20px]">
-            <div className="flex justify-center h-[auto]  w-[400px] text-[30px] text-[white] ">
+            <div className="flex justify-center h-[auto]  w-[400px] text-[30px] text-[white] pt-6 mx-auto ">
               Approved
             </div>
-            <div className="my-[20px] flex-col h-[600px]  overflow-auto scrollbar justify-center  text-[30px] text-[white] ">
+            <div className="my-[20px] flex-col h-[600px]  overflow-auto scrollbar justify-center  text-[30px] text-[white] px-4">
               {ApprovedMissionsList}
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

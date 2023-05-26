@@ -29,7 +29,7 @@ const MissionMainCard: React.FC<MissionMainCardProps> = ({
   xp,
 }) => {
   return (
-    <div className="h-[218px] w-[381px] bg-[#232B36] rounded-[10px]">
+    <div className="h-[218px] w-[381px] bg-[#232B36] rounded-[20px]">
       <div className="p-6">
         <div className="flex justify-between gap-[42px]">
           <h1 className="font-semibold text-[20px] font-['General Sans'] font-[600] text-white break-words">
