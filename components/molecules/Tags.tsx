@@ -43,7 +43,7 @@ const Tags = (props:any) => {
       <h1 className="font-medium text-[16px] mt-6  leading-[22px] text-white mb-[10px]">
         {title}
       </h1>
-      <div className="w-[383px] h-auto py-3 bg-[#232B35] rounded-[8px] pr-3 pl-[23px] ">
+      <div className="w-[383px] h-auto py-2 bg-[#232B35] rounded-[8px] pr-3 pl-[10px] ">
         <div className="flex justify-start items-center ">
           <div className="flex gap-[6.13px]  max-w-[250px] py-2 px-1 overflow-auto scrollbar-hide">
             {Tags.map((tag, index) => (
@@ -71,8 +71,8 @@ const Tags = (props:any) => {
             ))}
           </div>
           <HiOutlinePlusCircle
-            size={16}
-            className="ml-[13px] cursor-pointer text-[#757575]"
+            size={24}
+            className="cursor-pointer text-[#757575]"
             onClick={() => handleClick()}
           />
         </div>
