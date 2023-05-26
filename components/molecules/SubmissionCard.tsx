@@ -8,7 +8,7 @@ import BasicInfoCard from "./BasicInfoCard";
 import ReferralCard from "./ReferralCard";
 
 
-const SubmissionCard = () => {
+const SubmissionCard = (props:any) => {
   const obj = MissionFormData();
   const obj2 = QuizMission();
   
@@ -55,6 +55,10 @@ const SubmissionCard = () => {
   function handlelink(e: any) {
     setLink(e.target.value);
   }
+
+  useEffect(()=>{
+     props.rendertrue();
+  },[type[8]])
 
   
 

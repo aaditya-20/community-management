@@ -22,8 +22,9 @@ import QuizMission from "@/utils/QuizMission";
 import Link from "next/link";
 import Details2 from "@/components/molecules/Details2";
 
-console.log("missiontempeditobj->",MissionFormData());
+console.log("missiontempeditobj->", MissionFormData());
 const MissionCreationFormPage = () => {
+  const [True, setTrue] = useState(false);
   const [OpenMission, setOpenMission] = useState(false);
   const obj = MissionFormData();
   const obj2 = QuizMission();
@@ -34,25 +35,28 @@ const MissionCreationFormPage = () => {
     const jsonData = JSON.parse(storedJsonData ?? "{}");
     wallet_id = jsonData.wallet_id;
   }
+
+  function handleTrue(){
+    setTrue(!True);
+  }
   // generate random mission id
-  let date = new Date;
+  let date = new Date();
   const generateRandom = () => String(date.getTime());
 
   async function onCreateClick() {
-    if(obj.title==''||obj.title==undefined){
-      alert(`Title can't be empty`);  
+    if (obj.title == "" || obj.title == undefined) {
+      alert(`Title can't be empty`);
+      return;
+    } else if (obj.description == "" || obj.description == undefined) {
+      alert("Please add some description");
       return;
     }
-    else if(obj.description==''||obj.description==undefined){
-      alert('Please add some description');
-      return;
-    }
-    
+
     var temp = generateRandom();
     setMissionId(temp);
     obj.mission_id = temp;
-    
-    console.log("obj->",obj);
+
+    console.log("obj->", obj);
     // console.log(obj);
 
     try {
@@ -72,8 +76,6 @@ const MissionCreationFormPage = () => {
       else {
         mission.push(obj);
       }
-     
-
 
       // Update the row with the new missions
       const { data, error: updateError } = await supabase
@@ -83,10 +85,10 @@ const MissionCreationFormPage = () => {
         })
         .eq("wallet_id", wallet_id); // specify the row to update using a filter condition
       if (updateError) {
-        alert('Failed to create mission please create again');
+        alert("Failed to create mission please create again");
         console.error(updateError);
       } else {
-        setOpenMission(!OpenMission)
+        setOpenMission(!OpenMission);
         setTimeout(() => {
           setOpenMission(false);
         }, 3000);
@@ -107,12 +109,16 @@ const MissionCreationFormPage = () => {
         style={{}}
       >
         <div className="flex justify-center items-center">
-        <div className="absolute m-[auto] top-[30vh]">
-          <CopyLinkPopUpFormBuilder
-            url={`${typeof window == "undefined"?"dontknow":window.location.origin}/missions/${MissionId}`}
-            forWhichComponent="mission"
-          />
-        </div>
+          <div className="absolute m-[auto] top-[30vh]">
+            <CopyLinkPopUpFormBuilder
+              url={`${
+                typeof window == "undefined"
+                  ? "dontknow"
+                  : window.location.origin
+              }/missions/${MissionId}`}
+              forWhichComponent="mission"
+            />
+          </div>
         </div>
       </Modal>
       <div className="min-h-screen min-w-fit overflow-auto scrollbar-hide bg-[#171C23]">
@@ -123,10 +129,10 @@ const MissionCreationFormPage = () => {
             <div className="w-full h-[115px]  border-b-[1px] border-[#353B43] px-6 py-7">
               <div className="h-full w-full">
                 <h1 className="font-medium text-[14px] leading-[18.9px] mb-2 text-[#A6A6A6]">
-
-                 <Link href="/MissionMain" className="inline">Mission</Link>/
-                 <div className="inline text-[white] font-[600]">Create</div>
-                  
+                  <Link href="/MissionMain" className="inline">
+                    Mission
+                  </Link>
+                  /<div className="inline text-[white] font-[600]">Create</div>
                 </h1>
                 <div className="h-full w-full flex justify-between items-center">
                   <h1 className="font-semibold text-2xl text-white">
@@ -156,7 +162,7 @@ const MissionCreationFormPage = () => {
                   <BasicInfoCard />
 
                   {/* Submission type */}
-                  <SubmissionCard />
+                  <SubmissionCard rendertrue = {handleTrue}/>
 
                   {/* Details */}
                   <Details2 />
@@ -177,6 +183,27 @@ const MissionCreationFormPage = () => {
 
                   {/* Recurrence */}
                   <Reccurence />
+                  {!True && <div className="mt-5">
+                    How to Do Referral Mission
+                    <div className="items-center h-auto border-[1px] mt-[10px]  bg-[#2E363F] rounded-[8px] p-2 outline-gray-400">
+                      <span className="mb-2">
+                        1. Paste your invite platform api key in the API Key
+                        field
+                      </span>
+                      <br></br>
+                      <span className="mb-2">
+                        2. First URL will be responsible for generation of
+                        referral key
+                      </span>
+                      <br></br>
+                      <span className="mb-2">
+                        3. Second URL would be responsible for validation that
+                        how many people were actually invited by the user using
+                        that particular referral key
+                      </span>
+                      <br></br>
+                    </div>
+                  </div>}
                 </div>
               </div>
             </div>
