@@ -35,11 +35,11 @@ function AnalyticsCardMainDashboard() {
       monthNumber = data;
       let DiscordArray: any[] = [];
 
-      // console.log('mothnumber',monthNumber)
+      console.log('mothnumber',monthNumber)
       // console.log('discordarray',DiscordArray)
       for (let i = 1; i <= 12; i++) {
         if (
-          monthNumber == undefined ||
+          monthNumber == undefined || monthNumber.length==0||
           (monthNumber[0][i] != undefined && monthNumber[0][i] == null)
         ) {
           DiscordArray.push(0);
