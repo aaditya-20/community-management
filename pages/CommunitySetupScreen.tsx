@@ -13,20 +13,29 @@ import Modal from "@material-ui/core/Modal";
 import FormData from "@/utils/FormData";
 import router from "next/router";
 import { set } from "date-fns";
+import { type } from "os";
 
 const CommunitySetupScreen = (): ReactElement => {
   const obj = FormData();
-  const [InputValue, setInputvalue] = useState("");
-  const [InputEmail, setInputemail] = useState("");
+  // if(typeof window !== 'undefined'){
+  //   console.log(localStorage.getItem('InputEmail')&&localStorage.getItem('InputEmail')!=null)
+  // }
+  const [InputValue, setInputvalue] = useState((typeof window !== 'undefined'&&localStorage.getItem('InputName')!=null)?localStorage.getItem('InputName'):'');
+  const [InputEmail, setInputemail] = useState((typeof window !== 'undefined'&&localStorage.getItem('InputEmail')!=null)?localStorage.getItem('InputEmail'):'');
   const [OpenDiscord, setOpenDiscord] = useState(false);
   const [flagDiscord, setDiscord] = useState("bg-[#8570E4]");
   const [discordBtn, setDiscordBtn] = useState(true);
   const [disableDiscord, setdisableDiscord] = useState(false);
   const [disableDiscordBot, setdisableDiscordBot] = useState(false);
 
-  
-  const [imageUrl, setImageUrl] = useState("/Icons/DefaultUserIcon.png");
-
+  console.log(InputEmail,InputValue);
+  const [imageUrl, setImageUrl] = useState<string|null>("/Icons/DefaultUserIcon.png");
+  // console.log('hello',imageUrl);
+  useEffect(()=>{
+    if(typeof window !== 'undefined'&&localStorage.getItem('userImage')){
+      setImageUrl(localStorage.getItem('userImage'))
+    }
+  },[])
   let community_admin_avatar = "";
   let file: File;
   //Function to check wheather the email is already registered or not
@@ -56,9 +65,9 @@ const CommunitySetupScreen = (): ReactElement => {
   async function onContinueClick() {
     console.log(InputEmail, await emailExist(InputEmail));
     if ((await emailExist(InputEmail)) == "1") {
-      obj.email = InputEmail;
+      obj.email =  (InputEmail!=null?InputEmail:'');
       AdminAvatarUpload(file);
-      obj.name = InputValue;
+      obj.name = (InputValue!=null?InputValue:'');
       obj.community_admin_avatar = community_admin_avatar;
       // Removing userImage stored in local Storage
       localStorage.removeItem("userImage");
@@ -116,9 +125,14 @@ const CommunitySetupScreen = (): ReactElement => {
 
   function handleInput(e: any) {
     setInputvalue(e.target.value);
+
+    if(typeof window !== undefined)
+    localStorage.setItem('InputName',e.target.value);
   }
   function handleEmail(e: any) {
     setInputemail(e.target.value);
+    if(typeof window !== undefined)
+    localStorage.setItem('InputEmail',e.target.value);
   }
   async function discordToken() {
     if (window.location.href.includes("access_token")) {
@@ -225,7 +239,7 @@ const CommunitySetupScreen = (): ReactElement => {
             </div>
             <ProfileIcon
               size={94}
-              imageUrl={imageUrl}
+              imageUrl={imageUrl!=null?imageUrl:''}
               alt="nothing"
               classNameCircle="relative top-[50px] left-[30px] border-dashed border-[0.7px] border-white cursor-pointer"
               classNameImage="relative left-[22px] top-[26px] w-[51.6px] h-[42.24px]"
@@ -238,7 +252,7 @@ const CommunitySetupScreen = (): ReactElement => {
               classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
               classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
               handleChange2={handleInput}
-              handleValue={InputValue}
+              handleValue={InputValue!=null?InputValue:''}
             />
             <EmailInput
               placeholder="Email"
@@ -247,7 +261,7 @@ const CommunitySetupScreen = (): ReactElement => {
               classNameInput="w-[426px] h-[41px] bg-[#2E363F] rounded-lg text-white font-[General Sans] font-medium"
               classNameLabel="font-medium text-base leading-6 text-white font-[General Sans] w-[85px] h-[22px]"
               handleChange2={handleEmail}
-              handleValue={InputEmail}
+              handleValue={(InputEmail!=null?InputEmail:'')}
             />
             {discordBtn ? <IconButton
               icon={FaDiscord}

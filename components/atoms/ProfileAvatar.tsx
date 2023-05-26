@@ -23,7 +23,7 @@ const ProfileIcon = ({ imageUrl, size =32, classNameCircle = '', style, alt = 'P
       style={{ ...sizeStyle, ...style }}
     >
       <img
-        src={"/Icons/profileTemplate.jpg"}
+        src={imageUrl!==''?imageUrl:"/Icons/profileTemplate.jpg"}
         alt={alt}
         className={`object-cover ${classNameImage}`}
       />
