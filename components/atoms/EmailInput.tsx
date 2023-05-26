@@ -12,7 +12,7 @@ type EmailInputProps = {
 
 const EmailInput = ({ label  ,placeholder = '', className = '',classNameLabel='',classNameInput='',handleChange2,handleValue = ''}: EmailInputProps): ReactElement => {
   // state to hold the current input value and error message
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(handleValue);
   const [error, setError] = useState('');
 
   // function to handle input change events
