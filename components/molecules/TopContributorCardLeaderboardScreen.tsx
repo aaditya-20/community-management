@@ -88,14 +88,36 @@ export default function MemberListCardMissionPage(props:any) {
                 <div className="grid grid-cols-9 mb-[19.72px]" key={index}>
                   <div className="col-span-3 ">
                     <div className="flex items-center">
-                      {item.xp > item.previousXP ? <Image src="Icons/greenUp.svg" alt="" height={3.72} width={7.45} />
-                      : item.xp < item.previousXP ? <Image src="Icons/redDown.svg" alt="" height={4} width={8} /> : <Image src="Icons/dash.svg" height={14} width={8} alt=""/>}
+                      {item.xp > item.previousXP ? (
+                        <Image
+                          src="Icons/greenUp.svg"
+                          alt=""
+                          height={3.72}
+                          width={7.45}
+                        />
+                      ) : item.xp < item.previousXP ? (
+                        <Image
+                          src="Icons/redDown.svg"
+                          alt=""
+                          height={4}
+                          width={8}
+                        />
+                      ) : (
+                        <Image
+                          src="Icons/dash.svg"
+                          height={14}
+                          width={8}
+                          alt=""
+                        />
+                      )}
 
-                      <h1 className="text-lg font-medium text-white ml-[9.68px] mr-4">{index + 1}</h1>
+                      <h1 className="text-lg font-medium text-white ml-[9.68px] mr-4">
+                        {index + 1}
+                      </h1>
 
                       <div className="h-10 w-10 overflow-hidden rounded-full mr-[10.8px]">
                         <Image
-                          src="Icons/avatar.svg"
+                          src="/Icons/profileTemplate.jpg"
                           height={40}
                           width={40}
                           alt=""
@@ -103,10 +125,14 @@ export default function MemberListCardMissionPage(props:any) {
                         />
                       </div>
 
-                      <h1 className=" text-[18px] leading-[24px] font-normal font-open-sans text-white">@{item.User_name}</h1>
+                      <h1 className=" text-[18px] leading-[24px] font-normal font-open-sans text-white">
+                        @{item.User_name}
+                      </h1>
                     </div>
                   </div>
-                  <div className="col-span-3">{item.missions_completed.length}</div>
+                  <div className="col-span-3">
+                    {item.missions_completed.length}
+                  </div>
                   <div className="col-span-2">
                     {/* <div className="flex gap-[7px]">
                       {item.platform.map((item:any,index:any)=>{
